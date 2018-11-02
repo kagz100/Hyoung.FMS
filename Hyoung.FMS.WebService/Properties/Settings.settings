@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Hyoung.FMS.WebService.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Hyoung_FMS_WebService_DirectoryServiceReference_Directory" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://52.43.97.199/GpsGateServer/Services/Directory.asmx</Value>
+    </Setting>
+    <Setting Name="Hyoung_FMS_WebService_ReportingReference_Reporting" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://52.43.97.199/GpsGateServer/Services/Reporting.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

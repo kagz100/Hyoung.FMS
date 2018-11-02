@@ -1,0 +1,1746 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://gpsgate.com/services/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://gpsgate.com/services/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://gpsgate.com/services/">
+      <s:element name="Login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strUsername" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLicenseStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLicenseStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLicenseStatusResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGateMessagesByTrackInfoId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iTrackInfoID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="dtStart" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="dtEnd" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="iStartIndex" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iStopIndex" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="bFilterNoneValid" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="arrFields" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetGateMessagesByTrackInfoIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGateMessagesByTrackInfoIdResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLatestGateRecords">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iUserID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="bFilterNotUsed" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLatestGateRecordsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLatestGateRecordsResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUpdatedUsersInGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strGroupName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iStartIndex" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iStopIndex" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iViewID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="dtSince" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUpdatedUsersInGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUpdatedUsersInGroupResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersInGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strGroupName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iViewID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersInGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsersInGroupResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersInUserTag">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strTagName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersInUserTagResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsersInUserTagResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersInUserTemplate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iUserTemplateID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersInUserTemplateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsersInUserTemplateResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrentApplications">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrentApplicationsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCurrentApplicationsResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUserMarkerColor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iUserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strMarkerColor" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUserMarkerColorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetUserMarkerColorResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUserExpectedFuelConsumption">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iUserID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="dExpectedFuelConsumption" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUserExpectedFuelConsumptionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetUserExpectedFuelConsumptionResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iUserID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RemoveUserResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUserPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iUserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strNewPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUserPasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetUserPasswordResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetViews">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetViewsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetViewsResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTagsInApplication">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTagsInApplicationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTagsInApplicationResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveTag">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iTagID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strDescription" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="arrUserIDs" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SaveTagResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveTagResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDevicesByUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iUserID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDevicesByUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDevicesByUserResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeviceCommandStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iDeviceID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeviceCommandStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDeviceCommandStatusResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResetCommandQueue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iDeviceID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResetCommandQueueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ResetCommandQueueResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetManageableDeviceDefinitions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetManageableDeviceDefinitionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetManageableDeviceDefinitionsResult" type="tns:ArrayOfSoapDeviceDefinition" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSoapDeviceDefinition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SoapDeviceDefinition" nillable="true" type="tns:SoapDeviceDefinition" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SoapDeviceDefinition">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProtocolID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NamespaceName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeviceIdentifierLabel" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUserTemplates">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserTemplatesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserTemplatesResult" type="tns:ArrayOfSoapUserTemplate" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSoapUserTemplate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SoapUserTemplate" nillable="true" type="tns:SoapUserTemplate" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SoapUserTemplate">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfSoapUserTemplateItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSoapUserTemplateItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SoapUserTemplateItem" nillable="true" type="tns:SoapUserTemplateItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SoapUserTemplateItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FieldID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Required" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Visible" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddUserWithUserTemplate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iUserTemplateID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strUsername" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strDescription" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddUserWithUserTemplateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddUserWithUserTemplateResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddDevice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iOwnerID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strDeviceName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strIMEI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strMSISDN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strEmail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strIP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPort" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strAPN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strGPRSUsername" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strGPRSPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iDeviceDefinitionID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iMobileNetworkID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strDevicePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lstOneWireVariables" type="tns:ArrayOfOneWireBag" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfOneWireBag">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OneWireBag" nillable="true" type="tns:OneWireBag" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OneWireBag">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ViewBag">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="DeviceID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="DeviceDefinitionID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="VariableName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OneWireID" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ViewBag" abstract="true" />
+      <s:element name="AddDeviceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddDeviceResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeUsername">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iUserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strUsername" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeUsernameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangeUsernameResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeUserDescription">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iUserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strDescription" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeUserDescriptionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangeUserDescriptionResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeUserSurname">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iUserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strSurname" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeUserSurnameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangeUserSurnameResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeDriverID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iUserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strDriverID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeDriverIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangeDriverIDResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeEmail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iUserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strEmail" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeEmailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangeEmailResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccumulator">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iUserID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="strName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccumulatorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAccumulatorResult" type="tns:SoapAccumulator" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SoapAccumulator">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAccumulators">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iUserID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccumulatorsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAccumulatorsResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccumulatorValue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iAccumulatorID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="dtTime" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccumulatorValueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAccumulatorValueResult" type="tns:SoapAccumulatorData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SoapAccumulatorData">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="AccumulatorID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccumulatorName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="TimeStamp" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="MeasureKey" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetLatestAccumulatorValue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iAccumulatorID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLatestAccumulatorValueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLatestAccumulatorValueResult" type="tns:SoapAccumulatorData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetAccumulatorValue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iAccumulatorID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="dblValue" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="dtTimeOfValue" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetAccumulatorValueResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLicenseStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLicenseStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetLicenseStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLicenseStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGateMessagesByTrackInfoIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGateMessagesByTrackInfoId" />
+  </wsdl:message>
+  <wsdl:message name="GetGateMessagesByTrackInfoIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGateMessagesByTrackInfoIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLatestGateRecordsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLatestGateRecords" />
+  </wsdl:message>
+  <wsdl:message name="GetLatestGateRecordsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLatestGateRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdatedUsersInGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUpdatedUsersInGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdatedUsersInGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUpdatedUsersInGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersInGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsersInGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersInGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersInGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersInUserTagSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsersInUserTag" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersInUserTagSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersInUserTagResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersInUserTemplateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsersInUserTemplate" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersInUserTemplateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersInUserTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentApplicationsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurrentApplications" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentApplicationsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurrentApplicationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetUserMarkerColorSoapIn">
+    <wsdl:part name="parameters" element="tns:SetUserMarkerColor" />
+  </wsdl:message>
+  <wsdl:message name="SetUserMarkerColorSoapOut">
+    <wsdl:part name="parameters" element="tns:SetUserMarkerColorResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetUserExpectedFuelConsumptionSoapIn">
+    <wsdl:part name="parameters" element="tns:SetUserExpectedFuelConsumption" />
+  </wsdl:message>
+  <wsdl:message name="SetUserExpectedFuelConsumptionSoapOut">
+    <wsdl:part name="parameters" element="tns:SetUserExpectedFuelConsumptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveUserSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveUser" />
+  </wsdl:message>
+  <wsdl:message name="RemoveUserSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetUserPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:SetUserPassword" />
+  </wsdl:message>
+  <wsdl:message name="SetUserPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:SetUserPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetViewsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetViews" />
+  </wsdl:message>
+  <wsdl:message name="GetViewsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetViewsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTagsInApplicationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTagsInApplication" />
+  </wsdl:message>
+  <wsdl:message name="GetTagsInApplicationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTagsInApplicationResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveTagSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveTag" />
+  </wsdl:message>
+  <wsdl:message name="SaveTagSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveTagResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDevicesByUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDevicesByUser" />
+  </wsdl:message>
+  <wsdl:message name="GetDevicesByUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDevicesByUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDeviceCommandStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDeviceCommandStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetDeviceCommandStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDeviceCommandStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResetCommandQueueSoapIn">
+    <wsdl:part name="parameters" element="tns:ResetCommandQueue" />
+  </wsdl:message>
+  <wsdl:message name="ResetCommandQueueSoapOut">
+    <wsdl:part name="parameters" element="tns:ResetCommandQueueResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetManageableDeviceDefinitionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetManageableDeviceDefinitions" />
+  </wsdl:message>
+  <wsdl:message name="GetManageableDeviceDefinitionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetManageableDeviceDefinitionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserTemplatesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserTemplates" />
+  </wsdl:message>
+  <wsdl:message name="GetUserTemplatesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserTemplatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddUserWithUserTemplateSoapIn">
+    <wsdl:part name="parameters" element="tns:AddUserWithUserTemplate" />
+  </wsdl:message>
+  <wsdl:message name="AddUserWithUserTemplateSoapOut">
+    <wsdl:part name="parameters" element="tns:AddUserWithUserTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddDeviceSoapIn">
+    <wsdl:part name="parameters" element="tns:AddDevice" />
+  </wsdl:message>
+  <wsdl:message name="AddDeviceSoapOut">
+    <wsdl:part name="parameters" element="tns:AddDeviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeUsernameSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeUsername" />
+  </wsdl:message>
+  <wsdl:message name="ChangeUsernameSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeUserDescriptionSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeUserDescription" />
+  </wsdl:message>
+  <wsdl:message name="ChangeUserDescriptionSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeUserDescriptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeUserSurnameSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeUserSurname" />
+  </wsdl:message>
+  <wsdl:message name="ChangeUserSurnameSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeUserSurnameResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeDriverIDSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeDriverID" />
+  </wsdl:message>
+  <wsdl:message name="ChangeDriverIDSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeDriverIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeEmailSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeEmail" />
+  </wsdl:message>
+  <wsdl:message name="ChangeEmailSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAccumulatorSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAccumulator" />
+  </wsdl:message>
+  <wsdl:message name="GetAccumulatorSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAccumulatorResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAccumulatorsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAccumulators" />
+  </wsdl:message>
+  <wsdl:message name="GetAccumulatorsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAccumulatorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAccumulatorValueSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAccumulatorValue" />
+  </wsdl:message>
+  <wsdl:message name="GetAccumulatorValueSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAccumulatorValueResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLatestAccumulatorValueSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLatestAccumulatorValue" />
+  </wsdl:message>
+  <wsdl:message name="GetLatestAccumulatorValueSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLatestAccumulatorValueResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetAccumulatorValueSoapIn">
+    <wsdl:part name="parameters" element="tns:SetAccumulatorValue" />
+  </wsdl:message>
+  <wsdl:message name="SetAccumulatorValueSoapOut">
+    <wsdl:part name="parameters" element="tns:SetAccumulatorValueResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DirectorySoap">
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLicenseStatus">
+      <wsdl:input message="tns:GetLicenseStatusSoapIn" />
+      <wsdl:output message="tns:GetLicenseStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGateMessagesByTrackInfoId">
+      <wsdl:input message="tns:GetGateMessagesByTrackInfoIdSoapIn" />
+      <wsdl:output message="tns:GetGateMessagesByTrackInfoIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestGateRecords">
+      <wsdl:input message="tns:GetLatestGateRecordsSoapIn" />
+      <wsdl:output message="tns:GetLatestGateRecordsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdatedUsersInGroup">
+      <wsdl:input message="tns:GetUpdatedUsersInGroupSoapIn" />
+      <wsdl:output message="tns:GetUpdatedUsersInGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersInGroup">
+      <wsdl:input message="tns:GetUsersInGroupSoapIn" />
+      <wsdl:output message="tns:GetUsersInGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersInUserTag">
+      <wsdl:input message="tns:GetUsersInUserTagSoapIn" />
+      <wsdl:output message="tns:GetUsersInUserTagSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersInUserTemplate">
+      <wsdl:input message="tns:GetUsersInUserTemplateSoapIn" />
+      <wsdl:output message="tns:GetUsersInUserTemplateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentApplications">
+      <wsdl:input message="tns:GetCurrentApplicationsSoapIn" />
+      <wsdl:output message="tns:GetCurrentApplicationsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserMarkerColor">
+      <wsdl:input message="tns:SetUserMarkerColorSoapIn" />
+      <wsdl:output message="tns:SetUserMarkerColorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserExpectedFuelConsumption">
+      <wsdl:input message="tns:SetUserExpectedFuelConsumptionSoapIn" />
+      <wsdl:output message="tns:SetUserExpectedFuelConsumptionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUser">
+      <wsdl:input message="tns:RemoveUserSoapIn" />
+      <wsdl:output message="tns:RemoveUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserPassword">
+      <wsdl:input message="tns:SetUserPasswordSoapIn" />
+      <wsdl:output message="tns:SetUserPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetViews">
+      <wsdl:input message="tns:GetViewsSoapIn" />
+      <wsdl:output message="tns:GetViewsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTagsInApplication">
+      <wsdl:input message="tns:GetTagsInApplicationSoapIn" />
+      <wsdl:output message="tns:GetTagsInApplicationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveTag">
+      <wsdl:input message="tns:SaveTagSoapIn" />
+      <wsdl:output message="tns:SaveTagSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDevicesByUser">
+      <wsdl:input message="tns:GetDevicesByUserSoapIn" />
+      <wsdl:output message="tns:GetDevicesByUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeviceCommandStatus">
+      <wsdl:input message="tns:GetDeviceCommandStatusSoapIn" />
+      <wsdl:output message="tns:GetDeviceCommandStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetCommandQueue">
+      <wsdl:input message="tns:ResetCommandQueueSoapIn" />
+      <wsdl:output message="tns:ResetCommandQueueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetManageableDeviceDefinitions">
+      <wsdl:input message="tns:GetManageableDeviceDefinitionsSoapIn" />
+      <wsdl:output message="tns:GetManageableDeviceDefinitionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTemplates">
+      <wsdl:input message="tns:GetUserTemplatesSoapIn" />
+      <wsdl:output message="tns:GetUserTemplatesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUserWithUserTemplate">
+      <wsdl:input message="tns:AddUserWithUserTemplateSoapIn" />
+      <wsdl:output message="tns:AddUserWithUserTemplateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDevice">
+      <wsdl:input message="tns:AddDeviceSoapIn" />
+      <wsdl:output message="tns:AddDeviceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUsername">
+      <wsdl:input message="tns:ChangeUsernameSoapIn" />
+      <wsdl:output message="tns:ChangeUsernameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserDescription">
+      <wsdl:input message="tns:ChangeUserDescriptionSoapIn" />
+      <wsdl:output message="tns:ChangeUserDescriptionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserSurname">
+      <wsdl:input message="tns:ChangeUserSurnameSoapIn" />
+      <wsdl:output message="tns:ChangeUserSurnameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeDriverID">
+      <wsdl:input message="tns:ChangeDriverIDSoapIn" />
+      <wsdl:output message="tns:ChangeDriverIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeEmail">
+      <wsdl:input message="tns:ChangeEmailSoapIn" />
+      <wsdl:output message="tns:ChangeEmailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAccumulator">
+      <wsdl:input message="tns:GetAccumulatorSoapIn" />
+      <wsdl:output message="tns:GetAccumulatorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAccumulators">
+      <wsdl:input message="tns:GetAccumulatorsSoapIn" />
+      <wsdl:output message="tns:GetAccumulatorsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAccumulatorValue">
+      <wsdl:input message="tns:GetAccumulatorValueSoapIn" />
+      <wsdl:output message="tns:GetAccumulatorValueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestAccumulatorValue">
+      <wsdl:input message="tns:GetLatestAccumulatorValueSoapIn" />
+      <wsdl:output message="tns:GetLatestAccumulatorValueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAccumulatorValue">
+      <wsdl:input message="tns:SetAccumulatorValueSoapIn" />
+      <wsdl:output message="tns:SetAccumulatorValueSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DirectorySoap" type="tns:DirectorySoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://gpsgate.com/services/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLicenseStatus">
+      <soap:operation soapAction="http://gpsgate.com/services/GetLicenseStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGateMessagesByTrackInfoId">
+      <soap:operation soapAction="http://gpsgate.com/services/GetGateMessagesByTrackInfoId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestGateRecords">
+      <soap:operation soapAction="http://gpsgate.com/services/GetLatestGateRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdatedUsersInGroup">
+      <soap:operation soapAction="http://gpsgate.com/services/GetUpdatedUsersInGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersInGroup">
+      <soap:operation soapAction="http://gpsgate.com/services/GetUsersInGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersInUserTag">
+      <soap:operation soapAction="http://gpsgate.com/services/GetUsersInUserTag" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersInUserTemplate">
+      <soap:operation soapAction="http://gpsgate.com/services/GetUsersInUserTemplate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentApplications">
+      <soap:operation soapAction="http://gpsgate.com/services/GetCurrentApplications" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserMarkerColor">
+      <soap:operation soapAction="http://gpsgate.com/services/SetUserMarkerColor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserExpectedFuelConsumption">
+      <soap:operation soapAction="http://gpsgate.com/services/SetUserExpectedFuelConsumption" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUser">
+      <soap:operation soapAction="http://gpsgate.com/services/RemoveUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserPassword">
+      <soap:operation soapAction="http://gpsgate.com/services/SetUserPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViews">
+      <soap:operation soapAction="http://gpsgate.com/services/GetViews" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTagsInApplication">
+      <soap:operation soapAction="http://gpsgate.com/services/GetTagsInApplication" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveTag">
+      <soap:operation soapAction="http://gpsgate.com/services/SaveTag" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDevicesByUser">
+      <soap:operation soapAction="http://gpsgate.com/services/GetDevicesByUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeviceCommandStatus">
+      <soap:operation soapAction="http://gpsgate.com/services/GetDeviceCommandStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetCommandQueue">
+      <soap:operation soapAction="http://gpsgate.com/services/ResetCommandQueue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetManageableDeviceDefinitions">
+      <soap:operation soapAction="http://gpsgate.com/services/GetManageableDeviceDefinitions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTemplates">
+      <soap:operation soapAction="http://gpsgate.com/services/GetUserTemplates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserWithUserTemplate">
+      <soap:operation soapAction="http://gpsgate.com/services/AddUserWithUserTemplate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDevice">
+      <soap:operation soapAction="http://gpsgate.com/services/AddDevice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUsername">
+      <soap:operation soapAction="http://gpsgate.com/services/ChangeUsername" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserDescription">
+      <soap:operation soapAction="http://gpsgate.com/services/ChangeUserDescription" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserSurname">
+      <soap:operation soapAction="http://gpsgate.com/services/ChangeUserSurname" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeDriverID">
+      <soap:operation soapAction="http://gpsgate.com/services/ChangeDriverID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeEmail">
+      <soap:operation soapAction="http://gpsgate.com/services/ChangeEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccumulator">
+      <soap:operation soapAction="http://gpsgate.com/services/GetAccumulator" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccumulators">
+      <soap:operation soapAction="http://gpsgate.com/services/GetAccumulators" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccumulatorValue">
+      <soap:operation soapAction="http://gpsgate.com/services/GetAccumulatorValue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestAccumulatorValue">
+      <soap:operation soapAction="http://gpsgate.com/services/GetLatestAccumulatorValue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAccumulatorValue">
+      <soap:operation soapAction="http://gpsgate.com/services/SetAccumulatorValue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DirectorySoap12" type="tns:DirectorySoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://gpsgate.com/services/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLicenseStatus">
+      <soap12:operation soapAction="http://gpsgate.com/services/GetLicenseStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGateMessagesByTrackInfoId">
+      <soap12:operation soapAction="http://gpsgate.com/services/GetGateMessagesByTrackInfoId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestGateRecords">
+      <soap12:operation soapAction="http://gpsgate.com/services/GetLatestGateRecords" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdatedUsersInGroup">
+      <soap12:operation soapAction="http://gpsgate.com/services/GetUpdatedUsersInGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersInGroup">
+      <soap12:operation soapAction="http://gpsgate.com/services/GetUsersInGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersInUserTag">
+      <soap12:operation soapAction="http://gpsgate.com/services/GetUsersInUserTag" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersInUserTemplate">
+      <soap12:operation soapAction="http://gpsgate.com/services/GetUsersInUserTemplate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentApplications">
+      <soap12:operation soapAction="http://gpsgate.com/services/GetCurrentApplications" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserMarkerColor">
+      <soap12:operation soapAction="http://gpsgate.com/services/SetUserMarkerColor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserExpectedFuelConsumption">
+      <soap12:operation soapAction="http://gpsgate.com/services/SetUserExpectedFuelConsumption" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUser">
+      <soap12:operation soapAction="http://gpsgate.com/services/RemoveUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserPassword">
+      <soap12:operation soapAction="http://gpsgate.com/services/SetUserPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetViews">
+      <soap12:operation soapAction="http://gpsgate.com/services/GetViews" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTagsInApplication">
+      <soap12:operation soapAction="http://gpsgate.com/services/GetTagsInApplication" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveTag">
+      <soap12:operation soapAction="http://gpsgate.com/services/SaveTag" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDevicesByUser">
+      <soap12:operation soapAction="http://gpsgate.com/services/GetDevicesByUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeviceCommandStatus">
+      <soap12:operation soapAction="http://gpsgate.com/services/GetDeviceCommandStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetCommandQueue">
+      <soap12:operation soapAction="http://gpsgate.com/services/ResetCommandQueue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetManageableDeviceDefinitions">
+      <soap12:operation soapAction="http://gpsgate.com/services/GetManageableDeviceDefinitions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTemplates">
+      <soap12:operation soapAction="http://gpsgate.com/services/GetUserTemplates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserWithUserTemplate">
+      <soap12:operation soapAction="http://gpsgate.com/services/AddUserWithUserTemplate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDevice">
+      <soap12:operation soapAction="http://gpsgate.com/services/AddDevice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUsername">
+      <soap12:operation soapAction="http://gpsgate.com/services/ChangeUsername" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserDescription">
+      <soap12:operation soapAction="http://gpsgate.com/services/ChangeUserDescription" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserSurname">
+      <soap12:operation soapAction="http://gpsgate.com/services/ChangeUserSurname" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeDriverID">
+      <soap12:operation soapAction="http://gpsgate.com/services/ChangeDriverID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeEmail">
+      <soap12:operation soapAction="http://gpsgate.com/services/ChangeEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccumulator">
+      <soap12:operation soapAction="http://gpsgate.com/services/GetAccumulator" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccumulators">
+      <soap12:operation soapAction="http://gpsgate.com/services/GetAccumulators" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccumulatorValue">
+      <soap12:operation soapAction="http://gpsgate.com/services/GetAccumulatorValue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestAccumulatorValue">
+      <soap12:operation soapAction="http://gpsgate.com/services/GetLatestAccumulatorValue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAccumulatorValue">
+      <soap12:operation soapAction="http://gpsgate.com/services/SetAccumulatorValue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Directory">
+    <wsdl:port name="DirectorySoap" binding="tns:DirectorySoap">
+      <soap:address location="http://52.43.97.199/GpsGateServer/Services/Directory.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DirectorySoap12" binding="tns:DirectorySoap12">
+      <soap12:address location="http://52.43.97.199/GpsGateServer/Services/Directory.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

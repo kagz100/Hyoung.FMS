@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://gpsgate.com/services/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://gpsgate.com/services/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://gpsgate.com/services/">
+      <s:element name="GetReports">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iApplicationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReportsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetReportsResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerateReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iReportID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="startDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="endDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerateReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GenerateReportResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FetchReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iHandleID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FetchReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FetchReportResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReportStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iHandleID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReportStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetReportStatusResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iHandleID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CancelReportResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProcessingReports">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strSessionID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iAppplicationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProcessingReportsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProcessingReportsResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetReportsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReports" />
+  </wsdl:message>
+  <wsdl:message name="GetReportsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReportsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GenerateReportSoapIn">
+    <wsdl:part name="parameters" element="tns:GenerateReport" />
+  </wsdl:message>
+  <wsdl:message name="GenerateReportSoapOut">
+    <wsdl:part name="parameters" element="tns:GenerateReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="FetchReportSoapIn">
+    <wsdl:part name="parameters" element="tns:FetchReport" />
+  </wsdl:message>
+  <wsdl:message name="FetchReportSoapOut">
+    <wsdl:part name="parameters" element="tns:FetchReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReportStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReportStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetReportStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReportStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelReportSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelReport" />
+  </wsdl:message>
+  <wsdl:message name="CancelReportSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProcessingReportsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProcessingReports" />
+  </wsdl:message>
+  <wsdl:message name="GetProcessingReportsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProcessingReportsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ReportingSoap">
+    <wsdl:operation name="GetReports">
+      <wsdl:input message="tns:GetReportsSoapIn" />
+      <wsdl:output message="tns:GetReportsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateReport">
+      <wsdl:input message="tns:GenerateReportSoapIn" />
+      <wsdl:output message="tns:GenerateReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FetchReport">
+      <wsdl:input message="tns:FetchReportSoapIn" />
+      <wsdl:output message="tns:FetchReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReportStatus">
+      <wsdl:input message="tns:GetReportStatusSoapIn" />
+      <wsdl:output message="tns:GetReportStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelReport">
+      <wsdl:input message="tns:CancelReportSoapIn" />
+      <wsdl:output message="tns:CancelReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessingReports">
+      <wsdl:input message="tns:GetProcessingReportsSoapIn" />
+      <wsdl:output message="tns:GetProcessingReportsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ReportingSoap" type="tns:ReportingSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetReports">
+      <soap:operation soapAction="http://gpsgate.com/services/GetReports" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateReport">
+      <soap:operation soapAction="http://gpsgate.com/services/GenerateReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FetchReport">
+      <soap:operation soapAction="http://gpsgate.com/services/FetchReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportStatus">
+      <soap:operation soapAction="http://gpsgate.com/services/GetReportStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelReport">
+      <soap:operation soapAction="http://gpsgate.com/services/CancelReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessingReports">
+      <soap:operation soapAction="http://gpsgate.com/services/GetProcessingReports" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ReportingSoap12" type="tns:ReportingSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetReports">
+      <soap12:operation soapAction="http://gpsgate.com/services/GetReports" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateReport">
+      <soap12:operation soapAction="http://gpsgate.com/services/GenerateReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FetchReport">
+      <soap12:operation soapAction="http://gpsgate.com/services/FetchReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportStatus">
+      <soap12:operation soapAction="http://gpsgate.com/services/GetReportStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelReport">
+      <soap12:operation soapAction="http://gpsgate.com/services/CancelReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProcessingReports">
+      <soap12:operation soapAction="http://gpsgate.com/services/GetProcessingReports" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Reporting">
+    <wsdl:port name="ReportingSoap" binding="tns:ReportingSoap">
+      <soap:address location="http://52.43.97.199/GpsGateServer/Services/Reporting.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ReportingSoap12" binding="tns:ReportingSoap12">
+      <soap12:address location="http://52.43.97.199/GpsGateServer/Services/Reporting.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

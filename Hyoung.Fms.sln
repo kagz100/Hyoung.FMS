@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyoung.FMS.WebService", "Hy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyoung.FMS.Service", "Hyoung.FMS.Service\Hyoung.FMS.Service.csproj", "{E9ECE8C8-CB3C-4EB5-B5C6-921F6E993D79}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyoung.FMS.WebServiceTests", "Hyoung.FMS.WebServiceTests\Hyoung.FMS.WebServiceTests.csproj", "{E4D9655C-7F1A-48FC-B695-065A1BE6671A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{E9ECE8C8-CB3C-4EB5-B5C6-921F6E993D79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9ECE8C8-CB3C-4EB5-B5C6-921F6E993D79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9ECE8C8-CB3C-4EB5-B5C6-921F6E993D79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4D9655C-7F1A-48FC-B695-065A1BE6671A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4D9655C-7F1A-48FC-B695-065A1BE6671A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4D9655C-7F1A-48FC-B695-065A1BE6671A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4D9655C-7F1A-48FC-B695-065A1BE6671A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

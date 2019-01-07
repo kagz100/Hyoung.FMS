@@ -42,5 +42,15 @@ namespace Hyoung.FMS.WebService.Properties {
                 return ((string)(this["Hyoung_FMS_WebService_ReportingReference_Reporting"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://52.43.97.199/GpsGateServer/Services/tracks.asmx")]
+        public string Hyoung_FMS_WebService_TrackReference_Tracks {
+            get {
+                return ((string)(this["Hyoung_FMS_WebService_TrackReference_Tracks"]));
+            }
+        }
     }
 }

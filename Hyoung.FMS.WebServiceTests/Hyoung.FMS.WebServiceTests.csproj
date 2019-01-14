@@ -65,16 +65,6 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Hyoung.FMS.Service\Hyoung.FMS.Service.csproj">
-      <Project>{e9ece8c8-cb3c-4eb5-b5c6-921f6e993d79}</Project>
-      <Name>Hyoung.FMS.Service</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Hyoung.FMS.WebService\Hyoung.FMS.WebService.csproj">
-      <Project>{D5BBD49F-123E-435D-86B5-0E7A4CDCC18F}</Project>
-      <Name>Hyoung.FMS.WebService</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

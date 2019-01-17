@@ -1,0 +1,91 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\lib\bootstrap-datepicker\**" />
+    <Compile Remove="wwwroot\lib\jquery-idletimer\**" />
+    <Content Remove="wwwroot\lib\bootstrap-datepicker\**" />
+    <Content Remove="wwwroot\lib\jquery-idletimer\**" />
+    <EmbeddedResource Remove="wwwroot\lib\bootstrap-datepicker\**" />
+    <EmbeddedResource Remove="wwwroot\lib\jquery-idletimer\**" />
+    <None Remove="wwwroot\lib\bootstrap-datepicker\**" />
+    <None Remove="wwwroot\lib\jquery-idletimer\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="bin\Debug\netcoreapp2.1\bootstrap-starter.deps.json" />
+    <Content Include="bin\Debug\netcoreapp2.1\bootstrap-starter.runtimeconfig.dev.json" />
+    <Content Include="bin\Debug\netcoreapp2.1\bootstrap-starter.runtimeconfig.json" />
+    <Content Include="bin\Debug\netcoreapp2.1\Hyoung.FMS.WebClient.deps.json" />
+    <Content Include="bin\Debug\netcoreapp2.1\Hyoung.FMS.WebClient.runtimeconfig.dev.json" />
+    <Content Include="bin\Debug\netcoreapp2.1\Hyoung.FMS.WebClient.runtimeconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\netcoreapp2.1\bootstrap-starter.dll" />
+    <None Include="bin\Debug\netcoreapp2.1\bootstrap-starter.pdb" />
+    <None Include="bin\Debug\netcoreapp2.1\bootstrap-starter.Views.dll" />
+    <None Include="bin\Debug\netcoreapp2.1\bootstrap-starter.Views.pdb" />
+    <None Include="bin\Debug\netcoreapp2.1\Hyoung.FMS.WebClient.dll" />
+    <None Include="bin\Debug\netcoreapp2.1\Hyoung.FMS.WebClient.pdb" />
+    <None Include="bin\Debug\netcoreapp2.1\Hyoung.FMS.WebClient.Views.dll" />
+    <None Include="bin\Debug\netcoreapp2.1\Hyoung.FMS.WebClient.Views.pdb" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-theme.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-theme.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\npm.js" />
+    <None Include="wwwroot\lib\bootstrap\LICENSE" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\LICENSE.md" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.map" />
+    <None Include="wwwroot\lib\popper.js\dist\umd\popper-utils.js" />
+    <None Include="wwwroot\lib\popper.js\dist\umd\popper-utils.js.map" />
+    <None Include="wwwroot\lib\popper.js\dist\umd\popper-utils.min.js" />
+    <None Include="wwwroot\lib\popper.js\dist\umd\popper-utils.min.js.map" />
+    <None Include="wwwroot\lib\popper.js\dist\umd\popper.js" />
+    <None Include="wwwroot\lib\popper.js\dist\umd\popper.js.map" />
+    <None Include="wwwroot\lib\popper.js\dist\umd\popper.min.js" />
+    <None Include="wwwroot\lib\popper.js\dist\umd\popper.min.js.map" />
+    <None Include="wwwroot\lib\popper.js\LICENSE.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Home\Minor.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DevExpress.AspNetCore.Bootstrap.v17.2">
+      <HintPath>..\..\..\..\.nuget\packages\devexpress.aspnetcore.bootstrap\17.2.7\lib\netstandard2.0\DevExpress.AspNetCore.Bootstrap.v17.2.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

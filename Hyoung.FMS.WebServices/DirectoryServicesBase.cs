@@ -42,28 +42,10 @@ namespace Hyoung.FMS.WebServices
         }
 
 
+        public string SessionID { get { return _sessionID; } }
 
-        //public string Login(string userName, string password, int applicationID)
-        //{
+        public int ApplicationID { get {return _applicationID; } }
 
-
-
-
-
-
-        //    XmlNode xmlReponce = _directory.Login(userName, password, applicationID);
-
-
-        //    checkError(xmlReponce);
-
-
-        //    _sessionID = xmlReponce.InnerText;
-
-        //    _applicationID = applicationID;
-
-        //    return _sessionID;
-
-        //}
 
         //public static void checkError(XmlNode xmlReponce)
         //{

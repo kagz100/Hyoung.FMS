@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Hyoung.FMS.WebClient
+namespace Hyoung.FMS.webclient
 {
     public static class HtmlHelpers
     {

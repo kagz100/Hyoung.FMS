@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Hyoung.FMS.WebClient.Models;
+using Hyoung.FMS.webclient.Models;
 
-namespace Hyoung.FMS.WebClient.Controllers
+namespace Hyoung.FMS.webclient.Controllers
 {
     public class HomeController : Controller
     {

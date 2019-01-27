@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Hyoung.FMS.WebClient
+namespace Hyoung.FMS.webclient
 {
     public class Program
     {

@@ -11,9 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyoung.FMS.WebServiceTests"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyoung.FMS.WebServices", "Hyoung.FMS.WebServices\Hyoung.FMS.WebServices.csproj", "{378632CD-366A-402B-854F-AF855BA81212}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyoung.FMS.WebClient", "Hyoung.FMS.WebClient\Hyoung.FMS.WebClient.csproj", "{0E6ECA5E-6A05-499A-AEAB-FC702C9560D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyoung.test", "Hyoung.test\Hyoung.test.csproj", "{1E874E43-50CD-4F4B-BE72-4964EB009B9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyoung.test", "Hyoung.test\Hyoung.test.csproj", "{1E874E43-50CD-4F4B-BE72-4964EB009B9B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyoung.Client.Web", "Hyoung.Client.Web\Hyoung.Client.Web.csproj", "{8948122D-F9DD-4442-8DD5-F65841185CB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inspinia ASPNET_Core_2_11", "Inspinia ASPNET_Core_2_11\Inspinia ASPNET_Core_2_11.csproj", "{7756FAFE-D874-47E8-A846-AD07AA55235D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,14 +39,18 @@ Global
 		{378632CD-366A-402B-854F-AF855BA81212}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{378632CD-366A-402B-854F-AF855BA81212}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{378632CD-366A-402B-854F-AF855BA81212}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0E6ECA5E-6A05-499A-AEAB-FC702C9560D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0E6ECA5E-6A05-499A-AEAB-FC702C9560D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0E6ECA5E-6A05-499A-AEAB-FC702C9560D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0E6ECA5E-6A05-499A-AEAB-FC702C9560D8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1E874E43-50CD-4F4B-BE72-4964EB009B9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1E874E43-50CD-4F4B-BE72-4964EB009B9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E874E43-50CD-4F4B-BE72-4964EB009B9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E874E43-50CD-4F4B-BE72-4964EB009B9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8948122D-F9DD-4442-8DD5-F65841185CB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8948122D-F9DD-4442-8DD5-F65841185CB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8948122D-F9DD-4442-8DD5-F65841185CB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8948122D-F9DD-4442-8DD5-F65841185CB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7756FAFE-D874-47E8-A846-AD07AA55235D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7756FAFE-D874-47E8-A846-AD07AA55235D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7756FAFE-D874-47E8-A846-AD07AA55235D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7756FAFE-D874-47E8-A846-AD07AA55235D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

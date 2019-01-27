@@ -1,6 +1,6 @@
 using System;
 
-namespace Hyoung.FMS.WebClient.Models
+namespace Hyoung.FMS.webclient.Models
 {
     public class ErrorViewModel
     {

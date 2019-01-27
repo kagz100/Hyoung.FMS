@@ -12,5 +12,7 @@ namespace Hyoung.FMS.Model.EntityModel.Reports
 
         DateTime EndEnd { get; set; }
 
+        //comme
+
     }
 }

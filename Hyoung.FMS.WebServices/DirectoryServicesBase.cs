@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
+//using System.Xml;
+using System.Xml.Linq;
 
 namespace Hyoung.FMS.WebServices
 {
@@ -12,6 +13,7 @@ namespace Hyoung.FMS.WebServices
 
 
         private DirectoryServiceReference1.DirectorySoapClient _directoryClient = new DirectoryServiceReference1.DirectorySoapClient(DirectoryServiceReference1.DirectorySoapClient.EndpointConfiguration.DirectorySoap12);
+
 
         //singletone instance of directoryservice . 
 
@@ -25,14 +27,22 @@ namespace Hyoung.FMS.WebServices
         }
 
 
-
-        public string _sessionID;
+        public  string _sessionID;
         public int _applicationID;
 
 
-        public async Task<string>  Login(string userName, string password , int applicationID)
+
+
+
+        public  async Task<string>  Login(string userName, string password , int applicationID)
         {
+            
+            //var results = await _directoryClient.LoginAsync(userName, password, applicationID);
+            
             System.Xml.Linq.XElement _xmlresponce = await _directoryClient.LoginAsync(userName, password, applicationID);
+
+
+            checkError(_xmlresponce);
 
             _sessionID = _xmlresponce.FirstNode.ToString();
 
@@ -41,6 +51,15 @@ namespace Hyoung.FMS.WebServices
             return _sessionID;
         }
 
+        private void checkError(XElement xmlresponce)
+        {
+            if (xmlresponce != null && xmlresponce.FirstNode != null && xmlresponce.FirstNode.ToString() == "exception")
+            {
+                throw new Exception(xmlresponce.SelectSingleNode("//exception/message").InnerText);
+            }
+        }
+
+       
 
         public string SessionID { get { return _sessionID; } }
 

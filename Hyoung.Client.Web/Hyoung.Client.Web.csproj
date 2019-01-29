@@ -53,4 +53,8 @@
     <Folder Include="Views\Reports\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hyoung.FMS.Model\Hyoung.FMS.Model.csproj" />
+    <ProjectReference Include="..\Hyoung.FMS.WebServices\Hyoung.FMS.WebServices.csproj" />
+  </ItemGroup>
 </Project>

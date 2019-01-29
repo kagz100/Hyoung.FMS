@@ -7,6 +7,8 @@ namespace Hyoung.FMS.Model.EntityModel.Reports
    public  class FuelConsumptionReportLightVehicles : Report
     {
 
+        
+
         public Vehicle Vehicle { get; set; }
 
         public DateTime Date { get; set; }

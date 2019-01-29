@@ -1,6 +1,6 @@
 using System;
 
-namespace Inspinia_ASPNET_Core_2_11.Models
+namespace Hyoung.FMS.Client.Inspinia.Controllers
 {
     public class ErrorViewModel
     {

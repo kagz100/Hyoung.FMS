@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+    <RootNamespace>Hyoung.FMS.Client</RootNamespace>
+    <AssemblyName>Hyoung.FMS.Client.Inspinia</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -54,6 +56,10 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hyoung.FMS.Model\Hyoung.FMS.Model.csproj" />
   </ItemGroup>
 
 </Project>

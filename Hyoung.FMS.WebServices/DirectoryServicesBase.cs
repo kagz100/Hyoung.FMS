@@ -27,7 +27,7 @@ namespace Hyoung.FMS.WebServices
         }
 
 
-        public  string _sessionID;
+        public  static string _sessionID;
         public int _applicationID;
 
 
@@ -55,7 +55,7 @@ namespace Hyoung.FMS.WebServices
         {
             if (xmlresponce != null && xmlresponce.FirstNode != null && xmlresponce.FirstNode.ToString() == "exception")
             {
-                throw new Exception(xmlresponce.SelectSingleNode("//exception/message").InnerText);
+                //throw new Exception(xmlresponce.SelectSingleNode("//exception/message").InnerText);
             }
         }
 

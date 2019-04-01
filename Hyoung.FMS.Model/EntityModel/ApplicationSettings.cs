@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Hyoung.FMS.Model.EntityModel
 {
-    class ApplicationSettings
+    public class ApplicationSettings
     {
 
         public int ApplicationID { get; set; }

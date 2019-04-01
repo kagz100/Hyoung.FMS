@@ -56,7 +56,7 @@ namespace Hyoung.Client.Web
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Main}/{id?}");
+                    template: "{controller=Account}/{action=login}/{id?}");
             });
         }
     }

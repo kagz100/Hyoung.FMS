@@ -28,18 +28,18 @@ namespace Hyoung.FMS.WebService.Tests
 
 
             //DirectoryServicesBase  = new DirectoryServicesBase();
-            DirectoryServicesBase director = DirectoryServicesBase.GetSimpleService();
+           // DirectoryServicesBase director = DirectoryServicesBase.GetSimpleService();
 
 
             //act
            
-              var result =director.Login(_username, _Password, _ApplicationID);
+            //  var result =director.Login(_username, _Password, _ApplicationID);
 
 
 
             //asesrt
 
-            StringAssert.Contains("Invalid", result.ToString());
+           // StringAssert.Contains("Invalid", result.ToString());
         }
     }
 }

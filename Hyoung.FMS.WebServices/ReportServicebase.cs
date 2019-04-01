@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
+using System.Xml.Linq;
+using ReportingServiceReference1;
 
 namespace Hyoung.FMS.WebServices
 {
@@ -15,24 +16,37 @@ namespace Hyoung.FMS.WebServices
 
         
 
-        private static ReportServicebase _reportserviceBase = new ReportServicebase(); 
+        private static ReportServicebase _reportserviceBase = new ReportServicebase();
 
+        private int _handleID;
+  
+        private string _sessionID;
 
-        public static ReportServicebase GetReportService ()
+        public  ReportServicebase ()
         {
-            return _reportserviceBase;
+
+            _sessionID = DirectoryServicesBase.GetSimpleService().SessionID;
         }
 
 
 
-        public async Task<ReportingServiceReference1.GenerateReportResponse> GenerateReportAsync(int iReportID,DateTime startDate, DateTime endDate)
+        public async Task<int> GenerateReportAsync(int iReportID,DateTime startDate, DateTime endDate)
         {
 
-            return await reportingSoap.GenerateReportAsync(DirectoryServicesBase.GetSimpleService().SessionID, iReportID, startDate, endDate);
-                
+            var results = await reportingSoap.GenerateReportAsync(DirectoryServicesBase.GetSimpleService().SessionID, iReportID, startDate, endDate);
+
+
+            _handleID = int.Parse(results.Body.GenerateReportResult.FirstNode.ToString());
+            return _handleID;
+
          }
 
+        private void GetHandleID(System.Xml.XmlElement results)
+        {
+            throw new NotImplementedException();
+        }
 
+        
 
 
     }

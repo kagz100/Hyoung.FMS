@@ -18,6 +18,8 @@ namespace Hyoung.Client.Web.Controllers
 
         private readonly int applicationID = 12;
 
+        private  string sessiongID;
+
         public HomeController ()
         {
            
@@ -37,15 +39,7 @@ namespace Hyoung.Client.Web.Controllers
         {
          
 
-            try
-            {
-                var results = directoryServicesBase.Login(username, password, applicationID);
-
-            }
-            catch (Exception e)
-            {
-                ViewBag.Error = e.Message.ToString();
-            }
+         
             return View();
         }
 

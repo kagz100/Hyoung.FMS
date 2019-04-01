@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Hyoung.FMS.Model.EntityModel
 {
-    public class User
+    public class GPSGateUser
     {
 
 

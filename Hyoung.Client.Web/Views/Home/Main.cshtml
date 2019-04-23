@@ -3,29 +3,13 @@
 
 @{
 
-    ViewBag.Title = "Main";
+    ViewBag.Title = "Home";
 }
 
 
 
 
 
-@*<div class="wrapper wrapper-content">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="text-center m-t-lg">
-                    <h1>
-                        INSPINIA .NET Core 2.1 Seed Project
-                    </h1>
-                    <small>
-                        It is an application skeleton for a typical web app. You can use it to quickly bootstrap your webapp projects.
-                    </small>
-                </div>
-            </div>
-        </div>
-    </div>
-
-*@
 
 
 
@@ -33,47 +17,7 @@
 
 
 
-<div class="middle-box text-center loginscreen  animated fadeInDown">
-    <div>
-        <div>
-
-            <h1 class="logo-name">FMS+</h1>
-
-        </div>
-        <h3>Welcome to FMS+</h3>
-        <p>
-            Hyoung Fleet Management System
-        </p>
-        <p>Login in. To see it in action.</p>
 
 
-        @using (Html.BeginForm("Main", "Home", FormMethod.Post, new { @class = "m-t" }))
-        {
 
 
-            <div class="form-group row">
-                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "col-form-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group row">
-                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "col-form-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="alert alert-success">
-              @ViewBag.Error 
-            </div>
-
-            <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
-
-        }
-
-
-        <p class="m-t"> <small>Hyoung FMS  &copy; 2019</small> </p>
-    </div>
-</div>

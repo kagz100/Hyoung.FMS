@@ -47,8 +47,15 @@
     <Content Update="Views\Home\Minor.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Shared\_Layoutlogin.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Account\Controllers\" />
+    <Folder Include="Areas\Account\Data\" />
+    <Folder Include="Areas\Account\Models\" />
+    <Folder Include="Areas\Account\Views\" />
     <Folder Include="Views\Dashboard\" />
     <Folder Include="Views\Reports\" />
     <Folder Include="wwwroot\images\" />

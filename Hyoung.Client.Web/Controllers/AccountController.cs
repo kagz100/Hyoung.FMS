@@ -40,6 +40,7 @@ namespace Hyoung.Client.Web.Controllers
                 try
                 {
                     var results = directoryServicesBase.Login(model.UserName, model.Password, applicationID);
+
                     string sessiongID = results.Result.ToString();
 
 

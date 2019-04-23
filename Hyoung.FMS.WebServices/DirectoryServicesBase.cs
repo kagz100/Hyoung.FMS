@@ -42,7 +42,10 @@ namespace Hyoung.FMS.WebServices
             System.Xml.Linq.XElement _xmlresponce = await _directoryClient.LoginAsync(userName, password, applicationID);
 
 
-            checkError(_xmlresponce);
+            if (_xmlresponce != null && _xmlresponce.FirstNode != null && _xmlresponce.FirstNode.ToString() == "exception")
+            {
+                throw new Exception(_xmlresponce.Element("message").Value);
+            }
 
             _sessionID = _xmlresponce.FirstNode.ToString();
 
@@ -53,10 +56,7 @@ namespace Hyoung.FMS.WebServices
 
         private void checkError(XElement xmlresponce)
         {
-            if (xmlresponce != null && xmlresponce.FirstNode != null && xmlresponce.FirstNode.ToString() == "exception")
-            {
-                //throw new Exception(xmlresponce.SelectSingleNode("//exception/message").InnerText);
-            }
+            
         }
 
        

@@ -6,6 +6,12 @@
     ViewBag.Title = "Main";
 }
 
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+ 
 <div class="middle-box text-center loginscreen  animated fadeInDown">
     <div>
         <div>
@@ -20,9 +26,9 @@
         <p>Login in. To see it in action.</p>
 
 
-        @using (Html.BeginForm("login", "Account", FormMethod.Post, new { @class = "m-t" }))
+        @using ( Html.BeginForm("login", "Account", FormMethod.Post, new { @class = "m-t" }))
         {
-
+            @Html.AntiForgeryToken()
 
             <div class="form-group row">
                 @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "col-form-label col-md-4" })
@@ -38,6 +44,9 @@
                     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                 </div>
             </div>
+
+            <hr/>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger"})
             <div class="alert alert-success">
                 @ViewBag.Error
             </div>

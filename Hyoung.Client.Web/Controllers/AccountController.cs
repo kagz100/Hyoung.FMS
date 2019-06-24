@@ -42,12 +42,18 @@ namespace Hyoung.Client.Web.Controllers
                     var results = directoryServicesBase.Login(model.UserName, model.Password, applicationID);
 
                     string sessiongID = results.Result.ToString();
+                    //ViewBag.Error = sessiongID;
 
+                    return RedirectToAction("Main", "Home");
 
                 }
                 catch (Exception e)
                 {
-                    ViewBag.Error = e.Message.ToString();
+
+                    ModelState.AddModelError(string.Empty, e.Message.ToString());
+
+                    return View();
+                    //ViewBag.Error = e.Message.ToString();
                 }
 
             }

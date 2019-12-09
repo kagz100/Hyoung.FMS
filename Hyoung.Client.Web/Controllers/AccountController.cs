@@ -44,6 +44,7 @@ namespace Hyoung.Client.Web.Controllers
                     string sessiongID = results.Result.ToString();
                     //ViewBag.Error = sessiongID;
 
+
                     return RedirectToAction("Main", "Home");
 
                 }

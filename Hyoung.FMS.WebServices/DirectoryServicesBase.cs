@@ -46,13 +46,9 @@ namespace Hyoung.FMS.WebServices
             {
 
                 var s = _xmlresponce.Element("exception").Element("message");
-
-               
-
+                               
                 throw new Exception(s.Value.ToString());
-
-
-
+                                
             }
             else
             {

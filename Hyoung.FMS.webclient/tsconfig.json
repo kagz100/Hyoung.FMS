@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "allowJs": true, // include .js and .jsx in project context (defaults to only .ts and .tsx)
+    "noEmit": true, // turns off downlevel compiler
+
+    "module": "system",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true
+  },
+  "files": [], // list of explicit files to include in the project context. Highest priority.
+  "include": [], // list of folders or glob patterns to include in the project context.
+  "exclude": [], // list of folders or glob patterns to exclude. Overridden by files array.
+  "typeAcquisition": {
+    "enable": true, // Defaulted to "false" with a tsconfig. Enables better IntelliSense in JS.
+    "include": [ ], // Specific libs to fetch .d.ts files that weren't picked up by ATA
+    "exclude": [ ] // Specific libs to not fetch .d.ts files for
+  }
+}

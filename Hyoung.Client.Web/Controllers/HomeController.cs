@@ -13,12 +13,12 @@ namespace Hyoung.Client.Web.Controllers
     public class HomeController : Controller
     {
 
-        DirectoryServicesBase directoryServicesBase = new DirectoryServicesBase();
+      //  DirectoryServicesBase directoryServicesBase = new DirectoryServicesBase();
 
 
-        private readonly int applicationID = 12;
+       // private readonly int applicationID = 12;
 
-        private  string sessiongID;
+       // private  string sessiongID;
 
         public HomeController ()
         {
@@ -34,14 +34,14 @@ namespace Hyoung.Client.Web.Controllers
         }
 
 
-        [HttpPost]
-        public IActionResult Main(string username, string password )
-        {
+        //[HttpPost]
+        //public IActionResult Main(string username, string password )
+        //{
          
 
          
-            return View();
-        }
+        //    return View();
+        //}
 
         public IActionResult Minor()
         {

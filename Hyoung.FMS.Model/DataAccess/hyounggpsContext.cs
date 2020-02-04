@@ -26,7 +26,7 @@ namespace Hyoung.FMS.Model.DataAccess
         public virtual DbSet<Vehicle> Vehicle { get; set; }
         public virtual DbSet<Vehicletype> Vehicletype { get; set; }
 
-     
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Drivers>(entity =>
@@ -61,16 +61,27 @@ namespace Hyoung.FMS.Model.DataAccess
 
                 entity.Property(e => e.PhoneNumber).HasColumnName("Phone Number");
 
-                entity.Property(e => e.UserId).HasColumnName("UserID");
+                entity.Property(e => e.UserId)
+                    .HasColumnName("UserID")
+                    .HasColumnType("int(11)");
             });
 
             modelBuilder.Entity<Heayvconsumption>(entity =>
             {
                 entity.ToTable("heayvconsumption");
 
+                entity.HasIndex(e => e.DriverId)
+                    .HasName("Heavy_driver_idx");
+
                 entity.HasIndex(e => e.Id)
                     .HasName("ID_UNIQUE")
                     .IsUnique();
+
+                entity.HasIndex(e => e.SiteId)
+                    .HasName("Site_idx");
+
+                entity.HasIndex(e => e.VehicleId)
+                    .HasName("heavy_vehicle_idx");
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
@@ -135,19 +146,43 @@ namespace Hyoung.FMS.Model.DataAccess
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.VehicleName)
+                    .IsRequired()
                     .HasColumnName("Vehicle Name")
                     .HasColumnType("varchar(255)")
                     .HasCharSet("latin1")
                     .HasCollation("latin1_swedish_ci");
+
+                entity.HasOne(d => d.Driver)
+                    .WithMany(p => p.Heayvconsumption)
+                    .HasPrincipalKey(p => p.UserId)
+                    .HasForeignKey(d => d.DriverId)
+                    .HasConstraintName("Heavy_driver");
+
+                entity.HasOne(d => d.SiteNavigation)
+                    .WithMany(p => p.Heayvconsumption)
+                    .HasForeignKey(d => d.SiteId)
+                    .HasConstraintName("Heavy_site");
+
+                entity.HasOne(d => d.Vehicle)
+                    .WithMany(p => p.Heayvconsumption)
+                    .HasForeignKey(d => d.VehicleId)
+                    .HasConstraintName("heavy_vehicle");
             });
 
             modelBuilder.Entity<Issuecategory>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("issuecategory");
 
+                entity.HasIndex(e => e.Id)
+                    .HasName("ID_UNIQUE")
+                    .IsUnique();
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("ID")
+                    .HasColumnType("int(11)");
+
                 entity.Property(e => e.CategoryName)
+                    .IsRequired()
                     .HasColumnType("varchar(255)")
                     .HasCharSet("latin1")
                     .HasCollation("latin1_swedish_ci");
@@ -156,17 +191,19 @@ namespace Hyoung.FMS.Model.DataAccess
                     .HasColumnType("varchar(255)")
                     .HasCharSet("latin1")
                     .HasCollation("latin1_swedish_ci");
-
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .HasColumnType("int(11)");
             });
 
             modelBuilder.Entity<Issuetracker>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("issuetracker");
+
+                entity.HasIndex(e => e.Id)
+                    .HasName("ID_UNIQUE")
+                    .IsUnique();
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("ID")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.AssignedTo)
                     .HasColumnName("Assigned To")
@@ -189,10 +226,6 @@ namespace Hyoung.FMS.Model.DataAccess
 
                 entity.Property(e => e.DueDate).HasColumnName("Due date");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .HasColumnType("int(11)");
-
                 entity.Property(e => e.IssueCategory).HasColumnType("int(11)");
 
                 entity.Property(e => e.OpenBy)
@@ -214,6 +247,7 @@ namespace Hyoung.FMS.Model.DataAccess
                     .HasCollation("latin1_swedish_ci");
 
                 entity.Property(e => e.ProblemTitle)
+                    .IsRequired()
                     .HasColumnName("Problem Title")
                     .HasColumnType("varchar(255)")
                     .HasCharSet("latin1")
@@ -237,9 +271,18 @@ namespace Hyoung.FMS.Model.DataAccess
             {
                 entity.ToTable("lightvehicleconsumption");
 
+                entity.HasIndex(e => e.DriverId)
+                    .HasName("DriverID_idx");
+
                 entity.HasIndex(e => e.Id)
                     .HasName("ID_UNIQUE")
                     .IsUnique();
+
+                entity.HasIndex(e => e.SiteId)
+                    .HasName("Site_idx");
+
+                entity.HasIndex(e => e.VehicleId)
+                    .HasName("VehicleID_idx");
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
@@ -301,6 +344,22 @@ namespace Hyoung.FMS.Model.DataAccess
                     .HasColumnType("varchar(255)")
                     .HasCharSet("latin1")
                     .HasCollation("latin1_swedish_ci");
+
+                entity.HasOne(d => d.DriverNavigation)
+                    .WithMany(p => p.Lightvehicleconsumption)
+                    .HasPrincipalKey(p => p.UserId)
+                    .HasForeignKey(d => d.DriverId)
+                    .HasConstraintName("DriverID");
+
+                entity.HasOne(d => d.SiteNavigation)
+                    .WithMany(p => p.Lightvehicleconsumption)
+                    .HasForeignKey(d => d.SiteId)
+                    .HasConstraintName("Site");
+
+                entity.HasOne(d => d.Vehicle)
+                    .WithMany(p => p.Lightvehicleconsumption)
+                    .HasForeignKey(d => d.VehicleId)
+                    .HasConstraintName("VehicleID");
             });
 
             modelBuilder.Entity<Site>(entity =>
@@ -320,9 +379,11 @@ namespace Hyoung.FMS.Model.DataAccess
 
             modelBuilder.Entity<Systemusers>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("systemusers");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("ID")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.Email)
                     .HasColumnType("varchar(255)")
@@ -330,13 +391,10 @@ namespace Hyoung.FMS.Model.DataAccess
                     .HasCollation("latin1_swedish_ci");
 
                 entity.Property(e => e.FirstName)
+                    .IsRequired()
                     .HasColumnType("varchar(255)")
                     .HasCharSet("latin1")
                     .HasCollation("latin1_swedish_ci");
-
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.LastName)
                     .HasColumnType("varchar(255)")
@@ -374,7 +432,12 @@ namespace Hyoung.FMS.Model.DataAccess
                     .HasName("Username_UNIQUE")
                     .IsUnique();
 
-                entity.Property(e => e.UserId).HasColumnName("UserID");
+                entity.HasIndex(e => e.Vehicletypeid)
+                    .HasName("Vehicletype_idx");
+
+                entity.Property(e => e.UserId)
+                    .HasColumnName("UserID")
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.AssignedDriverId)
                     .HasColumnName("AssignedDriverID")
@@ -456,6 +519,11 @@ namespace Hyoung.FMS.Model.DataAccess
                     .HasCollation("latin1_swedish_ci");
 
                 entity.Property(e => e.Vehicletypeid).HasColumnType("int(11)");
+
+                entity.HasOne(d => d.Vehicletype)
+                    .WithMany(p => p.Vehicle)
+                    .HasForeignKey(d => d.Vehicletypeid)
+                    .HasConstraintName("Vehicletype");
             });
 
             modelBuilder.Entity<Vehicletype>(entity =>
@@ -487,3 +555,4 @@ namespace Hyoung.FMS.Model.DataAccess
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
+

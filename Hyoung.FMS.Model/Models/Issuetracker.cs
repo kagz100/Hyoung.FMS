@@ -5,8 +5,8 @@ namespace Hyoung.FMS.Model.Models
 {
     public partial class Issuetracker
     {
-        public int? Id { get; set; }
-        public double? Vehicle { get; set; }
+        public int Id { get; set; }
+        public double Vehicle { get; set; }
         public string ProblemTitle { get; set; }
         public string ProblemDescription { get; set; }
         public int? Site { get; set; }

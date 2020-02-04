@@ -9,9 +9,7 @@
     "preserveConstEnums": true,
     "sourceMap": true
   },
-  "files": [], // list of explicit files to include in the project context. Highest priority.
-  "include": [], // list of folders or glob patterns to include in the project context.
-  "exclude": [], // list of folders or glob patterns to exclude. Overridden by files array.
+  
   "typeAcquisition": {
     "enable": true, // Defaulted to "false" with a tsconfig. Enables better IntelliSense in JS.
     "include": [ ], // Specific libs to fetch .d.ts files that weren't picked up by ATA

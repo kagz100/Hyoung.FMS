@@ -5,7 +5,13 @@ namespace Hyoung.FMS.Model.Models
 {
     public partial class Vehicle
     {
-        public double UserId { get; set; }
+        public Vehicle()
+        {
+            Heayvconsumption = new HashSet<Heayvconsumption>();
+            Lightvehicleconsumption = new HashSet<Lightvehicleconsumption>();
+        }
+
+        public int UserId { get; set; }
         public string Username { get; set; }
         public string HyoungNo { get; set; }
         public string Fuel { get; set; }
@@ -25,5 +31,9 @@ namespace Hyoung.FMS.Model.Models
         public int? FlowMeterSerialNumber { get; set; }
         public int? FlowMeterInstalledDate { get; set; }
         public int? AssignedDriverId { get; set; }
+
+        public virtual Vehicletype Vehicletype { get; set; }
+        public virtual ICollection<Heayvconsumption> Heayvconsumption { get; set; }
+        public virtual ICollection<Lightvehicleconsumption> Lightvehicleconsumption { get; set; }
     }
 }

@@ -24,5 +24,9 @@ namespace Hyoung.FMS.Model.Models
         public int? DriverId { get; set; }
         public int? VehicleId { get; set; }
         public int? SiteId { get; set; }
+
+        public virtual Drivers DriverNavigation { get; set; }
+        public virtual Site SiteNavigation { get; set; }
+        public virtual Vehicle Vehicle { get; set; }
     }
 }

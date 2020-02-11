@@ -43,10 +43,10 @@ namespace Hyoung.FMS.WebServices
             XmlNode _xmlresponce = await _directoryClient.LoginAsync(userName, password, applicationID);
 
 
-            checkError(_xmlresponce);
+          //  checkError(_xmlresponce);
 
 
-                _sessionID = _xmlresponce.Value;
+                _sessionID = _xmlresponce.InnerText;
 
                 _applicationID = applicationID;
             

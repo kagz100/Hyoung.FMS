@@ -67,14 +67,14 @@ namespace Hyoung.FMS.DAL.Repositories.Reports
         /// <param name="endDate"></param>
         /// <param name="reportID"></param>
         /// <returns></returns>
-        public HeavyEquipmentReportDB GetGPSgateData(DateTime startDate, DateTime endDate,int reportID,XmlNode node)
-        {
+       // public HeavyEquipmentReportDB GetGPSgateData(DateTime startDate, DateTime endDate,int reportID,XmlNode node)
+        //{
 
-            XMLSoapSerializer sr = new XMLSoapSerializer();
-            HeavyEquipmentReportDB db = sr.Deserializer<HeavyEquipmentReportDB>(node.ToString());
+          //  XMLSoapSerializer sr = new XMLSoapSerializer();
+            //HeavyEquipmentReportDB db = sr.Deserializer<HeavyEquipmentReportDB>(node.ToString());
 
-            return db;
-        }
+            //return db;
+        ///}
 
 
         public IEnumerable<Heayvconsumption> GetAll()

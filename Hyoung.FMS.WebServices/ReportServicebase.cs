@@ -18,7 +18,7 @@ namespace Hyoung.FMS.WebServices
      
         
 
-        private static ReportServicebase _reportserviceBase = new ReportServicebase();
+      //  private static ReportServicebase _reportserviceBase = new ReportServicebase();
 
         private int _handleID;
   
@@ -26,13 +26,24 @@ namespace Hyoung.FMS.WebServices
 
         private int _applicationID;
 
-        public int ApplicationID { get; set; }
-        public  ReportServicebase ()
+               public ReportServicebase() { }
+        
+        /// <summary>
+        /// Initialize class
+        /// </summary>
+        /// <param name="sessionid">from directory.sessionid</param>
+        /// <param name="applicationid">from directory.applicationid</param>
+
+        public  ReportServicebase (string sessionid,int applicationid)
         {
-            _sessionID = DirectoryServicesBase.GetSimpleService().SessionID;
-            _applicationID = ApplicationID;
+            _sessionID = sessionid;
+            _applicationID = applicationid;
         }
 
+        /// <summary>
+        /// Get a list of reports
+        /// </summary>
+        /// <returns></returns>
         public async Task<XmlNode> GetReports()
         {
             var results = await reportingSoap.GetReportsAsync(_sessionID, _applicationID);

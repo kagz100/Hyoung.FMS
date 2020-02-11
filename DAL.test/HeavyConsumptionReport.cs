@@ -10,24 +10,40 @@ namespace DAL.test
 {
   public  class HeavyConsumptionReport
     {
+        private string _sessionid { get; set;}
+        private int _applicationid = 12;
+        DirectoryServicesBase _directorybase = new DirectoryServicesBase();
+
+
+       
+
         [Fact]
-        public void get_reportdata()
+        public void Get_reportdata()
         {
             //arrange 
 
-            DirectoryServicesBase _directorybase = new DirectoryServicesBase();
 
+            Task<string> task = Task.Run(async () => await _directorybase.LoginAsync("controlroom", "Hyoung2018", _applicationid).ConfigureAwait(false));
 
-            ReportServicebase _reportBase = new ReportServicebase();
 
             //act 
-          Task<string> task  = Task.Run(async ()=>await   _directorybase.LoginAsync("controlroom", "Hyoung2018", 12));
-            string results = task.Result;
+            _sessionid = task.Result;
 
+            var x = _directorybase.ApplicationID;
 
             XmlDocument doc = new XmlDocument();
 
-            doc.LoadXml(results);
+            ReportServicebase _reportBase = new ReportServicebase(_sessionid, _applicationid);
+
+            Task<XmlNode> getreporttasknode = Task.Run(async ()=> await  _reportBase.GetReports());
+
+
+            var RESUlts = getreporttasknode.Result;
+
+           // doc.LoadXml(getreporttasknode.Result.);
+
+
+            //doc.LoadXml(results);
 
 
 

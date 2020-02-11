@@ -12,5 +12,14 @@ namespace Hyoung.Client.Web.Controllers
         {
             return View();
         }
+
+
+        public IActionResult GetReportData ()
+        {
+
+           return View();
+        }
+
+
     }
 }

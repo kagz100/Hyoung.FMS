@@ -15,7 +15,7 @@ namespace Hyoung.FMS.WebServices
 
         private ReportingServiceReference1.ReportingSoapClient reportingSoap = new ReportingServiceReference1.ReportingSoapClient(ReportingServiceReference1.ReportingSoapClient.EndpointConfiguration.ReportingSoap12);
 
-
+     
         
 
         private static ReportServicebase _reportserviceBase = new ReportServicebase();
@@ -29,29 +29,27 @@ namespace Hyoung.FMS.WebServices
         public int ApplicationID { get; set; }
         public  ReportServicebase ()
         {
-
             _sessionID = DirectoryServicesBase.GetSimpleService().SessionID;
             _applicationID = ApplicationID;
         }
 
-        public async Task<System.Xml.Linq.XNode> GetReports()
+        public async Task<XmlNode> GetReports()
         {
             var results = await reportingSoap.GetReportsAsync(_sessionID, _applicationID);
-
-          
+                    
 
             return results.Body.GetReportsResult;
         }
 
 
 
-        public async Task<int> GenerateReportAsync(int iReportID,DateTime startDate, DateTime endDate)
+        public async Task<int> GenerateReport(int iReportID,DateTime startDate, DateTime endDate)
         {
 
-            var results = await reportingSoap.GenerateReportAsync(DirectoryServicesBase.GetSimpleService().SessionID, iReportID, startDate, endDate);
+            var results = await reportingSoap.GenerateReportAsync(_sessionID,iReportID, startDate, endDate);
 
-            
-            _handleID = int.Parse(results.Body.GenerateReportResult.FirstNode.ToString());
+           
+            _handleID = int.Parse(results.Body.GenerateReportResult.FirstChild.ToString());
             return _handleID;
 
          }
@@ -64,13 +62,24 @@ namespace Hyoung.FMS.WebServices
         }
 
 
-#pragma warning disable IDE0060 // Remove unused parameter
-        private void GetHandleID(System.Xml.XmlElement results)
-#pragma warning restore IDE0060 // Remove unused parameter
+        public XmlNode GetProcessingReports()
         {
-            throw new NotImplementedException();
+            return reportingSoap.GetProcessingReports(_sessionID, _applicationID);
         }
 
+        public async Task<XmlNode> FetchReport (int iHandleID)
+        {
+            var results = await reportingSoap.FetchReportAsync(_sessionID, iHandleID);
+
+            return results.Body.FetchReportResult;
+        }
+
+        public async Task<XmlNode> CancelReport (int iHandleID)
+        {
+            var results = await reportingSoap.CancelReportAsync(_sessionID, iHandleID);
+
+            return results.Body.CancelReportResult;
+        }
         
 
 

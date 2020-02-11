@@ -47,5 +47,10 @@ namespace Hyoung.FMS.DAL.Repositories
         {
             throw new NotImplementedException();
         }
+
+        string IGenericRepository<TEntity>.Add(TEntity entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

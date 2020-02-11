@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyoung.FMS.Desk", "Hyoung.FMS.Desk\Hyoung.FMS.Desk.csproj", "{F30DEBF2-9A9C-4E1A-A27E-0096B53AD704}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyoung.FMS.WebServiceTests", "Hyoung.FMS.WebServiceTests\Hyoung.FMS.WebServiceTests.csproj", "{E4D9655C-7F1A-48FC-B695-065A1BE6671A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyoung.FMS.WebServices", "Hyoung.FMS.WebServices\Hyoung.FMS.WebServices.csproj", "{378632CD-366A-402B-854F-AF855BA81212}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyoung.test", "Hyoung.test\Hyoung.test.csproj", "{1E874E43-50CD-4F4B-BE72-4964EB009B9B}"
@@ -15,9 +13,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyoung.FMS.DAL", "Hyoung.FM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyoung.FMS.WebAPI", "Hyoung.FMS.WebAPI\Hyoung.FMS.WebAPI.csproj", "{F9D39A68-9F57-434F-9296-48065DCC3620}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hyoung.FMS.Model", "Hyoung.FMS.Model\Hyoung.FMS.Model.csproj", "{F11E9BA9-8887-4A41-A626-DDEE113AAE42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyoung.FMS.Model", "Hyoung.FMS.Model\Hyoung.FMS.Model.csproj", "{F11E9BA9-8887-4A41-A626-DDEE113AAE42}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyoung.FMS.webclient", "Hyoung.FMS.webclient\Hyoung.FMS.webclient.csproj", "{FE968C9C-3971-471D-80A4-C13FFDDA973A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyoung.Client.Web", "Hyoung.Client.Web\Hyoung.Client.Web.csproj", "{104DDF6E-6246-436A-9758-686C9F89CBD2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{42F671C4-FB9B-47AB-9EC3-570D1B731D68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.test", "DAL.test\DAL.test.csproj", "{5F36045C-2950-4D8F-9990-0D673FB5767D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webservices.test", "Webservices.test\Webservices.test.csproj", "{EE2A26EA-86AF-4671-97FE-1BBC5834D801}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +35,6 @@ Global
 		{F30DEBF2-9A9C-4E1A-A27E-0096B53AD704}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F30DEBF2-9A9C-4E1A-A27E-0096B53AD704}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F30DEBF2-9A9C-4E1A-A27E-0096B53AD704}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E4D9655C-7F1A-48FC-B695-065A1BE6671A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E4D9655C-7F1A-48FC-B695-065A1BE6671A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E4D9655C-7F1A-48FC-B695-065A1BE6671A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E4D9655C-7F1A-48FC-B695-065A1BE6671A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{378632CD-366A-402B-854F-AF855BA81212}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{378632CD-366A-402B-854F-AF855BA81212}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{378632CD-366A-402B-854F-AF855BA81212}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,9 +59,25 @@ Global
 		{FE968C9C-3971-471D-80A4-C13FFDDA973A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE968C9C-3971-471D-80A4-C13FFDDA973A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE968C9C-3971-471D-80A4-C13FFDDA973A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{104DDF6E-6246-436A-9758-686C9F89CBD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{104DDF6E-6246-436A-9758-686C9F89CBD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{104DDF6E-6246-436A-9758-686C9F89CBD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{104DDF6E-6246-436A-9758-686C9F89CBD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F36045C-2950-4D8F-9990-0D673FB5767D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F36045C-2950-4D8F-9990-0D673FB5767D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F36045C-2950-4D8F-9990-0D673FB5767D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F36045C-2950-4D8F-9990-0D673FB5767D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE2A26EA-86AF-4671-97FE-1BBC5834D801}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE2A26EA-86AF-4671-97FE-1BBC5834D801}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE2A26EA-86AF-4671-97FE-1BBC5834D801}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE2A26EA-86AF-4671-97FE-1BBC5834D801}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5F36045C-2950-4D8F-9990-0D673FB5767D} = {42F671C4-FB9B-47AB-9EC3-570D1B731D68}
+		{EE2A26EA-86AF-4671-97FE-1BBC5834D801} = {42F671C4-FB9B-47AB-9EC3-570D1B731D68}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AE4591FD-3712-4253-AC15-4A4C47361A8F}

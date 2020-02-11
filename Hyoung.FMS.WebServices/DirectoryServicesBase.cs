@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 //using System.Xml;
 using System.Xml.Linq;
 
@@ -12,9 +13,9 @@ namespace Hyoung.FMS.WebServices
         //private DirectoryServiceReference.Directory _directory = new  DirectoryServiceReference1.Directory();
 
 
-        private DirectoryServiceReference1.DirectorySoapClient _directoryClient = new DirectoryServiceReference1.DirectorySoapClient(DirectoryServiceReference1.DirectorySoapClient.EndpointConfiguration.DirectorySoap12);
+        // private DirectoryServiceReference1.DirectorySoapClient _directoryClient = new DirectoryServiceReference1.DirectorySoapClient.EndpointConfiguration(DirectoryServiceReference1.DirectorySoapClient.EndpointConfiguration.DirectorySoap12);
 
-
+        private DirectoryServiceReference.DirectorySoapClient _directoryClient = new DirectoryServiceReference.DirectorySoapClient(DirectoryServiceReference.DirectorySoapClient.EndpointConfiguration.DirectorySoap12);
         //singletone instance of directoryservice . 
 
         
@@ -34,35 +35,32 @@ namespace Hyoung.FMS.WebServices
 
 
 
-        public  async Task<string>  Login(string userName, string password , int applicationID)
+        public  async Task<string>  LoginAsync(string userName, string password , int applicationID)
         {
             
             //var results = await _directoryClient.LoginAsync(userName, password, applicationID);
             
-            System.Xml.Linq.XElement _xmlresponce = await _directoryClient.LoginAsync(userName, password, applicationID);
+            XmlNode _xmlresponce = await _directoryClient.LoginAsync(userName, password, applicationID);
 
 
-            if (_xmlresponce != null && _xmlresponce.FirstNode != null && _xmlresponce.Name == "error")
-            {
+            checkError(_xmlresponce);
 
-                var s = _xmlresponce.Element("exception").Element("message");
-                               
-                throw new Exception(s.Value.ToString());
-                                
-            }
-            else
-            {
-                _sessionID = _xmlresponce.FirstNode.ToString();
+
+                _sessionID = _xmlresponce.Value;
 
                 _applicationID = applicationID;
-            }
+            
 
             return _sessionID;
         }
 
-        private void checkError(XElement xmlresponce)
+        private void checkError(XmlNode xml )
         {
-            
+            if(xml != null && xml.FirstChild !=null && xml.FirstChild.Name =="exception" )
+            {
+                throw new Exception(xml.SelectSingleNode("//exception/message").InnerText);
+            }
+
         }
 
        

@@ -65,10 +65,12 @@
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Hyoung.FMS.DAL\Hyoung.FMS.DAL.csproj" />
+    <ProjectReference Include="..\Hyoung.FMS.Model\Hyoung.FMS.Model.csproj" />
     <ProjectReference Include="..\Hyoung.FMS.WebServices\Hyoung.FMS.WebServices.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3"/>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
   </ItemGroup>
   
 </Project>

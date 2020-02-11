@@ -14,7 +14,7 @@ namespace Hyoung.FMS.DAL.Interface
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
 
 
-        void Add(TEntity entity);
+        string Add(TEntity entity);
 
         void AddRange(IEnumerable<TEntity> entities);
 

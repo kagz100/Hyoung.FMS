@@ -1,24 +1,28 @@
 ﻿{
   "ProviderId": "Microsoft.VisualStudio.ConnectedService.Wcf",
-  "Version": "15.0.20628.921",
+  "Version": "15.0.31022.994",
   "ExtendedData": {
-    "Uri": "http://52.43.97.199/GpsGateServer/Services/Reporting.asmx",
-    "Namespace": "ReportingServiceReference1",
-    "SelectedAccessLevelForGeneratedClass": "Public",
-    "GenerateMessageContract": false,
-    "ReuseTypesinReferencedAssemblies": true,
-    "ReuseTypesinAllReferencedAssemblies": true,
-    "CollectionTypeReference": {
-      "Item1": "System.Array",
-      "Item2": "System.Runtime.dll"
-    },
-    "DictionaryCollectionTypeReference": {
-      "Item1": "System.Collections.Generic.Dictionary`2",
-      "Item2": "System.Collections.dll"
-    },
-    "CheckedReferencedAssemblies": [],
-    "InstanceId": null,
-    "Name": "ReportingServiceReference1",
-    "Metadata": {}
+    "inputs": [
+      "http://52.43.97.199/GpsGateServer/Services/Reporting.asmx"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "namespaceMappings": [
+      "*, ReportingServiceReference1"
+    ],
+    "references": [
+      "Newtonsoft.Json, {Newtonsoft.Json, 12.0.1}",
+      "System.ServiceModel, {System.ServiceModel.Primitives, 4.4.4}",
+      "System.ServiceModel.Duplex, {System.ServiceModel.Duplex, 4.4.4}",
+      "System.ServiceModel.Http, {System.ServiceModel.Http, 4.4.4}",
+      "System.ServiceModel.NetTcp, {System.ServiceModel.NetTcp, 4.4.4}",
+      "System.ServiceModel.Primitives, {System.ServiceModel.Primitives, 4.4.4}",
+      "System.ServiceModel.Security, {System.ServiceModel.Security, 4.4.4}"
+    ],
+    "sync": true,
+    "targetFramework": "netcoreapp3.1",
+    "typeReuseMode": "All"
   }
 }

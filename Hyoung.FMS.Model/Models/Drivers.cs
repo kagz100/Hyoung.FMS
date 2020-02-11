@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hyoung.FMS.Model.DataAccess;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -28,5 +29,8 @@ namespace Hyoung.FMS.Model.Models
 
         public virtual ICollection<Heayvconsumption> Heayvconsumption { get; set; }
         public virtual ICollection<Lightvehicleconsumption> Lightvehicleconsumption { get; set; }
+   
+   
+    
     }
 }

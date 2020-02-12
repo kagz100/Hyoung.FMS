@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Hyoung.FMS.Model.DataAccess;
+using MySql.Data.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Hyoung.Client.Web
 {
@@ -32,6 +35,9 @@ namespace Hyoung.Client.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+
+            services.AddDbContext<HyoungGPSContext>(options =>
+                          options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 
             //services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver()).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme);

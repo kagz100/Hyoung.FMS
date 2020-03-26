@@ -23,5 +23,10 @@ namespace Hyoung.FMS.DAL.Interface
         void Remove(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entities);
 
+
+
+
+
+
     }
 }

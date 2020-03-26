@@ -16,5 +16,6 @@ namespace Hyoung.Client.Web.Models
 
         public DateTime EndDate { get; set; }
 
+
     }
 }

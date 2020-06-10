@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DirectoryServiceReference
+namespace DirectoryServiceReference1
 {
     
     
@@ -152,18 +152,18 @@ namespace DirectoryServiceReference
         [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/GetManageableDeviceDefinitions", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ViewBag))]
-        DirectoryServiceReference.SoapDeviceDefinition[] GetManageableDeviceDefinitions(string strSessionID, int iApplicationID);
+        DirectoryServiceReference1.SoapDeviceDefinition[] GetManageableDeviceDefinitions(string strSessionID, int iApplicationID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/GetManageableDeviceDefinitions", ReplyAction="*")]
-        System.Threading.Tasks.Task<DirectoryServiceReference.SoapDeviceDefinition[]> GetManageableDeviceDefinitionsAsync(string strSessionID, int iApplicationID);
+        System.Threading.Tasks.Task<DirectoryServiceReference1.SoapDeviceDefinition[]> GetManageableDeviceDefinitionsAsync(string strSessionID, int iApplicationID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/GetUserTemplates", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ViewBag))]
-        DirectoryServiceReference.SoapUserTemplate[] GetUserTemplates(string strSessionID, int iApplicationID);
+        DirectoryServiceReference1.SoapUserTemplate[] GetUserTemplates(string strSessionID, int iApplicationID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/GetUserTemplates", ReplyAction="*")]
-        System.Threading.Tasks.Task<DirectoryServiceReference.SoapUserTemplate[]> GetUserTemplatesAsync(string strSessionID, int iApplicationID);
+        System.Threading.Tasks.Task<DirectoryServiceReference1.SoapUserTemplate[]> GetUserTemplatesAsync(string strSessionID, int iApplicationID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/AddUserWithUserTemplate", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -192,7 +192,7 @@ namespace DirectoryServiceReference
                     int iDeviceDefinitionID, 
                     int iMobileNetworkID, 
                     string strDevicePassword, 
-                    DirectoryServiceReference.OneWireBag[] lstOneWireVariables);
+                    DirectoryServiceReference1.OneWireBag[] lstOneWireVariables);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/AddDevice", ReplyAction="*")]
         System.Threading.Tasks.Task<System.Xml.XmlNode> AddDeviceAsync(
@@ -211,7 +211,7 @@ namespace DirectoryServiceReference
                     int iDeviceDefinitionID, 
                     int iMobileNetworkID, 
                     string strDevicePassword, 
-                    DirectoryServiceReference.OneWireBag[] lstOneWireVariables);
+                    DirectoryServiceReference1.OneWireBag[] lstOneWireVariables);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/ChangeUsername", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -256,10 +256,10 @@ namespace DirectoryServiceReference
         [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/GetAccumulator", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ViewBag))]
-        DirectoryServiceReference.SoapAccumulator GetAccumulator(string strSessionID, int iApplicationID, int iUserID, string strName);
+        DirectoryServiceReference1.SoapAccumulator GetAccumulator(string strSessionID, int iApplicationID, int iUserID, string strName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/GetAccumulator", ReplyAction="*")]
-        System.Threading.Tasks.Task<DirectoryServiceReference.SoapAccumulator> GetAccumulatorAsync(string strSessionID, int iApplicationID, int iUserID, string strName);
+        System.Threading.Tasks.Task<DirectoryServiceReference1.SoapAccumulator> GetAccumulatorAsync(string strSessionID, int iApplicationID, int iUserID, string strName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/GetAccumulators", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -272,18 +272,18 @@ namespace DirectoryServiceReference
         [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/GetAccumulatorValue", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ViewBag))]
-        DirectoryServiceReference.SoapAccumulatorData GetAccumulatorValue(string strSessionID, int iApplicationID, int iAccumulatorID, System.DateTime dtTime);
+        DirectoryServiceReference1.SoapAccumulatorData GetAccumulatorValue(string strSessionID, int iApplicationID, int iAccumulatorID, System.DateTime dtTime);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/GetAccumulatorValue", ReplyAction="*")]
-        System.Threading.Tasks.Task<DirectoryServiceReference.SoapAccumulatorData> GetAccumulatorValueAsync(string strSessionID, int iApplicationID, int iAccumulatorID, System.DateTime dtTime);
+        System.Threading.Tasks.Task<DirectoryServiceReference1.SoapAccumulatorData> GetAccumulatorValueAsync(string strSessionID, int iApplicationID, int iAccumulatorID, System.DateTime dtTime);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/GetLatestAccumulatorValue", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ViewBag))]
-        DirectoryServiceReference.SoapAccumulatorData GetLatestAccumulatorValue(string strSessionID, int iApplicationID, int iAccumulatorID);
+        DirectoryServiceReference1.SoapAccumulatorData GetLatestAccumulatorValue(string strSessionID, int iApplicationID, int iAccumulatorID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/GetLatestAccumulatorValue", ReplyAction="*")]
-        System.Threading.Tasks.Task<DirectoryServiceReference.SoapAccumulatorData> GetLatestAccumulatorValueAsync(string strSessionID, int iApplicationID, int iAccumulatorID);
+        System.Threading.Tasks.Task<DirectoryServiceReference1.SoapAccumulatorData> GetLatestAccumulatorValueAsync(string strSessionID, int iApplicationID, int iAccumulatorID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/SetAccumulatorValue", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -704,13 +704,13 @@ namespace DirectoryServiceReference
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    public interface DirectorySoapChannel : DirectoryServiceReference.DirectorySoap, System.ServiceModel.IClientChannel
+    public interface DirectorySoapChannel : DirectoryServiceReference1.DirectorySoap, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    public partial class DirectorySoapClient : System.ServiceModel.ClientBase<DirectoryServiceReference.DirectorySoap>, DirectoryServiceReference.DirectorySoap
+    public partial class DirectorySoapClient : System.ServiceModel.ClientBase<DirectoryServiceReference1.DirectorySoap>, DirectoryServiceReference1.DirectorySoap
     {
         
         /// <summary>
@@ -936,22 +936,22 @@ namespace DirectoryServiceReference
             return base.Channel.ResetCommandQueueAsync(strSessionID, iApplicationID, iDeviceID);
         }
         
-        public DirectoryServiceReference.SoapDeviceDefinition[] GetManageableDeviceDefinitions(string strSessionID, int iApplicationID)
+        public DirectoryServiceReference1.SoapDeviceDefinition[] GetManageableDeviceDefinitions(string strSessionID, int iApplicationID)
         {
             return base.Channel.GetManageableDeviceDefinitions(strSessionID, iApplicationID);
         }
         
-        public System.Threading.Tasks.Task<DirectoryServiceReference.SoapDeviceDefinition[]> GetManageableDeviceDefinitionsAsync(string strSessionID, int iApplicationID)
+        public System.Threading.Tasks.Task<DirectoryServiceReference1.SoapDeviceDefinition[]> GetManageableDeviceDefinitionsAsync(string strSessionID, int iApplicationID)
         {
             return base.Channel.GetManageableDeviceDefinitionsAsync(strSessionID, iApplicationID);
         }
         
-        public DirectoryServiceReference.SoapUserTemplate[] GetUserTemplates(string strSessionID, int iApplicationID)
+        public DirectoryServiceReference1.SoapUserTemplate[] GetUserTemplates(string strSessionID, int iApplicationID)
         {
             return base.Channel.GetUserTemplates(strSessionID, iApplicationID);
         }
         
-        public System.Threading.Tasks.Task<DirectoryServiceReference.SoapUserTemplate[]> GetUserTemplatesAsync(string strSessionID, int iApplicationID)
+        public System.Threading.Tasks.Task<DirectoryServiceReference1.SoapUserTemplate[]> GetUserTemplatesAsync(string strSessionID, int iApplicationID)
         {
             return base.Channel.GetUserTemplatesAsync(strSessionID, iApplicationID);
         }
@@ -982,7 +982,7 @@ namespace DirectoryServiceReference
                     int iDeviceDefinitionID, 
                     int iMobileNetworkID, 
                     string strDevicePassword, 
-                    DirectoryServiceReference.OneWireBag[] lstOneWireVariables)
+                    DirectoryServiceReference1.OneWireBag[] lstOneWireVariables)
         {
             return base.Channel.AddDevice(strSessionID, iApplicationID, iOwnerID, strDeviceName, strIMEI, strMSISDN, strEmail, strIP, strPort, strAPN, strGPRSUsername, strGPRSPassword, iDeviceDefinitionID, iMobileNetworkID, strDevicePassword, lstOneWireVariables);
         }
@@ -1003,7 +1003,7 @@ namespace DirectoryServiceReference
                     int iDeviceDefinitionID, 
                     int iMobileNetworkID, 
                     string strDevicePassword, 
-                    DirectoryServiceReference.OneWireBag[] lstOneWireVariables)
+                    DirectoryServiceReference1.OneWireBag[] lstOneWireVariables)
         {
             return base.Channel.AddDeviceAsync(strSessionID, iApplicationID, iOwnerID, strDeviceName, strIMEI, strMSISDN, strEmail, strIP, strPort, strAPN, strGPRSUsername, strGPRSPassword, iDeviceDefinitionID, iMobileNetworkID, strDevicePassword, lstOneWireVariables);
         }
@@ -1058,12 +1058,12 @@ namespace DirectoryServiceReference
             return base.Channel.ChangeEmailAsync(strSessionID, iApplicationID, iUserID, strEmail);
         }
         
-        public DirectoryServiceReference.SoapAccumulator GetAccumulator(string strSessionID, int iApplicationID, int iUserID, string strName)
+        public DirectoryServiceReference1.SoapAccumulator GetAccumulator(string strSessionID, int iApplicationID, int iUserID, string strName)
         {
             return base.Channel.GetAccumulator(strSessionID, iApplicationID, iUserID, strName);
         }
         
-        public System.Threading.Tasks.Task<DirectoryServiceReference.SoapAccumulator> GetAccumulatorAsync(string strSessionID, int iApplicationID, int iUserID, string strName)
+        public System.Threading.Tasks.Task<DirectoryServiceReference1.SoapAccumulator> GetAccumulatorAsync(string strSessionID, int iApplicationID, int iUserID, string strName)
         {
             return base.Channel.GetAccumulatorAsync(strSessionID, iApplicationID, iUserID, strName);
         }
@@ -1078,22 +1078,22 @@ namespace DirectoryServiceReference
             return base.Channel.GetAccumulatorsAsync(strSessionID, iApplicationID, iUserID);
         }
         
-        public DirectoryServiceReference.SoapAccumulatorData GetAccumulatorValue(string strSessionID, int iApplicationID, int iAccumulatorID, System.DateTime dtTime)
+        public DirectoryServiceReference1.SoapAccumulatorData GetAccumulatorValue(string strSessionID, int iApplicationID, int iAccumulatorID, System.DateTime dtTime)
         {
             return base.Channel.GetAccumulatorValue(strSessionID, iApplicationID, iAccumulatorID, dtTime);
         }
         
-        public System.Threading.Tasks.Task<DirectoryServiceReference.SoapAccumulatorData> GetAccumulatorValueAsync(string strSessionID, int iApplicationID, int iAccumulatorID, System.DateTime dtTime)
+        public System.Threading.Tasks.Task<DirectoryServiceReference1.SoapAccumulatorData> GetAccumulatorValueAsync(string strSessionID, int iApplicationID, int iAccumulatorID, System.DateTime dtTime)
         {
             return base.Channel.GetAccumulatorValueAsync(strSessionID, iApplicationID, iAccumulatorID, dtTime);
         }
         
-        public DirectoryServiceReference.SoapAccumulatorData GetLatestAccumulatorValue(string strSessionID, int iApplicationID, int iAccumulatorID)
+        public DirectoryServiceReference1.SoapAccumulatorData GetLatestAccumulatorValue(string strSessionID, int iApplicationID, int iAccumulatorID)
         {
             return base.Channel.GetLatestAccumulatorValue(strSessionID, iApplicationID, iAccumulatorID);
         }
         
-        public System.Threading.Tasks.Task<DirectoryServiceReference.SoapAccumulatorData> GetLatestAccumulatorValueAsync(string strSessionID, int iApplicationID, int iAccumulatorID)
+        public System.Threading.Tasks.Task<DirectoryServiceReference1.SoapAccumulatorData> GetLatestAccumulatorValueAsync(string strSessionID, int iApplicationID, int iAccumulatorID)
         {
             return base.Channel.GetLatestAccumulatorValueAsync(strSessionID, iApplicationID, iAccumulatorID);
         }

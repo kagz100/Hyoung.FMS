@@ -52,9 +52,10 @@ namespace Hyoung.FMS.DAL.Repositories.Reports
         /// <param name="startDate">The data that starts</param>
         /// <param name="endDate">The date that ends</param>
         /// <returns></returns>
-        public List<Heayvconsumption> Get(DateTime startDate , DateTime endDate)
+        public List<Heayvconsumption> GetReport(DateTime startDate , DateTime endDate)
         {
-            var resutlts = _context.Heayvconsumption
+
+                var resutlts = _context.Heayvconsumption
                             .Where(a => a.Date >= startDate && a.Date <= endDate);
 
             return resutlts.ToList();

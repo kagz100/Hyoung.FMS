@@ -12,7 +12,7 @@ using System.Xml;
 
 namespace Hyoung.FMS.DAL.Repositories.Reports
 {
-    public class HeavyEquipmentReportDB : IGenericRepository<Heayvconsumption>
+    public class HeavyEquipmentReportDBRepository : IGenericRepository<Heayvconsumption>
     {
         private readonly HyoungGPSContext _context = new HyoungGPSContext();
 

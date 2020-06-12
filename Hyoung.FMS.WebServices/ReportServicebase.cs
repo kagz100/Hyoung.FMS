@@ -24,9 +24,33 @@ namespace Hyoung.FMS.WebServices
   
         private string _sessionID;
 
+
+
+
         private int _applicationID;
 
-               public ReportServicebase() { }
+        public string SessionID { 
+            get
+            { 
+                return _sessionID; 
+            }
+
+                 set 
+            { 
+                _sessionID = value; 
+            } 
+        }
+
+
+
+        public ReportServicebase
+            () {
+
+            //get sessionID
+
+            _sessionID = DirectoryServicesBase._sessionID;
+        
+        }
         
         /// <summary>
         /// Initialize class
@@ -51,6 +75,7 @@ namespace Hyoung.FMS.WebServices
 
             return results.Body.GetReportsResult;
         }
+
 
 
 

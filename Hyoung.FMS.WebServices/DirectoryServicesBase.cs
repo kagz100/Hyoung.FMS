@@ -8,34 +8,33 @@ using System.Xml.Linq;
 
 namespace Hyoung.FMS.WebServices
 {
-    public class DirectoryServicesBase
+    public  class DirectoryServicesBase
     {
         //private DirectoryServiceReference.Directory _directory = new  DirectoryServiceReference1.Directory();
 
 
         // private DirectoryServiceReference1.DirectorySoapClient _directoryClient = new DirectoryServiceReference1.DirectorySoapClient.EndpointConfiguration(DirectoryServiceReference1.DirectorySoapClient.EndpointConfiguration.DirectorySoap12);
 
-        private DirectoryServiceReference.DirectorySoapClient _directoryClient = new DirectoryServiceReference.DirectorySoapClient(DirectoryServiceReference.DirectorySoapClient.EndpointConfiguration.DirectorySoap12);
-        //singletone instance of directoryservice . 
+        private static DirectoryServiceReference1.DirectorySoapClient _directoryClient = new DirectoryServiceReference1.DirectorySoapClient(DirectoryServiceReference1.DirectorySoapClient.EndpointConfiguration.DirectorySoap12);
+
 
         
-        private static DirectoryServicesBase _directoryServicebase = new DirectoryServicesBase();
 
 
-        public static DirectoryServicesBase GetSimpleService()
-        {
-            return _directoryServicebase;
-        }
+        
+        private  DirectoryServicesBase _directoryServicebase = new DirectoryServicesBase();
 
+
+       
 
         public  static string _sessionID;
-        public int _applicationID;
+        public static int _applicationID;
 
 
 
 
 
-        public  async Task<string>  LoginAsync(string userName, string password , int applicationID)
+        public  static async Task<string>  LoginAsync(string userName, string password , int applicationID)
         {
             
             //var results = await _directoryClient.LoginAsync(userName, password, applicationID);

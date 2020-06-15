@@ -16,65 +16,101 @@ namespace Hyoung.FMS.DAL.RestModel
 
 
         [XmlElement("VehicleName")]
+        [XmlElement(Namespace ="")]
         public string VehicleName { get; set; }
 
         [XmlElement("DriverName")]
+        [XmlElement(Namespace ="")]
         public string DriverName { get; set; }
 
         [XmlElement("EmployeeNo")]
+        [XmlElement(Namespace = "")]
+
         public string EmployeeNo { get; set; }
 
         [XmlElement("PhoneNo")]
+        [XmlElement(Namespace = "")]
+
         public string PhoneNo { get; set; }
 
         [XmlElement("RuntimeEngHrs")]
+        [XmlElement(Namespace = "")]
+
         public int RuntimeEngHrs { get; set; }
 
 
         [XmlElement("TotalFuel")]
+        [XmlElement(Namespace = "")]
+
         public int TotalFuel { get; set; }
 
         [XmlElement("FuelEff")]
+        [XmlElement(Namespace = "")]
+
         public int FuelEff { get; set; }
 
 
         [XmlElement("ExpectedFuelEff")]
+        [XmlElement(Namespace = "")]
+
         public int ExpectedFuelEff { get; set; }
 
         [XmlElement("FuelLost")]
+        [XmlElement(Namespace = "")]
+
         public int FuelLost { get; set; }
 
         [XmlElement("FlowMeterEngineHrs")]
+        [XmlElement(Namespace = "")]
+
         public int FlowMeterEngineHrs { get; set; }
 
         [XmlElement("FlowMeterTotalFuel")]
+        [XmlElement(Namespace = "")]
+
         public int FlowMeterTotalFuel { get; set; }
 
         [XmlElement("FlowMeterFuelLost")]
+        [XmlElement(Namespace = "")]
+
         public int FlowMeterFuelLost { get; set; }
 
         [XmlElement("Site")]
+        [XmlElement(Namespace = "")]
+
         public string Site { get; set; }
 
         [XmlElement("Comments")]
+        [XmlElement(Namespace = "")]
+
         public string Comments { get; set; }
 
         [XmlElement("TotalDistance")]
+        [XmlElement(Namespace = "")]
+
         public int TotalDistance { get; set; }
 
 
         [XmlElement("FuelEffBasedOnDistance")]
+        [XmlElement(Namespace = "")]
+
         public int FuelEffBasedOnDistance { get; set; }
 
 
         [XmlElement("ExcessiveHrs")]
+        [XmlElement(Namespace = "")]
+
         public int ExcessiveHrs { get; set; }
 
         [XmlElement("AvgSpeed")]
+        [XmlElement(Namespace = "")]
+
         public int AvgSpeed { get; set; }
 
 
         [XmlElement("Date")]
+        [XmlElement(Namespace = "")]
+
         public DateTime Date { get; set; }
 
 

@@ -9,6 +9,9 @@ using Hyoung.FMS.DAL.Repositories.Reports;
 using MySqlX.XDevAPI.Common;
 using System.Drawing.Printing;
 using System.Globalization;
+using Microsoft.VisualBasic.CompilerServices;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace Hyoung.FMS.DAL.Preview
 {
@@ -25,7 +28,7 @@ namespace Hyoung.FMS.DAL.Preview
         private string _sessionID;
         private int _applicationID;
 
-        private readonly int _ihandleID;
+        private  int _ihandleID;
 
         ReportServicebase reportServicebase;
 
@@ -37,7 +40,7 @@ namespace Hyoung.FMS.DAL.Preview
             //call for webservice to get data with 
             var results = await reportServicebase.GenerateReport(reportID, startdate, endDate);
 
-
+            _ihandleID = (int)results;
             //return list of HeavyequipmentReport
 
 
@@ -47,6 +50,8 @@ namespace Hyoung.FMS.DAL.Preview
         }
 
 
+        public string   ReportStatus { get; set; }
+
         public async Task<string> GetReportStatus()
         {
 
@@ -54,13 +59,24 @@ namespace Hyoung.FMS.DAL.Preview
             var results = await reportServicebase.GetReportStatus(_ihandleID);
 
 
+            ReportStatus = results.ToString();
+
             return results.ToString();
         }
 
         public async Task<List<RestHeavyConsumptionModel>> FetchReport()
         {
-            var results = await reportServicebase.FetchReport(_ihandleID);
+            XmlNode results = await reportServicebase.FetchReport(_ihandleID);
+            List<RestHeavyConsumptionModel> heavy = new List<RestHeavyConsumptionModel>();
+           
+            XElement doc = XElement.Parse(results.ToString());
+            if(ReportStatus == "Done")
+            {
+              var list = from el in doc.Descendants()
+                         where el.Attribute()
 
+
+            }
             //how convert 
 
 

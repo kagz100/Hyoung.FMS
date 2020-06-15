@@ -12,6 +12,7 @@ using System.Globalization;
 using Microsoft.VisualBasic.CompilerServices;
 using System.Xml;
 using System.Xml.Linq;
+using System.Linq;
 
 namespace Hyoung.FMS.DAL.Preview
 {
@@ -64,17 +65,26 @@ namespace Hyoung.FMS.DAL.Preview
             return results.ToString();
         }
 
-        public async Task<List<RestHeavyConsumptionModel>> FetchReport()
+        public void  FetchReport()
         {
-            XmlNode results = await reportServicebase.FetchReport(_ihandleID);
-            List<RestHeavyConsumptionModel> heavy = new List<RestHeavyConsumptionModel>();
+            var results =  reportServicebase.FetchReport(_ihandleID);
+            List<RestHeavyConsumptionModel> heavylist = new List<RestHeavyConsumptionModel>();
            
-            XElement doc = XElement.Parse(results.ToString());
+            XElement doc = XElement.Parse(results.Result.ToString());
+
+            XmlDocument doc1 = new XmlDocument();
+            doc1.LoadXml(results.Result.ToString());
+
             if(ReportStatus == "Done")
             {
-              var list = from el in doc.Descendants()
-                         where el.Attribute()
+                RestHeavyConsumptionModel heavy = new RestHeavyConsumptionModel();
 
+               var vName= doc.Descendants("Cell").Where(x => x.Attribute("ref").Value == "i_0_0_0");
+
+                foreach(XElement el in vName)
+                {
+
+                }
 
             }
             //how convert 

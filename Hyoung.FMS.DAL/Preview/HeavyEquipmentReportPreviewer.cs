@@ -65,21 +65,25 @@ namespace Hyoung.FMS.DAL.Preview
             return results.ToString();
         }
 
-        public void  FetchReport()
+        public List<RestHeavyConsumptionModel>  FetchReport()
         {
             var results =  reportServicebase.FetchReport(_ihandleID);
             List<RestHeavyConsumptionModel> heavylist = new List<RestHeavyConsumptionModel>();
            
             XElement doc = XElement.Parse(results.Result.ToString());
+            XNamespace ad = "http://gpsgate.com/xml/";
 
-            XmlDocument doc1 = new XmlDocument();
-            doc1.LoadXml(results.Result.ToString());
 
-            if(ReportStatus == "Done")
+            if (ReportStatus == "Done")
             {
                 RestHeavyConsumptionModel heavy = new RestHeavyConsumptionModel();
 
-               var vName= doc.Descendants("Cell").Where(x => x.Attribute("ref").Value == "i_0_0_0");
+                IEnumerable<RestHeavyConsumptionModel> querys = from i in doc.Descendants(ad + "Row")
+                                                                select new RestHeavyConsumptionModel
+                                                                {
+                                                                    vehic =(string)i.Descendants(ad + "Cell").Where(x => x.Attribute("ref").Value == "i_0_0_0").FirstOrDefault(),
+                                                                    DriverName
+                                                         };
 
                 foreach(XElement el in vName)
                 {

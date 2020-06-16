@@ -9,7 +9,7 @@ namespace Hyoung.FMS.Model.Models
     {
         public Drivers()
         {
-            Heayvconsumption = new HashSet<Heayvconsumption>();
+            Heayvconsumption = new HashSet<Heavyconsumption>();
             Lightvehicleconsumption = new HashSet<Lightvehicleconsumption>();
         }
 
@@ -27,7 +27,7 @@ namespace Hyoung.FMS.Model.Models
         public double? PhoneNumber { get; set; }
         public double? DefaultAssignedVehicleId { get; set; }
 
-        public virtual ICollection<Heayvconsumption> Heayvconsumption { get; set; }
+        public virtual ICollection<Heavyconsumption> Heayvconsumption { get; set; }
         public virtual ICollection<Lightvehicleconsumption> Lightvehicleconsumption { get; set; }
    
    

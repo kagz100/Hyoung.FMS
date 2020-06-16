@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Hyoung.FMS.Model.Models
 {
-    public partial class Heayvconsumption
+    public partial class Heavyconsumption
     {
         public int Id { get; set; }
-        public string VehicleName { get; set; }
-        public string DriverName { get; set; }
+        public Vehicle VehicleName { get; set; }
+        public Drivers DriverName { get; set; }
         public double? RuntimeEngHrs { get; set; }
         [Required]
         public double? TotalFuel { get; set; }
@@ -25,9 +25,7 @@ namespace Hyoung.FMS.Model.Models
         public int? FlowMeterFuelEff { get; set; }
         public int? FlowMeterFuelLost { get; set; }
         public string Comments { get; set; }
-       
-        [Required]
-        public int? VehicleId { get; set; }
+ 
         [Required]
 
         public int? DriverId { get; set; }

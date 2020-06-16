@@ -17,7 +17,7 @@ namespace Hyoung.FMS.Model.DataAccess
         }
 
         public virtual DbSet<Drivers> Drivers { get; set; }
-        public virtual DbSet<Heayvconsumption> Heayvconsumption { get; set; }
+        public virtual DbSet<Heavyconsumption> Heayvconsumption { get; set; }
         public virtual DbSet<Issuecategory> Issuecategory { get; set; }
         public virtual DbSet<Issuetracker> Issuetracker { get; set; }
         public virtual DbSet<Lightvehicleconsumption> Lightvehicleconsumption { get; set; }
@@ -66,7 +66,7 @@ namespace Hyoung.FMS.Model.DataAccess
                     .HasColumnType("int(11)");
             });
 
-            modelBuilder.Entity<Heayvconsumption>(entity =>
+            modelBuilder.Entity<Heavyconsumption>(entity =>
             {
                 entity.ToTable("heayvconsumption");
 
@@ -80,8 +80,7 @@ namespace Hyoung.FMS.Model.DataAccess
                 entity.HasIndex(e => e.SiteId)
                     .HasName("Site_idx");
 
-                entity.HasIndex(e => e.VehicleId)
-                    .HasName("heavy_vehicle_idx");
+               ;
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
@@ -141,9 +140,7 @@ namespace Hyoung.FMS.Model.DataAccess
 
                 entity.Property(e => e.TotalFuel).HasColumnName("Total fuel");
 
-                entity.Property(e => e.VehicleId)
-                    .HasColumnName("VehicleID")
-                    .HasColumnType("int(11)");
+               
 
                 entity.Property(e => e.VehicleName)
                     .IsRequired()
@@ -163,10 +160,7 @@ namespace Hyoung.FMS.Model.DataAccess
                     .HasForeignKey(d => d.SiteId)
                     .HasConstraintName("Heavy_site");
 
-                entity.HasOne(d => d.Vehicle)
-                    .WithMany(p => p.Heayvconsumption)
-                    .HasForeignKey(d => d.VehicleId)
-                    .HasConstraintName("heavy_vehicle");
+               
             });
 
             modelBuilder.Entity<Issuecategory>(entity =>

@@ -12,11 +12,11 @@ using System.Xml;
 
 namespace Hyoung.FMS.DAL.Repositories.Reports
 {
-    public class HeavyEquipmentReportDBRepository : IGenericRepository<Heayvconsumption>
+    public class HeavyEquipmentReportDBRepository : IGenericRepository<Heavyconsumption>
     {
         private readonly HyoungGPSContext _context = new HyoungGPSContext();
 
-        public string Add(Heayvconsumption entity)
+        public string Add(Heavyconsumption entity)
         {
             try
             {
@@ -29,17 +29,17 @@ namespace Hyoung.FMS.DAL.Repositories.Reports
             }
         }
 
-        public void AddRange(IEnumerable<Heayvconsumption> entities)
+        public void AddRange(IEnumerable<Heavyconsumption> entities)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Heayvconsumption> Find(Expression<Func<Heayvconsumption, bool>> predicate)
+        public IEnumerable<Heavyconsumption> Find(Expression<Func<Heavyconsumption, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public Heayvconsumption Get(int id)
+        public Heavyconsumption Get(int id)
         {
             var resutls = _context.Heayvconsumption.Find(id);
 
@@ -52,7 +52,7 @@ namespace Hyoung.FMS.DAL.Repositories.Reports
         /// <param name="startDate">The data that starts</param>
         /// <param name="endDate">The date that ends</param>
         /// <returns></returns>
-        public List<Heayvconsumption> GetReport(DateTime startDate , DateTime endDate)
+        public List<Heavyconsumption> GetReport(DateTime startDate , DateTime endDate)
         {
 
                 var resutlts = _context.Heayvconsumption
@@ -61,34 +61,18 @@ namespace Hyoung.FMS.DAL.Repositories.Reports
             return resutlts.ToList();
     
         }
-        /// <summary>
-        /// Get report from GPSGate server
-        /// </summary>
-        /// <param name="startDate"></param>
-        /// <param name="endDate"></param>
-        /// <param name="reportID"></param>
-        /// <returns></returns>
-       // public HeavyEquipmentReportDB GetGPSgateData(DateTime startDate, DateTime endDate,int reportID,XmlNode node)
-        //{
-
-          //  XMLSoapSerializer sr = new XMLSoapSerializer();
-            //HeavyEquipmentReportDB db = sr.Deserializer<HeavyEquipmentReportDB>(node.ToString());
-
-            //return db;
-        ///}
-
-
-        public IEnumerable<Heayvconsumption> GetAll()
+  
+        public IEnumerable<Heavyconsumption> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public void Remove(Heayvconsumption entity)
+        public void Remove(Heavyconsumption entity)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveRange(IEnumerable<Heayvconsumption> entities)
+        public void RemoveRange(IEnumerable<Heavyconsumption> entities)
         {
             throw new NotImplementedException();
         }

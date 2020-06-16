@@ -13,6 +13,8 @@ using Microsoft.VisualBasic.CompilerServices;
 using System.Xml;
 using System.Xml.Linq;
 using System.Linq;
+using System.Data;
+using System.Threading;
 
 namespace Hyoung.FMS.DAL.Preview
 {
@@ -65,36 +67,57 @@ namespace Hyoung.FMS.DAL.Preview
             return results.ToString();
         }
 
-        public List<RestHeavyConsumptionModel>  FetchReport()
+        public async Task<List<VehicleUsageReportFromGPSGATE>>  FetchReport()
         {
-            var results =  reportServicebase.FetchReport(_ihandleID);
-            List<RestHeavyConsumptionModel> heavylist = new List<RestHeavyConsumptionModel>();
-           
-            XElement doc = XElement.Parse(results.Result.ToString());
+            List<VehicleUsageReportFromGPSGATE> vehicleList = new List<VehicleUsageReportFromGPSGATE>();
+            var results = await reportServicebase.FetchReport(_ihandleID);
+
+            List<VehicleUsageReportFromGPSGATE> vehicleReportlist = new List<VehicleUsageReportFromGPSGATE>();
+            XElement doc = XElement.Parse(results.ToString());
             XNamespace ad = "http://gpsgate.com/xml/";
 
-
-            if (ReportStatus == "Done")
+            //get error 
+           
+            if(doc.Descendants("error").Count()>1)
             {
-                RestHeavyConsumptionModel heavy = new RestHeavyConsumptionModel();
 
-                IEnumerable<RestHeavyConsumptionModel> querys = from i in doc.Descendants(ad + "Row")
-                                                                select new RestHeavyConsumptionModel
-                                                                {
-                                                                    vehic =(string)i.Descendants(ad + "Cell").Where(x => x.Attribute("ref").Value == "i_0_0_0").FirstOrDefault(),
-                                                                    DriverName
-                                                         };
-
-                foreach(XElement el in vName)
-                {
-
-                }
-
+                var result = doc.Descendants("message").Select(x => x.Value).FirstOrDefault();
+                
+                throw new Exception(result);
             }
-            //how convert 
+               try
+                    {
+                        IEnumerable<VehicleUsageReportFromGPSGATE> querys = from i in doc.Descendants(ad + "Row")
+                                                                            select new VehicleUsageReportFromGPSGATE
+                                                                            {
+                                                                                vehicleID = (int)i.Descendants(ad + "Cell").Where(x => x.Attribute("ref").Value == "i_0_0_0").FirstOrDefault(),
+                                                                                EngHrsIgnitionHrs = (int)i.Descendants(ad + "Cell").Where(x => x.Attribute("ref").Value == "i_0_0_1").FirstOrDefault(),
+                                                                                TotalFuelfromFuelProbe = (int)i.Descendants(ad + "Cell").Where(x => x.Attribute("ref").Value == "i_0_0_2").FirstOrDefault(),
+                                                                                EnginehrsFlowmeter = (int)i.Descendants(ad + "Cell").Where(x => x.Attribute("ref").Value == "i_0_0_3").FirstOrDefault(),
+                                                                                TotalFuelFlowmeter = (int)i.Descendants(ad + "Cell").Where(x => x.Attribute("ref").Value == "i_0_0_4").FirstOrDefault(),
+                                                                                GPSLastLocation = (string)i.Descendants(ad + "Cell").Where(x => x.Attribute("ref").Value == "i_0_0_5").FirstOrDefault(),
+                                                                                TotalDistance = (int)i.Descendants(ad + "Cell").Where(x => x.Attribute("ref").Value == "i_0_0_6").FirstOrDefault(),
+                                                                                Avgspeed = (int)i.Descendants(ad + "Cell").Where(x => x.Attribute("ref").Value == "i_0_0_7").FirstOrDefault(),
+                                                                                MaxSpeed = (int)i.Descendants(ad + "Cell").Where(x => x.Attribute("ref").Value == "i_0_0_8").FirstOrDefault(),
+                                                                                TotalFuelNormalFlowmeter = (int)i.Descendants(ad + "Cell").Where(x => x.Attribute("ref").Value == "i_0_0_9").FirstOrDefault(),
+                                                                                TotalFuelIdleFlowmeter = (int)i.Descendants(ad + "Cell").Where(x => x.Attribute("ref").Value == "i_0_0_10").FirstOrDefault(),
+                                                                                TotalEngHrsNormalFlowmeter = (int)i.Descendants(ad + "Cell").Where(x => x.Attribute("ref").Value == "i_0_0_11").FirstOrDefault(),
+                                                                                TotalEnghrsIdleFlowmeter = (int)i.Descendants(ad + "Cell").Where(x => x.Attribute("ref").Value == "i_0_0_12").FirstOrDefault(),
+                                                                                Date = (DateTime)i.Descendants(ad + "Cell").Where(x => x.Attribute("ref").Value == "i_0_0_13").FirstOrDefault(),
+                                                                            };
 
 
+                      vehicleList= querys.ToList();
+                return vehicleList;
 
+                    }
+                    catch (Exception e)
+                    {
+
+                    throw new Exception(e.Message);
+
+                    }                
+           
         }
 
     }

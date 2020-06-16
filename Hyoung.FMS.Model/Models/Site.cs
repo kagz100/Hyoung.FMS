@@ -7,14 +7,14 @@ namespace Hyoung.FMS.Model.Models
     {
         public Site()
         {
-            Heayvconsumption = new HashSet<Heayvconsumption>();
+            Heayvconsumption = new HashSet<Heavyconsumption>();
             Lightvehicleconsumption = new HashSet<Lightvehicleconsumption>();
         }
 
         public int Id { get; set; }
         public string Location { get; set; }
 
-        public virtual ICollection<Heayvconsumption> Heayvconsumption { get; set; }
+        public virtual ICollection<Heavyconsumption> Heayvconsumption { get; set; }
         public virtual ICollection<Lightvehicleconsumption> Lightvehicleconsumption { get; set; }
     }
 }

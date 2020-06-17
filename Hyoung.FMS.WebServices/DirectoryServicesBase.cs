@@ -15,24 +15,10 @@ namespace Hyoung.FMS.WebServices
 
         // private DirectoryServiceReference1.DirectorySoapClient _directoryClient = new DirectoryServiceReference1.DirectorySoapClient.EndpointConfiguration(DirectoryServiceReference1.DirectorySoapClient.EndpointConfiguration.DirectorySoap12);
 
-        private static DirectoryServiceReference1.DirectorySoapClient _directoryClient = new DirectoryServiceReference1.DirectorySoapClient(DirectoryServiceReference1.DirectorySoapClient.EndpointConfiguration.DirectorySoap12);
+        private static DirectoryServiceReference1.DirectorySoapClient _directoryClient = new DirectoryServiceReference1.DirectorySoapClient(DirectoryServiceReference1.DirectorySoapClient.EndpointConfiguration.DirectorySoap12);          
 
-
-        
-
-
-        
-        private  DirectoryServicesBase _directoryServicebase = new DirectoryServicesBase();
-
-
-       
-
-        public  static string _sessionID;
-        public static int _applicationID;
-
-
-
-
+        private  static string _sessionID;
+        private  static int _applicationID;
 
         public  static async Task<string>  LoginAsync(string userName, string password , int applicationID)
         {
@@ -42,10 +28,10 @@ namespace Hyoung.FMS.WebServices
             XmlNode _xmlresponce = await _directoryClient.LoginAsync(userName, password, applicationID);
 
 
-          //  checkError(_xmlresponce);
+            //  checkError(_xmlresponce);
 
 
-                _sessionID = _xmlresponce.InnerText;
+            SessionID = _xmlresponce.InnerText;
 
                 _applicationID = applicationID;
             
@@ -64,7 +50,7 @@ namespace Hyoung.FMS.WebServices
 
        
 
-        public string SessionID { get { return _sessionID; } }
+        public static string SessionID { get { return _sessionID; } set { _sessionID = value; } }
 
         public int ApplicationID { get {return _applicationID; } }
 

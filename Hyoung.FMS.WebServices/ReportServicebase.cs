@@ -48,7 +48,7 @@ namespace Hyoung.FMS.WebServices
 
             //get sessionID
 
-            _sessionID = DirectoryServicesBase._sessionID;
+            _sessionID = DirectoryServicesBase.SessionID;
         
         }
         

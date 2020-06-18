@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Hyoung.FMS.DAL.RestModel;
 using Hyoung.FMS.WebServices;
 using Microsoft.AspNetCore.Mvc;
+using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Mvc;
 
 namespace Hyoung.FMS.Webclient.Controllers
 {
@@ -21,24 +23,22 @@ namespace Hyoung.FMS.Webclient.Controllers
         public  ReportController()
         {
             sessionID = DirectoryServicesBase.SessionID;
+            applicationID = 12;
         }
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult GetReport()
-        {
-            return View();
-        }
-
-        [HttpPost]
+   
+        [HttpGet]
         public IActionResult GetReport(VehicleUsageReportFromGPSGATE vehicleUsage)
         {
 
-
-
             return View();
         }
+
+     
+       
     }
 }

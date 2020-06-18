@@ -38,7 +38,7 @@ namespace Hyoung.FMS.Webclient.Controllers
                     ViewBag.Error = DirectoryServicesBase.SessionID;
 
 
-                    return RedirectToAction("Main", "Report");
+                    return RedirectToAction("GetReport", "Report");
 
                 }
                 catch (Exception e)

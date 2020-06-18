@@ -9,7 +9,6 @@
     <!-- Add local styles, mostly for plugins css file -->
     @if (IsSectionDefined("Styles"))
     {@RenderSection("Styles", required: false)}
-
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" />
@@ -22,13 +21,20 @@
         <link rel="stylesheet" href="~/css/animate.css" />
         <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
     </environment>
-    <link href="~/lib/devextreme/css/dx.common.css" rel="stylesheet" />
-    <link href="~/lib/devextreme/css/dx.light.css" rel="stylesheet" />
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/lib/devextreme/js/dx.all.js"></script>
-    <script src="~/lib/devextreme-aspnet-data/js/dx.aspnet.data.js"></script>
-    <script src="~/lib/devextreme/js/dx.aspnet.mvc.js"></script>
-    <script src="~/js/vendor.js" asp-append-version="true"></script>
+
+    <!-- Dev Extreme-->
+
+    <link href="~/css/devextreme/dx.common.css" rel="stylesheet" />
+    <link href="~/css/devextreme/dx.light.css" rel="stylesheet" />
+
+    <script src="~/js/devextreme/jquery.js"></script>
+
+
+    <script src="~/js/devextreme/dx.all.js"></script>
+
+
+    <script src="~/js/devextreme/aspnet/dx.aspnet.mvc.js"></script>
+    <script src="~/js/devextreme/aspnet/dx.aspnet.data.js"></script>
 
 </head>
 <body>
@@ -56,6 +62,7 @@
 
     </div>
     <!-- End wrapper-->
+    @RenderSection("toast", required: false)
 
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>

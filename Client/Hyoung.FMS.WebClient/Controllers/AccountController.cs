@@ -6,7 +6,7 @@ using Hyoung.FMS.WebClient.Models;
 using Hyoung.FMS.WebServices;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Hyoung.FMS.Webclient.Controllers
+namespace Hyoung.FMS.WebClient.Controllers
 {
     public class AccountController : Controller
     {

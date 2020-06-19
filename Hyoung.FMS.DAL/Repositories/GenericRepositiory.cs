@@ -10,7 +10,7 @@ namespace Hyoung.FMS.DAL.Repositories
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
 
-        protected readonly DbContext context;
+        protected  DbContext context;
 
 
         public void Add(TEntity entity)

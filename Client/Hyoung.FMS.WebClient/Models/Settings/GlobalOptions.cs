@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace Hyoung.FMS.Webclient.Models.Settings
+namespace Hyoung.FMS.WebClient.Models.Settings
 {
     public static class GlobalOptions
     {

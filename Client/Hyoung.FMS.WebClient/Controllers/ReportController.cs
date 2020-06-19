@@ -10,8 +10,9 @@ using DevExtreme.AspNet.Data;
 using DevExtreme.AspNet.Mvc;
 using Hyoung.FMS.DAL.Preview;
 using Microsoft.AspNetCore.Mvc.TagHelpers.Cache;
+using Hyoung.FMS.WebClient.Models;
 
-namespace Hyoung.FMS.Webclient.Controllers
+namespace Hyoung.FMS.WebClient.Controllers
 {
     public class ReportController : Controller
     {
@@ -35,22 +36,24 @@ namespace Hyoung.FMS.Webclient.Controllers
 
    
         [HttpGet]
-        public async Task<List<VehicleUsageReportFromGPSGATE>> GetReportAsync()
+        public IActionResult GetHeavyReport()
         {
-            var r = await report.FetchReport();
-            return  r;
+            var r  =  report.FetchReport(iHandleID);
+            return  PartialView("HeavyReport", r);
         }
 
         [HttpPost]
-        public  IActionResult HeavyReport(DateTime startTime,DateTime endTime)
+        public IActionResult GenerateReport(Report reports) 
         {
             //hardwire
-            iHandleID = (int)report.GenerateReportRestAsync(199,startTime, endTime).Result;
+            iHandleID = (int)report.GenerateReportRestAsync(199, reports.StartDate, reports.EndDate).Result;
 
             return RedirectToAction("GetReportAsync");
         }
 
      
+
+
        
     }
 }

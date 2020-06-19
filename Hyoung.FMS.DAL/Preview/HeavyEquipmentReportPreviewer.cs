@@ -68,12 +68,12 @@ namespace Hyoung.FMS.DAL.Preview
             return results.ToString();
         }
 
-        public async Task<List<VehicleUsageReportFromGPSGATE>>  FetchReport()
+        public async Task<List<VehicleTelemetryGPSGATE>>  FetchReport(int ihandleID)
         {
-            List<VehicleUsageReportFromGPSGATE> vehicleList = new List<VehicleUsageReportFromGPSGATE>();
-            var results = await reportServicebase.FetchReport(_ihandleID);
+            List<VehicleTelemetryGPSGATE> vehicleList = new List<VehicleTelemetryGPSGATE>();
+            var results = await reportServicebase.FetchReport(ihandleID);
 
-            List<VehicleUsageReportFromGPSGATE> vehicleReportlist = new List<VehicleUsageReportFromGPSGATE>();
+            List<VehicleTelemetryGPSGATE> vehicleReportlist = new List<VehicleTelemetryGPSGATE>();
             XElement doc = XElement.Parse(results.ToString());
             XNamespace ad = "http://gpsgate.com/xml/";
 
@@ -88,10 +88,10 @@ namespace Hyoung.FMS.DAL.Preview
             }
                try
                     {
-                        IEnumerable<VehicleUsageReportFromGPSGATE> querys = from i in doc.Descendants(ad + "Row")
-                                                                            select new VehicleUsageReportFromGPSGATE
+                        IEnumerable<VehicleTelemetryGPSGATE> querys = from i in doc.Descendants(ad + "Row")
+                                                                            select new VehicleTelemetryGPSGATE
                                                                             {
-                                                                                vehicleID = (int)i.Descendants(ad + "Cell").Where(x => x.Attribute("ref").Value == "i_0_0_0").FirstOrDefault(),
+                                                                                ID = (int)i.Descendants(ad + "Cell").Where(x => x.Attribute("ref").Value == "i_0_0_0").FirstOrDefault(),
                                                                                 EngHrsIgnitionHrs = (int)i.Descendants(ad + "Cell").Where(x => x.Attribute("ref").Value == "i_0_0_1").FirstOrDefault(),
                                                                                 TotalFuelfromFuelProbe = (int)i.Descendants(ad + "Cell").Where(x => x.Attribute("ref").Value == "i_0_0_2").FirstOrDefault(),
                                                                                 EnginehrsFlowmeter = (int)i.Descendants(ad + "Cell").Where(x => x.Attribute("ref").Value == "i_0_0_3").FirstOrDefault(),
@@ -106,6 +106,12 @@ namespace Hyoung.FMS.DAL.Preview
                                                                                 TotalEnghrsIdleFlowmeter = (int)i.Descendants(ad + "Cell").Where(x => x.Attribute("ref").Value == "i_0_0_12").FirstOrDefault(),
                                                                                 Date = (DateTime)i.Descendants(ad + "Cell").Where(x => x.Attribute("ref").Value == "i_0_0_13").FirstOrDefault(),
                                                                             };
+
+
+
+
+
+
 
 
                       vehicleList= querys.ToList();

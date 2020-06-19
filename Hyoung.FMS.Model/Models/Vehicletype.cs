@@ -14,6 +14,19 @@ namespace Hyoung.FMS.Model.Models
         public string Type { get; set; }
         public string Abbvr { get; set; }
 
+
+       
         public virtual ICollection<Vehicle> Vehicle { get; set; }
+
+        public virtual ICollection<AccumulatorType> AccumulatorTypes { get; set; }
     }
+
+
+
+
+
+
+
+
+
 }

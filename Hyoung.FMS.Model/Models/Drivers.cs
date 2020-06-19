@@ -5,12 +5,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Hyoung.FMS.Model.Models
 {
-    public partial class Drivers
+    public partial class Driver
     {
-        public Drivers()
+        public Driver()
         {
-            Heayvconsumption = new HashSet<Heavyconsumption>();
-            Lightvehicleconsumption = new HashSet<Lightvehicleconsumption>();
+           
         }
 
         
@@ -25,12 +24,12 @@ namespace Hyoung.FMS.Model.Models
         [Required]
         public string EmpNo { get; set; }
         public double? PhoneNumber { get; set; }
-        public double? DefaultAssignedVehicleId { get; set; }
+        public virtual ICollection<Vehicle> DrivenVehicles { get; set; }
 
-        public virtual ICollection<Heavyconsumption> Heayvconsumption { get; set; }
-        public virtual ICollection<Lightvehicleconsumption> Lightvehicleconsumption { get; set; }
-   
-   
-    
+
+        public Vehicle DefaultVehicle { get; set; }
+
+
+
     }
 }

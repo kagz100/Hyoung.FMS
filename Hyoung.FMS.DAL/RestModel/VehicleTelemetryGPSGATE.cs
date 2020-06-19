@@ -1,13 +1,17 @@
-﻿using System;
+﻿using Hyoung.FMS.Model.DataAccess;
+using Hyoung.FMS.Model.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 namespace Hyoung.FMS.DAL.RestModel
 {
-    public class VehicleUsageReportFromGPSGATE
+    public class VehicleTelemetryGPSGATE
     {
-
-        public int vehicleID { get; set; }
+        
+        public int ID { get; set; }
        
         public int EngHrsIgnitionHrs { get; set; }
 
@@ -28,6 +32,21 @@ namespace Hyoung.FMS.DAL.RestModel
         public int TotalEnghrsIdleFlowmeter { get; set; }
         public DateTime Date { get; set; }
 
+
+
+        public Vehicle Vehicle {
+            get
+            {
+                var context = new HyoungGPSContext();
+
+                var vehicle = context.Vehicles.Where(s => s.Id == ID).FirstOrDefault();
+
+                return vehicle;
+
+            }
+         }
+
+                                            } }
 
     }
 

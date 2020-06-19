@@ -44,7 +44,7 @@ namespace Hyoung.FMS.WebServices
 
 
         public ReportServicebase
-            () {
+            (   ) {
 
             //get sessionID
 

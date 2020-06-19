@@ -26,6 +26,7 @@ namespace Hyoung.FMS.DAL.Preview
         {
             _sessionID = sessionid;
             _applicationID = applicationid;
+            reportServicebase = new ReportServicebase();
         }
 
         private string _sessionID;

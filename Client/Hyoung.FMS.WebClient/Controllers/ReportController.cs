@@ -8,6 +8,8 @@ using Hyoung.FMS.WebServices;
 using Microsoft.AspNetCore.Mvc;
 using DevExtreme.AspNet.Data;
 using DevExtreme.AspNet.Mvc;
+using Hyoung.FMS.DAL.Preview;
+using Microsoft.AspNetCore.Mvc.TagHelpers.Cache;
 
 namespace Hyoung.FMS.Webclient.Controllers
 {
@@ -19,11 +21,12 @@ namespace Hyoung.FMS.Webclient.Controllers
         private int iHandleID;
 
         private int applicationID;
-
-        public  ReportController()
+        HeavyEquipmentReportPreviewer report;
+        public ReportController()
         {
             sessionID = DirectoryServicesBase.SessionID;
             applicationID = 12;
+            report = new HeavyEquipmentReportPreviewer(sessionID, 12);
         }
         public IActionResult Index()
         {
@@ -32,10 +35,19 @@ namespace Hyoung.FMS.Webclient.Controllers
 
    
         [HttpGet]
-        public IActionResult GetReport(VehicleUsageReportFromGPSGATE vehicleUsage)
+        public async Task<List<VehicleUsageReportFromGPSGATE>> GetReportAsync()
         {
+            var r = await report.FetchReport();
+            return  r;
+        }
 
-            return View();
+        [HttpPost]
+        public  IActionResult HeavyReport(DateTime startTime,DateTime endTime)
+        {
+            //hardwire
+            iHandleID = (int)report.GenerateReportRestAsync(199,startTime, endTime).Result;
+
+            return RedirectToAction("GetReportAsync");
         }
 
      

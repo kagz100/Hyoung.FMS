@@ -8588,7 +8588,7 @@ var CommandManager = (function () {
         this.createCommand(ClientCommand_1.GanttClientCommand.ZoomOut, new ZoomCommands_1.ZoomOutCommand(this.control));
         this.createCommand(ClientCommand_1.GanttClientCommand.FullScreen, new FullScreenCommand_1.ToggleFullScreenCommand(this.control));
         this.createCommand(ClientCommand_1.GanttClientCommand.CollapseAll, new CollapseExpandCommands_1.CollapseAllCommand(this.control));
-        this.createCommand(ClientCommand_1.GanttClientCommand.ExpandAll, new CollapseExpandCommands_1.ExpandAllCommand(this.control));
+        this.createCommand(ClientCommand_1.GanttClientCommand.ExpanCorel, new CollapseExpandCommands_1.ExpanCorelCommand(this.control));
     }
     Object.defineProperty(CommandManager.prototype, "createTaskCommand", {
         get: function () { return new TaskCommands_1.CreateTaskCommand(this.control); },
@@ -9628,7 +9628,7 @@ var GanttClientCommand;
     GanttClientCommand[GanttClientCommand["ZoomOut"] = 9] = "ZoomOut";
     GanttClientCommand[GanttClientCommand["FullScreen"] = 10] = "FullScreen";
     GanttClientCommand[GanttClientCommand["CollapseAll"] = 11] = "CollapseAll";
-    GanttClientCommand[GanttClientCommand["ExpandAll"] = 12] = "ExpandAll";
+    GanttClientCommand[GanttClientCommand["ExpanCorel"] = 12] = "ExpanCorel";
 })(GanttClientCommand = exports.GanttClientCommand || (exports.GanttClientCommand = {}));
 
 
@@ -9800,27 +9800,27 @@ var CollapseAllCommand = (function (_super) {
     return CollapseAllCommand;
 }(CommandBase_1.CommandBase));
 exports.CollapseAllCommand = CollapseAllCommand;
-var ExpandAllCommand = (function (_super) {
-    tslib_1.__extends(ExpandAllCommand, _super);
-    function ExpandAllCommand() {
+var ExpanCorelCommand = (function (_super) {
+    tslib_1.__extends(ExpanCorelCommand, _super);
+    function ExpanCorelCommand() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    ExpandAllCommand.prototype.getState = function () {
+    ExpanCorelCommand.prototype.getState = function () {
         return new CommandBase_1.SimpleCommandState(this.isEnabled());
     };
-    ExpandAllCommand.prototype.execute = function () {
+    ExpanCorelCommand.prototype.execute = function () {
         return _super.prototype.execute.call(this);
     };
-    ExpandAllCommand.prototype.executeInternal = function () {
-        this.control.ganttOwner.expandAll();
+    ExpanCorelCommand.prototype.executeInternal = function () {
+        this.control.ganttOwner.expanCorel();
         return true;
     };
-    ExpandAllCommand.prototype.isEnabled = function () {
+    ExpanCorelCommand.prototype.isEnabled = function () {
         return true;
     };
-    return ExpandAllCommand;
+    return ExpanCorelCommand;
 }(CommandBase_1.CommandBase));
-exports.ExpandAllCommand = ExpandAllCommand;
+exports.ExpanCorelCommand = ExpanCorelCommand;
 
 
 /***/ }),

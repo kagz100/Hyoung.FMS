@@ -993,7 +993,7 @@ th {
 .glyphicon-menu-hamburger:before {
   content: "\e236";
 }
-.glyphicon-modal-window:before {
+.glyphicon-moCore-window:before {
   content: "\e237";
 }
 .glyphicon-oil:before {
@@ -5863,10 +5863,10 @@ button.close {
   background: transparent;
   border: 0;
 }
-.modal-open {
+.moCore-open {
   overflow: hidden;
 }
-.modal {
+.moCore {
   position: fixed;
   top: 0;
   right: 0;
@@ -5878,7 +5878,7 @@ button.close {
   -webkit-overflow-scrolling: touch;
   outline: 0;
 }
-.modal.fade .modal-dialog {
+.moCore.fade .moCore-dialog {
   -webkit-transition: -webkit-transform .3s ease-out;
        -o-transition:      -o-transform .3s ease-out;
           transition:         transform .3s ease-out;
@@ -5887,22 +5887,22 @@ button.close {
        -o-transform: translate(0, -25%);
           transform: translate(0, -25%);
 }
-.modal.in .modal-dialog {
+.moCore.in .moCore-dialog {
   -webkit-transform: translate(0, 0);
       -ms-transform: translate(0, 0);
        -o-transform: translate(0, 0);
           transform: translate(0, 0);
 }
-.modal-open .modal {
+.moCore-open .moCore {
   overflow-x: hidden;
   overflow-y: auto;
 }
-.modal-dialog {
+.moCore-dialog {
   position: relative;
   width: auto;
   margin: 10px;
 }
-.modal-content {
+.moCore-content {
   position: relative;
   background-color: #fff;
   -webkit-background-clip: padding-box;
@@ -5914,7 +5914,7 @@ button.close {
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
           box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
 }
-.modal-backdrop {
+.moCore-backdrop {
   position: fixed;
   top: 0;
   right: 0;
@@ -5923,45 +5923,45 @@ button.close {
   z-index: 1040;
   background-color: #000;
 }
-.modal-backdrop.fade {
+.moCore-backdrop.fade {
   filter: alpha(opacity=0);
   opacity: 0;
 }
-.modal-backdrop.in {
+.moCore-backdrop.in {
   filter: alpha(opacity=50);
   opacity: .5;
 }
-.modal-header {
+.moCore-header {
   padding: 15px;
   border-bottom: 1px solid #e5e5e5;
 }
-.modal-header .close {
+.moCore-header .close {
   margin-top: -2px;
 }
-.modal-title {
+.moCore-title {
   margin: 0;
   line-height: 1.42857143;
 }
-.modal-body {
+.moCore-body {
   position: relative;
   padding: 15px;
 }
-.modal-footer {
+.moCore-footer {
   padding: 15px;
   text-align: right;
   border-top: 1px solid #e5e5e5;
 }
-.modal-footer .btn + .btn {
+.moCore-footer .btn + .btn {
   margin-bottom: 0;
   margin-left: 5px;
 }
-.modal-footer .btn-group .btn + .btn {
+.moCore-footer .btn-group .btn + .btn {
   margin-left: -1px;
 }
-.modal-footer .btn-block + .btn-block {
+.moCore-footer .btn-block + .btn-block {
   margin-left: 0;
 }
-.modal-scrollbar-measure {
+.moCore-scrollbar-measure {
   position: absolute;
   top: -9999px;
   width: 50px;
@@ -5969,20 +5969,20 @@ button.close {
   overflow: scroll;
 }
 @media (min-width: 768px) {
-  .modal-dialog {
+  .moCore-dialog {
     width: 600px;
     margin: 30px auto;
   }
-  .modal-content {
+  .moCore-content {
     -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
             box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
   }
-  .modal-sm {
+  .moCore-sm {
     width: 300px;
   }
 }
 @media (min-width: 992px) {
-  .modal-lg {
+  .moCore-lg {
     width: 900px;
   }
 }
@@ -6486,10 +6486,10 @@ button.close {
 .pager:after,
 .panel-body:before,
 .panel-body:after,
-.modal-header:before,
-.modal-header:after,
-.modal-footer:before,
-.modal-footer:after {
+.moCore-header:before,
+.moCore-header:after,
+.moCore-footer:before,
+.moCore-footer:after {
   display: table;
   content: " ";
 }
@@ -6507,8 +6507,8 @@ button.close {
 .navbar-collapse:after,
 .pager:after,
 .panel-body:after,
-.modal-header:after,
-.modal-footer:after {
+.moCore-header:after,
+.moCore-footer:after {
   clear: both;
 }
 .center-block {

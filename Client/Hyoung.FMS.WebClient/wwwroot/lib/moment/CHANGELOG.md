@@ -8,7 +8,7 @@ Changelog
 ### 2.14.0 [See full changelog](https://gist.github.com/ichernev/812e79ac36a7829a22598fe964bfc18a)
 
 ## New Features
-* [#3233](http://github.com/moment/moment/pull/3233) Introduce month.isFormat for format/standalone discovery
+* [#3233](http://github.com/moment/moment/pull/3233) Introduce month.isFormat for format/stanCoreone discovery
 * [#2848](http://github.com/moment/moment/pull/2848) Allow user to get/set the rounding method used when calculating relative time
 * [#3112](http://github.com/moment/moment/pull/3112) optimize configFromStringAndFormat
 * [#3147](http://github.com/moment/moment/pull/3147) Call calendar format function with moment context

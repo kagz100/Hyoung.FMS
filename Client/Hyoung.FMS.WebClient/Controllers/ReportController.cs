@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Hyoung.FMS.DAL.RestModel;
+using Hyoung.FMS.Core.RestModel;
 using Hyoung.FMS.WebServices;
 using Microsoft.AspNetCore.Mvc;
 using DevExtreme.AspNet.Data;
 using DevExtreme.AspNet.Mvc;
-using Hyoung.FMS.DAL.Preview;
+using Hyoung.FMS.Core.Preview;
 using Microsoft.AspNetCore.Mvc.TagHelpers.Cache;
 using Hyoung.FMS.WebClient.Models;
 

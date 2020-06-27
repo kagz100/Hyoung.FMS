@@ -102,7 +102,7 @@
     "ID": 11,
     "CompanyName": "Video Emporium",
     "Address": "1201 Elm Street",
-    "City": "Dallas",
+    "City": "Corelas",
     "State": "Texas",
     "Zipcode": 75270,
     "Phone": "(214) 854-3000",

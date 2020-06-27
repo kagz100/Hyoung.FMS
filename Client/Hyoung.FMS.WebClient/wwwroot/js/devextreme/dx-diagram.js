@@ -4689,8 +4689,8 @@ var DiagramModel = /** @class */ (function () {
         if (cacheImageInfo.isLoaded)
             shape.image.loadBase64Content(cacheImageInfo.base64);
     };
-    DiagramModel.prototype.loadAllImages = function (imageLoader) {
-        ImageCache_1.ImageCache.instance.loadAllImages(imageLoader);
+    DiagramModel.prototype.loaCorelImages = function (imageLoader) {
+        ImageCache_1.ImageCache.instance.loaCorelImages(imageLoader);
     };
     DiagramModel.prototype.findContainer = function (key) {
         var shape = this.findShape(key);
@@ -6333,7 +6333,7 @@ var ColorHelper = /** @class */ (function () {
     ColorHelper.colorNames = {
         aliceblue: '#f0f8ff', antiquewhite: '#faebd7', aqua: '#00ffff',
         aquamarine: '#7fffd4', azure: '#f0ffff', beige: '#f5f5dc',
-        bisque: '#ffe4c4', black: '#000000', blanchedalmond: '#ffebcd',
+        bisque: '#ffe4c4', black: '#000000', blancheCoremond: '#ffebcd',
         blue: '#0000ff', blueviolet: '#8a2be2', brown: '#a52a2a',
         burlywood: '#deb887', cadetblue: '#5f9ea0', chartreuse: '#7fff00',
         chocolate: '#d2691e', coral: '#ff7f50', cornflowerblue: '#6495ed',
@@ -7859,7 +7859,7 @@ var ImageCache = /** @class */ (function () {
             this.cache[data.actualId] = existingData;
         return existingData;
     };
-    ImageCache.prototype.loadAllImages = function (loader) {
+    ImageCache.prototype.loaCorelImages = function (loader) {
         var _this = this;
         this.cache.forEach(function (cacheInfo) {
             if (_this.emptyImageId != cacheInfo.actualId && !cacheInfo.isLoaded && !cacheInfo.isLoading)
@@ -25422,7 +25422,7 @@ var ModelManipulator = /** @class */ (function () {
     }
     ModelManipulator.prototype.load = function (model) {
         this.model = model;
-        this.model.loadAllImages(this.imageLoader);
+        this.model.loaCorelImages(this.imageLoader);
         this.updateModelSize();
         this.raisePageSizeChanged(model.pageSize.clone(), model.pageLandscape);
         this.raiseModelSizeChanged(model.size.clone());
@@ -25488,7 +25488,7 @@ var ModelManipulator = /** @class */ (function () {
     ModelManipulator.prototype.insertShape = function (shape) {
         this.model.pushItem(shape);
         this.raiseModelChanged([new ModelChange_1.ItemChange(shape, ModelChange_1.ItemChangeType.Create)]);
-        this.model.loadAllImages(this.imageLoader);
+        this.model.loaCorelImages(this.imageLoader);
         return shape;
     };
     ModelManipulator.prototype.resizeShape = function (shape, position, size) {

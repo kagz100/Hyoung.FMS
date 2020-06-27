@@ -1005,7 +1005,7 @@ window.Modernizr = (function( window, document, undefined ) {
 
     /*>>shiv*/
     /**
-     * @preserve HTML5 Shiv prev3.7.1 | @afarkas @jdalton @jon_neal @rem | MIT/GPL2 Licensed
+     * @preserve HTML5 Shiv prev3.7.1 | @afarkas @jCoreton @jon_neal @rem | MIT/GPL2 Licensed
      */
     ;(function(window, document) {
         /*jshint evil:true */

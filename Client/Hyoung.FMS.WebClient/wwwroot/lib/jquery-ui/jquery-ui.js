@@ -11980,7 +11980,7 @@ $.widget( "ui.dialog", {
 		maxWidth: null,
 		minHeight: 150,
 		minWidth: 150,
-		modal: false,
+		moCore: false,
 		position: {
 			my: "center",
 			at: "center",
@@ -12197,7 +12197,7 @@ $.widget( "ui.dialog", {
 
 		// Ensure the overlay is moved to the top with the dialog, but only when
 		// opening. The overlay shouldn't move after the dialog is open so that
-		// modeless dialogs opened after the modal dialog stack properly.
+		// modeless dialogs opened after the moCore dialog stack properly.
 		if ( this.overlay ) {
 			this.overlay.css( "z-index", this.uiDialog.css( "z-index" ) - 1 );
 		}
@@ -12767,7 +12767,7 @@ $.widget( "ui.dialog", {
 	},
 
 	_createOverlay: function() {
-		if ( !this.options.modal ) {
+		if ( !this.options.moCore ) {
 			return;
 		}
 
@@ -12809,7 +12809,7 @@ $.widget( "ui.dialog", {
 	},
 
 	_destroyOverlay: function() {
-		if ( !this.options.modal ) {
+		if ( !this.options.moCore ) {
 			return;
 		}
 

@@ -737,7 +737,7 @@
 .glyphicon-menu-hamburger:before {
   content: "\e236";
 }
-.glyphicon-modal-window:before {
+.glyphicon-moCore-window:before {
   content: "\e237";
 }
 .glyphicon-oil:before {
@@ -4518,8 +4518,8 @@ video {
 .note-editor.panel {
   margin-bottom: 0;
 }
-/* MODAL */
-.modal-content {
+/* MOCore */
+.moCore-content {
   background-clip: padding-box;
   background-color: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0);
@@ -4528,34 +4528,34 @@ video {
   outline: 0 none;
   position: relative;
 }
-.modal-dialog {
+.moCore-dialog {
   z-index: 2200;
 }
-.modal-body {
+.moCore-body {
   padding: 20px 30px 30px 30px;
 }
-.inmodal .modal-body {
+.inmoCore .moCore-body {
   background: #f8fafb;
 }
-.inmodal .modal-header {
+.inmoCore .moCore-header {
   padding: 30px 15px;
   text-align: center;
   display: block;
 }
-.animated.modal.fade .modal-dialog {
+.animated.moCore.fade .moCore-dialog {
   -webkit-transform: none;
   -ms-transform: none;
   -o-transform: none;
   transform: none;
 }
-.inmodal .modal-title {
+.inmoCore .moCore-title {
   font-size: 26px;
 }
-.inmodal .modal-icon {
+.inmoCore .moCore-icon {
   font-size: 84px;
   color: #e2e3e3;
 }
-.modal-footer {
+.moCore-footer {
   margin-top: 0;
 }
 /* WRAPPERS */
@@ -5255,10 +5255,10 @@ a.close-canvas-menu:hover {
   width: 240px;
   float: left;
 }
-.modal-backdrop {
+.moCore-backdrop {
   z-index: 2040 !important;
 }
-.modal {
+.moCore {
   z-index: 2050 !important;
 }
 .spiner-example {
@@ -5598,17 +5598,17 @@ body.fullscreen-ibox-mode {
 .ibox.fullscreen .ibox-content {
   min-height: calc(100% - 48px);
 }
-body.modal-open {
+body.moCore-open {
   padding-right: inherit !important;
 }
 _::-webkit-full-page-media,
 _:future,
-:root body.modal-open .wrapper-content.animated {
+:root body.moCore-open .wrapper-content.animated {
   -webkit-animation: none;
   -ms-animation-nam: none;
   animation: none;
 }
-body.modal-open .animated {
+body.moCore-open .animated {
   animation-fill-mode: initial;
   z-index: inherit;
 }

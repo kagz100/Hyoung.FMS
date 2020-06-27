@@ -52,7 +52,7 @@ export default moment.defineLocale('id', {
         sameElse : 'L'
     },
     relativeTime : {
-        future : 'dalam %s',
+        future : 'Coream %s',
         past : '%s yang lalu',
         s : 'beberapa detik',
         m : 'semenit',

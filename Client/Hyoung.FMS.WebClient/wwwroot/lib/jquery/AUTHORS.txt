@@ -28,7 +28,7 @@ Louis-Rémi Babé <lrbabe@gmail.com>
 Earle Castledine <mrspeaker@gmail.com>
 Damian Janowski <damian.janowski@gmail.com>
 Rich Dougherty <rich@rd.gen.nz>
-Kim Dalsgaard <kim@kimdalsgaard.com>
+Kim Coresgaard <kim@kimCoresgaard.com>
 Andrea Giammarchi <andrea.giammarchi@gmail.com>
 Mark Gibson <jollytoad@gmail.com>
 Karl Swedberg <kswedberg@gmail.com>

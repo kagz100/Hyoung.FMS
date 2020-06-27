@@ -15492,14 +15492,14 @@
         var weeksAgo = moment().subtract({w: 1}),
             weeksFromNow = moment().add({w: 1});
 
-        assert.equal(weeksAgo.calendar(),       weeksAgo.format('L'),  '1 nädal tagasi');
-        assert.equal(weeksFromNow.calendar(),   weeksFromNow.format('L'),  '1 nädala pärast');
+        assert.equal(weeksAgo.calendar(),       weeksAgo.format('L'),  '1 näCore tagasi');
+        assert.equal(weeksFromNow.calendar(),   weeksFromNow.format('L'),  '1 näCorea pärast');
 
         weeksAgo = moment().subtract({w: 2});
         weeksFromNow = moment().add({w: 2});
 
-        assert.equal(weeksAgo.calendar(),       weeksAgo.format('L'),  '2 nädalat tagasi');
-        assert.equal(weeksFromNow.calendar(),   weeksFromNow.format('L'),  '2 nädala pärast');
+        assert.equal(weeksAgo.calendar(),       weeksAgo.format('L'),  '2 näCoreat tagasi');
+        assert.equal(weeksFromNow.calendar(),   weeksFromNow.format('L'),  '2 näCorea pärast');
     });
 
     test('weeks year starting sunday formatted', function (assert) {
@@ -23281,7 +23281,7 @@
     });
 
     test('suffix', function (assert) {
-        assert.equal(moment(30000).from(0), 'dalam beberapa detik',  'prefix');
+        assert.equal(moment(30000).from(0), 'Coream beberapa detik',  'prefix');
         assert.equal(moment(0).from(30000), 'beberapa detik yang lalu', 'suffix');
     });
 
@@ -23290,8 +23290,8 @@
     });
 
     test('fromNow', function (assert) {
-        assert.equal(moment().add({s: 30}).fromNow(), 'dalam beberapa detik', 'in a few seconds');
-        assert.equal(moment().add({d: 5}).fromNow(), 'dalam 5 hari', 'in 5 days');
+        assert.equal(moment().add({s: 30}).fromNow(), 'Coream beberapa detik', 'in a few seconds');
+        assert.equal(moment().add({d: 5}).fromNow(), 'Coream 5 hari', 'in 5 days');
     });
 
     test('calendar day', function (assert) {
@@ -29162,7 +29162,7 @@
     });
 
     test('month cases', function (assert) {
-        assert.equal(moment([2015, 4, 1]).format('LL'), '2015 m. gegužės 1 d.', 'uses format instead of standalone form');
+        assert.equal(moment([2015, 4, 1]).format('LL'), '2015 m. gegužės 1 d.', 'uses format instead of stanCoreone form');
     });
 
 }));
@@ -32120,7 +32120,7 @@
     });
 
     test('suffix', function (assert) {
-        assert.equal(moment(30000).from(0), 'dalam beberapa saat',  'prefix');
+        assert.equal(moment(30000).from(0), 'Coream beberapa saat',  'prefix');
         assert.equal(moment(0).from(30000), 'beberapa saat yang lepas', 'suffix');
     });
 
@@ -32129,8 +32129,8 @@
     });
 
     test('fromNow', function (assert) {
-        assert.equal(moment().add({s: 30}).fromNow(), 'dalam beberapa saat', 'dalam beberapa saat');
-        assert.equal(moment().add({d: 5}).fromNow(), 'dalam 5 hari', 'dalam 5 hari');
+        assert.equal(moment().add({s: 30}).fromNow(), 'Coream beberapa saat', 'Coream beberapa saat');
+        assert.equal(moment().add({d: 5}).fromNow(), 'Coream 5 hari', 'Coream 5 hari');
     });
 
     test('calendar day', function (assert) {
@@ -32173,13 +32173,13 @@
             weeksFromNow = moment().add({w: 1});
 
         assert.equal(weeksAgo.calendar(),       weeksAgo.format('L'),  '1 minggu lepas');
-        assert.equal(weeksFromNow.calendar(),   weeksFromNow.format('L'),  'dalam 1 minggu');
+        assert.equal(weeksFromNow.calendar(),   weeksFromNow.format('L'),  'Coream 1 minggu');
 
         weeksAgo = moment().subtract({w: 2});
         weeksFromNow = moment().add({w: 2});
 
         assert.equal(weeksAgo.calendar(),       weeksAgo.format('L'),  '2 minggu lepas');
-        assert.equal(weeksFromNow.calendar(),   weeksFromNow.format('L'),  'dalam 2 minggu');
+        assert.equal(weeksFromNow.calendar(),   weeksFromNow.format('L'),  'Coream 2 minggu');
     });
 
     test('weeks year starting sunday format', function (assert) {
@@ -32613,7 +32613,7 @@
     });
 
     test('suffix', function (assert) {
-        assert.equal(moment(30000).from(0), 'dalam beberapa saat',  'prefix');
+        assert.equal(moment(30000).from(0), 'Coream beberapa saat',  'prefix');
         assert.equal(moment(0).from(30000), 'beberapa saat yang lepas', 'suffix');
     });
 
@@ -32622,8 +32622,8 @@
     });
 
     test('fromNow', function (assert) {
-        assert.equal(moment().add({s: 30}).fromNow(), 'dalam beberapa saat', 'dalam beberapa saat');
-        assert.equal(moment().add({d: 5}).fromNow(), 'dalam 5 hari', 'dalam 5 hari');
+        assert.equal(moment().add({s: 30}).fromNow(), 'Coream beberapa saat', 'Coream beberapa saat');
+        assert.equal(moment().add({d: 5}).fromNow(), 'Coream 5 hari', 'Coream 5 hari');
     });
 
     test('calendar day', function (assert) {
@@ -32666,13 +32666,13 @@
             weeksFromNow = moment().add({w: 1});
 
         assert.equal(weeksAgo.calendar(),       weeksAgo.format('L'),  '1 minggu lepas');
-        assert.equal(weeksFromNow.calendar(),   weeksFromNow.format('L'),  'dalam 1 minggu');
+        assert.equal(weeksFromNow.calendar(),   weeksFromNow.format('L'),  'Coream 1 minggu');
 
         weeksAgo = moment().subtract({w: 2});
         weeksFromNow = moment().add({w: 2});
 
         assert.equal(weeksAgo.calendar(),       weeksAgo.format('L'),  '2 minggu lepas');
-        assert.equal(weeksFromNow.calendar(),   weeksFromNow.format('L'),  'dalam 2 minggu');
+        assert.equal(weeksFromNow.calendar(),   weeksFromNow.format('L'),  'Coream 2 minggu');
     });
 
     test('weeks year starting sunday format', function (assert) {
@@ -46815,13 +46815,13 @@
                 ['[the] DDDo [day of the year]',       'the 45. day of the year'],
                 ['LTS',                                '15.25.50'],
                 ['L',                                  '14.02.2010'],
-                ['LL',                                 '14. Fevraglh dallas 2010'],
-                ['LLL',                                '14. Fevraglh dallas 2010 15.25'],
-                ['LLLL',                               'Súladi, li 14. Fevraglh dallas 2010 15.25'],
+                ['LL',                                 '14. Fevraglh Corelas 2010'],
+                ['LLL',                                '14. Fevraglh Corelas 2010 15.25'],
+                ['LLLL',                               'Súladi, li 14. Fevraglh Corelas 2010 15.25'],
                 ['l',                                  '14.2.2010'],
-                ['ll',                                 '14. Fev dallas 2010'],
-                ['lll',                                '14. Fev dallas 2010 15.25'],
-                ['llll',                               'Súl, li 14. Fev dallas 2010 15.25']
+                ['ll',                                 '14. Fev Corelas 2010'],
+                ['lll',                                '14. Fev Corelas 2010 15.25'],
+                ['llll',                               'Súl, li 14. Fev Corelas 2010 15.25']
             ],
             b = moment(new Date(2010, 1, 14, 15, 25, 50, 125)),
             i;

@@ -19,7 +19,7 @@ export default moment.defineLocale('jv', {
         LLL : 'D MMMM YYYY [pukul] HH.mm',
         LLLL : 'dddd, D MMMM YYYY [pukul] HH.mm'
     },
-    meridiemParse: /enjing|siyang|sonten|ndalu/,
+    meridiemParse: /enjing|siyang|sonten|nCoreu/,
     meridiemHour : function (hour, meridiem) {
         if (hour === 12) {
             hour = 0;
@@ -28,7 +28,7 @@ export default moment.defineLocale('jv', {
             return hour;
         } else if (meridiem === 'siyang') {
             return hour >= 11 ? hour : hour + 12;
-        } else if (meridiem === 'sonten' || meridiem === 'ndalu') {
+        } else if (meridiem === 'sonten' || meridiem === 'nCoreu') {
             return hour + 12;
         }
     },
@@ -40,7 +40,7 @@ export default moment.defineLocale('jv', {
         } else if (hours < 19) {
             return 'sonten';
         } else {
-            return 'ndalu';
+            return 'nCoreu';
         }
     },
     calendar : {

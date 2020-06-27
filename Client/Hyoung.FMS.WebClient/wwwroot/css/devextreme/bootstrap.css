@@ -5922,16 +5922,16 @@ a.close.disabled {
   padding: 0.75rem;
 }
 
-.modal-open {
+.moCore-open {
   overflow: hidden;
 }
 
-.modal-open .modal {
+.moCore-open .moCore {
   overflow-x: hidden;
   overflow-y: auto;
 }
 
-.modal {
+.moCore {
   position: fixed;
   top: 0;
   left: 0;
@@ -5943,14 +5943,14 @@ a.close.disabled {
   outline: 0;
 }
 
-.modal-dialog {
+.moCore-dialog {
   position: relative;
   width: auto;
   margin: 0.5rem;
   pointer-events: none;
 }
 
-.modal.fade .modal-dialog {
+.moCore.fade .moCore-dialog {
   transition: -webkit-transform 0.3s ease-out;
   transition: transform 0.3s ease-out;
   transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
@@ -5959,43 +5959,43 @@ a.close.disabled {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .modal.fade .modal-dialog {
+  .moCore.fade .moCore-dialog {
     transition: none;
   }
 }
 
-.modal.show .modal-dialog {
+.moCore.show .moCore-dialog {
   -webkit-transform: none;
   transform: none;
 }
 
-.modal.modal-static .modal-dialog {
+.moCore.moCore-static .moCore-dialog {
   -webkit-transform: scale(1.02);
   transform: scale(1.02);
 }
 
-.modal-dialog-scrollable {
+.moCore-dialog-scrollable {
   display: -ms-flexbox;
   display: flex;
   max-height: calc(100% - 1rem);
 }
 
-.modal-dialog-scrollable .modal-content {
+.moCore-dialog-scrollable .moCore-content {
   max-height: calc(100vh - 1rem);
   overflow: hidden;
 }
 
-.modal-dialog-scrollable .modal-header,
-.modal-dialog-scrollable .modal-footer {
+.moCore-dialog-scrollable .moCore-header,
+.moCore-dialog-scrollable .moCore-footer {
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.modal-dialog-scrollable .modal-body {
+.moCore-dialog-scrollable .moCore-body {
   overflow-y: auto;
 }
 
-.modal-dialog-centered {
+.moCore-dialog-centered {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
@@ -6003,7 +6003,7 @@ a.close.disabled {
   min-height: calc(100% - 1rem);
 }
 
-.modal-dialog-centered::before {
+.moCore-dialog-centered::before {
   display: block;
   height: calc(100vh - 1rem);
   height: -webkit-min-content;
@@ -6012,7 +6012,7 @@ a.close.disabled {
   content: "";
 }
 
-.modal-dialog-centered.modal-dialog-scrollable {
+.moCore-dialog-centered.moCore-dialog-scrollable {
   -ms-flex-direction: column;
   flex-direction: column;
   -ms-flex-pack: center;
@@ -6020,15 +6020,15 @@ a.close.disabled {
   height: 100%;
 }
 
-.modal-dialog-centered.modal-dialog-scrollable .modal-content {
+.moCore-dialog-centered.moCore-dialog-scrollable .moCore-content {
   max-height: none;
 }
 
-.modal-dialog-centered.modal-dialog-scrollable::before {
+.moCore-dialog-centered.moCore-dialog-scrollable::before {
   content: none;
 }
 
-.modal-content {
+.moCore-content {
   position: relative;
   display: -ms-flexbox;
   display: flex;
@@ -6043,7 +6043,7 @@ a.close.disabled {
   outline: 0;
 }
 
-.modal-backdrop {
+.moCore-backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -6053,15 +6053,15 @@ a.close.disabled {
   background-color: #000;
 }
 
-.modal-backdrop.fade {
+.moCore-backdrop.fade {
   opacity: 0;
 }
 
-.modal-backdrop.show {
+.moCore-backdrop.show {
   opacity: 0.5;
 }
 
-.modal-header {
+.moCore-header {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: start;
@@ -6074,24 +6074,24 @@ a.close.disabled {
   border-top-right-radius: calc(0.3rem - 1px);
 }
 
-.modal-header .close {
+.moCore-header .close {
   padding: 1rem 1rem;
   margin: -1rem -1rem -1rem auto;
 }
 
-.modal-title {
+.moCore-title {
   margin-bottom: 0;
   line-height: 1.5;
 }
 
-.modal-body {
+.moCore-body {
   position: relative;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   padding: 1rem;
 }
 
-.modal-footer {
+.moCore-footer {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
@@ -6106,11 +6106,11 @@ a.close.disabled {
   border-bottom-left-radius: calc(0.3rem - 1px);
 }
 
-.modal-footer > * {
+.moCore-footer > * {
   margin: 0.25rem;
 }
 
-.modal-scrollbar-measure {
+.moCore-scrollbar-measure {
   position: absolute;
   top: -9999px;
   width: 50px;
@@ -6119,39 +6119,39 @@ a.close.disabled {
 }
 
 @media (min-width: 576px) {
-  .modal-dialog {
+  .moCore-dialog {
     max-width: 500px;
     margin: 1.75rem auto;
   }
-  .modal-dialog-scrollable {
+  .moCore-dialog-scrollable {
     max-height: calc(100% - 3.5rem);
   }
-  .modal-dialog-scrollable .modal-content {
+  .moCore-dialog-scrollable .moCore-content {
     max-height: calc(100vh - 3.5rem);
   }
-  .modal-dialog-centered {
+  .moCore-dialog-centered {
     min-height: calc(100% - 3.5rem);
   }
-  .modal-dialog-centered::before {
+  .moCore-dialog-centered::before {
     height: calc(100vh - 3.5rem);
     height: -webkit-min-content;
     height: -moz-min-content;
     height: min-content;
   }
-  .modal-sm {
+  .moCore-sm {
     max-width: 300px;
   }
 }
 
 @media (min-width: 992px) {
-  .modal-lg,
-  .modal-xl {
+  .moCore-lg,
+  .moCore-xl {
     max-width: 800px;
   }
 }
 
 @media (min-width: 1200px) {
-  .modal-xl {
+  .moCore-xl {
     max-width: 1140px;
   }
 }

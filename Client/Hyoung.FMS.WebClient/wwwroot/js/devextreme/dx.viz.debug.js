@@ -13725,7 +13725,7 @@
             beige: "f5f5dc",
             bisque: "ffe4c4",
             black: "000000",
-            blanchedalmond: "ffebcd",
+            blancheCoremond: "ffebcd",
             blue: "0000ff",
             blueviolet: "8a2be2",
             brown: "a52a2a",
@@ -14194,7 +14194,7 @@
                 }
                 return true
             },
-            isValidAlpha: function(a) {
+            isValiCorepha: function(a) {
                 if (isNaN(a) || a < 0 || a > 1 || "number" !== typeof a) {
                     return false
                 }
@@ -21707,7 +21707,7 @@
         exports.getAlgorithm = function(value) {
             return algorithms[_normalizeEnum(value)] || _isFunction(value) && value || defaultAlgorithm
         };
-        exports.addAlgorithm = function(name, callback) {
+        exports.adCoregorithm = function(name, callback) {
             algorithms[name] = callback
         };
         exports.setDefaultAlgorithm = function(name) {
@@ -29256,7 +29256,7 @@
         var PERIOD_REGEXP = /a+/g;
         var DAY_REGEXP = /E/g;
         var DO_REGEXP = /dE+/g;
-        var STANDALONE_MONTH_REGEXP = /L/g;
+        var STANCoreONE_MONTH_REGEXP = /L/g;
         var HOUR_REGEXP = /h/g;
         var SLASH_REGEXP = /\//g;
         var SQUARE_OPEN_BRACKET_REGEXP = /\[/g;
@@ -29288,7 +29288,7 @@
             _convertDateFormatToOpenXml: function(format) {
                 return format.replace(SLASH_REGEXP, "\\/").split("'").map(function(datePart, index) {
                     if (index % 2 === 0) {
-                        return datePart.replace(PERIOD_REGEXP, "AM/PM").replace(DO_REGEXP, "d").replace(DAY_REGEXP, "d").replace(STANDALONE_MONTH_REGEXP, "M").replace(HOUR_REGEXP, "H").replace(SQUARE_OPEN_BRACKET_REGEXP, "\\[").replace(SQUARE_CLOSE_BRACKET_REGEXP, "\\]")
+                        return datePart.replace(PERIOD_REGEXP, "AM/PM").replace(DO_REGEXP, "d").replace(DAY_REGEXP, "d").replace(STANCoreONE_MONTH_REGEXP, "M").replace(HOUR_REGEXP, "H").replace(SQUARE_OPEN_BRACKET_REGEXP, "\\[").replace(SQUARE_CLOSE_BRACKET_REGEXP, "\\]")
                     }
                     if (datePart) {
                         return datePart.replace(ANY_REGEXP, "\\$&")
@@ -36253,7 +36253,7 @@
         var monthRegExpGenerator = function(count, dateParts) {
             if (count > 2) {
                 return Object.keys(FORMAT_TYPES).map(function(count) {
-                    return ["format", "standalone"].map(function(type) {
+                    return ["format", "stanCoreone"].map(function(type) {
                         return dateParts.getMonthNames(FORMAT_TYPES[count], type).join("|")
                     }).join("|")
                 }).join("|")
@@ -36305,7 +36305,7 @@
         };
         var monthPatternParser = function(text, count, dateParts) {
             if (count > 2) {
-                return ["format", "standalone"].map(function(type) {
+                return ["format", "stanCoreone"].map(function(type) {
                     return Object.keys(FORMAT_TYPES).map(function(count) {
                         var monthNames = dateParts.getMonthNames(FORMAT_TYPES[count], type);
                         return caseInsensitiveIndexOf(monthNames, text)
@@ -42632,7 +42632,7 @@
                 var month = date[useUtc ? "getUTCMonth" : "getMonth"]();
                 var formatType = FORMAT_TYPES[count];
                 if (formatType) {
-                    return dateParts.getMonthNames(formatType, "standalone")[month]
+                    return dateParts.getMonthNames(formatType, "stanCoreone")[month]
                 }
                 return leftPad((month + 1).toString(), Math.min(count, 2))
             },
@@ -44309,11 +44309,11 @@
             },
             _loadFilteredData: function(remoteFilter, localFilter, select, isSelectAll) {
                 var filterLength = encodeURI(JSON.stringify(remoteFilter)).length;
-                var needLoadAllData = this.options.maxFilterLengthInRequest && filterLength > this.options.maxFilterLengthInRequest;
+                var needLoaCorelData = this.options.maxFilterLengthInRequest && filterLength > this.options.maxFilterLengthInRequest;
                 var deferred = new Deferred;
                 var loadOptions = {
-                    filter: needLoadAllData ? void 0 : remoteFilter,
-                    select: needLoadAllData ? this.options.dataFields() : select || this.options.dataFields()
+                    filter: needLoaCorelData ? void 0 : remoteFilter,
+                    select: needLoaCorelData ? this.options.dataFields() : select || this.options.dataFields()
                 };
                 if (remoteFilter && 0 === remoteFilter.length) {
                     deferred.resolve([])
@@ -44323,7 +44323,7 @@
                         if (localFilter && !isSelectAll) {
                             filteredItems = filteredItems.filter(localFilter)
                         } else {
-                            if (needLoadAllData) {
+                            if (needLoaCorelData) {
                                 filteredItems = dataQuery(filteredItems).filter(remoteFilter).toArray()
                             }
                         }
@@ -45615,7 +45615,7 @@
         var OVERLAY_WRAPPER_CLASS = "dx-overlay-wrapper";
         var OVERLAY_CONTENT_CLASS = "dx-overlay-content";
         var OVERLAY_SHADER_CLASS = "dx-overlay-shader";
-        var OVERLAY_MODAL_CLASS = "dx-overlay-modal";
+        var OVERLAY_MOCore_CLASS = "dx-overlay-moCore";
         var INNER_OVERLAY_CLASS = "dx-inner-overlay";
         var INVISIBLE_STATE_CLASS = "dx-state-invisible";
         var ANONYMOUS_TEMPLATE_NAME = "content";
@@ -46179,7 +46179,7 @@
                 }
             },
             _toggleShading: function(visible) {
-                this._$wrapper.toggleClass(OVERLAY_MODAL_CLASS, this.option("shading") && !this.option("container"));
+                this._$wrapper.toggleClass(OVERLAY_MOCore_CLASS, this.option("shading") && !this.option("container"));
                 this._$wrapper.toggleClass(OVERLAY_SHADER_CLASS, visible && this.option("shading"));
                 this._$wrapper.css("backgroundColor", this.option("shading") ? this.option("shadingColor") : "");
                 this._toggleTabTerminator(visible && this.option("shading"))
@@ -46949,13 +46949,13 @@
         var UPDATE_POSTFIX = "";
         var END_POSTFIX = "end";
         var eventAliases = [];
-        var addAlias = function(eventName, eventArgs) {
+        var adCoreias = function(eventName, eventArgs) {
             eventAliases.push({
                 name: eventName,
                 args: eventArgs
             })
         };
-        addAlias(TRANSFORM, {
+        adCoreias(TRANSFORM, {
             scale: true,
             deltaScale: true,
             rotation: true,
@@ -46963,19 +46963,19 @@
             translation: true,
             deltaTranslation: true
         });
-        addAlias(TRANSLATE, {
+        adCoreias(TRANSLATE, {
             translation: true,
             deltaTranslation: true
         });
-        addAlias(ZOOM, {
+        adCoreias(ZOOM, {
             scale: true,
             deltaScale: true
         });
-        addAlias(PINCH, {
+        adCoreias(PINCH, {
             scale: true,
             deltaScale: true
         });
-        addAlias(ROTATE, {
+        adCoreias(ROTATE, {
             rotation: true,
             deltaRotation: true
         });
@@ -51825,14 +51825,14 @@
                 [],
                 []
             ]);
-            var sortedAllPoints = points[0].concat(points[1]).sort(function(a, b) {
+            var sorteCorelPoints = points[0].concat(points[1]).sort(function(a, b) {
                 return b - a
             });
             var edgePoints = points[1].filter(function(p) {
                 return points[0].indexOf(p) < 0
             });
             var minDiff = RANGE_RATIO * visibleRange;
-            var ranges = generateRangesOnPoints(sortedAllPoints, edgePoints, getRange).sort(function(a, b) {
+            var ranges = generateRangesOnPoints(sorteCorelPoints, edgePoints, getRange).sort(function(a, b) {
                 return b.length - a.length
             });
             var epsilon = _math.min.apply(null, ranges.map(function(r) {
@@ -55163,7 +55163,7 @@
         function squarified(data) {
             return _squarify(data, accumulate, false)
         }
-        __webpack_require__( /*! ./tiling */ 128).addAlgorithm("squarified", squarified);
+        __webpack_require__( /*! ./tiling */ 128).adCoregorithm("squarified", squarified);
         module.exports = squarified
     },
     /*!*********************************************************************!*\
@@ -55564,8 +55564,8 @@
         var noop = __webpack_require__( /*! ../../core/utils/common */ 3).noop;
         var Item = __webpack_require__( /*! ./item */ 890);
         var NODES_CREATE_CHANGE = "NODES_CREATE";
-        tiling.addAlgorithm("dynamicslope", dynamicSlope, true);
-        tiling.addAlgorithm("dynamicheight", dynamicHeight);
+        tiling.adCoregorithm("dynamicslope", dynamicSlope, true);
+        tiling.adCoregorithm("dynamicheight", dynamicHeight);
 
         function invertFigure(figure) {
             return figure.map(function(coord, index) {
@@ -56394,7 +56394,7 @@
         var STYLE_FILE_NAME = "styles.xml";
         var WORKSHEETS_FOLDER = "worksheets";
         var WORKSHEET_FILE_NAME = "sheet1.xml";
-        var WORKSHEET_HEADER_XML = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="x14ac" xmlns:x14ac="http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac">';
+        var WORKSHEET_HEADER_XML = '<?xml version="1.0" encoding="UTF-8" stanCoreone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="x14ac" xmlns:x14ac="http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac">';
         var VALID_TYPES = {
             "boolean": "b",
             date: "d",
@@ -58284,7 +58284,7 @@
             return "string" === typeof format && intlFormats[format.toLowerCase()]
         };
         var monthNameStrategies = {
-            standalone: function(monthIndex, monthFormat) {
+            stanCoreone: function(monthIndex, monthFormat) {
                 var date = new Date(1999, monthIndex, 13, 1);
                 var dateString = getIntlFormatter({
                     month: monthFormat
@@ -58307,7 +58307,7 @@
                         return parts[0].length > parts[1].length ? parts[0] : parts[1]
                     }
                 }
-                return monthNameStrategies.standalone(monthIndex, monthFormat)
+                return monthNameStrategies.stanCoreone(monthIndex, monthFormat)
             }
         };
         module.exports = {
@@ -58321,7 +58321,7 @@
                     narrow: "narrow"
                 };
                 var monthFormat = intlFormats[format || "wide"];
-                type = "format" === type ? type : "standalone";
+                type = "format" === type ? type : "stanCoreone";
                 return Array.apply(null, new Array(12)).map(function(_, monthIndex) {
                     return monthNameStrategies[type](monthIndex, monthFormat)
                 })
@@ -59049,7 +59049,7 @@
             getData: function(data, options) {
                 var markup;
                 var that = this;
-                var xmlVersion = '<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>';
+                var xmlVersion = '<?xml version="1.0" encoding="UTF-8" stanCoreone="yes" ?>';
                 var svgElem = svgUtils.getSvgElement(data);
                 var $svgObject = $(svgElem);
                 markup = xmlVersion + svgUtils.getSvgMarkup($svgObject.get(0), options.backgroundColor);
@@ -59665,7 +59665,7 @@
                 "dxPivotGrid-total": "{0} Total",
                 "dxPivotGrid-fieldChooserTitle": "Field Chooser",
                 "dxPivotGrid-showFieldChooser": "Show Field Chooser",
-                "dxPivotGrid-expandAll": "Expand All",
+                "dxPivotGrid-expanCorel": "Expand All",
                 "dxPivotGrid-collapseAll": "Collapse All",
                 "dxPivotGrid-sortColumnBySummary": 'Sort "{0}" by This Column',
                 "dxPivotGrid-sortRowBySummary": 'Sort "{0}" by This Row',
@@ -59875,9 +59875,9 @@
                 "dxDiagram-commandLineStyleDotted": "Dotted",
                 "dxDiagram-commandLineStyleDashed": "Dashed",
                 "dxDiagram-commandFillColor": "Fill Color",
-                "dxDiagram-commandAlignLeft": "Align Left",
-                "dxDiagram-commandAlignCenter": "Align Center",
-                "dxDiagram-commandAlignRight": "Align Right",
+                "dxDiagram-commanCoreignLeft": "Align Left",
+                "dxDiagram-commanCoreignCenter": "Align Center",
+                "dxDiagram-commanCoreignRight": "Align Right",
                 "dxDiagram-commandConnectorLineType": "Connector Line Type",
                 "dxDiagram-commandConnectorLineStraight": "Straight",
                 "dxDiagram-commandConnectorLineOrthogonal": "Orthogonal",
@@ -60010,7 +60010,7 @@
                 "dxGantt-dialogMoveTaskAndKeepDependencyMessage": "Move the task and keep the dependency",
                 "dxGantt-undo": "Undo",
                 "dxGantt-redo": "Redo",
-                "dxGantt-expandAll": "Expand All",
+                "dxGantt-expanCorel": "Expand All",
                 "dxGantt-collapseAll": "Collapse All",
                 "dxGantt-addNewTask": "Add New Task",
                 "dxGantt-deleteSelectedTask": "Delete Selected Task",
@@ -87554,7 +87554,7 @@
         function strip(data) {
             return _squarify(data, accumulate, true)
         }
-        __webpack_require__( /*! ./tiling */ 128).addAlgorithm("strip", strip);
+        __webpack_require__( /*! ./tiling */ 128).adCoregorithm("strip", strip);
         module.exports = strip
     },
     /*!********************************************************************!*\
@@ -87574,7 +87574,7 @@
                 side: sidesData.variedSide
             })
         }
-        tiling.addAlgorithm("sliceanddice", sliceAndDice);
+        tiling.adCoregorithm("sliceanddice", sliceAndDice);
         module.exports = sliceAndDice
     },
     /*!****************************************************************************!*\
@@ -87590,7 +87590,7 @@
             data.isRotated = !data.isRotated;
             return sliceAndDiceAlgorithm.call(this, data)
         }
-        tiling.addAlgorithm("rotatedsliceanddice", rotatedSliceAndDice)
+        tiling.adCoregorithm("rotatedsliceanddice", rotatedSliceAndDice)
     },
     /*!******************************************************************!*\
       !*** ./artifacts/transpiled/viz/tree_map/colorizing.gradient.js ***!
@@ -88019,7 +88019,7 @@
         exports.getAlgorithm = function(name) {
             return algorithms[_normalizeEnum(name)] || defaultAlgorithm
         };
-        exports.addAlgorithm = function(name, callback, setDefault) {
+        exports.adCoregorithm = function(name, callback, setDefault) {
             algorithms[name] = callback;
             if (setDefault) {
                 defaultAlgorithm = algorithms[name]

@@ -73,7 +73,7 @@ export function localeMonths (m, format) {
         return this._months;
     }
     return isArray(this._months) ? this._months[m.month()] :
-        this._months[(this._months.isFormat || MONTHS_IN_FORMAT).test(format) ? 'format' : 'standalone'][m.month()];
+        this._months[(this._months.isFormat || MONTHS_IN_FORMAT).test(format) ? 'format' : 'stanCoreone'][m.month()];
 }
 
 export var defaultLocaleMonthsShort = 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_');
@@ -82,7 +82,7 @@ export function localeMonthsShort (m, format) {
         return this._monthsShort;
     }
     return isArray(this._monthsShort) ? this._monthsShort[m.month()] :
-        this._monthsShort[MONTHS_IN_FORMAT.test(format) ? 'format' : 'standalone'][m.month()];
+        this._monthsShort[MONTHS_IN_FORMAT.test(format) ? 'format' : 'stanCoreone'][m.month()];
 }
 
 function handleStrictParse(monthName, format, strict) {

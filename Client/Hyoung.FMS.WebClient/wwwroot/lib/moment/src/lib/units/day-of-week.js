@@ -103,7 +103,7 @@ export function localeWeekdays (m, format) {
         return this._weekdays;
     }
     return isArray(this._weekdays) ? this._weekdays[m.day()] :
-        this._weekdays[this._weekdays.isFormat.test(format) ? 'format' : 'standalone'][m.day()];
+        this._weekdays[this._weekdays.isFormat.test(format) ? 'format' : 'stanCoreone'][m.day()];
 }
 
 export var defaultLocaleWeekdaysShort = 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_');

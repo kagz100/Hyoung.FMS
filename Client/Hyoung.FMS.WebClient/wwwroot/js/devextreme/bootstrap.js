@@ -2066,9 +2066,9 @@
    * ------------------------------------------------------------------------
    */
 
-  var NAME$5 = 'modal';
+  var NAME$5 = 'moCore';
   var VERSION$5 = '4.5.0';
-  var DATA_KEY$5 = 'bs.modal';
+  var DATA_KEY$5 = 'bs.moCore';
   var EVENT_KEY$5 = "." + DATA_KEY$5;
   var DATA_API_KEY$5 = '.data-api';
   var JQUERY_NO_CONFLICT$5 = $.fn[NAME$5];
@@ -2098,17 +2098,17 @@
   var EVENT_MOUSEUP_DISMISS = "mouseup.dismiss" + EVENT_KEY$5;
   var EVENT_MOUSEDOWN_DISMISS = "mousedown.dismiss" + EVENT_KEY$5;
   var EVENT_CLICK_DATA_API$5 = "click" + EVENT_KEY$5 + DATA_API_KEY$5;
-  var CLASS_NAME_SCROLLABLE = 'modal-dialog-scrollable';
-  var CLASS_NAME_SCROLLBAR_MEASURER = 'modal-scrollbar-measure';
-  var CLASS_NAME_BACKDROP = 'modal-backdrop';
-  var CLASS_NAME_OPEN = 'modal-open';
+  var CLASS_NAME_SCROLLABLE = 'moCore-dialog-scrollable';
+  var CLASS_NAME_SCROLLBAR_MEASURER = 'moCore-scrollbar-measure';
+  var CLASS_NAME_BACKDROP = 'moCore-backdrop';
+  var CLASS_NAME_OPEN = 'moCore-open';
   var CLASS_NAME_FADE$1 = 'fade';
   var CLASS_NAME_SHOW$3 = 'show';
-  var CLASS_NAME_STATIC = 'modal-static';
-  var SELECTOR_DIALOG = '.modal-dialog';
-  var SELECTOR_MODAL_BODY = '.modal-body';
-  var SELECTOR_DATA_TOGGLE$3 = '[data-toggle="modal"]';
-  var SELECTOR_DATA_DISMISS = '[data-dismiss="modal"]';
+  var CLASS_NAME_STATIC = 'moCore-static';
+  var SELECTOR_DIALOG = '.moCore-dialog';
+  var SELECTOR_MOCore_BODY = '.moCore-body';
+  var SELECTOR_DATA_TOGGLE$3 = '[data-toggle="moCore"]';
+  var SELECTOR_DATA_DISMISS = '[data-dismiss="moCore"]';
   var SELECTOR_FIXED_CONTENT = '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top';
   var SELECTOR_STICKY_CONTENT = '.sticky-top';
   /**
@@ -2117,8 +2117,8 @@
    * ------------------------------------------------------------------------
    */
 
-  var Modal = /*#__PURE__*/function () {
-    function Modal(element, config) {
+  var MoCore = /*#__PURE__*/function () {
+    function MoCore(element, config) {
       this._config = this._getConfig(config);
       this._element = element;
       this._dialog = element.querySelector(SELECTOR_DIALOG);
@@ -2131,7 +2131,7 @@
     } // Getters
 
 
-    var _proto = Modal.prototype;
+    var _proto = MoCore.prototype;
 
     // Public
     _proto.toggle = function toggle(relatedTarget) {
@@ -2223,10 +2223,10 @@
       if (transition) {
         var transitionDuration = Util.getTransitionDurationFromElement(this._element);
         $(this._element).one(Util.TRANSITION_END, function (event) {
-          return _this2._hideModal(event);
+          return _this2._hideMoCore(event);
         }).emulateTransitionEnd(transitionDuration);
       } else {
-        this._hideModal();
+        this._hideMoCore();
       }
     };
 
@@ -2277,10 +2277,10 @@
 
         this._element.classList.add(CLASS_NAME_STATIC);
 
-        var modalTransitionDuration = Util.getTransitionDurationFromElement(this._element);
+        var moCoreTransitionDuration = Util.getTransitionDurationFromElement(this._element);
         $(this._element).one(Util.TRANSITION_END, function () {
           _this3._element.classList.remove(CLASS_NAME_STATIC);
-        }).emulateTransitionEnd(modalTransitionDuration);
+        }).emulateTransitionEnd(moCoreTransitionDuration);
 
         this._element.focus();
       } else {
@@ -2292,10 +2292,10 @@
       var _this4 = this;
 
       var transition = $(this._element).hasClass(CLASS_NAME_FADE$1);
-      var modalBody = this._dialog ? this._dialog.querySelector(SELECTOR_MODAL_BODY) : null;
+      var moCoreBody = this._dialog ? this._dialog.querySelector(SELECTOR_MOCore_BODY) : null;
 
       if (!this._element.parentNode || this._element.parentNode.nodeType !== Node.ELEMENT_NODE) {
-        // Don't move modal's DOM position
+        // Don't move moCore's DOM position
         document.body.appendChild(this._element);
       }
 
@@ -2303,10 +2303,10 @@
 
       this._element.removeAttribute('aria-hidden');
 
-      this._element.setAttribute('aria-modal', true);
+      this._element.setAttribute('aria-moCore', true);
 
-      if ($(this._dialog).hasClass(CLASS_NAME_SCROLLABLE) && modalBody) {
-        modalBody.scrollTop = 0;
+      if ($(this._dialog).hasClass(CLASS_NAME_SCROLLABLE) && moCoreBody) {
+        moCoreBody.scrollTop = 0;
       } else {
         this._element.scrollTop = 0;
       }
@@ -2383,14 +2383,14 @@
       }
     };
 
-    _proto._hideModal = function _hideModal() {
+    _proto._hideMoCore = function _hideMoCore() {
       var _this8 = this;
 
       this._element.style.display = 'none';
 
       this._element.setAttribute('aria-hidden', true);
 
-      this._element.removeAttribute('aria-modal');
+      this._element.removeAttribute('aria-moCore');
 
       this._isTransitioning = false;
 
@@ -2478,19 +2478,19 @@
         callback();
       }
     } // ----------------------------------------------------------------------
-    // the following methods are used to handle overflowing modals
-    // todo (fat): these should probably be refactored out of modal.js
+    // the following methods are used to handle overflowing moCores
+    // todo (fat): these should probably be refactored out of moCore.js
     // ----------------------------------------------------------------------
     ;
 
     _proto._adjustDialog = function _adjustDialog() {
-      var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
+      var isMoCoreOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
 
-      if (!this._isBodyOverflowing && isModalOverflowing) {
+      if (!this._isBodyOverflowing && isMoCoreOverflowing) {
         this._element.style.paddingLeft = this._scrollbarWidth + "px";
       }
 
-      if (this._isBodyOverflowing && !isModalOverflowing) {
+      if (this._isBodyOverflowing && !isMoCoreOverflowing) {
         this._element.style.paddingRight = this._scrollbarWidth + "px";
       }
     };
@@ -2569,14 +2569,14 @@
     } // Static
     ;
 
-    Modal._jQueryInterface = function _jQueryInterface(config, relatedTarget) {
+    MoCore._jQueryInterface = function _jQueryInterface(config, relatedTarget) {
       return this.each(function () {
         var data = $(this).data(DATA_KEY$5);
 
         var _config = _objectSpread2(_objectSpread2(_objectSpread2({}, Default$3), $(this).data()), typeof config === 'object' && config ? config : {});
 
         if (!data) {
-          data = new Modal(this, _config);
+          data = new MoCore(this, _config);
           $(this).data(DATA_KEY$5, data);
         }
 
@@ -2592,7 +2592,7 @@
       });
     };
 
-    _createClass(Modal, null, [{
+    _createClass(MoCore, null, [{
       key: "VERSION",
       get: function get() {
         return VERSION$5;
@@ -2604,7 +2604,7 @@
       }
     }]);
 
-    return Modal;
+    return MoCore;
   }();
   /**
    * ------------------------------------------------------------------------
@@ -2631,7 +2631,7 @@
 
     var $target = $(target).one(EVENT_SHOW$2, function (showEvent) {
       if (showEvent.isDefaultPrevented()) {
-        // Only register focus restorer if modal will actually get shown
+        // Only register focus restorer if moCore will actually get shown
         return;
       }
 
@@ -2642,7 +2642,7 @@
       });
     });
 
-    Modal._jQueryInterface.call($(target), config, this);
+    MoCore._jQueryInterface.call($(target), config, this);
   });
   /**
    * ------------------------------------------------------------------------
@@ -2650,12 +2650,12 @@
    * ------------------------------------------------------------------------
    */
 
-  $.fn[NAME$5] = Modal._jQueryInterface;
-  $.fn[NAME$5].Constructor = Modal;
+  $.fn[NAME$5] = MoCore._jQueryInterface;
+  $.fn[NAME$5].Constructor = MoCore;
 
   $.fn[NAME$5].noConflict = function () {
     $.fn[NAME$5] = JQUERY_NO_CONFLICT$5;
-    return Modal._jQueryInterface;
+    return MoCore._jQueryInterface;
   };
 
   /**
@@ -2936,7 +2936,7 @@
       clearTimeout(this._timeout);
       $.removeData(this.element, this.constructor.DATA_KEY);
       $(this.element).off(this.constructor.EVENT_KEY);
-      $(this.element).closest('.modal').off('hide.bs.modal', this._hideModalHandler);
+      $(this.element).closest('.moCore').off('hide.bs.moCore', this._hideMoCoreHandler);
 
       if (this.tip) {
         $(this.tip).remove();
@@ -3230,13 +3230,13 @@
         }
       });
 
-      this._hideModalHandler = function () {
+      this._hideMoCoreHandler = function () {
         if (_this5.element) {
           _this5.hide();
         }
       };
 
-      $(this.element).closest('.modal').on('hide.bs.modal', this._hideModalHandler);
+      $(this.element).closest('.moCore').on('hide.bs.moCore', this._hideMoCoreHandler);
 
       if (this.config.selector) {
         this.config = _objectSpread2(_objectSpread2({}, this.config), {}, {
@@ -4406,7 +4406,7 @@
   exports.Carousel = Carousel;
   exports.Collapse = Collapse;
   exports.Dropdown = Dropdown;
-  exports.Modal = Modal;
+  exports.MoCore = MoCore;
   exports.Popover = Popover;
   exports.Scrollspy = ScrollSpy;
   exports.Tab = Tab;

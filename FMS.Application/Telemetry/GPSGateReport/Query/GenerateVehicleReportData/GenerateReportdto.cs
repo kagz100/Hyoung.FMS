@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FMS.Application.Telemetry.GPSGateReport.Query.GetVehicleReportData
+namespace FMS.Application.Telemetry.GPSGateReport.Query.GenerateVehicleReportData
 {
-  public  class VehicleReportdto : IMapFrom<VehicleTelemetryReport>
+  public  class GenerateReportdto : IMapFrom<Report>
     {
 
         public int IhandlID { get; set; }
@@ -21,7 +21,7 @@ namespace FMS.Application.Telemetry.GPSGateReport.Query.GetVehicleReportData
 
         public void Mapping (Profile profile)
         {
-            profile.CreateMap<VehicleTelemetryReport , VehicleReportdto>()
+            profile.CreateMap<VehicleTelemetryReport , GenerateVehicleReportdto>()
                 .ForMember(d=>d.IhandlID, opt)
         }
 

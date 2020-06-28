@@ -8,8 +8,7 @@ namespace FMS.Application.Common.Interfaces
 {
    public  interface IFMSContext
     {
-
-        DbSet<Vehicle> Vehicles { get; set; }
+      DbSet<Vehicle> Vehicles { get; set; }
 
     }
 }

@@ -70,7 +70,7 @@ namespace Hyoung.FMS.WebServices
         /// <returns></returns>
         public async Task<XmlNode> GetReports()
         {
-            var results = await reportingSoap.GetReportsAsync(_sessionID, _applicationID);
+            var results = await reportingSoap.GetReportsAsync(_sessionID, _applicationID).ConfigureAwait(false);
                     
 
             return results.Body.GetReportsResult;
@@ -93,8 +93,8 @@ namespace Hyoung.FMS.WebServices
         public async Task<string> GetReportStatus(int iHandle)
         {
 
-                         var results = await reportingSoap.GetReportStatusAsync(_sessionID, iHandle);
-            return results.Body.GetReportStatusResult.Value.ToString();
+          var results = await reportingSoap.GetReportStatusAsync(_sessionID, iHandle);
+            return results.Body.GetReportStatusResult.Value;
         }
 
 

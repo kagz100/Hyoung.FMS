@@ -5,11 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FMS.Application.Telemetry.GPSGateReport.Query.GetVehicleReportData
+namespace FMS.Application.Telemetry.GPSGateReport.Query.GenerateVehicleReportData
 {
-    public class GenerateVehicleDetailViewModel
+    public class GenerateReportDetailViewModel
     {
-
-        public IList<>
+ 
      }
 }

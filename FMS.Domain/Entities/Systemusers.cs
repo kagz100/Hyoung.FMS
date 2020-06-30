@@ -1,15 +1,13 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 
 namespace FMS.Domain.Entities
 {
-    public partial class Systemusers
+    public partial class SystemUsers : IdentityUser
     {
-        public int Id { get; set; }
-        public string FirstName { get; set; }
+         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Email { get; set; }
-        public string RoleId { get; set; }
-        public string PhoneNumber { get; set; }
+    
     }
 }

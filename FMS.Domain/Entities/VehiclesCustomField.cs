@@ -23,8 +23,7 @@ namespace FMS.Domain.Entities
     }
 
 
-
-    public enum CustomFieldID
+        public enum CustomFieldID
     {
 
     }

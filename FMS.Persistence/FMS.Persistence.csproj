@@ -12,6 +12,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
     <PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="3.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -28,11 +29,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FMS.Application\FMS.Application.csproj" />
     <ProjectReference Include="..\FMS.Domain\FMS.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="GpsGateService\" />
     <Folder Include="Migration\" />
     <Folder Include="Configuration\" />
   </ItemGroup>

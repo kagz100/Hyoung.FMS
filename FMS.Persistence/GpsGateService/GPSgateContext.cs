@@ -12,7 +12,7 @@ namespace FMS.Persistence.GpsGateService
     {
 
         public virtual DbSet<Vehicle> Vehicles { get; set; }
-        public DbSet<VehicleTelemetryReport> VehicleTelemetryReports { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public DbSet<Report> Reports { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public DbSet<VehicleTelemetryReport> VehicleTelemetryReports { get ; set ; }
+        public DbSet<Report> Reports { get;set; }
     }
 }

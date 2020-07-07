@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FMS.Application.Common.Mappings;
 using FMS.Domain.Entities;
+using FMS.Domain.TelemetryModel;
 using System;
 using System.Collections.Generic;
 using System.Text;

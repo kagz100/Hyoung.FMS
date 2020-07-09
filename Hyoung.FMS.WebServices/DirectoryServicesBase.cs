@@ -10,15 +10,20 @@ namespace Hyoung.FMS.WebServices
 {
     public  class DirectoryServicesBase
     {
-        //private DirectoryServiceReference.Directory _directory = new  DirectoryServiceReference1.Directory();
 
 
-        // private DirectoryServiceReference1.DirectorySoapClient _directoryClient = new DirectoryServiceReference1.DirectorySoapClient.EndpointConfiguration(DirectoryServiceReference1.DirectorySoapClient.EndpointConfiguration.DirectorySoap12);
 
         private static DirectoryServiceReference1.DirectorySoapClient _directoryClient = new DirectoryServiceReference1.DirectorySoapClient(DirectoryServiceReference1.DirectorySoapClient.EndpointConfiguration.DirectorySoap12);          
 
         private  static string _sessionID;
         private  static int _applicationID;
+
+
+
+        DirectoryServicesBase ()
+        {
+            _directoryClient.Endpoint
+        }
 
         public  static async Task<string>  LoginAsync(string userName, string password , int applicationID)
         {

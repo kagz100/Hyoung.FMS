@@ -2,7 +2,7 @@
 
 namespace FMS.Infrastracture
 {
-    public class Class1
+    public class Dependancy
     {
     }
 }

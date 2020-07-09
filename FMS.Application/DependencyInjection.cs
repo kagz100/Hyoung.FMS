@@ -4,6 +4,7 @@ using AutoMapper;
 using MediatR;
 using System.Reflection;
 using FMS.Application.Common.Behaviours;
+using FMS.Application.Common.Interfaces;
 
 namespace FMS.Application
 {
@@ -18,6 +19,7 @@ namespace FMS.Application
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
+
 
             return services;
 

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Entities\Common\Interface\" />
     <Folder Include="Entities\Report\" />
     <Folder Include="Enum\" />
   </ItemGroup>

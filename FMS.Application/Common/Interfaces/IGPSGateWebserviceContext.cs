@@ -13,9 +13,9 @@ namespace FMS.Application.Common.Interfaces
         DbSet<Vehicle> Vehicles { get; set; }
 
         DbSet<VehicleTelemetryReport> VehicleTelemetryReports { get; set; }
-
-
         DbSet<Report> Reports { get; set; }
+
+
 
     }
 }

@@ -13,13 +13,12 @@ namespace FMS.Infrastracture.GPSGateWebService.Service
 {
     public class GPSGateDirectoryWebservice : IGPSGateDirectoryWebservice
     {
-        private GpsGateWCFServiceReference1.
 
         public GPSGateConections GPSGateConnection { get ; set; }
 
        public GPSGateDirectoryWebservice ()
         {
-            GPSGateConnection.DirectoryServiceReferenceLink = ConfigurationManager.AppSettings["DirectoryRefencelink"];
+
         }
 
 

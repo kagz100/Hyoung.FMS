@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace FMS.Infrastracture.GPSGateWebService.Interface
 {
-    public  interface IGPSGateDirectoryWebservice:IErrorChecker
+    public  interface IDirectoryWebservice:IErrorChecker
     {
 
         GPSGateConections GPSGateConnection { get; set; }
-        Task<string> LoginAsyn(GPSGateUser user, GPSGateConections connection);
+        Task<string> LoginAsyn(GPSGateUser user);
     }
 }

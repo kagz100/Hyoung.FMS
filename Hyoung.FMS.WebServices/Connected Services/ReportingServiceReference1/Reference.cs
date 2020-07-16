@@ -7,66 +7,74 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ServiceModel.Channels;
+using System.Threading.Tasks;
+using System.ServiceModel;
+using System.Diagnostics;
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.ServiceModel.Description;
+
 namespace ReportingServiceReference1
 {
     
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://gpsgate.com/services/", ConfigurationName="ReportingServiceReference1.ReportingSoap")]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [ServiceContractAttribute(Namespace="http://gpsgate.com/services/", ConfigurationName="ReportingServiceReference1.ReportingSoap")]
     public interface ReportingSoap
     {
         
         // CODEGEN: Generating message contract since element name strSessionID from namespace http://gpsgate.com/services/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/GetReports", ReplyAction="*")]
+        [OperationContractAttribute(Action="http://gpsgate.com/services/GetReports", ReplyAction="*")]
         ReportingServiceReference1.GetReportsResponse GetReports(ReportingServiceReference1.GetReportsRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/GetReports", ReplyAction="*")]
-        System.Threading.Tasks.Task<ReportingServiceReference1.GetReportsResponse> GetReportsAsync(ReportingServiceReference1.GetReportsRequest request);
+        [OperationContractAttribute(Action="http://gpsgate.com/services/GetReports", ReplyAction="*")]
+      Task<ReportingServiceReference1.GetReportsResponse> GetReportsAsync(ReportingServiceReference1.GetReportsRequest request);
         
         // CODEGEN: Generating message contract since element name strSessionID from namespace http://gpsgate.com/services/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/GenerateReport", ReplyAction="*")]
+        [OperationContractAttribute(Action="http://gpsgate.com/services/GenerateReport", ReplyAction="*")]
         ReportingServiceReference1.GenerateReportResponse GenerateReport(ReportingServiceReference1.GenerateReportRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/GenerateReport", ReplyAction="*")]
-        System.Threading.Tasks.Task<ReportingServiceReference1.GenerateReportResponse> GenerateReportAsync(ReportingServiceReference1.GenerateReportRequest request);
+        [OperationContractAttribute(Action="http://gpsgate.com/services/GenerateReport", ReplyAction="*")]
+      Task<ReportingServiceReference1.GenerateReportResponse> GenerateReportAsync(ReportingServiceReference1.GenerateReportRequest request);
         
         // CODEGEN: Generating message contract since element name strSessionID from namespace http://gpsgate.com/services/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/FetchReport", ReplyAction="*")]
+        [OperationContractAttribute(Action="http://gpsgate.com/services/FetchReport", ReplyAction="*")]
         ReportingServiceReference1.FetchReportResponse FetchReport(ReportingServiceReference1.FetchReportRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/FetchReport", ReplyAction="*")]
-        System.Threading.Tasks.Task<ReportingServiceReference1.FetchReportResponse> FetchReportAsync(ReportingServiceReference1.FetchReportRequest request);
+        [OperationContractAttribute(Action="http://gpsgate.com/services/FetchReport", ReplyAction="*")]
+      Task<ReportingServiceReference1.FetchReportResponse> FetchReportAsync(ReportingServiceReference1.FetchReportRequest request);
         
         // CODEGEN: Generating message contract since element name strSessionID from namespace http://gpsgate.com/services/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/GetReportStatus", ReplyAction="*")]
+        [OperationContractAttribute(Action="http://gpsgate.com/services/GetReportStatus", ReplyAction="*")]
         ReportingServiceReference1.GetReportStatusResponse GetReportStatus(ReportingServiceReference1.GetReportStatusRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/GetReportStatus", ReplyAction="*")]
-        System.Threading.Tasks.Task<ReportingServiceReference1.GetReportStatusResponse> GetReportStatusAsync(ReportingServiceReference1.GetReportStatusRequest request);
+        [OperationContractAttribute(Action="http://gpsgate.com/services/GetReportStatus", ReplyAction="*")]
+      Task<ReportingServiceReference1.GetReportStatusResponse> GetReportStatusAsync(ReportingServiceReference1.GetReportStatusRequest request);
         
         // CODEGEN: Generating message contract since element name strSessionID from namespace http://gpsgate.com/services/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/CancelReport", ReplyAction="*")]
+        [OperationContractAttribute(Action="http://gpsgate.com/services/CancelReport", ReplyAction="*")]
         ReportingServiceReference1.CancelReportResponse CancelReport(ReportingServiceReference1.CancelReportRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/CancelReport", ReplyAction="*")]
-        System.Threading.Tasks.Task<ReportingServiceReference1.CancelReportResponse> CancelReportAsync(ReportingServiceReference1.CancelReportRequest request);
+        [OperationContractAttribute(Action="http://gpsgate.com/services/CancelReport", ReplyAction="*")]
+      Task<ReportingServiceReference1.CancelReportResponse> CancelReportAsync(ReportingServiceReference1.CancelReportRequest request);
         
         // CODEGEN: Generating message contract since element name strSessionID from namespace http://gpsgate.com/services/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/GetProcessingReports", ReplyAction="*")]
+        [OperationContractAttribute(Action="http://gpsgate.com/services/GetProcessingReports", ReplyAction="*")]
         ReportingServiceReference1.GetProcessingReportsResponse GetProcessingReports(ReportingServiceReference1.GetProcessingReportsRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/GetProcessingReports", ReplyAction="*")]
-        System.Threading.Tasks.Task<ReportingServiceReference1.GetProcessingReportsResponse> GetProcessingReportsAsync(ReportingServiceReference1.GetProcessingReportsRequest request);
+        [OperationContractAttribute(Action="http://gpsgate.com/services/GetProcessingReports", ReplyAction="*")]
+      Task<ReportingServiceReference1.GetProcessingReportsResponse> GetProcessingReportsAsync(ReportingServiceReference1.GetProcessingReportsRequest request);
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
+    [MessageContractAttribute(IsWrapped=false)]
     public partial class GetReportsRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetReports", Namespace="http://gpsgate.com/services/", Order=0)]
+        [MessageBodyMemberAttribute(Name="GetReports", Namespace="http://gpsgate.com/services/", Order=0)]
         public ReportingServiceReference1.GetReportsRequestBody Body;
         
         public GetReportsRequest()
@@ -79,9 +87,9 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://gpsgate.com/services/")]
     public partial class GetReportsRequestBody
     {
@@ -103,14 +111,14 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
+    [MessageContractAttribute(IsWrapped=false)]
     public partial class GetReportsResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetReportsResponse", Namespace="http://gpsgate.com/services/", Order=0)]
+        [MessageBodyMemberAttribute(Name="GetReportsResponse", Namespace="http://gpsgate.com/services/", Order=0)]
         public ReportingServiceReference1.GetReportsResponseBody Body;
         
         public GetReportsResponse()
@@ -123,9 +131,9 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://gpsgate.com/services/")]
     public partial class GetReportsResponseBody
     {
@@ -143,14 +151,14 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
+    [MessageContractAttribute(IsWrapped=false)]
     public partial class GenerateReportRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GenerateReport", Namespace="http://gpsgate.com/services/", Order=0)]
+        [MessageBodyMemberAttribute(Name="GenerateReport", Namespace="http://gpsgate.com/services/", Order=0)]
         public ReportingServiceReference1.GenerateReportRequestBody Body;
         
         public GenerateReportRequest()
@@ -163,9 +171,9 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://gpsgate.com/services/")]
     public partial class GenerateReportRequestBody
     {
@@ -195,14 +203,14 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
+    [MessageContractAttribute(IsWrapped=false)]
     public partial class GenerateReportResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GenerateReportResponse", Namespace="http://gpsgate.com/services/", Order=0)]
+        [MessageBodyMemberAttribute(Name="GenerateReportResponse", Namespace="http://gpsgate.com/services/", Order=0)]
         public ReportingServiceReference1.GenerateReportResponseBody Body;
         
         public GenerateReportResponse()
@@ -215,9 +223,9 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://gpsgate.com/services/")]
     public partial class GenerateReportResponseBody
     {
@@ -235,14 +243,14 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
+    [MessageContractAttribute(IsWrapped=false)]
     public partial class FetchReportRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="FetchReport", Namespace="http://gpsgate.com/services/", Order=0)]
+        [MessageBodyMemberAttribute(Name="FetchReport", Namespace="http://gpsgate.com/services/", Order=0)]
         public ReportingServiceReference1.FetchReportRequestBody Body;
         
         public FetchReportRequest()
@@ -255,9 +263,9 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://gpsgate.com/services/")]
     public partial class FetchReportRequestBody
     {
@@ -279,14 +287,14 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
+    [MessageContractAttribute(IsWrapped=false)]
     public partial class FetchReportResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="FetchReportResponse", Namespace="http://gpsgate.com/services/", Order=0)]
+        [MessageBodyMemberAttribute(Name="FetchReportResponse", Namespace="http://gpsgate.com/services/", Order=0)]
         public ReportingServiceReference1.FetchReportResponseBody Body;
         
         public FetchReportResponse()
@@ -299,9 +307,9 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://gpsgate.com/services/")]
     public partial class FetchReportResponseBody
     {
@@ -319,14 +327,14 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
+    [MessageContractAttribute(IsWrapped=false)]
     public partial class GetReportStatusRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetReportStatus", Namespace="http://gpsgate.com/services/", Order=0)]
+        [MessageBodyMemberAttribute(Name="GetReportStatus", Namespace="http://gpsgate.com/services/", Order=0)]
         public ReportingServiceReference1.GetReportStatusRequestBody Body;
         
         public GetReportStatusRequest()
@@ -339,9 +347,9 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://gpsgate.com/services/")]
     public partial class GetReportStatusRequestBody
     {
@@ -363,14 +371,14 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
+    [MessageContractAttribute(IsWrapped=false)]
     public partial class GetReportStatusResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetReportStatusResponse", Namespace="http://gpsgate.com/services/", Order=0)]
+        [MessageBodyMemberAttribute(Name="GetReportStatusResponse", Namespace="http://gpsgate.com/services/", Order=0)]
         public ReportingServiceReference1.GetReportStatusResponseBody Body;
         
         public GetReportStatusResponse()
@@ -383,9 +391,9 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://gpsgate.com/services/")]
     public partial class GetReportStatusResponseBody
     {
@@ -403,14 +411,14 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
+    [MessageContractAttribute(IsWrapped=false)]
     public partial class CancelReportRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="CancelReport", Namespace="http://gpsgate.com/services/", Order=0)]
+        [MessageBodyMemberAttribute(Name="CancelReport", Namespace="http://gpsgate.com/services/", Order=0)]
         public ReportingServiceReference1.CancelReportRequestBody Body;
         
         public CancelReportRequest()
@@ -423,9 +431,9 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://gpsgate.com/services/")]
     public partial class CancelReportRequestBody
     {
@@ -447,14 +455,14 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
+    [MessageContractAttribute(IsWrapped=false)]
     public partial class CancelReportResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="CancelReportResponse", Namespace="http://gpsgate.com/services/", Order=0)]
+        [MessageBodyMemberAttribute(Name="CancelReportResponse", Namespace="http://gpsgate.com/services/", Order=0)]
         public ReportingServiceReference1.CancelReportResponseBody Body;
         
         public CancelReportResponse()
@@ -467,9 +475,9 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://gpsgate.com/services/")]
     public partial class CancelReportResponseBody
     {
@@ -487,14 +495,14 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
+    [MessageContractAttribute(IsWrapped=false)]
     public partial class GetProcessingReportsRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetProcessingReports", Namespace="http://gpsgate.com/services/", Order=0)]
+        [MessageBodyMemberAttribute(Name="GetProcessingReports", Namespace="http://gpsgate.com/services/", Order=0)]
         public ReportingServiceReference1.GetProcessingReportsRequestBody Body;
         
         public GetProcessingReportsRequest()
@@ -507,9 +515,9 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://gpsgate.com/services/")]
     public partial class GetProcessingReportsRequestBody
     {
@@ -531,14 +539,14 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
+    [MessageContractAttribute(IsWrapped=false)]
     public partial class GetProcessingReportsResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetProcessingReportsResponse", Namespace="http://gpsgate.com/services/", Order=0)]
+        [MessageBodyMemberAttribute(Name="GetProcessingReportsResponse", Namespace="http://gpsgate.com/services/", Order=0)]
         public ReportingServiceReference1.GetProcessingReportsResponseBody Body;
         
         public GetProcessingReportsResponse()
@@ -551,9 +559,9 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://gpsgate.com/services/")]
     public partial class GetProcessingReportsResponseBody
     {
@@ -571,14 +579,14 @@ namespace ReportingServiceReference1
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    public interface ReportingSoapChannel : ReportingServiceReference1.ReportingSoap, System.ServiceModel.IClientChannel
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    public interface ReportingSoapChannel : ReportingServiceReference1.ReportingSoap, IClientChannel
     {
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    public partial class ReportingSoapClient : System.ServiceModel.ClientBase<ReportingServiceReference1.ReportingSoap>, ReportingServiceReference1.ReportingSoap
+    [DebuggerStepThroughAttribute()]
+    [GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
+    public partial class ReportingSoapClient : ClientBase<ReportingServiceReference1.ReportingSoap>, ReportingServiceReference1.ReportingSoap
     {
         
         /// <summary>
@@ -586,7 +594,7 @@ namespace ReportingServiceReference1
         /// </summary>
         /// <param name="serviceEndpoint">The endpoint to configure</param>
         /// <param name="clientCredentials">The client credentials</param>
-        static partial void ConfigureEndpoint(System.ServiceModel.Description.ServiceEndpoint serviceEndpoint, System.ServiceModel.Description.ClientCredentials clientCredentials);
+        static partial void ConfigureEndpoint(ServiceEndpoint serviceEndpoint, ClientCredentials clientCredentials);
         
         public ReportingSoapClient(EndpointConfiguration endpointConfiguration) : 
                 base(ReportingSoapClient.GetBindingForEndpoint(endpointConfiguration), ReportingSoapClient.GetEndpointAddress(endpointConfiguration))
@@ -596,25 +604,25 @@ namespace ReportingServiceReference1
         }
         
         public ReportingSoapClient(EndpointConfiguration endpointConfiguration, string remoteAddress) : 
-                base(ReportingSoapClient.GetBindingForEndpoint(endpointConfiguration), new System.ServiceModel.EndpointAddress(remoteAddress))
+                base(ReportingSoapClient.GetBindingForEndpoint(endpointConfiguration), new EndpointAddress(remoteAddress))
         {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public ReportingSoapClient(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ReportingSoapClient(EndpointConfiguration endpointConfiguration, EndpointAddress remoteAddress) : 
                 base(ReportingSoapClient.GetBindingForEndpoint(endpointConfiguration), remoteAddress)
         {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public ReportingSoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ReportingSoapClient(Binding binding, EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress)
         {
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
         ReportingServiceReference1.GetReportsResponse ReportingServiceReference1.ReportingSoap.GetReports(ReportingServiceReference1.GetReportsRequest request)
         {
             return base.Channel.GetReports(request);
@@ -630,13 +638,13 @@ namespace ReportingServiceReference1
             return retVal.Body.GetReportsResult;
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ReportingServiceReference1.GetReportsResponse> ReportingServiceReference1.ReportingSoap.GetReportsAsync(ReportingServiceReference1.GetReportsRequest request)
+        [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
+      Task<ReportingServiceReference1.GetReportsResponse> ReportingServiceReference1.ReportingSoap.GetReportsAsync(ReportingServiceReference1.GetReportsRequest request)
         {
             return base.Channel.GetReportsAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ReportingServiceReference1.GetReportsResponse> GetReportsAsync(string strSessionID, int iApplicationID)
+        public Task<ReportingServiceReference1.GetReportsResponse> GetReportsAsync(string strSessionID, int iApplicationID)
         {
             ReportingServiceReference1.GetReportsRequest inValue = new ReportingServiceReference1.GetReportsRequest();
             inValue.Body = new ReportingServiceReference1.GetReportsRequestBody();
@@ -645,7 +653,7 @@ namespace ReportingServiceReference1
             return ((ReportingServiceReference1.ReportingSoap)(this)).GetReportsAsync(inValue);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
         ReportingServiceReference1.GenerateReportResponse ReportingServiceReference1.ReportingSoap.GenerateReport(ReportingServiceReference1.GenerateReportRequest request)
         {
             return base.Channel.GenerateReport(request);
@@ -663,13 +671,13 @@ namespace ReportingServiceReference1
             return retVal.Body.GenerateReportResult;
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ReportingServiceReference1.GenerateReportResponse> ReportingServiceReference1.ReportingSoap.GenerateReportAsync(ReportingServiceReference1.GenerateReportRequest request)
+        [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
+      Task<ReportingServiceReference1.GenerateReportResponse> ReportingServiceReference1.ReportingSoap.GenerateReportAsync(ReportingServiceReference1.GenerateReportRequest request)
         {
             return base.Channel.GenerateReportAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ReportingServiceReference1.GenerateReportResponse> GenerateReportAsync(string strSessionID, int iReportID, System.DateTime startDate, System.DateTime endDate)
+        public Task<ReportingServiceReference1.GenerateReportResponse> GenerateReportAsync(string strSessionID, int iReportID, System.DateTime startDate, System.DateTime endDate)
         {
             ReportingServiceReference1.GenerateReportRequest inValue = new ReportingServiceReference1.GenerateReportRequest();
             inValue.Body = new ReportingServiceReference1.GenerateReportRequestBody();
@@ -680,7 +688,7 @@ namespace ReportingServiceReference1
             return ((ReportingServiceReference1.ReportingSoap)(this)).GenerateReportAsync(inValue);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
         ReportingServiceReference1.FetchReportResponse ReportingServiceReference1.ReportingSoap.FetchReport(ReportingServiceReference1.FetchReportRequest request)
         {
             return base.Channel.FetchReport(request);
@@ -696,13 +704,13 @@ namespace ReportingServiceReference1
             return retVal.Body.FetchReportResult;
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ReportingServiceReference1.FetchReportResponse> ReportingServiceReference1.ReportingSoap.FetchReportAsync(ReportingServiceReference1.FetchReportRequest request)
+        [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
+      Task<ReportingServiceReference1.FetchReportResponse> ReportingServiceReference1.ReportingSoap.FetchReportAsync(ReportingServiceReference1.FetchReportRequest request)
         {
             return base.Channel.FetchReportAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ReportingServiceReference1.FetchReportResponse> FetchReportAsync(string strSessionID, int iHandleID)
+        public Task<ReportingServiceReference1.FetchReportResponse> FetchReportAsync(string strSessionID, int iHandleID)
         {
             ReportingServiceReference1.FetchReportRequest inValue = new ReportingServiceReference1.FetchReportRequest();
             inValue.Body = new ReportingServiceReference1.FetchReportRequestBody();
@@ -711,7 +719,7 @@ namespace ReportingServiceReference1
             return ((ReportingServiceReference1.ReportingSoap)(this)).FetchReportAsync(inValue);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
         ReportingServiceReference1.GetReportStatusResponse ReportingServiceReference1.ReportingSoap.GetReportStatus(ReportingServiceReference1.GetReportStatusRequest request)
         {
             return base.Channel.GetReportStatus(request);
@@ -727,13 +735,13 @@ namespace ReportingServiceReference1
             return retVal.Body.GetReportStatusResult;
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ReportingServiceReference1.GetReportStatusResponse> ReportingServiceReference1.ReportingSoap.GetReportStatusAsync(ReportingServiceReference1.GetReportStatusRequest request)
+        [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
+      Task<ReportingServiceReference1.GetReportStatusResponse> ReportingServiceReference1.ReportingSoap.GetReportStatusAsync(ReportingServiceReference1.GetReportStatusRequest request)
         {
             return base.Channel.GetReportStatusAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ReportingServiceReference1.GetReportStatusResponse> GetReportStatusAsync(string strSessionID, int iHandleID)
+        public Task<ReportingServiceReference1.GetReportStatusResponse> GetReportStatusAsync(string strSessionID, int iHandleID)
         {
             ReportingServiceReference1.GetReportStatusRequest inValue = new ReportingServiceReference1.GetReportStatusRequest();
             inValue.Body = new ReportingServiceReference1.GetReportStatusRequestBody();
@@ -742,7 +750,7 @@ namespace ReportingServiceReference1
             return ((ReportingServiceReference1.ReportingSoap)(this)).GetReportStatusAsync(inValue);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
         ReportingServiceReference1.CancelReportResponse ReportingServiceReference1.ReportingSoap.CancelReport(ReportingServiceReference1.CancelReportRequest request)
         {
             return base.Channel.CancelReport(request);
@@ -758,13 +766,13 @@ namespace ReportingServiceReference1
             return retVal.Body.CancelReportResult;
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ReportingServiceReference1.CancelReportResponse> ReportingServiceReference1.ReportingSoap.CancelReportAsync(ReportingServiceReference1.CancelReportRequest request)
+        [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
+      Task<ReportingServiceReference1.CancelReportResponse> ReportingServiceReference1.ReportingSoap.CancelReportAsync(ReportingServiceReference1.CancelReportRequest request)
         {
             return base.Channel.CancelReportAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ReportingServiceReference1.CancelReportResponse> CancelReportAsync(string strSessionID, int iHandleID)
+        public Task<ReportingServiceReference1.CancelReportResponse> CancelReportAsync(string strSessionID, int iHandleID)
         {
             ReportingServiceReference1.CancelReportRequest inValue = new ReportingServiceReference1.CancelReportRequest();
             inValue.Body = new ReportingServiceReference1.CancelReportRequestBody();
@@ -773,7 +781,7 @@ namespace ReportingServiceReference1
             return ((ReportingServiceReference1.ReportingSoap)(this)).CancelReportAsync(inValue);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
         ReportingServiceReference1.GetProcessingReportsResponse ReportingServiceReference1.ReportingSoap.GetProcessingReports(ReportingServiceReference1.GetProcessingReportsRequest request)
         {
             return base.Channel.GetProcessingReports(request);
@@ -789,13 +797,13 @@ namespace ReportingServiceReference1
             return retVal.Body.GetProcessingReportsResult;
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ReportingServiceReference1.GetProcessingReportsResponse> ReportingServiceReference1.ReportingSoap.GetProcessingReportsAsync(ReportingServiceReference1.GetProcessingReportsRequest request)
+        [EditorBrowsableAttribute(EditorBrowsableState.Advanced)]
+      Task<ReportingServiceReference1.GetProcessingReportsResponse> ReportingServiceReference1.ReportingSoap.GetProcessingReportsAsync(ReportingServiceReference1.GetProcessingReportsRequest request)
         {
             return base.Channel.GetProcessingReportsAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ReportingServiceReference1.GetProcessingReportsResponse> GetProcessingReportsAsync(string strSessionID, int iAppplicationID)
+        public Task<ReportingServiceReference1.GetProcessingReportsResponse> GetProcessingReportsAsync(string strSessionID, int iAppplicationID)
         {
             ReportingServiceReference1.GetProcessingReportsRequest inValue = new ReportingServiceReference1.GetProcessingReportsRequest();
             inValue.Body = new ReportingServiceReference1.GetProcessingReportsRequestBody();
@@ -804,21 +812,21 @@ namespace ReportingServiceReference1
             return ((ReportingServiceReference1.ReportingSoap)(this)).GetProcessingReportsAsync(inValue);
         }
         
-        public virtual System.Threading.Tasks.Task OpenAsync()
+        public virtual Task OpenAsync()
         {
-            return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndOpen));
+            return Task.Factory.FromAsync(((ICommunicationObject)(this)).BeginOpen(null, null), new System.Action<System.IAsyncResult>(((ICommunicationObject)(this)).EndOpen));
         }
         
-        public virtual System.Threading.Tasks.Task CloseAsync()
+        public virtual Task CloseAsync()
         {
-            return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginClose(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndClose));
+            return Task.Factory.FromAsync(((ICommunicationObject)(this)).BeginClose(null, null), new System.Action<System.IAsyncResult>(((ICommunicationObject)(this)).EndClose));
         }
         
-        private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration)
+        private static Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration)
         {
             if ((endpointConfiguration == EndpointConfiguration.ReportingSoap))
             {
-                System.ServiceModel.BasicHttpBinding result = new System.ServiceModel.BasicHttpBinding();
+                BasicHttpBinding result = new BasicHttpBinding();
                 result.MaxBufferSize = int.MaxValue;
                 result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
                 result.MaxReceivedMessageSize = int.MaxValue;
@@ -827,11 +835,11 @@ namespace ReportingServiceReference1
             }
             if ((endpointConfiguration == EndpointConfiguration.ReportingSoap12))
             {
-                System.ServiceModel.Channels.CustomBinding result = new System.ServiceModel.Channels.CustomBinding();
-                System.ServiceModel.Channels.TextMessageEncodingBindingElement textBindingElement = new System.ServiceModel.Channels.TextMessageEncodingBindingElement();
-                textBindingElement.MessageVersion = System.ServiceModel.Channels.MessageVersion.CreateVersion(System.ServiceModel.EnvelopeVersion.Soap12, System.ServiceModel.Channels.AddressingVersion.None);
+              CustomBinding result = new CustomBinding();
+               TextMessageEncodingBindingElement textBindingElement = new TextMessageEncodingBindingElement();
+                textBindingElement.MessageVersion =  MessageVersion.CreateVersion(EnvelopeVersion.Soap12,  AddressingVersion.None);
                 result.Elements.Add(textBindingElement);
-                System.ServiceModel.Channels.HttpTransportBindingElement httpBindingElement = new System.ServiceModel.Channels.HttpTransportBindingElement();
+               HttpTransportBindingElement httpBindingElement = new  HttpTransportBindingElement();
                 httpBindingElement.AllowCookies = true;
                 httpBindingElement.MaxBufferSize = int.MaxValue;
                 httpBindingElement.MaxReceivedMessageSize = int.MaxValue;
@@ -841,15 +849,15 @@ namespace ReportingServiceReference1
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
         
-        private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration)
+        private static EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration)
         {
             if ((endpointConfiguration == EndpointConfiguration.ReportingSoap))
             {
-                return new System.ServiceModel.EndpointAddress("http://52.43.97.199/GpsGateServer/Services/Reporting.asmx");
+                return new EndpointAddress("http://52.43.97.199/GpsGateServer/Services/Reporting.asmx");
             }
             if ((endpointConfiguration == EndpointConfiguration.ReportingSoap12))
             {
-                return new System.ServiceModel.EndpointAddress("http://52.43.97.199/GpsGateServer/Services/Reporting.asmx");
+                return new EndpointAddress("http://52.43.97.199/GpsGateServer/Services/Reporting.asmx");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }

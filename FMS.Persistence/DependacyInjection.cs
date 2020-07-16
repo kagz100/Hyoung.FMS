@@ -7,7 +7,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.EntityFrameworkCore;
 using FMS.Application.Common.Interfaces;
-using FMS.Persistence.GpsGateService;
+using FMS.Persistence;
 
 namespace FMS.Persistence
 {
@@ -23,7 +23,7 @@ namespace FMS.Persistence
 
 
 
-            services.AddScoped<IGPSGateWebserviceContext>(provider => provider.GetService<GPSgateContext>());
+           // services.AddScoped<IGPSGateWebserviceContext>(provider => provider.GetService<GPSgateContext>());
 
 
             return services;

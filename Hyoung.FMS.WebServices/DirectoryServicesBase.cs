@@ -22,7 +22,6 @@ namespace Hyoung.FMS.WebServices
 
         DirectoryServicesBase ()
         {
-            _directoryClient.Endpoint
         }
 
         public  static async Task<string>  LoginAsync(string userName, string password , int applicationID)

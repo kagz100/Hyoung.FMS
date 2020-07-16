@@ -10,7 +10,7 @@ namespace FMS.Application.Telemetry.GPSGateReport.Query.GetReportsList
     public class ReportDTO :IMapFrom<Report>
     {
 
-        public GPSGateConections GPSGateConnection { get; set;}
+       // public GPSGateConections GPSGateConnection { get; set;}
 
        }
 }

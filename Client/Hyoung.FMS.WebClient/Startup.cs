@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Hyoung.FMS.Model.DataAccess;
+using FMS.Persistence.DataAccess;
+//using Hyoung.FMS.Model.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using MySql.Data.EntityFrameworkCore;
 namespace Hyoung.FMS.WebClient
 {
     public class Startup
@@ -28,10 +29,10 @@ namespace Hyoung.FMS.WebClient
         {
             services.AddControllersWithViews().AddJsonOptions(options=>options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
-            services.AddDbContext<HyoungGPSContext>(options =>
+            services.AddDbContext<FMSGPSContext>(options =>
                          options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 
-
+            
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.

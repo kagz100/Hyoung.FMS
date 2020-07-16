@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Xml;
 using System.Xml.Linq;
 
 namespace FMS.Infrastracture.GPSGateWebService.Interface
 {
-    public interface IErrorChecker
+   public interface IDeserializerReport <T> : IDeserializer<T>
     {
-        void CheckError(XmlNode element);
+        IList<T> DeserializeTelemetryReport(string xElement);
     }
 }

@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace FMS.Infrastracture.GPSGateWebService.Interface
 {
-    public interface IGPSGateReportingReference: IErrorChecker
+
+    public interface IReportingReference: IErrorChecker
     {
 
         Task<IQueryable<Report>> GetReportList(GPSGateConections connection);

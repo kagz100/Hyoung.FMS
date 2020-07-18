@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FMS.Infrastracture.GPSGateWebService.Interface
+namespace FMS.Persistence.GPSGateWebService.Interface
 {
     public  interface IDirectoryWebservice:IErrorChecker
     {

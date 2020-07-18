@@ -4,7 +4,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace FMS.Infrastracture.GPSGateWebService.Interface
+namespace FMS.Persistence.GPSGateWebService.Interface
 {
     public interface IErrorChecker
     {

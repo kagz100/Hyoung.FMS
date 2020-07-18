@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FMS.Infrastracture.GPSGateWebService.Interface
+namespace FMS.Persistence.GPSGateWebService.Interface
 {
 
     public interface IReportingReference: IErrorChecker

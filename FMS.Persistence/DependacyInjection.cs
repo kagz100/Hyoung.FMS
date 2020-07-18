@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.EntityFrameworkCore;
 using FMS.Application.Common.Interfaces;
 using FMS.Persistence;
+using FMS.Persistence.GPSGateWebService.Interface;
+using FMS.Persistence.GPSGateWebService.Service;
 
 namespace FMS.Persistence
 {
@@ -21,8 +23,8 @@ namespace FMS.Persistence
 
             services.AddScoped<IFMSContext>(provider => provider.GetService<FMSGPSContext>());
 
-
-
+           // services.AddTransient<IDirectoryWebservice, GPSGateDirectoryWebservice>();
+            services.AddScoped<IDirectoryWebservice>(provider => provider.GetService <GPSGateDirectoryWebservice>());
            // services.AddScoped<IGPSGateWebserviceContext>(provider => provider.GetService<GPSgateContext>());
 
 

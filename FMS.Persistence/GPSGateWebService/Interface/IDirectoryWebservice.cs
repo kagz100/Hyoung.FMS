@@ -11,6 +11,6 @@ namespace FMS.Persistence.GPSGateWebService.Interface
     {
 
         GPSGateConections GPSGateConnection { get; set; }
-        Task<string> LoginAsyn(GPSGateUser user);
+        Task<string> LoginAsyn(GPSGateConections GPSconnection);
     }
 }

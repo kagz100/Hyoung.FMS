@@ -39,9 +39,9 @@ namespace FMS.Persistence.GPSGateWebService.Service
             }
         }
 
-        public  async Task<string> LoginAsyn(GPSGateUser user)
+        public  async Task<string> LoginAsyn(GPSGateConections conn)
         {
-            var results = await _DirectorySoapClient.LoginAsync(user.UserName, user.Password, GPSGateConnection.ApplicationID);
+            var results = await _DirectorySoapClient.LoginAsync(conn.GPSGateUser.UserName, conn.GPSGateUser.Password, GPSGateConnection.ApplicationID);
 
             try
             {

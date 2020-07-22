@@ -7,15 +7,5 @@ using System.Text;
 
 namespace FMS.Application.Common.Interfaces
 {
-   public  interface IGPSGateWebserviceContext
-    {
-
-        DbSet<Vehicle> Vehicles { get; set; }
-
-        DbSet<VehicleTelemetryReport> VehicleTelemetryReports { get; set; }
-        DbSet<Report> Reports { get; set; }
-
-
-
-    }
+   
 }

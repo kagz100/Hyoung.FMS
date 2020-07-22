@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FMS.Domain.Entities.Auth;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,7 +12,7 @@ namespace FMS.Domain.Entities.Settings
 
         public string SessionID { get; set; }
 
-
+        public GPSGateUser GPSGateUser { get; set; }
         public int HandleID { get; set; }
     }
 }

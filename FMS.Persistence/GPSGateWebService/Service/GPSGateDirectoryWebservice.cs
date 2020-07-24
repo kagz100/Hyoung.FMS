@@ -14,19 +14,23 @@ using DirectoryReference;
 
 namespace FMS.Persistence.GPSGateWebService.Service
 {
-    public class GPSGateDirectoryWebservice : IDirectoryWebservice,DirectorySoap
+    public class GPSGateDirectoryWebservice : IDirectoryWebservice
     {
        static readonly DirectoryReference.DirectorySoapClient _DirectorySoapClient = new DirectoryReference.DirectorySoapClient(DirectoryReference.DirectorySoapClient.EndpointConfiguration.DirectorySoap12);
 
 
-
+        DirectorySoap soapproxy;
 
 
         public  GPSGateConections GPSGateConnection { get ; set; }
 
         public GPSGateDirectoryWebservice (GPSGateConections gpsgateconnnection)
         {
+         //   _DirectorySoapClient.Endpoint.Address.Uri = gpsgateconnnection.DirectoryServiceReferenceLink;
             GPSGateConnection = gpsgateconnnection;
+
+            this.soapproxy = new DirectorySoapClient(DirectorySoapClient.EndpointConfiguration.DirectorySoap);
+
         }
 
      

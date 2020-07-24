@@ -10,7 +10,7 @@ namespace FMS.Domain.Entities
     public class VehicleTelemetryReport:Entity
 
     {
-        [XmlAttribute("i_0_0_0",)]
+        [XmlAttribute("i_0_0_0")]
         public virtual Vehicle Vehicle { get;  set; }
 
         public virtual Driver Driver { get; set; }

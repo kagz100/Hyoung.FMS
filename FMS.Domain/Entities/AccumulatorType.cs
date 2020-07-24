@@ -1,5 +1,5 @@
 ﻿using FMS.Domain.Entities.Common;
-using FMS.Domain.Entities.Common.Interface;
+//using FMS.Domain.Entities.Common.Interface;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -7,7 +7,7 @@ using System.Text;
 
 namespace FMS.Domain.Entities
 {
-    public class AccumulatorType :Entity ,IGPSGateClass
+    public class AccumulatorType :Entity 
     {
         public string AccumulatorName { get; set; }
 

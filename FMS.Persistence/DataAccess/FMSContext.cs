@@ -1,12 +1,12 @@
 ﻿using System;
-using FMS.Application.Common.Interfaces;
+//using FMS.Application.Common.Interfaces;
 using FMS.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace FMS.Persistence.DataAccess
     {
-    public partial class FMSGPSContext : DbContext,IFMSContext
+    public partial class FMSGPSContext : DbContext
     {
         public FMSGPSContext()
         {

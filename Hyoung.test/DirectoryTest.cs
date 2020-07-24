@@ -8,6 +8,8 @@ using FMS.WebClient.Models.Settings;
 using FMS.Persistence.GPSGateWebService.Service;
 using FMS.Domain.Entities.Settings;
 using FMS.Domain.Entities.Auth;
+using System.Threading.Tasks;
+using Unity;
 
 namespace Hyoung.test
 {
@@ -16,25 +18,55 @@ namespace Hyoung.test
     {
 
 
-        private  IDirectoryWebservice directoryWebservice;
+        private  readonly IDirectoryWebservice directoryWebservice;
         private GPSGateConections Gpgsconnection { get; set; }
         private GPSGateUser gpsUser { get; set; }
-        protected DirectoryTest ()
-        {
-            directoryWebservice = new GPSGateDirectoryWebservice(IGPSGateConnection);
-           
-        }
+   
+
+
+
 
         [Test]
-        public async void LogintoFail()
+        public  void LogintoFail()
         {
-            //arrange 
-            var errormessage = "Wrong username or password";
-            gpsUser.UserName
 
+            GPSGateUser user = new GPSGateUser();
+            //arrange 
+            user.Password = "1";
+            var errormessage = "Wrong username or password";
+            Gpgsconnection.GPSGateUser.UserName = "kkagiri";
+            Gpgsconnection.GPSGateUser.Password = "1";
+
+            Gpgsconnection.ApplicationID = 12;
+
+            var MockRepo =new Mock<IDirectoryWebservice>();
+
+            MockRepo.Setup(m => m.LoginAsyn(Gpgsconnection)).Returns(Task.FromResult<string>(errormessage));
+
+
+            IDirectoryWebservice wcfMockobject = MockRepo.Object;
+
+
+            UnityHelper.IoC = new UnityContainer();
+
+            UnityHelper.IoC.RegisterInstance<IDirectoryWebservice>(wcfMockobject);
+
+
+            GPSGateDirectoryWebservice serviceAgent = new GPSGateDirectoryWebservice(Gpgsconnection);
+
+
+            var actualvalue =  serviceAgent.LoginAsyn(Gpgsconnection);
+          
+          //  var results = await    directoryWebservice.LoginAsyn(Gpgsconnection);
             //Act
-            var results = await    directoryWebservice.LoginAsyn(gpsUser);
+            Assert.AreEqual(errormessage , actualvalue);
         }
 
+    }
+
+
+    public static class UnityHelper
+    {
+        public static UnityContainer IoC;
     }
 }

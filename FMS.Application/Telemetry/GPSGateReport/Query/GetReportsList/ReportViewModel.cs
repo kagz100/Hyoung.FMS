@@ -6,7 +6,7 @@ namespace FMS.Application.Telemetry.GPSGateReport.Query.GetReportsList
 {
   public class ReportViewModel
     {
-        public IList<R>
+       // public IList<R>
 
 
     }

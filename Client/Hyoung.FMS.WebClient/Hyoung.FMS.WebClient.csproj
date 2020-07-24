@@ -16,11 +16,14 @@
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.21" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\FMS.Domain\FMS.Domain.csproj" />
-    <ProjectReference Include="..\..\FMS.Persistence\FMS.Persistence.csproj" />
-    <ProjectReference Include="..\..\Hyoung.FMS.WebServices\Hyoung.FMS.GpsGate.csproj" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <ProjectReference Include="..\..\FMS.Application\FMS.Application.csproj" />
+    <ProjectReference Include="..\..\FMS.Domain\FMS.Domain.csproj" />
+    <ProjectReference Include="..\..\FMS.Infrastracture\FMS.Infrastracture.csproj" />
+    <ProjectReference Include="..\..\FMS.Persistence\FMS.Persistence.csproj" />
+    <ProjectReference Include="..\..\Hyoung.FMS.WebAPI\Hyoung.FMS.WebAPI.csproj" />
+    <ProjectReference Include="..\..\Hyoung.FMS.WebServices\Hyoung.FMS.GpsGate.csproj" />
   </ItemGroup>
 </Project>

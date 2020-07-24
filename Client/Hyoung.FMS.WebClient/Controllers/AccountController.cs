@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Hyoung.FMS.WebClient.Models;
-using Hyoung.FMS.WebServices;
 using Microsoft.AspNetCore.Mvc;
+using FMS.Domain.Entities.Auth;
 
 namespace Hyoung.FMS.WebClient.Controllers
 {
@@ -25,17 +21,17 @@ namespace Hyoung.FMS.WebClient.Controllers
 
 
         [HttpPost]
-        public IActionResult Login(GPSUser model)
+        public IActionResult Login(GPSGateUser model)
         {
             if (ModelState.IsValid)
             {
 
                 try
                 {
-                    var results = DirectoryServicesBase.LoginAsync(model.UserName, model.Password, applicationID);
+                  //  var results = DirectoryServicesBase.LoginAsync(model.UserName, model.Password, applicationID);
 
-                     sessionid = results.Result.ToString();
-                    ViewBag.Error = DirectoryServicesBase.SessionID;
+                   //  sessionid = results.Result.ToString();
+                    //ViewBag.Error = DirectoryServicesBase.SessionID;
 
 
                     return RedirectToAction("GetReport", "Report");

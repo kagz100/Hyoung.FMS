@@ -17,8 +17,8 @@ namespace Hyoung.FMS.UnitTest.Request
 
             DirectoryServicesBase directory= new DirectoryServicesBase();
 
-
-            var request = await directory.LoginAsync(" ", " ", 12);
+             
+            var request = await directory.LoginAsync("kkagiri", "Niwewe1000", 12);
 
         }
 

@@ -1149,11 +1149,11 @@ namespace DirectoryServiceReference1
         {
             if ((endpointConfiguration == EndpointConfiguration.DirectorySoap))
             {
-                return new System.ServiceModel.EndpointAddress("http://52.43.97.199/GpsGateServer/Services/directory.asmx");
+                return new System.ServiceModel.EndpointAddress("http://10.0.10.150/GpsGateServer/Services/directory.asmx");
             }
             if ((endpointConfiguration == EndpointConfiguration.DirectorySoap12))
             {
-                return new System.ServiceModel.EndpointAddress("http://52.43.97.199/GpsGateServer/Services/directory.asmx");
+                return new System.ServiceModel.EndpointAddress("http://10.0.10.150/GpsGateServer/Services/directory.asmx");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }

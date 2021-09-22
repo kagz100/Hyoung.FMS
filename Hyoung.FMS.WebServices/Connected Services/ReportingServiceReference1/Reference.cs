@@ -853,11 +853,11 @@ namespace ReportingServiceReference1
         {
             if ((endpointConfiguration == EndpointConfiguration.ReportingSoap))
             {
-                return new EndpointAddress("http://52.43.97.199/GpsGateServer/Services/Reporting.asmx");
+                return new EndpointAddress("http://10.0.10.150/GpsGateServer/Services/Reporting.asmx");
             }
             if ((endpointConfiguration == EndpointConfiguration.ReportingSoap12))
             {
-                return new EndpointAddress("http://52.43.97.199/GpsGateServer/Services/Reporting.asmx");
+                return new EndpointAddress("http://10.0.10.150/GpsGateServer/Services/Reporting.asmx");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }

@@ -10,21 +10,31 @@ using System.Threading.Tasks;
 
 namespace FMS.Application.Telemetry.GPSGateReport.Query.GetReportsList
 {
-   // public class GetReportQueryHandler : IRequestHandler<GetReportListQuery, IQueryable<Report>>
-   // {
-
-    //    private IGPSGateWebserviceContext _context;
+    public class GetReportQueryHandler : RequestHandler<GetReportListQuery, IQueryable<Report>>
+    {
 
 
-     //   public GetReportQueryHandler(IGPSGateWebserviceContext context)
-      //  {
-      //      _context = context;
-      //  }
 
-    
-     // public  async  Task<IQueryable<Report>> IRequestHandler<GetReportListQuery, IQueryable<Report>>.Handle(GetReportListQuery request, CancellationToken cancellationToken)
-    //    {
-   //throw new NotImplementedException();
-      //  }
-   // }
+
+
+
+
+        //    private IGPSGateWebserviceContext _context;
+
+
+        //   public GetReportQueryHandler(IGPSGateWebserviceContext context)
+        //  {
+        //      _context = context;
+        //  }
+
+
+        // public  async  Task<IQueryable<Report>> IRequestHandler<GetReportListQuery, IQueryable<Report>>.Handle(GetReportListQuery request, CancellationToken cancellationToken)
+        //    {
+        //throw new NotImplementedException();
+        //  }
+        protected override IQueryable<Report> Handle(GetReportListQuery request)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

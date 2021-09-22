@@ -26,10 +26,11 @@ namespace Hyoung.FMS.WebServices
 
         public  async Task<string>  LoginAsync(string userName, string password , int applicationID)
         {
-            
+            _applicationID = applicationID;
             //var results = await _directoryClient.LoginAsync(userName, password, applicationID);
-            
+
             XmlNode _xmlresponce = await _directoryClient.LoginAsync(userName, password, applicationID);
+          
 
 
             //  checkError(_xmlresponce);
@@ -37,8 +38,7 @@ namespace Hyoung.FMS.WebServices
 
             SessionID = _xmlresponce.InnerText;
 
-                _applicationID = applicationID;
-            
+               
 
             return _sessionID;
         }

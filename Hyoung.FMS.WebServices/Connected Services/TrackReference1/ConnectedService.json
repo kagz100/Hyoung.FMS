@@ -5,7 +5,7 @@
     "Uri": "https://go.microsoft.com/fwlink/?linkid=858517"
   },
   "ExtendedData": {
-    "Uri": "http://52.43.97.199/GpsGateServer/Services/tracks.asmx",
+    "Uri": "http://10.0.10.150/GpsGateServer/Services/tracks.asmx",
     "Namespace": "TrackReference1",
     "SelectedAccessLevelForGeneratedClass": "Public",
     "GenerateMessageContract": false,

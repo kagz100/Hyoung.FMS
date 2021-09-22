@@ -3,7 +3,7 @@
   "Version": "15.0.31022.994",
   "ExtendedData": {
     "inputs": [
-      "http://52.43.97.199/GpsGateServer/Services/Reporting.asmx"
+      "http://10.0.10.150/GpsGateServer/Services/Reporting.asmx"
     ],
     "collectionTypes": [
       "System.Array",

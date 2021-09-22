@@ -10,6 +10,8 @@ using FMS.Domain.Entities.Settings;
 using FMS.Domain.Entities.Auth;
 using System.Threading.Tasks;
 using Unity;
+using MediatR;
+using AutoMapper;
 
 namespace Hyoung.test
 {
@@ -17,50 +19,14 @@ namespace Hyoung.test
    public class DirectoryTest
     {
 
+        private IMediator _mediatorFake;
 
-        private  readonly IDirectoryWebservice directoryWebservice;
-        private GPSGateConections Gpgsconnection { get; set; }
-        private GPSGateUser gpsUser { get; set; }
-   
+        private IMapper automapper;
 
 
 
 
-        [Test]
-        public  void LogintoFail()
-        {
 
-            GPSGateUser user = new GPSGateUser();
-            //arrange 
-            user.Password = "1";
-            var errormessage = "Wrong username or password";
-            Gpgsconnection.GPSGateUser.UserName = "kkagiri";
-            Gpgsconnection.GPSGateUser.Password = "1";
-
-            Gpgsconnection.ApplicationID = 12;
-
-            var MockRepo =new Mock<IDirectoryWebservice>();
-
-            MockRepo.Setup(m => m.LoginAsyn(Gpgsconnection)).Returns(Task.FromResult<string>(errormessage));
-
-
-            IDirectoryWebservice wcfMockobject = MockRepo.Object;
-
-
-            UnityHelper.IoC = new UnityContainer();
-
-            UnityHelper.IoC.RegisterInstance<IDirectoryWebservice>(wcfMockobject);
-
-
-            GPSGateDirectoryWebservice serviceAgent = new GPSGateDirectoryWebservice(Gpgsconnection);
-
-
-            var actualvalue =  serviceAgent.LoginAsyn(Gpgsconnection);
-          
-          //  var results = await    directoryWebservice.LoginAsyn(Gpgsconnection);
-            //Act
-            Assert.AreEqual(errormessage , actualvalue);
-        }
 
     }
 

@@ -20,11 +20,11 @@ namespace Hyoung.FMS.WebServices
 
 
 
-        DirectoryServicesBase ()
+       public  DirectoryServicesBase ()
         {
         }
 
-        public  static async Task<string>  LoginAsync(string userName, string password , int applicationID)
+        public  async Task<string>  LoginAsync(string userName, string password , int applicationID)
         {
             
             //var results = await _directoryClient.LoginAsync(userName, password, applicationID);

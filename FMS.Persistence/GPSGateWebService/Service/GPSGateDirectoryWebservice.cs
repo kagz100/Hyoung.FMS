@@ -24,7 +24,12 @@ namespace FMS.Persistence.GPSGateWebService.Service
 
         public  GPSGateConections GPSGateConnection { get ; set; }
 
-        public GPSGateDirectoryWebservice (GPSGateConections gpsgateconnnection)
+        public GPSGateDirectoryWebservice()
+        {
+
+        }
+     
+          public GPSGateDirectoryWebservice (GPSGateConections gpsgateconnnection)
         {
          //   _DirectorySoapClient.Endpoint.Address.Uri = gpsgateconnnection.DirectoryServiceReferenceLink;
             GPSGateConnection = gpsgateconnnection;

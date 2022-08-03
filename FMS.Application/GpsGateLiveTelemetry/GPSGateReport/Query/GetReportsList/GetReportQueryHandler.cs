@@ -14,19 +14,15 @@ namespace FMS.Application.Telemetry.GPSGateReport.Query.GetReportsList
     {
 
 
+          private IGPSGateWebserviceContext _context;
 
 
+       public GetReportQueryHandler(IGPSGateWebserviceContext context)
+         {
+                _context = context;
 
-
-
-        //    private IGPSGateWebserviceContext _context;
-
-
-        //   public GetReportQueryHandler(IGPSGateWebserviceContext context)
-        //  {
-        //      _context = context;
-        //  }
-
+            _context.login();
+         }
 
         // public  async  Task<IQueryable<Report>> IRequestHandler<GetReportListQuery, IQueryable<Report>>.Handle(GetReportListQuery request, CancellationToken cancellationToken)
         //    {

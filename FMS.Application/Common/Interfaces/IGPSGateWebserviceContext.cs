@@ -7,5 +7,10 @@ using System.Text;
 
 namespace FMS.Application.Common.Interfaces
 {
+
+   public interface IGPSGateWebserviceContext
+    {
+        void login();
+    }
    
 }

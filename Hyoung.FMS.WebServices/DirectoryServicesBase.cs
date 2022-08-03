@@ -8,11 +8,11 @@ using System.Xml.Linq;
 
 namespace Hyoung.FMS.WebServices
 {
-    public  class DirectoryServicesBase
+    public  class DirectoryServicesBase 
     {
 
 
-
+        
         private static DirectoryServiceReference1.DirectorySoapClient _directoryClient = new DirectoryServiceReference1.DirectorySoapClient(DirectoryServiceReference1.DirectorySoapClient.EndpointConfiguration.DirectorySoap12);          
 
         private  static string _sessionID;
@@ -21,7 +21,9 @@ namespace Hyoung.FMS.WebServices
 
 
        public  DirectoryServicesBase ()
-        {
+
+        { 
+
         }
 
         public  async Task<string>  LoginAsync(string userName, string password , int applicationID)
@@ -29,7 +31,7 @@ namespace Hyoung.FMS.WebServices
             _applicationID = applicationID;
             //var results = await _directoryClient.LoginAsync(userName, password, applicationID);
 
-            XmlNode _xmlresponce = await _directoryClient.LoginAsync(userName, password, applicationID);
+            XmlNode _xmlresponce = await _directoryClient.LoginAsync(userName, password, applicationID).ConfigureAwait(false);
           
 
 

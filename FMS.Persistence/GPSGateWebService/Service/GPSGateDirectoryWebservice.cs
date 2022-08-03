@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using System.Xml;
 using System.ServiceModel;
 using DirectoryReference;
+using Microsoft.EntityFrameworkCore;
+using FMS.Domain.TelemetryModel;
 
 namespace FMS.Persistence.GPSGateWebService.Service
 {
@@ -23,6 +25,7 @@ namespace FMS.Persistence.GPSGateWebService.Service
 
 
         public  GPSGateConections GPSGateConnection { get ; set; }
+       
 
         public GPSGateDirectoryWebservice()
         {

@@ -15,20 +15,21 @@ namespace FMS.Persistence
 {
    public static class DependacyInjection
     {
-        //public static IServiceCollection AddPersistence (this IServiceCollection services,IConfiguration configuration)
-        //{
-        //    services.AddDbContext<FMSGPSContext>(options =>
-        //   options.UseSqlServer(configuration.GetConnectionString("DefaultConnectionString")));
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        {
+           // services.AddDbContext<FMSGPSContext>(options =>
+         //  options.UseSqlServer(configuration.GetConnectionString("DefaultConnectionString")));
+          
+            
+
+           // services.AddScoped<IFMSContext>(provider => provider.GetService<FMSGPSContext>());
+
+            // services.AddTransient<IDirectoryWebservice, GPSGateDirectoryWebservice>();
+            services.AddScoped<IDirectoryWebservice>(provider => provider.GetService<GPSGateDirectoryWebservice>());
+            // services.AddScoped<IGPSGateWebserviceContext>(provider => provider.GetService<GPSgateContext>());
 
 
-        //    services.AddScoped<IFMSContext>(provider => provider.GetService<FMSGPSContext>());
-
-        //   // services.AddTransient<IDirectoryWebservice, GPSGateDirectoryWebservice>();
-        //    services.AddScoped<IDirectoryWebservice>(provider => provider.GetService <GPSGateDirectoryWebservice>());
-        //   // services.AddScoped<IGPSGateWebserviceContext>(provider => provider.GetService<GPSgateContext>());
-
-
-        //    return services;
+            return services;
 
 
         }

@@ -13,7 +13,7 @@ namespace DirectoryServiceReference1
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://gpsgate.com/services/", ConfigurationName="DirectoryServiceReference1.DirectorySoap")]
-    public interface DirectorySoap
+    public interface IDirectorySoap
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://gpsgate.com/services/Login", ReplyAction="*")]
@@ -704,13 +704,13 @@ namespace DirectoryServiceReference1
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    public interface DirectorySoapChannel : DirectoryServiceReference1.DirectorySoap, System.ServiceModel.IClientChannel
+    public interface DirectorySoapChannel : DirectoryServiceReference1.IDirectorySoap, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    public partial class DirectorySoapClient : System.ServiceModel.ClientBase<DirectoryServiceReference1.DirectorySoap>, DirectoryServiceReference1.DirectorySoap
+    public partial class DirectorySoapClient : System.ServiceModel.ClientBase<DirectoryServiceReference1.IDirectorySoap>, DirectoryServiceReference1.IDirectorySoap
     {
         
         /// <summary>

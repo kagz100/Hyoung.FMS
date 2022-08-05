@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FMS.Model.TelemetryModel
+namespace FMS.Model.GpsGateModel
 {
     public class TrackPoint
     {

@@ -3,16 +3,15 @@ using System.Collections.Generic;
 
 namespace FMS.Domain.Entities
 {
-    /// <summary>
-    /// 			
-    /// </summary>
-    public partial class Site
+    public partial class Employee
     {
         public int Id { get; set; }
 
-        public string Name { get; set; } = null!;
+        public string FullName { get; set; } = null!;
 
-        public virtual ICollection<Issuetracker> Issuetrackers { get; } = new List<Issuetracker>();
+        public string? EmployeeWorkNo { get; set; }
+
+        public string? EmployeephoneNumber { get; set; }
 
         public virtual ICollection<Vehicleconsumption> Vehicleconsumptions { get; } = new List<Vehicleconsumption>();
 

@@ -1,41 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FMS.Domain.Entities
 {
-    public class Device
+    /// <summary>
+    /// stores information about the GPS device that is installed on the vehicle or asset.
+    /// </summary>
+    public partial class Device
     {
-     
-            public DateTime created { get; set; }
-            public string name { get; set; }
-            public bool hidePosition { get; set; }
-            public int proximity { get; set; }
-            public string imei { get; set; }
-            public string PhoneNo { get; set; }
-            public string email { get; set; }
-            public string apn { get; set; }
-            public string gprsUsername { get; set; }
-            public string gprsPassword { get; set; }
-            public string lastIP { get; set; }
-            public int lastPort { get; set; }
-            public string staticIP { get; set; }
-            public int staticPort { get; set; }
-            public string protocolID { get; set; }
-            public int profileId { get; set; }
-            public int protocolVersionID { get; set; }
-            public int msgFieldDictionaryID { get; set; }
-            public int deviceDefinitionID { get; set; }
-            public int mobileNetworkID { get; set; }
-            public int longitude { get; set; }
-            public int latitude { get; set; }
-            public DateTime timeStamp { get; set; }
-            public int ownerID { get; set; }
-            public string ownerUsername { get; set; }
-            public string ownerName { get; set; }
-            public string ownerEmail { get; set; }
-            public string devicePassword { get; set; }
-            public object[] oneWireVariables { get; set; }
-             
+        public int DeviceImei { get; set; }
+
+        public int DeviceMakerId { get; set; }
+
+        public int DevicePhoneNumber { get; set; }
+
+        public virtual ICollection<Vehicle> Vehicles { get; } = new List<Vehicle>();
     }
 }

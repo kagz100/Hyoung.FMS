@@ -4,12 +4,7 @@ using System.Text;
 
 namespace FMS.Domain.Entities.Report
 {
-    class ReportFormat
-    {
-    }
-
-
-
+   
     // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
     /// <remarks/>
     [System.SerializableAttribute()]

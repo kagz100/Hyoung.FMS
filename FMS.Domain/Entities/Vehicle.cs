@@ -1,45 +1,54 @@
-﻿using FMS.Domain.Entities.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace FMS.Domain.Entities
-{ 
-    public partial class Vehicle:Entity
+{
+    public partial class Vehicle
     {
-        public Vehicle()
-        {
-        }
-        public int CalculatedSpeed { get; set; }
-        public string Description { get; set; }
-        public string DeviceActivity { get; set; }
-        public Device Devices { get; set; }
-        public string Email { get; set; }
+        public string HyoungNo { get; set; } = null!;
 
-        public string lastTransport { get; set; }
-        public string name { get; set; }
-        public string phoneNumber { get; set; }
-        public string surname { get; set; }
-        public string username { get; set; }
+        public int VehicleId { get; set; }
 
+        public int VehicleTypeId { get; set; }
 
+        public int? VehicleModelId { get; set; }
 
-        public virtual Vehicletype Vehicletype { get; set; }
+        public int? VehicleManufacturerId { get; set; }
 
+        public string? Yom { get; set; }
 
-        public virtual ICollection<Driver> DriversDriving { get; private set; }
-        public virtual ICollection<AccumulatorValue> AccValues {get; private set; }
-        public virtual ICollection<VehiclesCustomField> VehiclesFields { get; private set; }
+        public decimal ExpectedAveraged { get; set; }
 
-        public virtual ICollection<Tag> Tags { get; private set; }
+        public int? DeviceId { get; set; }
 
+        public int? DefaultEmployeeId { get; set; }
 
+        public int? WorkingSiteId { get; set; }
 
+        public decimal? ExcessWorkingHrCost { get; set; }
 
+        public string? NumberPlate { get; set; }
+
+        public string AssetId { get; set; } = null!;
+
+        public virtual Assest Asset { get; set; } = null!;
+
+        public virtual ICollection<Calibrationdatum> Calibrationdata { get; } = new List<Calibrationdatum>();
+
+        public virtual Employee? DefaultEmployee { get; set; }
+
+        public virtual Device? Device { get; set; }
+
+        public virtual ICollection<Issuetracker> Issuetrackers { get; } = new List<Issuetracker>();
+
+        public virtual Vehiclemanufacturer? VehicleManufacturer { get; set; }
+
+        public virtual Vehiclemodel? VehicleModel { get; set; }
+
+        public virtual Vehicletype VehicleType { get; set; } = null!;
+
+        public virtual ICollection<Vehicleconsumption> Vehicleconsumptions { get; } = new List<Vehicleconsumption>();
+
+        public virtual Site? WorkingSite { get; set; }
     }
-
-
-
-
-
 }

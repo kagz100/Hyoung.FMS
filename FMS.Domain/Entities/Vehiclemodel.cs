@@ -3,16 +3,13 @@ using System.Collections.Generic;
 
 namespace FMS.Domain.Entities
 {
-    /// <summary>
-    /// Stores different types of vehicles that are part of the fleet.
-    /// </summary>
-    public partial class Vehicletype
+    public partial class Vehiclemodel
     {
         public int Id { get; set; }
 
-        public string Name { get; set; } = null!;
+        public string? Name { get; set; }
 
-        public sbyte? IsKmPerLiter { get; set; }
+        public int? ManufacturerId { get; set; }
 
         public virtual ICollection<Assest> Assests { get; } = new List<Assest>();
 

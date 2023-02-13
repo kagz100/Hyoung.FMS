@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FMS.Persistence.DataAccess;
+//using FMS.Persistence.DataAccess;
 //using Hyoung.FMS.Model.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,8 +29,8 @@ namespace Hyoung.FMS.WebClient
         {
             services.AddControllersWithViews().AddJsonOptions(options=>options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
-            services.AddDbContext<FMSGPSContext>(options =>
-                         options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+          //  services.AddDbContext<FMSGPSContext>(options =>
+                        // options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 
             
             services.Configure<CookiePolicyOptions>(options =>

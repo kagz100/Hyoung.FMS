@@ -5,6 +5,7 @@ using System.Text;
 
 namespace FMS.Domain.Entities
 {
+
     public class Deduction : Entity
 
     {

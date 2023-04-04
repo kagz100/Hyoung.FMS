@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <FetchReportResponse xmlns="http://gpsgate.com/services/">
+      <FetchReportResult>
+        <ReportOutput xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://gpsgate.com/xml/">
+          <Tables>
+            <Table>
+              <TableDefinition defaultStyles="false">
+                <pageDefinition>
+                  <pageFormat>Auto</pageFormat>
+                  <columnWidths>
+                    <double>10</double>
+                    <double>10</double>
+                    <double>0</double>
+                    <double>5</double>
+                    <double>0</double>
+                    <double>0</double>
+                    <double>0</double>
+                    <double>0</double>
+                    <double>0</double>
+                    <double>0</double>
+                    <double>0</double>
+                    <double>0</double>
+                    <double>0</double>
+                    <double>0</double>
+                    <double>0</double>
+                  </columnWidths>
+                </pageDefinition>
+                <Columns />
+                <Regions>
+                  <Region repeatHeader="false" pageBreak="false" expression="" level="0" sortExpression="$CustomField([UserID], [Site], [user])" sortDirection="ASC">
+                    <Header kind="h">
+                      <RegionRow id="h_0_0" VisibilityExpression="true">
+                        <Column expression="vehicleID" visibilityExpression="" action="" id="h_0_0_0" cspan="1" escape="true">
+                          <Layout style="color:#FFFFFF;background-color:#FF870F;text-align:center" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="EngHrsIgnitionHrs" visibilityExpression="" action="" id="h_0_0_1" cspan="1" unit="" escape="true">
+                          <Layout style="color:#FFFFFF;background-color:#FF870F;text-align:center" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="TotalFuelfromFuelProbe" visibilityExpression="" action="" id="h_0_0_2" cspan="1" escape="true">
+                          <Layout style="color:#FFFFFF;background-color:#FF870F;text-align:center" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="EnginehrsFlowmeter" visibilityExpression="" action="" id="h_0_0_3" cspan="1" unit="" escape="true">
+                          <Layout style="color:#FFFFFF;background-color:#0FFF27" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="TotalFuelFlowmeter" visibilityExpression="" action="" id="h_0_0_4" cspan="1" unit="" escape="true">
+                          <Layout style="color:#FFFFFF;background-color:#0FFF27" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="GPSLastLocation" visibilityExpression="" action="" id="h_0_0_5" cspan="1" unit="" escape="true">
+                          <Layout style="color:#FFFFFF;background-color:#FF870F" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="TotalDistance " visibilityExpression="" action="" id="h_0_0_6" cspan="1" unit="" escape="true">
+                          <Layout style="color:#FFFFFF;background-color:#17D1FF" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="Avgspeed" visibilityExpression="" action="" id="h_0_0_7" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="MaxSpeed" visibilityExpression="" action="" id="h_0_0_8" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="TotalFuelNormalFlowmeter" visibilityExpression="" action="" id="h_0_0_9" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="TotalFuelIdleFlowmeter" visibilityExpression="" action="" id="h_0_0_10" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="TotalEngHrsNormalFlowmeter" visibilityExpression="" action="" id="h_0_0_11" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="TotalEnghrsIdleFlowmeter" visibilityExpression="" action="" id="h_0_0_12" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="Date" visibilityExpression="" action="" id="h_0_0_13" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                      </RegionRow>
+                    </Header>
+                    <Item kind="i">
+                      <RegionRow id="i_0_0" VisibilityExpression="true">
+                        <Column expression="[UserID]" visibilityExpression="" action="" id="i_0_0_0" cspan="1" escape="true">
+                          <Layout style="text-align:center" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="$math.eval($AccumulatorValue([Engine Hours],[UserID],[SamplingEnd]) - $AccumulatorValue([Engine Hours],[UserID],[SamplingStart]))" visibilityExpression="" action="" id="i_0_0_1" cspan="1" unit="NUMBER_DECIMAL_1" escape="true">
+                          <Layout style="text-align:center" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="$math.eval([Totalfuel] &lt; 0 ?0 : [Totalfuel])" visibilityExpression="" action="" id="i_0_0_2" cspan="1" unit="NUMBER_DECIMAL_1" escape="true">
+                          <Layout style="text-align:center" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="[TotalEngineHoursflowmeter]" visibilityExpression="" action="" id="i_0_0_3" cspan="1" unit="NUMBER_DECIMAL_1" escape="true">
+                          <Layout style="background-color:#BCFFB8" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="[TotalFuelCan]" visibilityExpression="" action="" id="i_0_0_4" cspan="1" unit="NUMBER_DECIMAL_1" escape="true">
+                          <Layout style="background-color:#BCFFB8" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="[StopAddress]" visibilityExpression="" action="" id="i_0_0_5" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="[DistanceGps]" visibilityExpression="" action="" id="i_0_0_6" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="[AvgSpeed]" visibilityExpression="" action="" id="i_0_0_7" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="[MaxSpeed]" visibilityExpression="" action="" id="i_0_0_8" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="[TotalNormalFuel]" visibilityExpression="" action="" id="i_0_0_9" cspan="1" unit="NUMBER_DECIMAL_1" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="[TotalNormalFuel]" visibilityExpression="" action="" id="i_0_0_10" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="[TotalNormalHour]" visibilityExpression="" action="" id="i_0_0_11" cspan="1" unit="NUMBER_DECIMAL_1" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="[TotalIdlehour]" visibilityExpression="" action="" id="i_0_0_12" cspan="1" unit="NUMBER_DECIMAL_1" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="[SamplingStart]" visibilityExpression="" action="" id="i_0_0_13" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                      </RegionRow>
+                    </Item>
+                    <Footer kind="f">
+                      <RegionRow id="f_0_0" VisibilityExpression="true">
+                        <Column expression="" visibilityExpression="" action="" id="f_0_0_0" cspan="1" escape="true">
+                          <Layout style="width:10%" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="" visibilityExpression="" action="" id="f_0_0_1" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="" visibilityExpression="" action="" id="f_0_0_2" cspan="1" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="" visibilityExpression="" action="" id="f_0_0_3" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="" visibilityExpression="" action="" id="f_0_0_4" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="" visibilityExpression="" action="" id="f_0_0_5" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="" visibilityExpression="" action="" id="f_0_0_6" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="" visibilityExpression="" action="" id="f_0_0_7" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="" visibilityExpression="" action="" id="f_0_0_8" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="" visibilityExpression="" action="" id="f_0_0_9" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="" visibilityExpression="" action="" id="f_0_0_10" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="" visibilityExpression="" action="" id="f_0_0_11" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="" visibilityExpression="" action="" id="f_0_0_12" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                        <Column expression="" visibilityExpression="" action="" id="f_0_0_13" cspan="1" unit="" escape="true">
+                          <Layout style="" />
+                          <AltLayout style="" />
+                        </Column>
+                      </RegionRow>
+                    </Footer>
+                  </Region>
+                </Regions>
+              </TableDefinition>
+              <Rows>
+                <Row ref="h_0_0" inx="0" kind="h">
+                  <Cell ref="h_0_0_0">vehicleID</Cell>
+                  <Cell ref="h_0_0_1">EngHrsIgnitionHrs</Cell>
+                  <Cell ref="h_0_0_2">TotalFuelfromFuelProbe</Cell>
+                  <Cell ref="h_0_0_3">EnginehrsFlowmeter</Cell>
+                  <Cell ref="h_0_0_4">TotalFuelFlowmeter</Cell>
+                  <Cell ref="h_0_0_5">GPSLastLocation</Cell>
+                  <Cell ref="h_0_0_6">TotalDistance </Cell>
+                  <Cell ref="h_0_0_7">Avgspeed</Cell>
+                  <Cell ref="h_0_0_8">MaxSpeed</Cell>
+                  <Cell ref="h_0_0_9">TotalFuelNormalFlowmeter</Cell>
+                  <Cell ref="h_0_0_10">TotalFuelIdleFlowmeter</Cell>
+                  <Cell ref="h_0_0_11">TotalEngHrsNormalFlowmeter</Cell>
+                  <Cell ref="h_0_0_12">TotalEnghrsIdleFlowmeter</Cell>
+                  <Cell ref="h_0_0_13">Date</Cell>
+                </Row>
+                <Row ref="i_0_0" inx="0" kind="i">
+                  <Cell ref="i_0_0_0">322</Cell>
+                  <Cell ref="i_0_0_1" />
+                  <Cell ref="i_0_0_2">0.2 </Cell>
+                  <Cell ref="i_0_0_3">0.5 </Cell>
+                  <Cell ref="i_0_0_4">1.1 </Cell>
+                  <Cell ref="i_0_0_5" />
+                  <Cell ref="i_0_0_6">1.36328813254012E-08</Cell>
+                  <Cell ref="i_0_0_7" />
+                  <Cell ref="i_0_0_8" />
+                  <Cell ref="i_0_0_9">0.3 </Cell>
+                  <Cell ref="i_0_0_10">0.299999999999272</Cell>
+                  <Cell ref="i_0_0_11">0.0 </Cell>
+                  <Cell ref="i_0_0_12">0.5 </Cell>
+                  <Cell ref="i_0_0_13">2023-03-28T15:25:42</Cell>
+                </Row>
+                <Row ref="i_0_0" inx="1" kind="i">
+                  <Cell ref="i_0_0_0">322</Cell>
+                  <Cell ref="i_0_0_1" />
+                  <Cell ref="i_0_0_2">0.2 </Cell>
+                  <Cell ref="i_0_0_3">0.0 </Cell>
+                  <Cell ref="i_0_0_4">0.0 </Cell>
+                  <Cell ref="i_0_0_5" />
+                  <Cell ref="i_0_0_6">1.36328813254012E-08</Cell>
+                  <Cell ref="i_0_0_7" />
+                  <Cell ref="i_0_0_8" />
+                  <Cell ref="i_0_0_9">0.0 </Cell>
+                  <Cell ref="i_0_0_10">0</Cell>
+                  <Cell ref="i_0_0_11">0.0 </Cell>
+                  <Cell ref="i_0_0_12">0.0 </Cell>
+                  <Cell ref="i_0_0_13">2023-03-29T00:00:12</Cell>
+                </Row>
+                <Row ref="i_0_0" inx="2" kind="i">
+                  <Cell ref="i_0_0_0">322</Cell>
+                  <Cell ref="i_0_0_1" />
+                  <Cell ref="i_0_0_2">0.0 </Cell>
+                  <Cell ref="i_0_0_3">0.5 </Cell>
+                  <Cell ref="i_0_0_4">1.1 </Cell>
+                  <Cell ref="i_0_0_5" />
+                  <Cell ref="i_0_0_6">633.722944724546</Cell>
+                  <Cell ref="i_0_0_7" />
+                  <Cell ref="i_0_0_8" />
+                  <Cell ref="i_0_0_9">0.3 </Cell>
+                  <Cell ref="i_0_0_10">0.299999999999272</Cell>
+                  <Cell ref="i_0_0_11">0.0 </Cell>
+                  <Cell ref="i_0_0_12">0.5 </Cell>
+                  <Cell ref="i_0_0_13">2023-03-28T15:25:42</Cell>
+                </Row>
+                <Row ref="i_0_0" inx="3" kind="i">
+                  <Cell ref="i_0_0_0">322</Cell>
+                  <Cell ref="i_0_0_1" />
+                  <Cell ref="i_0_0_2">0.0 </Cell>
+                  <Cell ref="i_0_0_3">0.0 </Cell>
+                  <Cell ref="i_0_0_4">0.0 </Cell>
+                  <Cell ref="i_0_0_5" />
+                  <Cell ref="i_0_0_6">633.722944724546</Cell>
+                  <Cell ref="i_0_0_7" />
+                  <Cell ref="i_0_0_8" />
+                  <Cell ref="i_0_0_9">0.0 </Cell>
+                  <Cell ref="i_0_0_10">0</Cell>
+                  <Cell ref="i_0_0_11">0.0 </Cell>
+                  <Cell ref="i_0_0_12">0.0 </Cell>
+                  <Cell ref="i_0_0_13">2023-03-29T00:00:12</Cell>
+                </Row>
+                <Row ref="f_0_0" inx="0" kind="f">
+                  <Cell ref="f_0_0_0" />
+                  <Cell ref="f_0_0_1" />
+                  <Cell ref="f_0_0_2" />
+                  <Cell ref="f_0_0_3" />
+                  <Cell ref="f_0_0_4" />
+                  <Cell ref="f_0_0_5" />
+                  <Cell ref="f_0_0_6" />
+                  <Cell ref="f_0_0_7" />
+                  <Cell ref="f_0_0_8" />
+                  <Cell ref="f_0_0_9" />
+                  <Cell ref="f_0_0_10" />
+                  <Cell ref="f_0_0_11" />
+                  <Cell ref="f_0_0_12" />
+                  <Cell ref="f_0_0_13" />
+                </Row>
+              </Rows>
+            </Table>
+          </Tables>
+        </ReportOutput>
+      </FetchReportResult>
+    </FetchReportResponse>
+  </soap:Body>
+</soap:Envelope>

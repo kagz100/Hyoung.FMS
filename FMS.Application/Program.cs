@@ -1,8 +1,9 @@
 ﻿using System;
+using MediatR;
 
 namespace FMS.Application
 {
-    public class Class1
+    public class Program
     {
     }
 }

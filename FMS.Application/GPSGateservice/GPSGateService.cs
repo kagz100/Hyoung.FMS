@@ -31,14 +31,7 @@ namespace FMS.Application.GPSGateservice
         }
 
 
-        public async Task<string> GetFuelconsumption(string sessionID, DateTime from, DateTime to)
-        {
-            //Get the Fuel consumption id from the database make sure that the fuel consumption report is the right one for generating reports
-            
-
-
-          
-        }   
+     
 
         public string SessionID { get; set; }
 

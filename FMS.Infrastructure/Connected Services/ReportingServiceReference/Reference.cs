@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Xml;
+
 namespace ReportingServiceReference
 {
     
@@ -180,7 +182,8 @@ namespace ReportingServiceReference
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="GenerateReportResponse", Namespace="http://gpsgate.com/services/", Order=0)]
         public ReportingServiceReference.GenerateReportResponseBody Body;
-        
+        public XmlDocument GenerateReportResult;
+
         public GenerateReportResponse()
         {
         }
@@ -273,6 +276,8 @@ namespace ReportingServiceReference
         {
             this.Body = Body;
         }
+
+        public XmlDocument FetchReportResult { get; set; }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -357,6 +362,8 @@ namespace ReportingServiceReference
         {
             this.Body = Body;
         }
+
+        public XmlDocument GetReportStatusResult { get; set; }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]

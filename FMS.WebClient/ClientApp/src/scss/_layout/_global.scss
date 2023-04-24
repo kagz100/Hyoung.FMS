@@ -1,0 +1,109 @@
+
+/**
+	
+	LAYOUT :: GLOBALS
+
+**/
+#middle {
+	position: relative;
+	max-width: 100% !important;
+}
+
+// just because of svg's
+.container-xlg,
+.container {
+	position: relative;
+	// never set z-index! will break many blocks/layouts! Use z-index-* class instead in your html markup
+}
+
+.container-xlg {
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+
+
+
+
+
+/**
+	
+	Ignore Bootstrap breakpoints (< 1200px)
+	Should be used with (.container) class
+
+**/
+@media only screen and (max-width: 1201px) {
+	.container-ignore-breakpoints { max-width: 100%; }
+}
+/* 
+	.container-xlg container (+200px)
+	Bootstrap is up to 1200
+*/
+$container-xlg-max: map-get($grid-breakpoints, "xl") + 200;
+@media only screen and (min-width: $container-xlg-max) {
+	.container-xlg { max-width: $container-xlg-max; }
+}
+@media only screen and (max-width: $container-xlg-max) {
+	.container-xlg { max-width: 100%; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+	
+	Responsive
+
+**/
+// DESKTOP
+@media only screen and (min-width: map-get($grid-breakpoints, "lg")) {
+	
+	/**
+
+		Boxed Layout
+		header-* classes not supported at this time!
+
+	**/
+	body:not(.header-over):not(.header-sticky):not(.header-scroll-reveal):not(.layout-admin).layout-boxed {
+		background-color: $layout-boxed-body-bg;
+	}
+		body:not(.header-over):not(.header-sticky):not(.header-scroll-reveal):not(.layout-admin).layout-boxed #wrapper {
+			margin: $layout-boxed-margin auto;
+			max-width: $layout-boxed-width;
+			background-color: #fff;
+
+			@include vendors-generate(box-shadow, $layout-boxed-shadow);
+			@include vendors-generate(border-radius, $layout-boxed-radius);
+		}
+		body:not(.header-over):not(.header-sticky):not(.header-scroll-reveal):not(.layout-admin).layout-boxed #header,
+		body:not(.header-over):not(.header-sticky):not(.header-scroll-reveal):not(.layout-admin).layout-boxed #header>#top_bar {
+			@include vendors-generate(border-top-left-radius, $layout-boxed-radius);
+			@include vendors-generate(border-top-right-radius, $layout-boxed-radius);
+		}
+
+		body:not(.header-over):not(.header-sticky):not(.header-scroll-reveal):not(.layout-admin).layout-boxed #footer {
+			@include vendors-generate(border-bottom-left-radius, $layout-boxed-radius);
+			@include vendors-generate(border-bottom-right-radius, $layout-boxed-radius);
+		}
+
+}
+
+
+
+
+
+// MOBILE
+@media only screen and (max-width: map-get($grid-breakpoints, "lg")) {
+
+}

@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿
+using Microsoft.AspNetCore.Identity;
 
 namespace FMS.Domain.Entities.Auth
 {
     public class GPSGateUser:IdentityUser
     {
-        public string Password { get; set; }
+        public string? Password { get; set; }
     }
 }

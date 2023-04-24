@@ -1,4 +1,5 @@
-﻿using FMS.Domain.Entities;
+﻿using FMS.Application.Models;
+using FMS.Domain.Entities;
 using FMS.Domain.Entities.Auth;
 using MediatR;
 using System;
@@ -7,17 +8,9 @@ using System.Text;
 
 namespace FMS.Application.Queries.GetconsumptionReport
 {
-    public class GetConsumptionReportQuery : IRequest<List<Vehicleconsumption>>
+    public class GetConsumptionReportQuery : IRequest<List<VehicleConsumptionInfo>>
     {
 
-        public GPSGateConections conn { get; set; }
-
-        public int FuelConsumptionReportId { get; set; }
-
-
-        public DateTime From { get; set; }
-
-        public DateTime To { get; set; }
 
 
         public GetConsumptionReportQuery(GPSGateConections conn, int fuelConsumptionReportId, DateTime from, DateTime to)
@@ -28,5 +21,16 @@ namespace FMS.Application.Queries.GetconsumptionReport
             To = to;
         }
 
+
+
+
+        public GPSGateConections conn { get; set; }
+
+        public int FuelConsumptionReportId { get; set; }
+
+
+        public DateTime From { get; set; }
+
+        public DateTime To { get; set; }
     }
 }

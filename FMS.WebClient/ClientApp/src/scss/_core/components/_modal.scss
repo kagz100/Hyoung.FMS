@@ -1,0 +1,29 @@
+/**
+
+	Modals
+
+**/
+.modal-full {
+	max-width: 100%;
+	margin: 15px;
+}
+
+
+// bootstrap modal : blur backdrop
+@if $backdrop-filter != none {
+
+	.modal-backdrop.show {
+		opacity: 1 !important;
+	}
+	.modal-backdrop {
+		backdrop-filter: $backdrop-filter;
+	}
+
+	.offcanvas-backdrop {
+		opacity: 1 !important;
+	  animation: _bkdFadeIn;
+	  animation-duration: .25s;
+	  backdrop-filter: $backdrop-filter;
+	}
+
+}

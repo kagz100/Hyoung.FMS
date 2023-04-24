@@ -1,0 +1,13 @@
+@media only screen and (min-width: map-get($grid-breakpoints, "md")) {
+	body:not(.layout-admin) section,
+	body:not(.layout-admin) .section {
+		padding: $section-padding 0;
+	}
+}
+
+@media only screen and (max-width: map-get($grid-breakpoints, "md")) {
+	body:not(.layout-admin) section,
+	body:not(.layout-admin) .section {
+		padding: $section-padding-xs 0;
+	}
+}

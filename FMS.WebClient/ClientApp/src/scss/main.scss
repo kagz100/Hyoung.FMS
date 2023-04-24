@@ -1,0 +1,92 @@
+// Before bootstrap
+@import
+	'_core/mixins',
+	'_custom/variables',
+	'variables';
+
+
+
+
+
+
+// Bootstrap Core
+@import '../../node_modules/bootstrap/scss/bootstrap';
+
+
+
+
+
+// Smarty Core :: Helpers
+@import
+	'_core/base/resets',
+	'_core/base/typography',
+	'_core/utils/utils',
+	'_core/utils/colors', 					// 7Kb  	(extended text colors - in most cases is not needed : /documentation/util-text-color-extended.html)
+	'_core/base/rtl';
+
+
+
+
+// Smarty Core :: Components
+@import
+	'_core/components/avatar',
+	'_core/components/arrows',
+	'_core/components/blocks',
+	'_core/components/section',
+	'_core/components/buttons',
+	'_core/components/breadcrumb',
+	'_core/components/card',
+	'_core/components/badge',
+	'_core/components/dropdown',
+	'_core/components/divider',
+	'_core/components/form.input',
+	'_core/components/form.switch',
+	'_core/components/table',
+	'_core/components/tabs',
+	'_core/components/sidebar',
+	'_core/components/fullscreen',
+	'_core/components/modal',
+	'_core/components/pagination',
+	'_core/components/process_steps',
+	'_core/components/thumbnail',
+	'_core/components/timeline',
+	'_core/components/shape',
+	'_core/components/offcanvas',
+
+	'_core/components/forms',
+	'_core/components/navigation',
+	'_core/components/rating';
+
+
+
+
+// Smarty Core :: Webfont Icons
+@import '_vendors/_sow/flags/main'; 			// 13Kb
+@import '_vendors/_sow/flaticon/main'; 		// 19Kb : REQUIRED :
+
+
+
+
+// Main Layout
+@import
+	'_layout/header',
+	'_layout/footer',
+	'_layout/sidebar',
+	'_layout/global',
+	'_layout/misc',
+	'_layout/fix',
+	'_core/base/fixes'; // do not move
+
+
+
+
+// Admin Layout
+// Very lightweight/minimal css, using existing components
+@import '_layout/admin';
+
+
+
+
+
+// Custom - last one to allow overwrites!
+@import '_custom/main';

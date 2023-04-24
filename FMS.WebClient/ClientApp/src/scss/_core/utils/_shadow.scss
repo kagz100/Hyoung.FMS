@@ -1,0 +1,139 @@
+/**
+
+		- Box Shadows 				.shadow (default) , .shadow-*, .shadow-*-hover,
+									[[.shadow-*-hover can be used in combination with .transition-all-ease-*]]
+
+**/
+/*
+
+	Fix
+	Shadow Repaint
+
+*/
+.section .shadow, 				.section .shadow-hover, 
+.section .shadow-xs, 			.section .shadow-xs-hover,
+.section .shadow-sm, 			.section .shadow-sm-hover,
+.section .shadow-md, 			.section .shadow-md-hover,
+.section .shadow-lg, 			.section .shadow-lg-hover,
+.section .shadow-xlg,			.section .shadow-xlg-hover,
+.section .shadow-3d, 			.section .shadow-3d-hover,
+.section .shadow-3d-up, 	.section .shadow-3d-up-hover,
+.section .shadow-3d-down,	.section .shadow-3d-down-hover {
+
+	transition-property: box-shadow, transform;
+
+	/* Chrome load/repaint hack */
+	animation: __shadowPageLoadFix;
+	animation-duration: 0.01s; // 10ms
+
+}
+@keyframes __shadowPageLoadFix {
+	from 	{  }
+	to 		{ box-shadow: none; }
+}
+
+
+
+
+.shadow-none {
+	box-shadow: none !important;
+}
+
+// .shadow, /* already used by bootstrap */
+.shadow-hover:hover {
+	box-shadow: $box-shadow !important;
+}
+.shadow-xs,
+.shadow-xs-hover:hover {
+	box-shadow: $box-shadow-xs !important;
+}
+// .shadow-sm, /* already used by bootstrap */
+.shadow-sm-hover:hover {
+	box-shadow: $box-shadow-sm !important;
+}
+.shadow-md,
+.shadow-md-hover:hover {
+	box-shadow: $box-shadow-md !important;
+}
+// .shadow-lg, /* already used by bootstrap */
+.shadow-lg-hover:hover {
+	box-shadow: $box-shadow-lg !important;
+}
+.shadow-xlg,
+.shadow-xlg-hover:hover {
+	box-shadow: $box-shadow-xlg !important;
+}
+.shadow-soft,
+.shadow-soft-hover:hover {
+	box-shadow: $box-shadow-soft !important;
+}
+
+.shadow-3d-up,
+.shadow-3d-up-hover:hover {
+	box-shadow: 0rem -2rem 3.5rem rgba(22,28,45,.1) !important;
+}
+
+.shadow-3d-down,
+.shadow-3d-down-hover:hover,
+.shadow-3d,
+.shadow-3d-hover:hover {
+	box-shadow: 0 2.5rem 4rem rgba(22,28,45,.1) !important;
+}
+
+
+/* text shadow */
+.text-shadow {
+	text-shadow: -1px 2px 1px rgba(0,0,0,0.4);
+}
+.text-shadow-lg {
+	text-shadow: -1px 2px 22px rgba(0,0,0,0.4);
+}
+.text-shadow-xl {
+	text-shadow: -1px 1px 18px rgba(0,0,0,0.6);
+}
+
+
+
+
+
+
+
+
+
+
+/*
+	
+	.shadow-primary-*
+	.shadow-secondary-*
+	.....
+	.shadow-*-*
+
+*/
+@each $color-name, $color-hex in $theme-colors {
+
+	.shadow-#{$color-name}-xs, 
+	.shadow-#{$color-name}-xs-hover:hover {
+		box-shadow: 0 0 25px rgba($color-hex, 0.100) !important;
+	}
+
+	.shadow-#{$color-name}-sm, 
+	.shadow-#{$color-name}-sm-hover:hover {
+		box-shadow: 00 0 35px rgba($color-hex, 0.125) !important;
+	}
+
+	.shadow-#{$color-name}-md, 
+	.shadow-#{$color-name}-md-hover:hover {
+		box-shadow: 0 0 35px rgba($color-hex, 0.150) !important;
+	}
+
+	.shadow-#{$color-name}-lg, 
+	.shadow-#{$color-name}-lg-hover:hover {
+		box-shadow: 0 10px 40px 10px rgba($color-hex, 0.175) !important;
+	}
+
+	.shadow-#{$color-name}-xlg, 
+	.shadow-#{$color-name}-xlg-hover:hover {
+		box-shadow: 0 20px 40px 0 rgba($color-hex, 0.25) !important;
+	}
+
+}

@@ -1,0 +1,152 @@
+// Load needed variables
+@import '../_core/mixins',
+        '../variables',
+        '../../../node_modules/bootstrap/scss/functions',
+        '../../../node_modules/bootstrap/scss/variables';
+
+
+
+// cancel dropdown animation
+.bootstrap-select .dropdown-menu {
+	@include vendors-generate(animation, none !important);
+}
+
+// spacing fix
+.bootstrap-select .dropdown-toggle .filter-option-inner-inner {
+	text-overflow: ellipsis;
+
+	@if $global-rtl-enable == false {
+		margin-right: 30px;
+	} @else {
+		margin-left: 30px;
+	}
+}
+.bootstrap-select.form-control-sm .dropdown-toggle {
+	padding: $input-padding-y-sm $input-padding-x-sm;
+}
+
+// hide icons on multiple selected fix
+select[multiple]+button .filter-option-inner-inner>i {
+	display: none !important;
+}
+
+// invalid bs-alidate
+.bs-invalid,
+.bootstrap-select.is-invalid .dropdown-toggle,
+.was-validated .bootstrap-select select:invalid+.dropdown-toggle {
+	border-color: $red !important;
+}
+.bs-valid,
+.bootstrap-select.is-valid .dropdown-toggle,
+.was-validated .bootstrap-select select:valid+.dropdown-toggle {
+	border-color: $green !important;
+}
+
+// close button
+.bootstrap-select button.close {
+	font-size: 25px;
+}
+
+// Optgroup
+.bootstrap-select .dropdown-header {
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.8;
+    color: $primary;
+}
+
+
+// rtl fix
+@if $global-rtl-enable == true {
+	.bootstrap-select .dropdown-toggle .filter-option-inner-inner {
+		text-align: right;
+	}
+}
+
+// search input adjustment
+.bs-searchbox>input {
+	height: calc(1.5em + .92rem + 2px);
+	padding: .46rem 1rem;
+	font-size: 1rem;
+}
+
+// border - avoid confusion of below inputs
+.bootstrap-select .dropdown-menu {
+	border: $border-color 1px solid;
+	padding: 3px;
+}
+
+// no radius if inside input-group
+.input-group .bootstrap-select .dropdown-toggle { 
+	border-radius: 0 !important; 
+}
+
+// fix inside input-group
+.input-group .bootstrap-select.form-control-sm .dropdown-toggle {
+	padding: ($input-padding-y-sm + 0.02) $input-padding-x-sm;
+}
+
+// "Material Style" Layout to match regular select
+.form-label-group .bootstrap-select.form-control {
+	background: transparent;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+.form-label-group .bootstrap-select+label {
+	transition: none !important;
+}
+.form-label-group .bootstrap-select button {
+	padding-bottom: 0;
+	height: 100%;
+}
+.form-label-group .bootstrap-select .filter-option {
+	padding-top: 8px;
+	padding-bottom: 5px;
+}
+.form-label-group .bootstrap-select:not(.form-control-sm) .filter-option {
+	padding-top: 8px;
+	padding-bottom: 5px;
+}
+	.form-label-group .bootstrap-select.form-control-sm .filter-option {
+		padding-top: 8px;
+		padding-bottom: 0;
+		line-height: 1.1;
+	}
+
+// -- -- -- -- -- -- -- --
+// -sm list items paddings
+//.bootstrap-select .dropdown-menu .dropdown-item>a, 
+//.bootstrap-select .dropdown-menu a.dropdown-item, 
+// -- -- -- -- -- -- -- --
+// .bs-select.bs-select-list-sm
+.bootstrap-select.bs-select-list-sm .dropdown-menu li:not(.dropdown-item)>a {
+	padding-top: 3px !important;
+	padding-bottom: 3px !important;
+}
+
+
+// data-subtext color
+.bootstrap-select .dropdown-menu li.active small {
+	color: $text-muted !important;
+}
+
+// long text
+.bootstrap-select li span {
+	white-space: normal;
+}
+
+// MOBILE
+@media only screen and (max-width: map-get($grid-breakpoints, "lg")) {
+
+	.dropdown-header,
+	.dropdown-menu .dropdown-item>a, 
+	.dropdown-menu a.dropdown-item, 
+	.dropdown-menu li:not(.dropdown-item)>a {
+		
+		white-space: normal;
+		padding-right: 10px !important;
+		padding-left: 10px !important;
+
+	}
+
+}

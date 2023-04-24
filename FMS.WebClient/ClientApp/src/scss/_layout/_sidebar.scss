@@ -1,0 +1,53 @@
+/**
+	
+	LAYOUT :: SIDEBAR
+
+**/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+	
+	Responsive
+
+**/
+// DESKTOP
+@media only screen and (min-width: map-get($grid-breakpoints, "lg")) {
+
+	/* aside-lg */
+	body.aside-lg #wrapper_content {
+
+		@if $global-rtl-enable == false {
+			margin-left: $aside-width-lg !important;
+		} @else {
+			margin-right: $aside-width-lg !important;
+		}
+
+	}
+		/* static|sticky sidebar only, not floating */
+		body.aside-sticky.aside-lg aside.aside-start,
+		body.aside-sticky.aside-lg aside.aside-end {
+			width: $aside-width-lg !important;
+		}
+
+}
+
+
+
+
+
+// MOBILE
+@media only screen and (max-width: map-get($grid-breakpoints, "lg")) {
+
+}

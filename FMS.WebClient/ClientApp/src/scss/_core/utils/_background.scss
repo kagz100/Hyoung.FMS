@@ -1,0 +1,327 @@
+/**
+		- Misc 
+
+		- Gradients 				.bg-gradient-light-top, .bg-gradient-light-bottom
+									.bg-gradient-light-left, .bg-gradient-light-right
+									.bg-gradient-* (primary, danger, etc)
+									.bg-gradient-radial-*
+
+
+		- Backgrounds 				.bg-gray-* [100-900], .bg-darkblue .bg-diff,
+									.bg-light-hover, .bg-light-active
+									.bg-theme-color-light
+**/
+
+
+
+/**
+	
+	Misc 
+
+**/
+.bg-cover {
+	background-repeat: no-repeat !important; 
+	background-position: center !important; 
+	background-size: cover !important;
+}
+.bg-fixed {
+	background-attachment: fixed !important;
+}
+/* <div class="bg-dots text-gray-400 position-absolute top-0 mt-4 ms-n4 w-100 h-100 z-index-0"></div> */
+.bg-dots {
+  background-image: radial-gradient(currentColor 1px, transparent 1px);
+  background-size: calc(10 * 1px) calc(10 * 1px);
+}
+.bg-blur {
+	filter: blur(5px);
+}
+.bg-suprime { /* Used on image to remove background. IE is not responding */
+	mix-blend-mode: multiply;
+}
+.bg-inherit {
+	background: inherit !important;
+}
+.bg-gradient-default {
+	// linear-gradient(180deg, #2f2e80 0, #4c4bb5)
+	background: $bg-gradient-default;
+}
+.bg-lime {
+	background-color: #fefaf4 !important;
+}
+
+
+/**
+	
+	Gradients
+
+	Note: can be used together with any .bg-*
+**/
+.bg-gradient-light-top {
+	background-image: linear-gradient(0deg, rgba($primary,0.05) 0%, transparent 100%);
+}
+.bg-gradient-light-bottom {
+	background-image: linear-gradient(0deg, #fff 0, rgba($primary, 0.05))
+}
+.bg-gradient-light-left {
+	background-image: linear-gradient(90deg,rgba($primary, 0.05) 0,#fff);
+}
+.bg-gradient-light-right {
+	background-image: linear-gradient(270deg, #fff 0, rgba($primary, 0.05))
+}
+
+// dark gradient default
+$bg-gradient-dark: 	#313131 !default;
+.bg-gradient-dark {
+	color: #ffffff;
+	background: $bg-gradient-dark !important;
+	background: -moz-linear-gradient(top, lighten($bg-gradient-dark, 8%) 0%, $bg-gradient-dark 100%) !important;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten($bg-gradient-dark, 8%)), color-stop(100%, $bg-gradient-dark)) !important;
+	background: -webkit-linear-gradient(top, lighten($bg-gradient-dark, 8%) 0%, $bg-gradient-dark 100%) !important;
+	background: -o-linear-gradient(top, lighten($bg-gradient-dark, 8%) 0%, $bg-gradient-dark 100%) !important;
+	background: -ms-linear-gradient(top, lighten($bg-gradient-dark, 8%) 0%, $bg-gradient-dark 100%) !important;
+	background: linear-gradient(to bottom, lighten($bg-gradient-dark, 8%) 0%,$bg-gradient-dark 100%) !important;
+}
+	.bg-gradient-dark p {
+		color: $gray-500;
+	}
+
+@each $color, $value in $theme-colors {
+	@if $color != 'dark' { // we use different color for dark, more visible than #000
+
+		.bg-gradient-#{$color} {
+			@include gradient-generate($value, 8%);
+		}
+
+	}
+}
+
+
+
+/**
+	
+	Backgrounds
+		.bg-*
+
+**/
+.bg-light-active,
+.bg-light-hover:hover {
+	background: $gray-100;
+}
+.bg-theme-color-light {
+  background-color: rgba($primary, 0.04) !important;
+}
+.bg-gray-100 {
+	background-color: $gray-100 !important;
+}
+.bg-gray-200 {
+	background-color: $gray-200 !important;
+}
+.bg-gray-300 {
+	background-color: $gray-300 !important;
+}
+.bg-gray-400 {
+	background-color: $gray-400 !important;
+}
+.bg-gray-500 {
+	color: #ffffff;
+	background-color: $gray-500 !important;
+}
+.bg-gray-600 {
+	color: #ffffff;
+	background-color: $gray-600 !important;
+}
+.bg-gray-700 {
+	color: #ffffff;
+	background-color: $gray-700 !important;
+}
+.bg-gray-800 {
+	color: #ffffff;
+	background-color: $gray-800 !important;
+}
+.bg-gray-900 {
+	color: #ffffff;
+	background-color: $gray-900 !important;
+}
+.bg-darkblue {
+	color: #ffffff;
+	background: #2b354f !important;
+}
+.bg-diff {
+	background-color: rgba(0,0,0,0.07);
+}
+input.bg-diff:focus,
+textarea.bg-diff:focus {
+	background-color: rgba(0,0,0,0.11);
+}
+
+
+
+
+/* 
+
+	Soft backgrounds
+		.bg-*-soft
+
+*/
+@each $btn-class, $rgba-percent in $theme-colors-soft {
+
+	.active.bg-#{$btn-class}-active-soft,
+	.bg-#{$btn-class}-soft {
+		color: 				darken(map-get($theme-colors, $btn-class), 30%) !important;
+		background-color: 	lighten(map-get($theme-colors, $btn-class), $rgba-percent) !important;
+	}
+
+	.bg-#{$btn-class}-soft-hover:hover {
+		background-color: 	lighten(map-get($theme-colors, $btn-class), $rgba-percent) !important;
+	}
+
+}
+
+
+
+/* 
+
+	Light backgrounds
+		.bg-*-light
+
+*/
+@each $btn-class, $rgba-percent in $theme-colors-soft {
+	.bg-#{$btn-class}-light {
+		background-color: rgba(map-get($theme-colors, $btn-class) , 0.04) !important;
+	}
+}
+
+
+
+/* 
+
+	Active backgrounds
+		.active.bg-*-active
+
+*/
+@each $btn-class, $rgba-percent in $theme-colors-soft {
+	.active.bg-#{$btn-class}-active {
+		color: 				#ffffff !important;
+		background-color: 	map-get($theme-colors, $btn-class) !important;
+	}
+}
+
+
+
+
+/* 
+
+	Hover backgrounds
+		.bg-*-hover
+
+*/
+@each $btn-class, $rgba-percent in $theme-colors-soft {
+
+	@if $btn-class != 'light' {
+
+		.bg-#{$btn-class}-hover:hover {
+			color: #fff !important;
+			background-color: 	map-get($theme-colors, $btn-class) !important;
+		}
+
+		.bg-#{$btn-class}-hover:hover p {
+			color: #fff !important;
+		}
+
+	} @else {
+
+		.bg-#{$btn-class}-hover:hover {
+			background-color: map-get($theme-colors, $btn-class) !important;
+		}
+
+	}
+
+}
+	.text-white-hover:hover {
+		color: $white !important;
+	}
+	.text-dark-hover:hover {
+		color: $black !important;
+	}
+
+
+
+
+
+/* 
+
+	Radial backgrounds
+	IE 10+
+
+	.bg-gradient-radial-*
+
+	-- --
+
+	As a general rule, a solid background-color is 
+	used as a fallback! We can use a combination with
+	bg-* classes so we avoid adding useless CSS lines!
+
+*/
+
+/** -- -- -- -- -- **/
+//
+// Used to help .bg-suppress
+// will be removed starting with version 3.5
+// .bg-gradient-radial-light used instead!
+//
+.bg-light-radial {
+	background: radial-gradient(#ffffff, #f8f9fa) !important;
+}
+/** -- -- -- -- -- **/
+
+@each $btn-class, $hex-color in $theme-colors {
+	.bg-gradient-radial-#{$btn-class} {
+		background-image: radial-gradient(circle, rgba( lighten($hex-color, 28%) , 0.4), $hex-color 70%) !important; 
+	}
+}
+
+
+
+
+
+
+
+
+/* 
+
+	Linear Backgrounds
+	Multi Colors
+	
+*/
+.bg-gradient-linear-default {
+	background-color: #9d009f !important;
+	background: -moz-linear-gradient(    left, #9d009f 0%, #6336bd 50%, #10c7a8 100%) !important;
+	background: -webkit-linear-gradient( left, #9d009f 0%, #6336bd 50%, #10c7a8 100%) !important;
+	background: linear-gradient(      to right,#9d009f 0%, #6336bd 50%, #10c7a8 100%) !important;
+}
+
+.bg-gradient-linear-purple {
+	background-color: #7a22a3 !important;
+	background-image: linear-gradient(163deg, rgb(93, 52, 175) 0%, rgb(93, 52, 175) 25%, rgb(130, 0, 159) 65%, rgb(247, 52, 94) 100%) !important;
+}
+
+.bg-gradient-linear-indigo {
+	background-color: #6536af !important;
+	background-image: linear-gradient(rgb(120, 59, 177) 0%, rgb(71, 47, 173) 100%) !important;
+}
+
+.bg-gradient-linear-danger {
+	background-color: #de1f1f !important;
+	background-image: linear-gradient(163deg,#732a67,#770000 25%,#612727 65%,#de1f1f) !important;
+}
+
+.bg-gradient-linear-success {
+	background-color: #00775c !important;
+	background-image: linear-gradient(#909816,#165d0d) !important;
+}
+
+.bg-gradient-linear-primary {
+	background-color: #160092 !important;
+	background-image: linear-gradient(90deg,#000f77 0,#3f286d 50%,#111954) !important;
+}
+

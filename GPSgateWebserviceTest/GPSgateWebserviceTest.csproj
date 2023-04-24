@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -13,11 +13,14 @@
     <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
     <PackageReference Include="NUnit.Analyzers" Version="3.3.0" />
     <PackageReference Include="coverlet.collector" Version="3.1.2" />
+    <PackageReference Include="xunit" Version="2.4.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FMS.Application\FMS.Application.csproj" />
     <ProjectReference Include="..\FMS.Domain\FMS.Domain.csproj" />
     <ProjectReference Include="..\FMS.Infrastructure\FMS.Infrastructure.csproj" />
+    <ProjectReference Include="..\FMS.Persistence\FMS.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

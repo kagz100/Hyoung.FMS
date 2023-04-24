@@ -8,17 +8,17 @@ namespace FMS.Domain.Entities
 {
     public class VehiclesCustomField : Entity
     {
-        public string FieldName { get; set; }
+        public string? FieldName { get; set; }
     }
 
 
     public class VehiclesCustomFieldValue :Entity
     {
-        public VehiclesCustomField VehicleField { get; set; }
+        public VehiclesCustomField? VehicleField { get; set; }
 
-        public string Value { get; set; }
+        public string? Value { get; set; }
 
-        public ICollection<Vehicle> Vehicles { get; private set; }
+        public ICollection<Vehicle>? Vehicles { get; private set; }
 
     }
 

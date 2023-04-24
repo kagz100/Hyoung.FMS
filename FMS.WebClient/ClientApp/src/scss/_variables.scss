@@ -1,0 +1,623 @@
+
+/// !NOTE!
+/// Would be better to just copy to your _custom/variables.scss folder
+/// the variables you want/need to edit so you can update in the future!
+/// Just copy/paste and edit because the files from _custom/ are
+/// already loaded by main.scss
+
+
+///
+///
+/// GLOBALS
+///
+///
+$global-rtl-enable:                         false !default;                                         // RTL: true|false
+
+
+///
+
+/// ======================================================================================
+/// ++ PRIMARY THEME COLOR
+///    ASSOCIATED WITH - BRAND COLOR -
+///    will overwrite bootstrap *-primary theme
+/// ======================================================================================
+$primary:                                   #574fec !default;                                       // #377dff - blue, default theme color
+
+
+///
+
+
+$body-color:                                #1c0950 !default;                                       // body color
+$body-bg:                                   #ffffff !default;                                       // body background color
+
+$path-images:                               "../images/" !default;                                  // images folder path
+$path-fonts:                                "../fonts/" !default;                                   // fonts/icons folder path
+
+
+///
+
+
+/// Bootstrap fonts
+$font-family-base:                          "Inter", "Rubik", "Open Sans", "Roboto", sans-serif !default;
+$font-size-base:                            1rem !default;                                          // font size (1rem = 16px, rem required) [1.0625rem = 17px ; 1.125rem = 18px ; 1.1875rem = 19px ; 1.25rem = 20px]
+$line-height-base:                          1.5 !default;                                           // bootstrap: 1.5 !default;
+
+
+/// font weight
+$font-weight-base:                          400 !default;                                           // bootstrap
+$font-weight-lighter:                       lighter !default;                                       // bootstrap
+$font-weight-light:                         300 !default;                                           // bootstrap
+$font-weight-normal:                        400 !default;                                           // bootstrap
+$font-weight-medium:                        500 !default;                                           // added
+$font-weight-bold:                          700 !default;                                           // bootstrap
+$font-weight-bolder:                        bolder !default;                                        // bootstrap
+
+
+//* Backdrop/overlay */
+/// modals, search suggest, sidebars, etc - special effect
+$backdrop-dark:                             #131f43 !default;                                      // used as default
+$backdrop-light:                            #ffffff !default;
+
+$backdrop-opacity:                          .26 !default;
+$backdrop-filter:                           blur(4px) !default;                                     // none = no filter
+$backdrop-z-index:                          10 !default;                                            // Header z-index is 10! Good choice to set it the same! See $header-z-index
+
+
+
+
+
+
+///
+
+/// ======================================================================================
+/// BOOTSTRAP VARIABLES : REWRITES
+/// ======================================================================================
+
+///
+
+// ! - ! - ! - ! - ! - ! - ! - ! - ! - ! - ! - ! - ! - ! - ! - ! - !
+// Color system
+$gray-100: #f9fbfd !default;  // default: #f8f9fa
+$gray-200: #f1f4f8 !default;  // default: #e9ecef
+$gray-300: #d9e2ef !default;  // default: #dee2e6
+$gray-400: #c6d3e6 !default;  // default: #ced4da
+$gray-500: #abbcd5 !default;  // default: #adb5bd
+$gray-600: #869ab8 !default;  // default: #6c757d
+$gray-700: #506690 !default;  // default: #495057
+$gray-800: #384c74 !default;  // default: #343a40
+$gray-900: #1b2a4e !default;  // default: #212529
+// ! - ! - ! - ! - ! - ! - ! - ! - ! - ! - ! - ! - ! - ! - ! - ! - !
+
+
+// Headings
+$headings-font-family:              null !default;                    // bootstrap : null
+$headings-font-weight:              $font-weight-medium !default;     // bootstrap : 500
+$headings-line-height:              1.2 !default;                     // bootstrap : 1.2
+$headings-color:                    null !default;                    // bootstrap : null
+
+// Lead text (.lead class)
+$lead-font-size:                    $font-size-base * 1.25 !default;  // bootstrap: $font-size-base * 1.25
+$lead-font-weight:                  300 !default;                     // bootstrap: 300
+
+// Dropdown Carets (should remain false)
+$enable-caret:                      false !default;
+
+// Enable validation icons
+$enable-validation-icons:           false !default;
+
+// Enable Gradients (butons are affected)
+$enable-gradients:                  false !default;
+
+// Enable negative margins (+16Kb)
+$enable-negative-margins:           true !default;
+
+// box shadow
+$box-shadow:                        0 1px 3px 0 rgba(50,50,93,.15),0 4px 6px 0 rgba(112,157,199,.15) !default;
+$box-shadow-xs:                     0 0 25px rgba(140, 152, 164, 0.100) !default;               // added, not original to bootstrap
+$box-shadow-sm:                     0 0 35px rgba(140, 152, 164, 0.125) !default;
+$box-shadow-md:                     0 0 35px rgba(140, 152, 164, 0.150) !default;               // added, not original to bootstrap
+$box-shadow-lg:                     0 10px 40px 10px rgba(140, 152, 164, 0.175) !default;
+$box-shadow-xlg:                    0 10px 40px 10px rgba(140, 152, 164, 0.300) !default;       // added, not original to bootstrap
+$box-shadow-soft:                   0 6px 12px rgba(140,152,164,.075) !default;
+
+// borders
+$border-color:                      #dde4ea !default;           // default: $gray-300
+$input-border-color:                $border-color !default;     // default: $gray-400
+$input-placeholder-color:           #95a4af !default;           // default: $gray-600
+$border-radius:                     .35rem !default;            // default: .25rem
+$border-radius-lg:                  .45rem !default;             // default: .3rem
+$border-radius-xl:                  .6rem !default;             // default: .3rem
+$border-radius-xlg:                 .1.3rem !default;             // default: .3rem
+$border-radius-sm:                  .2rem !default;             // default: .2rem
+
+
+//* FORMS */
+$input-btn-padding-x:               1rem !default; // will affect inputs also
+$input-focus-box-shadow:            0 0 25px rgba($primary, 0.1) !default;
+$input-focus-border-color:          rgba($primary, 0.5) !default;
+$custom-file-text: (
+  en: "Browse",
+  ro: "Caută"
+) !default;
+
+//* checkbox / radio */
+$form-check-input-width:                        1.25em !default;                      // default: 1rem
+$form-check-input-bg:                           $gray-200 !default;
+$form-check-input-border:                       1px solid $gray-300 !default;
+$form-check-input-checked-bg-color:             $primary !default;
+$form-check-input-checked-border-color:         $primary !default;
+$form-check-input-indeterminate-bg-color:       $gray-700 !default;
+$form-check-input-indeterminate-border-color:   $gray-700 !default;
+$form-check-input-border-radius:                .25em !default;
+$form-check-input-focus-box-shadow:             none !default;
+$form-check-input-focus-border:                 none !default;
+$form-check-padding-left:                       $form-check-input-width + .8em !default;
+
+//* form switch */
+$form-switch-color:                             rgba(0, 0, 0, .25) !default;
+$form-switch-width:                             2.3em !default;                       // default: 2em
+$form-switch-padding-left:                      $form-switch-width + .8em !default;
+
+//* form range */
+$form-range-track-height:                       .4rem !default;                       // default: .5rem
+$form-range-track-bg:                           $gray-200 !default;                   // default: $gray-300
+$form-range-track-border-radius:                1rem !default;                        // default: .1rem
+$form-range-track-box-shadow:                   none !default;                        // default: $box-shadow-inset
+$form-range-thumb-width:                        1.2rem !default;                      // default: 1rem
+$form-range-thumb-height:                       $form-range-thumb-width !default;
+$form-range-thumb-bg:                           $gray-700 !default;
+$form-range-thumb-active-bg:                    $form-range-thumb-bg !default;
+$form-range-thumb-border:                       0 !default;
+$form-range-thumb-disabled-bg:                  $gray-500 !default;
+$form-range-thumb-box-shadow:                   0 10px 40px 10px rgba(140, 152, 164, 0.175) !default;
+$form-range-thumb-focus-box-shadow:             $form-range-thumb-box-shadow !default;
+
+
+//* buttons */
+//* to reset to bootstrap default, just comment/delete the lines below! */
+$input-btn-padding-y:               .78rem !default;                        // default: .375rem
+$input-btn-padding-x:               $input-btn-padding-x !default;          // default: .75rem
+$input-btn-font-size:               $font-size-base !default;
+
+$input-btn-padding-y-sm:            .46rem !default;                        // default: .25rem
+$input-btn-padding-x-sm:            $input-btn-padding-x !default;          // default: .5rem
+$input-btn-font-size-sm:            $font-size-base !default;
+ 
+$input-btn-padding-y-lg:            1.09rem !default;                        // default: .5rem
+$input-btn-padding-x-lg:            $input-btn-padding-x !default;           // default: 1rem
+$input-btn-font-size-lg:            $font-size-base !default;
+
+$input-btn-focus-box-shadow:        none !default;
+//* -end buttons- */
+
+
+//* links */
+$link-decoration:                   none !default;
+
+
+
+
+$spacer: 1rem !default;
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+
+  // -- --  
+  // +20Kb more (minified)
+    6: $spacer * 4.5,
+    7: $spacer * 6,
+    8: $spacer * 8,
+  // -- --  
+
+) !default;
+
+
+
+
+
+
+///
+
+/// -- --
+/// ## THEME COLORS
+/// (bootstrap rewrites)
+///
+/// Recommended to use the GOV.UK colour palette.
+/// https://design-system.service.gov.uk/styles/colour/
+///
+/// Notes:
+///   $pink - added by Smarty. Remove if not needed
+/// -- --
+
+///
+
+$min-contrast-ratio:   3 !default;              // orig: 4.5
+
+///
+$red:         #f64e60 !default;                 // orig: #dc3545 (*-danger)
+$yellow:      #fad776 !default;                 // orig: #ffc107 (*-warning)
+$green:       #6dbb30 !default;                 // orig: #28a745 (*-success)
+$cyan:        #73e7f7 !default;                 // orig: #17a2b8 (*-info)
+$light:       #f8f9fa !default;                 // orig: $gray-100 (*-light)
+$secondary:   #6c757d !default;                 // orig: $gray-800 (*-secondary)
+$dark:        #2E2E2E !default;                 // orig: #000000 (*-dark)
+$text-muted:  $gray-700 !default;               // orig: $gray-600
+
+
+// Theme Colors (buttons are also generated from here)
+$theme-colors: () !default;
+$theme-colors: map-merge(
+  (
+    "primary":      $primary,
+    "secondary":    $secondary,
+    "success":      $green,
+    "info":         $cyan,
+    "warning":      $yellow,
+    "danger":       $red,
+    "light":        $light,
+    "dark":         $dark
+  ),
+  $theme-colors
+);
+
+// MUST be a match for $theme-colors (see above)
+// Is a percent of rgba, sued to soften the colors
+$theme-colors-soft: () !default;
+$theme-colors-soft: map-merge(
+  (
+    "primary":      35%,
+    "secondary":    49%,
+    "success":      44%,
+    "info":         15%,
+    "warning":      15%,
+    "danger":       33%,
+    "light":        10%,
+    "dark":         59%
+  ),
+  $theme-colors-soft
+);
+
+
+
+//* MODAL */
+$modal-content-bg:                    #ffffff !default;
+$modal-content-border-color:          transparent !default;
+$modal-content-border-radius:         $border-radius-xl !default;
+$modal-header-border-color:           #eef2f5 !default;
+$modal-footer-border-color:           #eef2f5 !default;
+
+/*$modal-backdrop-bg:                   #131f43 !default;*/
+$modal-backdrop-bg:                   rgba(#131f43, .26) !default;
+$modal-backdrop-opacity:              .26 !default;
+
+
+//* PAGINATION */
+$pagination-color:                    $gray-600 !default;
+$pagination-active-color:             $primary !default;
+$pagination-active-bg:                lighten($primary, 35%) !default;
+$pagination-active-border-color:      lighten($primary, 35%) !default;
+$pagination-hover-color:              darken($primary, 35%) !default;
+$pagination-hover-bg:                 lighten($gray-100, 1%) !default;
+$pagination-hover-border-color:       #eef2f5 !default;
+$pagination-disabled-color:           $gray-400 !default;
+$pagination-disabled-border-color:    #eef2f5 !default;
+$pagination-border-color:             #eef2f5 !default;
+
+
+//* PILLS */
+$nav-pills-border-radius:             50rem !default;
+$nav-pills-link-active-color:         $gray-900 !default;
+$nav-pills-link-active-bg:            $gray-200 !default;
+
+// custom pills (inverted, with a background color)
+// not part of bootstrap!
+$nav-pills-invert-link-active-color:  $primary !default;
+$nav-pills-invert-link-active-bg:     #ffffff !default;
+$nav-pills-invert-link-active-shadow: 0 1px 3px 0 rgba(50,50,93,.08),0 4px 6px 0 rgba(112,157,199,.08) !default;
+
+
+//* TABLE */
+$table-border-color:                  #eaf0f5 !default;                       // $gray-200 !default;
+$table-accent-bg:                     #ffffff !default;
+$table-hover-bg:                      $gray-200 !default;
+$table-accent-bg:                     $gray-100 !default;
+$table-group-separator-color:         $gray-200 !default;
+$table-border-width:                  1px !default;
+$table-striped-bg:                    $gray-200 !default;
+
+
+//* TOASTS */
+$toast-max-width:                     300px !default;
+$toast-border-color:                  $gray-200 !default;
+$toast-box-shadow:                    $box-shadow !default;
+$toast-border-radius:                 .3rem !default;
+$toast-font-size:                     .935rem !default;
+
+
+//* DROPDOWN */
+$dropdown-box-shadow:                 $box-shadow-lg !default;                // $box-shadow-lg !default;
+$dropdown-border-color:               transparent !default;
+$dropdown-border-radius:              $border-radius-xl !default;             // .3rem default, same as bootstrap $border-radius-lg
+$dropdown-link-active-color:          $primary !default;
+$dropdown-link-active-bg:             $gray-100 !default;
+$dropdown-item-padding-x:             25px !default;
+$dropdown-item-padding-y:             8px !default;
+$dropdown-divider-margin-y:           0 !default;
+$dropdown-divider-bg:                 darken($gray-100, 2%) !default;         // $gray-200 BS default (or $border-color)
+$dropdown-header-color:               inherit !default;
+$dropdown-header-padding:             10px 15px !default;
+$dropdown-footer-padding:             $dropdown-header-padding !default;      // added, not original to bootstrap
+$dropdown-deep-indicator-opcity:      0.35 !default;                          // default icon arrow opacity before hover
+$dropdown-font-size:                  0.9375rem;                              // added by smarty; 1rem = 16px, 0.9375rem = 15px, 0.875rem = 14px
+$dropdown-padding-x:                  .5rem !default;
+$dropdown-padding-y:                  1rem !default;
+
+
+//* Popovers */
+$popover-bg:                          #ffffff !default;
+$popover-header-bg:                   $popover-bg !default;
+$popover-header-color:                $gray-700 !default;
+$popover-header-padding-y:            .8rem !default;
+$popover-header-padding-x:            1rem !default;
+$popover-border-color:                #e6e6e6 !default;                     // same with popover header border color
+
+
+//* Tooltip */
+$tooltip-color:                       $gray-300 !default;
+$tooltip-bg:                          $gray-800 !default;
+$tooltip-padding-y:                   .4rem !default;
+$tooltip-padding-x:                   .6rem !default;
+$tooltip-opacity:                     1 !default;
+$tooltip-arrow-color:                 $tooltip-bg !default;
+$tooltip-border-radius:               .25rem !default;
+
+
+//* Accordion */
+$accordion-button-active-bg:          none !default;
+
+
+//* Cards */
+$card-bg:                   #ffffff !default;
+$card-cap-bg:               inherit !default;
+$card-cap-color:            null !default;
+$card-spacer-y:             1rem !default;
+$card-spacer-x:             1rem !default;
+$card-cap-padding-x:        1rem !default;
+$card-cap-padding-y:        1rem !default;
+$card-border-color:         $border-color !default;
+$card-box-shadow:           $box-shadow-soft !default;
+$card-border-radius:        $border-radius !default;
+$card-title-spacer-y:       0 !default;
+
+//* Grid containers */
+$container-max-widths: (
+  sm: 540px,    // bootstrap default: 540px
+  md: 720px,    // bootstrap default: 720px
+  lg: 960px,    // bootstrap default: 960px
+  xl: 1200px    // bootstrap default: 1200px
+) !default;
+
+
+
+//* Breadcrumbs */
+$breadcrumb-bg:                       transparent !default;
+$breadcrumb-padding-y:                0 !default;
+$breadcrumb-padding-x:                0 !default;
+$breadcrumb-item-padding:             .5rem !default;
+$breadcrumb-margin-bottom:            0 !default;
+$breadcrumb-divider-color:            $gray-300 !default;
+$breadcrumb-active-color:             $gray-600 !default;
+$breadcrumb-divider:                  quote("/") !default;
+
+
+
+///
+
+/// ======================================================================================
+/// COMPONENTS: _core/components/
+/// UTILS:      _core/utils/
+/// ======================================================================================
+
+///
+
+// Enable the same shadow color on button hover
+$btn-hover-shadow-color-enable:     true !default;
+$btn-hover-shadow-color-size:       0 4px 11px !default;    // default: 0 4px 11px 
+
+
+// Buttons (added transition & pill radius)
+$btn-transition:                    color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, transform .25s ease-in-out !default;
+
+
+//* BRAND COLORS [components/_button.scss] */
+$brand-color-list: () !default;
+$brand-color-list: map-merge((
+
+  "facebook":             #3b5998,
+  "twitter":              #1da1f2,
+  "gplus":                #dd4b39,
+  "instagram":            #3f729b,
+  "linkedin":             #007bb6,
+  "vimeo":                #aad450,
+  "youtube":              #bb0000,
+  "github":               #24292e,
+  "snapchat":             #FFFC00,
+  "email":                #049fb3,
+
+), $brand-color-list);
+
+
+//* RATING */
+$rating-font:                           "Flaticon" !default;
+$rating-icon-empty:                     \f173 !default;            // heart icon: \f18f
+$rating-icon-half:                      \f191 !default;            // heart icon: \f18e
+$rating-icon-full:                      \f190 !default;            // heart icon: \f18d
+
+
+//* AVATARS */
+$avatar-size: () !default;
+$avatar-size: map-merge(
+  (
+    "xs":      1.75rem,
+    "sm":      2.6875rem,
+    "md":      3.125rem,
+    "lg":      4.25rem,
+    "xl":      5.625rem,
+    "xxl":     7rem,
+  ),
+  $avatar-size
+);
+
+//* DROPDOWN */
+$dropdown-transition:                   fadeIn .6s !default;        // transition on hover
+//* child/dropdowns links */
+$dropdown-suffix-enable:                true !default;              // true|false - dropdown prefix icon (dep level idicator)
+$dropdown-prefix-enable:                true !default;              // true|false - dropdown suffix icon
+
+
+//* section */
+$section-padding:                       100px !default;             // <section> padding-top & padding-bottom
+$section-padding-xs:                    80px !default;              // <section> mobile padding-top & padding-bottom
+
+
+//* SIDEBAR */
+$aside-width:                           265px !default;             // width set for both: primary & secondary. Add .w--* width class (see utilities) to .aside-secondary, if wider is needed!
+$aside-width-lg:                        290px !default;             // _layout/_sidebar.scss
+$aside-primary-bg:                      $gray-900 !default;
+$aside-primary-bg-active:               rgba(0,0,0,.05) !default;
+$aside-secondary-bg:                    #ffffff !default;
+$aside-secondary-bg-active:             #f5f6fc !default;           // rgba(darken($aside-secondary-bg,12%), 0.2)
+
+$aside-minified-width:                  70px !default;              // desktop only!
+$aside-compact-width:                   140px !default;             // desktop only!
+
+
+//* OFFCANVAS */
+$offcanvas-horizontal-width-lg:         500px;
+
+
+//* NAV : DEEP */
+$nav-deep-icon-font-size:               10px !default;              // mostly used by admin
+$nav-deep-dark-link-color:              #bfc6d7 !default;
+$nav-deep-dark-link-color-active:       #ffffff !default;           // #74d6ff (light blue) ; #febd69 (orange)
+
+$nav-deep-light-link-color:             $body-color !default;
+$nav-deep-light-link-color-active:      $primary !default;
+
+
+
+//* UTILS : GRID : GUTTERS */
+$gutters-xxs:                           .125rem !default;           // should match .m-1 class when added as margin to col
+$gutters-xs:                            .25rem !default;            // should match .m-2 class when added as margin to col
+$gutters-sm:                            .5rem !default;             // should match .m-3 class when added as margin to col
+$gutters-md:                            .75rem !default;            // should match .m-4 class when added as margin to col
+$gutters-lg:                            1.5rem !default;            // should match .m-5 class when added as margin to col
+$gutters-xl:                            3rem !default;
+
+
+//* Default gradient */
+$bg-gradient-default:                   linear-gradient(180deg, #2f2e80 0, #4c4bb5) !default;
+
+
+
+///
+
+/// ======================================================================================
+/// ADMIN LAYOUT 
+/// _layout/_admin.scss - less than 5Kb minified (3.7Kb 8 Oct. 2019)
+/// We only set few margins/heights to avoid bugs on fixed header/sidebar
+///
+/// The admin is using exactly same elements fron frontend, like: $aside-*, $nav-deep-*
+/// That's it! There are no dedicated classes/rules for admin layout!
+/// ======================================================================================
+
+///
+$layout-admin-font-family:                  $font-family-base !default;               // Bootstrap default: var(--font-family-sans-serif)
+$layout-admin-body-bg:                      #eef0f8 !default;                         // default: #f9f9fc - body bg color
+$layout-admin-middle-max-width:             1920 - $aside-width !default;             // #middle max width - large screens
+$layout-admin-middle-padding:               30px !default;                            // #middle is the main content container! A little trick for no container margin: add .m--negative .Working only for root #middle>.m--negative
+$layout-admin-padded:                       30px !default;                            // padded layout (margins + floating sidebar : desktop only)
+
+// sections (also, .card is styled the same, so you can use .card divs instead of <section>, if you want to!)
+$layout-admin-section-bg:                   #ffffff !default;
+$layout-admin-section-color:                #444444 !default;
+$layout-admin-section-margin:               30px !default;
+$layout-admin-section-padding:              15px !default;
+$layout-admin-section-shadow:               $box-shadow-xs !default;
+$layout-admin-section-font-size:            $font-size-base !default;
+$layout-admin-section-border-radius:        $border-radius !default;
+
+
+
+
+
+
+
+
+
+///
+
+/// ======================================================================================
+/// LAYOUT :  ALL VARIABLES BELOW ARE DEDICATED TO _layout/&
+/// ======================================================================================
+
+///
+
+
+//* HEADER */
+//* _layout/_header.scss */
+
+$navbar-padding-y:                          0 !default;
+$navbar-padding-x:                          0 !default;
+$header-nav-height:                         80px !default;                      // 80px default
+$header-dropdown-top-negative-pos:          100, 150, 180, 220, 250 !default;   // in pixels - used to position very long dropdown childs (desktop only). Example: Pages->Account (.dropdown-menu-up-n250)
+$header-z-index:                            10 !default;                        // Known order: [sidebars: + 1]
+
+//* main menu links */
+$header-font-size:                          $font-size-base;                    // Some fonts are down|up scalled and need a fix. Example: "Source Sans Pro"
+$header-main-links-caret-enable:            true !default;                      // true|false - enable dropdown indicator
+$header-main-links-caret-webfont:           "Flaticon" !default;                // webfont ico
+$header-main-links-caret-main-ico:          \f1c4 !default;                     // webfont ico (arrow down)
+
+//* navbar toggler reset */
+$navbar-toggler-padding-y:                  0 !default;                          // .25rem !default
+$navbar-toggler-padding-x:                  0 !default;                          // .75rem !default
+$navbar-toggler-border-radius:              0 !default;                          // $btn-border-radius !default
+
+//* navbar brand */
+$navbar-brand-padding-y:                    0 !default;                          // just comment to put back paddings
+
+//* navbar dark */
+$navbar-dark-color:                         rgba(255,255,255, .90) !default;
+$navbar-dark-hover-color:                   #ffffff !default;
+
+
+
+//* FOOTER */
+//* _layout/_footer.scss */
+
+$footer-dark-bg:                #313131 !default;           // dark background color
+$footer-dark-color:             #ffffff !default;           // dark text color
+$footer-light-bg:               #ebebeb !default;           // light background color
+$footer-light-color:            $gray-900 !default;         // light text color
+
+
+
+
+//* Boxed Layout */
+//* _layout/_global.scss */
+
+$layout-boxed-body-bg:          #f2f3f8 !default;            // body background color on boxed
+$layout-boxed-width:            1200px !default;             // boxed width
+$layout-boxed-margin:           60px !default;               // top|bottom margins
+$layout-boxed-radius:           .25rem !default;             // border radius (corners rounded)
+$layout-boxed-shadow:           $box-shadow-md !default;     // set none for no shadow
+
+
+
+
+

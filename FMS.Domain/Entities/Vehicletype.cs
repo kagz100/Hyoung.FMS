@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FMS.Domain.Entities
+namespace FMS.Domain.Entities;
+
+/// <summary>
+/// 			
+/// </summary>
+public partial class Vehicletype
 {
-    /// <summary>
-    /// Stores different types of vehicles that are part of the fleet.
-    /// </summary>
-    public partial class Vehicletype
-    {
-        public int Id { get; set; }
+    public int Id { get; set; }
 
-        public string Name { get; set; } = null!;
+    public string Name { get; set; } = null!;
 
-        public sbyte? IsKmPerLiter { get; set; }
+    public string? Abbvr { get; set; }
 
-        public virtual ICollection<Assest> Assests { get; } = new List<Assest>();
+    public string? Nothinghere { get; set; }
 
-        public virtual ICollection<Vehicle> Vehicles { get; } = new List<Vehicle>();
-    }
+    public virtual ICollection<Assest> Assests { get; set; } = new List<Assest>();
+
+    public virtual ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
 }

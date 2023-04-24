@@ -7,22 +7,17 @@ namespace FMS.Domain.Entities
 {
     public partial class Driver:Entity
     {
-        public Driver()
-        {
-            DrivenVehicles = new HashSet<Vehicle>();
-        }
-
-        
+            
         public int UserId { get; set; }
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public string EmpNo { get; set; }
+        public string? EmpNo { get; set; }
         public double? PhoneNumber { get; set; }
-        public virtual ICollection<Vehicle> DrivenVehicles { get;private set; }
+        public virtual ICollection<Vehicle>? DrivenVehicles { get;private set; }
 
 
-        public Vehicle DefaultVehicle { get; set; }
+        public Vehicle? DefaultVehicle { get; set; }
 
 
 

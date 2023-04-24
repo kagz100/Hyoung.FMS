@@ -1,0 +1,121 @@
+/**
+
+    Shape : V
+
+**/
+.shape-v {
+    position: absolute;
+    height: 0px;
+    width: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+    .shape-v+section,
+    .shape-v+.section,
+    .shape-v+div {
+        z-index: 9;
+    }
+    .shape-v:after,
+    .shape-v:before {
+        position: absolute;
+        content: '';
+        background-color: #fff;
+        bottom: 0;
+        height: 100px;
+        margin-bottom: -100px;
+        z-index: 2;
+    }
+
+    // gray
+    .shape-v.bg-light:after,
+    .shape-v.bg-light:before {
+        background-color: $gray-100;
+    }
+
+
+
+        // left
+        .shape-v:before {
+            left: 0;
+
+            @if $global-rtl-enable == false {
+                width: 40%;
+            } @else {
+                width: 60%;
+            }
+
+            -webkit-transform-origin: 100% 0;
+                    transform-origin: 100% 0;
+
+            -webkit-transform: scaleX(2) scaleY(5) rotate(6deg);
+                    transform: scaleX(2) scaleY(5) rotate(6deg);
+        }
+
+        // right
+        .shape-v:after {
+            right: 0;
+            
+            @if $global-rtl-enable == false {
+                width: 60%;
+            } @else {
+                width: 40%;
+            }
+
+            -webkit-transform-origin: 0 0;
+                    transform-origin: 0 0;
+
+            -webkit-transform: scaleX(2) scaleY(5) rotate(-8deg);
+                    transform: scaleX(2) scaleY(5) rotate(-8deg);
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+    
+    Responsive
+
+**/
+// DESKTOP
+@media only screen and (min-width: map-get($grid-breakpoints, "lg")) {
+
+    /* Shape : V */
+    .shape-v.shape-xs:before {
+        -webkit-transform: scaleX(2) scaleY(5) rotate(2deg);
+                transform: scaleX(2) scaleY(5) rotate(2deg);
+    }
+
+    .shape-v.shape-xs:after {
+        -webkit-transform: scaleX(2) scaleY(5) rotate(-3deg);
+                transform: scaleX(2) scaleY(5) rotate(-3deg);
+    }
+
+}
+
+
+
+
+
+// MOBILE
+@media only screen and (max-width: map-get($grid-breakpoints, "lg")) {
+
+}

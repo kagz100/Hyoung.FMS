@@ -1,0 +1,123 @@
+/**
+
+		- Rtl Utils 				.text-align-start, .text-align-end, .float-start, .float-end
+									.p--0-start, .p--0-end, .m--0-start, .m--0-end
+									.b--0-start, .b--0-end, .b--0-start, .b--0-end
+									.m-auto-start, .m-auto-end
+
+**/
+.text-align-start {
+	@if $global-rtl-enable == false {
+		text-align: left !important;
+	} @else {
+		text-align: right !important;
+	}
+}
+.text-align-end {
+	@if $global-rtl-enable == false {
+		text-align: right !important;
+	} @else {
+		text-align: left !important;
+	}
+}
+
+.float-start {
+	@if $global-rtl-enable == false {
+		float: left !important;
+		margin-right: 10px;
+	} @else {
+		float: right !important;
+		margin-left: 10px;
+	}
+}
+.float-end {
+	@if $global-rtl-enable == false {
+		float: right !important;
+		margin-left: 10px;
+	} @else {
+		float: left !important;
+		margin-right: 10px;
+	}
+}
+
+.p--0-start {
+	@if $global-rtl-enable == false {
+		padding-left: 0 !important;
+	} @else {
+		padding-right: 0 !important;
+	}
+}
+.p--0-end {
+	@if $global-rtl-enable == false {
+		padding-right: 0 !important;
+	} @else {
+		padding-left: 0 !important;
+	}
+}
+
+.m--0-start {
+	@if $global-rtl-enable == false {
+		margin-left: 0 !important;
+	} @else {
+		margin-right: 0 !important;
+	}
+}
+.m--0-end {
+	@if $global-rtl-enable == false {
+		margin-right: 0 !important;
+	} @else {
+		margin-left: 0 !important;
+	}
+}
+.m-auto-start {
+	@if $global-rtl-enable == false {
+		margin-left: auto !important;
+	} @else {
+		margin-right: auto !important;
+	}
+}
+.m-auto-end {
+	@if $global-rtl-enable == false {
+		margin-right: auto !important;
+	} @else {
+		margin-left: auto !important;
+	}
+}
+
+.b--0-start {
+	@if $global-rtl-enable == false {
+		border-left: 0 !important;
+	} @else {
+		border-right: 0 !important;
+	}
+}
+.b--0-end {
+	@if $global-rtl-enable == false {
+		border-right: 0 !important;
+	} @else {
+		border-left: 0 !important;
+	}
+}
+
+
+@if $global-rtl-enable == true {
+	.hide-rtl {
+		display: none !important;
+	}
+}
+@if $global-rtl-enable == false {
+	.hide-ltr {
+		display: none !important;
+	}
+}
+
+// used to invert svgs (flip horizontal)
+@if $global-rtl-enable == true {
+	.rtl-flip,
+	.rtl-scalex-1 {
+		transform: scaleX(1) !important;
+	}
+	.rtl-scalex-n1 {
+		transform: scaleX(-1) !important;
+	}
+}

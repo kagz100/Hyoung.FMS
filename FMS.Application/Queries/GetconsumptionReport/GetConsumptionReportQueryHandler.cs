@@ -15,13 +15,13 @@ using System.Threading.Tasks;
 
 namespace FMS.Application.Queries.GetconsumptionReport
 {
-    public class GetConsumptionReportQueryHandler : IRequestHandler<GetConsumptionReportQuery,List<Vehicleconsumption>>
+    public class GetConsumptionReportQueryHandler : IRequestHandler<GetConsumptionReportQuery,List<VehicleConsumptionInfo>>
     {
 
-        private readonly GPSGateDirectoryWebservice _gpsGateDirectoryWebservice;
+        private readonly IGPSGateDirectoryWebservice _gpsGateDirectoryWebservice;
         private readonly GpsdataContext _Context; 
 
-       public GetConsumptionReportQueryHandler(GPSGateDirectoryWebservice gPSGateDirectoryWebservice, GpsdataContext gpsdataContext)
+       public GetConsumptionReportQueryHandler(IGPSGateDirectoryWebservice gPSGateDirectoryWebservice, GpsdataContext gpsdataContext)
         {
             _gpsGateDirectoryWebservice = gPSGateDirectoryWebservice;
             _Context = gpsdataContext;
@@ -34,7 +34,7 @@ namespace FMS.Application.Queries.GetconsumptionReport
             var consumptionReport = await _gpsGateDirectoryWebservice.GetFuelConsumptionReportAsync(request.conn, request.FuelConsumptionReportId, request.From, request.To);
 
             //fetch vehicle from database
-            var vehicles = _Context.Vehicles.ToList();
+           var vehicles = _Context.Vehicles.ToList();
 
             var result = consumptionReport.Select(Consumption =>
             {
@@ -48,14 +48,21 @@ namespace FMS.Application.Queries.GetconsumptionReport
                         VehicleId = vehicle.VehicleId,
                         TotalFuel = Consumption.TotalFuel,
                         HyoungNo = vehicle.HyoungNo,
-                        VehicleType = vehicle.VehicleType.Name,
-                        VehicleModel = vehicle.VehicleModel.Name,
+                        VehicleType = vehicle.VehicleType?.Name,
+                        VehicleModel = vehicle.VehicleModel?.Name,
                         ExpectedAveraged = vehicle.ExpectedAveraged,
-                        Site = vehicle.WorkingSite.Name,
+                        Site = vehicle.WorkingSite?.Name,
                         ExcessWorkingHrCost = vehicle.ExcessWorkingHrCost,
-                        DefaultEmployee = vehicle.DefaultEmployee.FullName,
-                        EmployeeWorkNumber = vehicle.DefaultEmployee.EmployeeWorkNo
-                        
+                        DefaultEmployee = vehicle.DefaultEmployee?.FullName,
+                        EmployeeWorkNumber = vehicle.DefaultEmployee?.EmployeeWorkNo,
+                        Date = Consumption.Date,
+                        MaxSpeed = Consumption.MaxSpeed,
+                        AvgSpeed = Consumption.AvgSpeed,
+                        TotalDistance = Consumption.TotalDistance,
+                        FuelLost = Consumption.FuelLost,
+                        EngHours = Consumption.EngHours,
+                        IsNightShift = Consumption.IsNightShift,
+                        FuelEfficiency = Consumption.FuelEfficiency,
                     };
                 }
                 else
@@ -67,7 +74,7 @@ namespace FMS.Application.Queries.GetconsumptionReport
 
                     return null;
                 }
-            };
+            }).Where(confinfo => confinfo != null).ToList();
 
 
 

@@ -6,8 +6,8 @@ namespace FMS.Domain.Entities
 {
     public partial class SystemUsers : IdentityUser
     {
-         public string FirstName { get; set; }
-        public string LastName { get; set; }
+         public string? FirstName { get; set; }
+        public string? LastName { get; set; }
     
     }
 }

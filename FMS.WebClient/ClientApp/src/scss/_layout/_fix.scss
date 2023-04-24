@@ -1,0 +1,87 @@
+/**
+
+	Swiper Slider
+	_vendors/vendor.swiper.scss is dynamically loaded
+	we need it here to be instantly loaded (because is added to core.min.css)
+
+	Flickity - exactly the same!
+
+*/
+// display first element only!
+.flickity-preloader:not(.flickity-enabled)>div:not(:first-child),
+.flickity-preloader:not(.flickity-enabled)>img:not(:first-child),
+.flickity-preloader:not(.flickity-enabled)>a:not(:first-child),
+.swiper-container:not(.swiper-container-initialized) .swiper-slide:not(:first-child) {
+	display: none;
+}
+
+	// :: loader spinner
+	.flickity-preloader:not(.flickity-enabled),
+	.swiper-container.swiper-preloader:not(.swiper-container-initialized) {
+		position: relative;
+	}
+	.flickity-preloader:not(.flickity-enabled):after,
+	.swiper-container.swiper-preloader:not(.swiper-container-initialized):after {
+		content: "";
+	    position: absolute;
+	    width: 100%;
+	    height: 100%;
+	    top: 0;
+	    bottom: 0;
+	    left: 0;
+	    right: 0;
+	    z-index: 1;
+
+	}
+		.flickity-preloader:not(.flickity-enabled)>div:first-child,
+		.flickity-preloader:not(.flickity-enabled)>img:first-child,
+		.flickity-preloader:not(.flickity-enabled)>a:first-child,
+		.swiper-container.swiper-preloader:not(.swiper-container-initialized) .swiper-slide:first-child {
+	    	opacity: 0.2;
+		}
+		.flickity-preloader:not(.flickity-enabled):before,
+		.swiper-container.swiper-preloader:not(.swiper-container-initialized):before {
+			content: "\f1e0";
+			font-family: 'Flaticon';
+			position: absolute;
+			top: 50%; margin-top: -15px;
+			left: 50%; margin-left: -15px;
+			font-size: 30px;
+			z-index: 2;
+			color: #ffffff;
+
+			// animation directly from Flaticon
+		    -webkit-animation: spin 1.3s infinite linear;
+		            animation: spin 1.3s infinite linear;
+		}
+
+// Slimscroll Z-index Fix
+.slimScrollBar 	{ z-index: $header-z-index - 1 !important; }
+.slimScrollRail { z-index: $header-z-index - 2 !important; }
+
+// Jarallax Vendor
+section.jarallax, .section.jarallax {
+	transition: none !important;
+}
+
+// Summernote editor  : fix page jump
+$summernote-header-height: 42px !default;
+$summernote-footer-height: 10px !default;
+$summernote-bg-color: 	   #f8f9fa !default;
+.summernote-fix {
+	border: #f8f9fa 1px solid;
+	margin-top: $summernote-header-height;
+	margin-bottom: $summernote-footer-height - 5;
+	box-shadow: 0 0 0 0 #fff, 0 (-$summernote-header-height) 0 0 $summernote-bg-color, 0 $summernote-footer-height 0 1px $summernote-bg-color;
+	border-radius: $border-radius;
+	color: #fff;
+	background-color: #fff;
+}
+
+// Bootstrap Select : fix page jump
+.bs-select-fix[multiple] {
+	max-height: 52.47px;
+}
+.bs-select-fix.form-control-sm[multiple] {
+	max-height: 42.72px;
+}

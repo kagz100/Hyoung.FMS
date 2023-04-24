@@ -1,0 +1,67 @@
+	.border-solid {
+		border-style: solid !important;
+		border-width: 1px;
+	}
+	.border-dashed {
+		border-style: dashed !important;
+		border-width: 1px;
+	}
+	.border-dotted {
+		border-style: dotted !important;
+		border-width: 1px;
+	}
+	.border-transparent {
+		border-color: transparent !important;
+	}
+	.border-theme-color-light {
+		border-color: rgba($primary, 0.04) !important;
+	}
+
+	// Bootstrap gray borders
+	// .border-primary[danger|etc] already set by Bootstrap
+	.border-gray-100 {
+		border: $gray-100 1px solid;
+	}
+	.border-gray-200 {
+		border: $gray-200 1px solid;
+	}
+	.border-gray-300 {
+		border: $gray-300 1px solid;
+	}
+	.border-gray-400 {
+		border: $gray-400 1px solid;
+	}
+	.border-gray-500 {
+		border: $gray-500 1px solid;
+	}
+	
+	.border-white {
+		border: #ffff 1px solid;
+	}
+
+	// If borer needed to be the same as input/select/textarea
+	// same as input (usage example: bootstrap-select vendor)
+	.border-input {
+		border: $input-border-color 1px solid;
+	}
+
+
+/*
+
+	Pill rows
+		1. container & first image
+		<div class="row-pill">
+			<img src="...">
+		</div>
+
+		2. container & first background image acting as avatar
+		<div class="row-pill">
+			<div class="bg-cover w--50 h--50 m--3 d-inline-block" style="background-url:(...)">
+		</div>
+
+*/
+.row-pill,
+.row-pill>img,
+.row-pill>.bg-cover {
+	border-radius: 50rem !important;
+}

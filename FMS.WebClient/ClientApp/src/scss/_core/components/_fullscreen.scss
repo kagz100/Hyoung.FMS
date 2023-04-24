@@ -1,0 +1,32 @@
+/**
+	
+	Fullscreen Element
+
+**/
+.fullscreen {
+	position: 	fixed !important;
+	left: 		15px !important;
+	right: 		15px !important;
+	top: 		15px !important;
+	bottom: 	15px !important;
+	margin: 	0 !important;
+	background-color: $white !important;
+
+	z-index: 	$zindex-modal-backdrop - 1 !important;
+
+	/* scrollable */;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+	height: auto;
+	max-height: 100%;
+
+	@include vendors-generate(box-shadow, 0px 0px 35px 19px rgba(0,0,0,0.75) !important);
+}
+	/* show element on fullscreen only */
+	.fullscreen .fullscreen-show {
+		display: block !important;
+	}
+	/* hidden element on fullscreen only */
+	.fullscreen .fullscreen-hide {
+		display: hidden !important;
+	}

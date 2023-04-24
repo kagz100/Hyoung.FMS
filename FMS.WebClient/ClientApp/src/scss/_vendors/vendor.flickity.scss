@@ -1,0 +1,135 @@
+// Load needed variables
+@import '../_core/mixins',
+        '../variables',
+        '../../../node_modules/bootstrap/scss/functions',
+        '../../../node_modules/bootstrap/scss/variables';
+
+
+
+
+$flikity-size: 				60px !default;
+$flikity-icon-font-family: 	Flaticon !default;
+$flikity-icon-next: 		"\f1ae" !default;
+$flikity-icon-prev: 		"\f1ac" !default;
+
+
+
+
+/**
+
+	Nav Buttons
+
+**/
+.flickity-button-icon {
+	display: none;
+}
+
+.flickity-prev-next-button {
+	width: $flikity-size !important;
+	height: $flikity-size !important;
+}
+.flickity-button::after, 
+.flickity-button::before {
+	font-family: $flikity-icon-font-family;
+	line-height: $flikity-size;
+}
+
+// LTR
+.flickity-button.next::before {
+	content: $flikity-icon-next;
+}
+.flickity-button.previous::before {
+	content: $flikity-icon-prev;
+}
+
+// RTL
+.flickity-rtl .flickity-button.next::before {
+	content: $flikity-icon-prev;
+}
+.flickity-rtl .flickity-button.previous::before {
+	content: $flikity-icon-next;
+}
+
+
+
+/**
+
+	Nav Styling
+
+**/
+@each $color, $value in $theme-colors {
+	.flickity-#{$color}.flickity-selected-cell .carousel-cell.is-selected,
+	.flickity-#{$color} .flickity-page-dots .dot,
+	.flickity-#{$color} .flickity-button {
+		color: #fff;
+		background: $value !important;
+	}
+
+}
+.flickity-white .flickity-button {
+	color: #121212;
+	background: #ffffff !important;
+	box-shadow: $box-shadow-xs;
+}
+.flickity-black .flickity-button {
+	color: #ffffff;
+	background: #111111 !important;
+}
+.flickity-dark .flickity-button {
+	color: #ffffff;
+	background: #333333 !important;
+}
+.flickity-button:not(:disabled) {
+	opacity: 1 !important;
+}
+.flickity-button:hover {
+	transition: all 80ms linear;
+	box-shadow: $box-shadow-lg;
+}
+
+
+
+
+
+/**
+
+	Dots Styling
+
+*/
+/* position dots up a bit */
+.flickity-dot-line .flickity-page-dots {
+	bottom: -22px;
+}
+/* dots are lines */
+.flickity-dot-line .flickity-page-dots .dot {
+	height: 4px;
+	width: 40px;
+	margin: 0;
+	border-radius: 0;
+}
+
+
+
+
+
+
+
+/**
+	
+	Responsive
+
+**/
+// DESKTOP
+@media only screen and (min-width: map-get($grid-breakpoints, "lg")) {
+
+}
+
+
+
+
+
+// MOBILE
+@media only screen and (max-width: map-get($grid-breakpoints, "lg")) {
+
+
+}

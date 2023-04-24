@@ -1,0 +1,39 @@
+/**
+
+    Load all variables,
+    we need them!
+
+**/
+@import '../../_core/mixins',
+        '../../variables',
+        '../../../../node_modules/bootstrap/scss/functions',
+        '../../../../node_modules/bootstrap/scss/variables';
+
+
+        
+/*
+    
+  Styling
+  Ajax Loading Icons
+
+*/
+#js_loading_icon {
+  width: auto;
+  height: auto;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow-xs;
+}
+  #js_loading_icon:after {
+    border-radius: $border-radius;
+  }
+
+/* inside forms */
+form.js-ajax {
+  position: relative;
+}
+  form.js-ajax #js_loading_icon {
+    left: -15px;
+    right: -15px;
+    top: -15px;
+    bottom: -15px;
+  }

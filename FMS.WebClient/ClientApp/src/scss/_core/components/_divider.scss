@@ -1,0 +1,6 @@
+// -- -- -- -- -- -- -- -- --
+// List divider
+// -- -- -- -- -- -- -- -- --
+.list-divider > *:not(:last-child) {
+  border-bottom: $border-color 1px solid;
+}

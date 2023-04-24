@@ -1,0 +1,57 @@
+html, body {
+
+  @if $global-rtl-enable == false {
+    direction: ltr; 
+    /*text-align: left;*/ // already assigned by bootstrap
+  } @else { 
+    direction: rtl; 
+    text-align: right;
+  }
+
+  min-height:                     100vh;
+  -webkit-tap-highlight-color:    rgba(0,0,0,0);
+  -webkit-touch-callout:          none;
+
+}
+
+a, textarea, input, button, *:focus, *:active {
+  outline:none !important;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 36px;
+  transition: none;
+}
+
+
+section, .section {
+   word-break: break-word; 
+   position: relative;
+}
+  section table, .section table,
+  section .table-responsive, .section table-responsive {
+    word-break: normal;
+  }
+
+
+select { /* keep it separated, do not combine */
+  text-indent: 0.01px;
+  text-overflow: '';
+}
+
+select ,
+input[type=number], 
+input[type=time], 
+input[type=time]::-webkit-inner-spin-button, 
+input[type=time]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  appearance: none;
+  -moz-appearance: textfield;
+}
+
+summary::marker,
+summary::-webkit-details-marker {
+  color: $gray-600;
+}

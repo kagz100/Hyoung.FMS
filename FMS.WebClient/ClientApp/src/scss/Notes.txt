@@ -1,0 +1,36 @@
+
+Gulp autoprefixer will crash for this particular equation:
+	calc(100% - $some-variable)
+FIX:	
+	calc(100% - #{$some-variable})
+
+
+
+
+-----------------------------------------------------------------
+:: TEST : 50.000 elements ::
+
+CSS PERFORMANCE BY SELECTORS : UPDATE TASK
+https://codepen.io/ivancuric/pen/ZaWxqV
+
+div: 										7.698974609375ms
+.box: 										5.59228515625ms
+.box > .title: 								7.500732421875ms
+.box .title: 								7.513916015625ms
+.box ~ .box: 								7.531982421875ms
+.box + .box: 								7.201904296875ms
+.box:not(.title): 							8.00390625ms 		(added for curiozity)
+.box:nth-of-type(2n - 1): 					18.69287109375ms
+.box:last-of-type: 							4.532958984375ms
+.box:not(:last-of-type): 					9.239013671875ms
+.box:not(:empty):last-of-type .title: 		14.174072265625ms
+.box:nth-last-child(n+6) ~ div: 			28.27685546875ms
+-----------------------------------------------------------------
+
+
+
+
+
+
+
+

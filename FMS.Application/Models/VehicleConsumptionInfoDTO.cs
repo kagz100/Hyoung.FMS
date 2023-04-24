@@ -28,9 +28,18 @@ namespace FMS.Application.Models
 
            public decimal? AvgSpeed { get; set; }
 
+        /// <summary>
+        /// Check if the vehicle is using averagekm = true if not return 0
+        /// </summary>
            public decimal? TotalDistance { get; set; }
 
-          public decimal? FuelLost { get; set; }
+        /// <summary>
+        /// Find calculated fuel lost of vehicle , It is depend on Fuel efficienc if vehicle is using Averagekm
+        /// </summary>
+        public decimal? FuelLost 
+        {
+            get;set;
+        }
 
         public decimal? FlowMeterFuelUsed { get; set; }
 
@@ -44,6 +53,6 @@ namespace FMS.Application.Models
 
         public decimal? FlowMeterEngineHrs { get; set; }
 
-        public sbyte IsNightShift { get; set; }
+        public bool IsNightShift { get; set; }
     }
 }

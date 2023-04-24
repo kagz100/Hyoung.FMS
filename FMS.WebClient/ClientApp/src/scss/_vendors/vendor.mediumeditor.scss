@@ -1,0 +1,19 @@
+// Load needed variables
+@import '../_core/mixins',
+        '../variables',
+        '../../../node_modules/bootstrap/scss/functions',
+        '../../../node_modules/bootstrap/scss/variables';
+
+
+.medium-editor.is-invalid {
+    border-color: $red !important;
+}
+.medium-editor.is-valid {
+    border-color: $green !important;
+}
+
+// Bootstrap issue
+// fixed height on textarea
+.medium-editor.form-control {
+	height: auto;
+}

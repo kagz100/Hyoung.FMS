@@ -1,0 +1,106 @@
+// Mixins
+$vendors: "-moz-", "-webkit-", "-ms-", "-o-", "";
+
+
+
+// GENERATE FOR ALL VENDORS
+// @include vendors-generate(box-shadow, 0 10px 40px 10px #333333 !important);
+@mixin vendors-generate($css-rule, $css-value) {
+	@each $vendor in $vendors {
+    #{$vendor}#{$css-rule}: $css-value;
+	}
+}
+
+
+
+
+
+// GENERATE GRADIENT
+// @include gradient-generate(#212121, 8%);
+@mixin gradient-generate($color, $percent) {
+  background: $color;
+  background: -moz-linear-gradient(top, lighten($color, $percent) 0%, $color 100%) !important;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten($color, $percent)), color-stop(100%, $color)) !important;
+  background: -webkit-linear-gradient(top, lighten($color, $percent) 0%, $color 100%) !important;
+  background: -o-linear-gradient(top, lighten($color, $percent) 0%, $color 100%) !important;
+  background: -ms-linear-gradient(top, lighten($color, $percent) 0%, $color 100%) !important;
+  background: linear-gradient(to bottom, lighten($color, $percent) 0%,$color 100%) !important;
+}
+
+
+
+// @Icons unquote : get rid of strange ascii/chars
+// Instead of using "\091"
+// Use icon-unquote(\091);
+@function icon-unquote($fi-var) {
+  @return unquote("\"#{ $fi-var }\"");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ============================================== RTL ONLY =================================================
+// Framework grid generation
+//
+// Used only by Bootstrap to generate the correct number of grid classes given
+// any value of `$grid-columns`.
+
+@mixin make-grid-columns-rtl($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
+  // Common properties for all breakpoints
+  %grid-column {
+    position: relative;
+    width: 100%;
+    min-height: 1px; // Prevent columns from collapsing when empty
+    padding-right: ($gutter / 2);
+    padding-left: ($gutter / 2);
+  }
+
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+
+
+      // `$columns - 1` because offsetting by the width of an entire row isn't possible
+      @for $i from 0 through ($columns - 1) {
+        @if not ($infix == "" and $i == 0) { // Avoid emitting useless .offset-0
+          .offset#{$infix}-#{$i} {
+            @include make-col-offset-rtl($i, $columns);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+@mixin make-col-offset-rtl($size, $columns: $grid-columns) {
+  $num: $size / $columns;
+  margin-left: 0; // auto
+  margin-right: if($num == 0, 0, percentage($num));
+}

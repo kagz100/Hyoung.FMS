@@ -43,8 +43,11 @@ namespace FMS.Infrastructure.Webservice
         /// <returns></returns>
         public async Task<List<Vehicleconsumption>> GetFuelConsumptionReportAsync(GPSGateConections conn, int FuelConsumptionReportID, DateTime from, DateTime to)
         {
+         string fromdatestr = from.ToString("o",CultureInfo.InvariantCulture) ;
+          string todatestr = to.ToString("o",CultureInfo.InvariantCulture);
+               
 
-            var results = await _ReportSoapClient.GenerateReportAsync(conn.SessionID, 208, from, to);
+            var results = await _ReportSoapClient.GenerateReportAsync(conn.SessionID, 208, DateTime.Parse(fromdatestr),DateTime.Parse(todatestr));
 
             try
             {
@@ -91,10 +94,10 @@ namespace FMS.Infrastructure.Webservice
                //debug
                //extract all descedants
                
-              foreach(var element in reportXmls.Descendants())
-            {
-                Console.WriteLine(element.Name + " - " + element.Value + " Attributes- " + element.Attributes().ToString());
-            }
+            //  foreach(var element in reportXmls.Descendants())
+            //{
+            //    Console.WriteLine(element.Name + " - " + element.Value + " Attributes- " + element.Attributes().ToString());
+            //}
             
             
             
@@ -153,20 +156,20 @@ namespace FMS.Infrastructure.Webservice
                 }
 
                 //reportformat 
-                  //< Cell ref= "h_0_0_0" > vehicleID </ Cell >
-                  //  < Cell ref= "h_0_0_1" > EngHrsIgnitionHrs </ Cell >
-                  //  < Cell ref= "h_0_0_2" > TotalFuelfromFuelProbe </ Cell >
-                  //  < Cell ref= "h_0_0_3" > EnginehrsFlowmeter </ Cell >
-                  //  < Cell ref= "h_0_0_4" > TotalFuelFlowmeter </ Cell >
-                  //  < Cell ref= "h_0_0_5" > GPSLastLocation </ Cell >
-                  //  < Cell ref= "h_0_0_6" > TotalDistance </ Cell >
-                  //  < Cell ref= "h_0_0_7" > Avgspeed </ Cell >
-                  //  < Cell ref= "h_0_0_8" > MaxSpeed </ Cell >
-                  //  < Cell ref= "h_0_0_9" > TotalFuelNormalFlowmeter </ Cell >
-                  //  < Cell ref= "h_0_0_10" > TotalFuelIdleFlowmeter </ Cell >
-                  //  < Cell ref= "h_0_0_11" > TotalEngHrsNormalFlowmeter </ Cell >
-                  //  < Cell ref= "h_0_0_12" > TotalEnghrsIdleFlowmeter </ Cell >
-                  //  < Cell ref= "h_0_0_13" > Date </ Cell >
+                  //< Cell ref= "i_0_0_0" > vehicleID </ Cell >
+                  //  < Cell ref= "i_0_0_1" > EngHrsIgnitionHrs </ Cell >
+                  //  < Cell ref= "i_0_0_2" > TotalFuelfromFuelProbe </ Cell >
+                  //  < Cell ref= "i_0_0_3" > EnginehrsFlowmeter </ Cell >
+                  //  < Cell ref= "i_0_0_4" > TotalFuelFlowmeter </ Cell >
+                  //  < Cell ref= "i_0_0_5" > GPSLastLocation </ Cell >
+                  //  < Cell ref= "i_0_0_6" > TotalDistance </ Cell >
+                  //  < Cell ref= "i_0_0_7" > Avgspeed </ Cell >
+                  //  < Cell ref= "i_0_0_8" > MaxSpeed </ Cell >
+                  //  < Cell ref= "i_0_0_9" > TotalFuelNormalFlowmeter </ Cell >
+                  //  < Cell ref= "i_0_0_10" > TotalFuelIdleFlowmeter </ Cell >
+                  //  < Cell ref= "i_0_0_11" > TotalEngHrsNormalFlowmeter </ Cell >
+                  //  < Cell ref= "i_0_0_12" > TotalEnghrsIdleFlowmeter </ Cell >
+                  //  < Cell ref= "i_0_0_13" > Date </ Cell >
                 //get property 
 
                 switch (refValue)

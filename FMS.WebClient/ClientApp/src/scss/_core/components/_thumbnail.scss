@@ -1,0 +1,65 @@
+/* 
+
+	Thumbnail : Shadow drop 
+
+*/
+.thumbnail-shadow-drop {
+	position: relative;
+}
+	.thumbnail-shadow-drop:after {
+		position: absolute;
+		width: 56%;
+		height: 26%;
+		left: 20%;
+		border-radius: 50%;
+		z-index: 1;
+		bottom: 128px;
+		margin-bottom: 13%;
+		content: "";
+
+		box-shadow: 0 210px 60px rgba(0,0,0,.2);
+		transform: rotate(-10deg);
+		
+		opacity: 0;
+		-webkit-animation: __utilFadeInSlow 2s ease; 		// utils/animation.scss
+				animation: __utilFadeInSlow 2s ease; 		// utils/animation.scss
+		  		animation-delay: .5s;
+		  		animation-fill-mode: both;
+		  		animation-duration: 4s;
+
+	}
+	.thumbnail-shadow-drop:before {
+		position: absolute;
+		width: 41%;
+		height: 25%;
+		left: 23%;
+		border-radius: 50%;
+		z-index: 0;
+		bottom: 25%;
+		margin-bottom: 0%;
+		content: "";
+
+		box-shadow: 0 194px 50px rgba(0,0,0,0.3);
+		transform: rotate(-17deg);
+
+		opacity: 0;
+		-webkit-animation: __utilFadeInSlow 2s ease; 		// utils/animation.scss
+				animation: __utilFadeInSlow 2s ease; 		// utils/animation.scss
+		  		animation-delay: .5s;
+		  		animation-fill-mode: both;
+		  		animation-duration: 4s;
+	}
+
+
+
+
+
+
+@media only screen and (max-width: map-get($grid-breakpoints, "md")) {
+
+	.thumbnail-shadow-drop:before {
+		bottom: 45%;
+		left: 18%;
+	}
+
+}

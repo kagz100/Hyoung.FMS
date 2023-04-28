@@ -9,7 +9,7 @@ using FMS.Infrastructure.DependancyInjection;
 using FMS.Application.Queries;
 using System.Linq;
 using System.Threading.Tasks;
-using FMS.Application.Queries.GetconsumptionReport;
+//using FMS.Application.Queries.GetconsumptionReport;
 using FMS.Domain.Entities.Auth;
 using FMS.Persistence.DataAccess;
 using Microsoft.EntityFrameworkCore;

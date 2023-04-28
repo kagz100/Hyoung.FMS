@@ -6,9 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FMS.Application.Queries.GetconsumptionReport
+namespace FMS.Application.Queries.GPSGATEServer.GetconsumptionReport
 {
-    public class GetConsumptionReportQuery : IRequest<List<VehicleConsumptionInfo>>
+    public class GetConsumptionReportQuery : IRequest<List<VehicleConsumptionInfoDTO>>
     {
 
 

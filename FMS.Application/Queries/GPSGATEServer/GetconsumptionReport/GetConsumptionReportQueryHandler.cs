@@ -13,20 +13,20 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace FMS.Application.Queries.GetconsumptionReport
+namespace FMS.Application.Queries.GPSGATEServer.GetconsumptionReport
 {
-    public class GetConsumptionReportQueryHandler : IRequestHandler<GetConsumptionReportQuery,List<VehicleConsumptionInfo>>
+    public class GetConsumptionReportQueryHandler : IRequestHandler<GetConsumptionReportQuery, List<VehicleConsumptionInfoDTO>>
     {
 
         private readonly IGPSGateDirectoryWebservice _gpsGateDirectoryWebservice;
-        private readonly GpsdataContext _Context; 
+        private readonly GpsdataContext _Context;
 
-       public GetConsumptionReportQueryHandler(IGPSGateDirectoryWebservice gPSGateDirectoryWebservice, GpsdataContext gpsdataContext)
+        public GetConsumptionReportQueryHandler(IGPSGateDirectoryWebservice gPSGateDirectoryWebservice, GpsdataContext gpsdataContext)
         {
             _gpsGateDirectoryWebservice = gPSGateDirectoryWebservice;
             _Context = gpsdataContext;
         }
-        public async Task<List<VehicleConsumptionInfo>> Handle(GetConsumptionReportQuery request, CancellationToken cancellationToken)
+        public async Task<List<VehicleConsumptionInfoDTO>> Handle(GetConsumptionReportQuery request, CancellationToken cancellationToken)
         {
 
             //call the webservice to get the consumption report
@@ -34,7 +34,7 @@ namespace FMS.Application.Queries.GetconsumptionReport
             var consumptionReport = await _gpsGateDirectoryWebservice.GetFuelConsumptionReportAsync(request.conn, request.FuelConsumptionReportId, request.From, request.To);
 
             //fetch vehicle from database
-           var vehicles = _Context.Vehicles.ToList();
+            var vehicles = _Context.Vehicles.ToList();
 
             var result = consumptionReport.Select(Consumption =>
             {
@@ -43,7 +43,7 @@ namespace FMS.Application.Queries.GetconsumptionReport
 
                 if (vehicle != null)
                 {
-                    return new VehicleConsumptionInfo
+                    return new VehicleConsumptionInfoDTO
                     {
                         VehicleId = vehicle.VehicleId,
                         TotalFuel = Consumption.TotalFuel,
@@ -59,10 +59,10 @@ namespace FMS.Application.Queries.GetconsumptionReport
                         MaxSpeed = Consumption.MaxSpeed,
                         AvgSpeed = Consumption.AvgSpeed,
                         TotalDistance = Consumption.TotalDistance,
-                        FuelLost = Consumption.FuelLost,
                         EngHours = Consumption.EngHours,
                         IsNightShift = Consumption.IsNightShift,
                         FuelEfficiency = Consumption.FuelEfficiency,
+                        IsAverageKm = vehicle.AverageKmL
                     };
                 }
                 else
@@ -82,6 +82,6 @@ namespace FMS.Application.Queries.GetconsumptionReport
 
         }
     }
-    
+
 }
 

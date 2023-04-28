@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using FMS.Application.Queries;
 using MediatR;
-using FMS.Application.Queries.GetconsumptionReport;
+using FMS.Application.Queries.GPSGATEServer.GetconsumptionReport;
 using FMS.Domain.Entities.Auth;
 using System.Globalization;
 
@@ -32,7 +32,7 @@ namespace FMS.WebClient.Controllers
 
             var conn = new GPSGateConections
             {
-                SessionID = "76B3DBEF35ECBD70A05B2621102EB4B7",
+                SessionID = "14F55F0B48F16F0B56708D29D7DF5E76",
                   };
             var query = new GetConsumptionReportQuery(conn, 218, fromDate, toDate);
 

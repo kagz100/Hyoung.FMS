@@ -56,9 +56,10 @@ public partial class GpsdataContext : DbContext
     public virtual DbSet<Vehiclemodel> Vehiclemodels { get; set; }
 
     public virtual DbSet<Vehicletype> Vehicletypes { get; set; }
+    public object VehicleModel { get; set; }
 
-   // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-       // => optionsBuilder.UseMySql("server=10.0.10.150;port=3306;database=gpsdata;user=root;password=Niwewenamimi1000;connection timeout=200", Microsoft.EntityFrameworkCore.ServerVersion.Parse("5.5.61-mysql"));
+    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    // => optionsBuilder.UseMySql("server=10.0.10.150;port=3306;database=gpsdata;user=root;password=Niwewenamimi1000;connection timeout=200", Microsoft.EntityFrameworkCore.ServerVersion.Parse("5.5.61-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

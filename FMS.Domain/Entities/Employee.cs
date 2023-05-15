@@ -13,6 +13,10 @@ public partial class Employee
 
     public string? EmployeephoneNumber { get; set; }
 
+    public long? NationalId { get; set; }
+
+    public string? Employeestatus { get; set; }
+
     public virtual ICollection<Vehicleconsumption> Vehicleconsumptions { get; set; } = new List<Vehicleconsumption>();
 
     public virtual ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();

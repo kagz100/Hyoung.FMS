@@ -11,7 +11,5 @@ public partial class Vehiclemodel
 
     public int? ManufacturerId { get; set; }
 
-    public virtual ICollection<Assest> Assests { get; set; } = new List<Assest>();
-
     public virtual ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
 }

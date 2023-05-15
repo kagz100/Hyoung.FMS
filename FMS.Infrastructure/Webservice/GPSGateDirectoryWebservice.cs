@@ -47,7 +47,7 @@ namespace FMS.Infrastructure.Webservice
           string todatestr = to.ToString("o",CultureInfo.InvariantCulture);
                
 
-            var results = await _ReportSoapClient.GenerateReportAsync(conn.SessionID, 208, DateTime.Parse(fromdatestr),DateTime.Parse(todatestr));
+            var results = await _ReportSoapClient.GenerateReportAsync(conn.SessionID,FuelConsumptionReportID, DateTime.Parse(fromdatestr),DateTime.Parse(todatestr));
 
             try
             {
@@ -69,7 +69,7 @@ namespace FMS.Infrastructure.Webservice
             int.TryParse(handleId, out int handleIdInt);
 
             // Check if report is ready
-            while(state == "processing")
+            while(state == "Processing")
             {
                 // If not ready, wait 1 second and check again
                 await Task.Delay(1000);
@@ -99,18 +99,7 @@ namespace FMS.Infrastructure.Webservice
             //    Console.WriteLine(element.Name + " - " + element.Value + " Attributes- " + element.Attributes().ToString());
             //}
             
-            
-            
-            
-            
-            // Retrieve the XMl data that we want and represent it to vehicleconsumption class 
-            //not working
-            //sample xml data
-
-           
-
-
-            
+                    
 
             var headerRow = reportXmls.Descendants("{http://gpsgate.com/xml/}Row").FirstOrDefault(r => r.Attribute("kind")?.Value == "h");
                 var dataRows = reportXmls.Descendants("{http://gpsgate.com/xml/}Row").Where(r => r.Attribute("kind")?.Value == "i").ToList();
@@ -274,7 +263,7 @@ namespace FMS.Infrastructure.Webservice
 
 
 
-            return results.Name;
+            return results.InnerText;
         }
 
 

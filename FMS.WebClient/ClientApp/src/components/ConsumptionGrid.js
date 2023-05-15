@@ -1,48 +1,46 @@
-import React , { useState, useEffect } from 'react';
-import DataGrid, { Column, Paging, FilterRow, Sorting, ColumnChooser, ColumnFixing, FilterPanel,SearchPanel } from 'devextreme-react/data-grid';
+import React, { useState, useEffect } from 'react';
+import DataGrid, { Column, Paging, FilterRow, Sorting, ColumnChooser, ColumnFixing, FilterPanel, SearchPanel } from 'devextreme-react/data-grid';
 import axios from "axios";
 import { HeaderFilter } from 'devextreme-react/pivot-grid-field-chooser';
 import SelectBox from 'devextreme-react/select-box';
 import CheckBox from 'devextreme-react/check-box';
+import DateBox from 'devextreme-react/date-box';
+import Button from 'devextreme-react/button';
 
-const ConsumptionGrid = () => 
-{
+const ConsumptionGrid = () => {
     const [consumptionData, setConsumptionData] = useState([]);
+    const [selectedDate, setSelectedDate] = useState(null);
 
-    const FuelCellRenderer = (cellData) => {
-        const intValue = Math.round(cellData.value);
-        return <div>{intValue}</div>;
+    const fetchData = async () => {
+        if (!selectedDate) {
+            return;
+        }
+        const fromdate = selectedDate?.toISOString();
+        const response = await axios.get("https://localhost:7009/api/consumption", {
+            params: {
+                from: fromdate,
+            },
+        });
+        setConsumptionData(response.data);
     };
 
-
     useEffect(() => {
-
-        const fetchData = async () => {
-            try {
-
-                const fuelconsumptionID = 218;
-                const fromdate = '2023-04-18';
-                const todate = '2023-04-19';
-
-
-                const response = await axios.get("https://localhost:7009/api/consumption", {
-                    params: {
-                        fuelconsumptionID,
-                        from: fromdate,
-                        to: todate,
-                    },
-                });
-                setConsumptionData(response.data);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        };
-
         fetchData();
-      
-    },[]);
+    }, [selectedDate]);
 
-return (
+    return (
+
+    <div>
+        <div className="row">
+            <div className="col-8">
+                <DateBox defaultValue={null} type="date" onValueChanged={(e) => setSelectedDate(e.value)} />
+            </div>
+            <div className="col-4">
+                <Button text="Load Data" onClick={fetchData} />
+            </div>
+        </div>
+   
+
     <DataGrid dataSource={consumptionData} showBorders={true}
         keyExpr="vehicleId"
         allowColumnReordering={true}
@@ -53,7 +51,6 @@ return (
         <Paging defaultPageIndex={100} />
 
         <FilterRow visible={true} />
-        <FilterPanel visible={true} />
        
         <ColumnChooser enabled={true} />
         <ColumnFixing enabled={true} />
@@ -62,9 +59,7 @@ return (
 
         <HeaderFilter visible={true} />
 
-        <SearchPanel visible={true}
-            width={240}
-            placeholder="Search..." />
+     
 
         <Column dataField="date"
             width={100}
@@ -90,7 +85,7 @@ return (
 
             dataType="number"
             caption="Distance" />
-        <Column dataField="engHours" caption="Engine Hours" />
+                <Column dataField="engHours" caption="Engine Hours" format={{ type: 'fixedPoint', precision: 1 } } />
         <Column dataField="totalFuel"
             visible={true}
             caption="Fuel" />
@@ -101,9 +96,10 @@ return (
         <Column dataField="site" caption="Site" />
 
         <Column dataField="isNightShift" caption="Night Shift" />
-        <Column dataField="comments" caption="Comments" />
+        <Column dataField="Comments" caption="Comments" />
 
-    </DataGrid>
+        </DataGrid>
+   </div>
   );
 
 };

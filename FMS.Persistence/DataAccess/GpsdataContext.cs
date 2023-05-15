@@ -15,7 +15,6 @@ public partial class GpsdataContext : DbContext
     {
     }
 
-    public virtual DbSet<Assest> Assests { get; set; }
 
     public virtual DbSet<Calibrationdatum> Calibrationdata { get; set; }
 
@@ -61,46 +60,12 @@ public partial class GpsdataContext : DbContext
     // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     // => optionsBuilder.UseMySql("server=10.0.10.150;port=3306;database=gpsdata;user=root;password=Niwewenamimi1000;connection timeout=200", Microsoft.EntityFrameworkCore.ServerVersion.Parse("5.5.61-mysql"));
 
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
             .UseCollation("latin1_swedish_ci")
             .HasCharSet("latin1");
-
-        modelBuilder.Entity<Assest>(entity =>
-        {
-            entity.HasKey(e => e.AssestId).HasName("PRIMARY");
-
-            entity.ToTable("assest");
-
-            entity.HasIndex(e => e.VehicleManufacturer, "Assest_vehicleManufactuer_idx");
-
-            entity.HasIndex(e => e.Vehiclemodel, "asset_vehicleModel_idx");
-
-            entity.HasIndex(e => e.VehicleType, "asset_vehicleType_idx");
-
-            entity.Property(e => e.AssestId)
-                .HasMaxLength(45)
-                .HasColumnName("assestID");
-            entity.Property(e => e.HyoungNo).HasMaxLength(45);
-            entity.Property(e => e.IsInstalled).HasColumnType("tinyint(4)");
-            entity.Property(e => e.Purchaseon).HasColumnName("purchaseon");
-            entity.Property(e => e.VehicleManufacturer).HasColumnType("int(11)");
-            entity.Property(e => e.VehicleType).HasColumnType("int(11)");
-            entity.Property(e => e.Vehiclemodel).HasColumnType("int(11)");
-
-            entity.HasOne(d => d.VehicleManufacturerNavigation).WithMany(p => p.Assests)
-                .HasForeignKey(d => d.VehicleManufacturer)
-                .HasConstraintName("Assest_vehicleManufactuer");
-
-            entity.HasOne(d => d.VehicleTypeNavigation).WithMany(p => p.Assests)
-                .HasForeignKey(d => d.VehicleType)
-                .HasConstraintName("asset_vehicleType");
-
-            entity.HasOne(d => d.VehiclemodelNavigation).WithMany(p => p.Assests)
-                .HasForeignKey(d => d.Vehiclemodel)
-                .HasConstraintName("asset_vehicleModel");
-        });
 
         modelBuilder.Entity<Calibrationdatum>(entity =>
         {
@@ -186,8 +151,9 @@ public partial class GpsdataContext : DbContext
 
             entity.ToTable("employee");
 
+            entity.HasIndex(e => e.NationalId, "NationalID_UNIQUE").IsUnique();
+
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
                 .HasColumnType("int(11)")
                 .HasColumnName("id");
             entity.Property(e => e.EmployeeWorkNo)
@@ -195,11 +161,17 @@ public partial class GpsdataContext : DbContext
                 .HasDefaultValueSql("'New'");
             entity.Property(e => e.EmployeephoneNumber)
                 .HasMaxLength(45)
-                .HasDefaultValueSql("'07000000'")
+                .HasDefaultValueSql("'0700000000'")
                 .HasColumnName("employeephoneNumber");
+            entity.Property(e => e.Employeestatus)
+                .HasMaxLength(45)
+                .HasColumnName("employeestatus");
             entity.Property(e => e.FullName)
                 .HasMaxLength(45)
                 .HasDefaultValueSql("'Employee Name'");
+            entity.Property(e => e.NationalId)
+                .HasColumnType("bigint(20)")
+                .HasColumnName("NationalID");
         });
 
         modelBuilder.Entity<Fuelrefil>(entity =>
@@ -477,6 +449,8 @@ public partial class GpsdataContext : DbContext
                 .HasColumnType("int(11)")
                 .HasColumnName("vehicleID");
             entity.Property(e => e.AverageKmL).HasColumnName("Average_km_l");
+            entity.Property(e => e.Capacity).HasMaxLength(45);
+            entity.Property(e => e.CurrentPhysicalReading).HasMaxLength(45);
             entity.Property(e => e.DefaultEmployeeId)
                 .HasColumnType("int(11)")
                 .HasColumnName("DefaultEmployeeID");
@@ -560,6 +534,9 @@ public partial class GpsdataContext : DbContext
             entity.Property(e => e.FlowMeterFuelUsed).HasPrecision(10);
             entity.Property(e => e.FuelEfficiency).HasPrecision(10, 2);
             entity.Property(e => e.FuelLost).HasPrecision(10);
+            entity.Property(e => e.IsKmperhr)
+                .HasDefaultValueSql("b'0'")
+                .HasColumnType("bit(1)");
             entity.Property(e => e.IsNightShift)
                 .HasDefaultValueSql("b'0'")
                 .HasColumnType("bit(1)");
@@ -595,7 +572,6 @@ public partial class GpsdataContext : DbContext
             entity.ToTable("vehiclemanufacturer");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
                 .HasColumnType("int(11)")
                 .HasColumnName("ID");
             entity.Property(e => e.Name).HasMaxLength(45);
@@ -608,7 +584,6 @@ public partial class GpsdataContext : DbContext
             entity.ToTable("vehiclemodel");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
                 .HasColumnType("int(11)")
                 .HasColumnName("ID");
             entity.Property(e => e.ManufacturerId)
@@ -634,6 +609,5 @@ public partial class GpsdataContext : DbContext
 
         OnModelCreatingPartial(modelBuilder);
     }
-
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

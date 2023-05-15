@@ -4,6 +4,7 @@ using MediatR;
 using FMS.Application.Queries.GPSGATEServer.GetconsumptionReport;
 using FMS.Domain.Entities.Auth;
 using System.Globalization;
+using FMS.Application.Queries.GPSGATEServer.LoginQuery;
 
 namespace FMS.WebClient.Controllers
 {
@@ -13,28 +14,43 @@ namespace FMS.WebClient.Controllers
     public class ConsumptionController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly IConfiguration _configuration;
 
-        public ConsumptionController (IMediator mediator)
+        public ConsumptionController (IMediator mediator, IConfiguration configuration)
         {
             _mediator = mediator;
+            _configuration = configuration;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(int fuelConsumptionReportID ,DateTime from , DateTime to )
+        public async Task<IActionResult> Get(DateTime from) 
         {
+          //load settings from appsettings.json
+
+          string? username = _configuration["GPSGateUser:Username"];
+          string? password = _configuration["GPSGateUser:Password"];
+          int?applicationID  = int.Parse(_configuration["ApplicationID"]??"0");
+          int fuelConsumptionReportId = int.Parse(_configuration["FuelConsumptionReportID"]??"0");
+
+
+            var fromDate =from.Date;
+            var toDate = fromDate.AddDays(1).AddTicks(-1); //add one day to from date
+
+          var loginquery = new LoginQuery{
+
+            GPSGateConections = new GPSGateConections{
+                GPSGateUser= new GPSGateUser 
+                {
+                    UserName = username,
+                    Password = password
+                },
+                ApplicationID = applicationID.Value
+            }
+          };
+
+             var conn = await _mediator.Send(loginquery);
           
-          //do validation here 
-                     //reportid = 218
-
-            int reportid = fuelConsumptionReportID;
-            var fromDate =from;
-            var toDate = to;
-
-            var conn = new GPSGateConections
-            {
-                SessionID = "14F55F0B48F16F0B56708D29D7DF5E76",
-                  };
-            var query = new GetConsumptionReportQuery(conn, 218, fromDate, toDate);
+            var query = new GetConsumptionReportQuery(conn ,fuelConsumptionReportId, fromDate, toDate);
 
             var results = await _mediator.Send(query);
 

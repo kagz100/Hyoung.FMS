@@ -110,12 +110,27 @@ namespace FMS.Application.Models
 
         public decimal? FuelEfficiency { get; set; }
 
-        public decimal? EngHours { get; set; }
+        private decimal? enginehrs;
+        public decimal? EngHours { 
+                
+           get
+            {
+                if(enginehrs.HasValue)
+                {
+                    return enginehrs.Value/3600;
+                }
+                else
+                { return null; }
+            }
+            set {
+               enginehrs = value;
+            } 
+        }
 
         public decimal? FlowMeterEngineHrs { get; set; }
 
         public bool IsNightShift { get; set; }
 
-        public string comments { get; set; }
+        public string Comments { get; set; }
     }
 }

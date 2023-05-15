@@ -16,7 +16,5 @@ public partial class Vehicletype
 
     public string? Nothinghere { get; set; }
 
-    public virtual ICollection<Assest> Assests { get; set; } = new List<Assest>();
-
     public virtual ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
 }

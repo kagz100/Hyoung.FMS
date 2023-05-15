@@ -26,7 +26,7 @@ namespace FMS.Application.Queries.GPSGATEServer.GetconsumptionReport
 
         public GPSGateConections conn { get; set; }
 
-        public int FuelConsumptionReportId { get; set; }
+        public int? FuelConsumptionReportId { get; set; }
 
 
         public DateTime From { get; set; }

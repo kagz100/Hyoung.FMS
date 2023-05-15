@@ -31,7 +31,7 @@ namespace FMS.Application.Queries.GPSGATEServer.GetconsumptionReport
 
             //call the webservice to get the consumption report
 
-            var consumptionReport = await _gpsGateDirectoryWebservice.GetFuelConsumptionReportAsync(request.conn, request.FuelConsumptionReportId, request.From, request.To);
+            var consumptionReport = await _gpsGateDirectoryWebservice.GetFuelConsumptionReportAsync(request.conn, request.FuelConsumptionReportId.Value, request.From, request.To);
 
             //fetch vehicle from database
             var vehicles = _Context.Vehicles.ToList();
@@ -60,7 +60,7 @@ namespace FMS.Application.Queries.GPSGATEServer.GetconsumptionReport
                         AvgSpeed = Consumption.AvgSpeed,
                         TotalDistance = Consumption.TotalDistance,
                         EngHours = Consumption.EngHours,
-                        IsNightShift = Consumption.IsNightShift,
+                        IsNightShift = Consumption.IsNightShift!=0,
                         FuelEfficiency = Consumption.FuelEfficiency,
                         IsAverageKm = vehicle.AverageKmL
                     };

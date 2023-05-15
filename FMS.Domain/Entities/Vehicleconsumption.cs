@@ -43,7 +43,9 @@ public partial class Vehicleconsumption
 
     public decimal? ExcessWorkingHrsCost { get; set; }
 
-    public bool IsNightShift { get; set; }
+    public ulong IsNightShift { get; set; }
+
+    public ulong IsKmperhr { get; set; }
 
     public virtual Employee? Employee { get; set; }
 

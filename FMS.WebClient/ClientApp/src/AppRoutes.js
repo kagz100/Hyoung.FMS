@@ -1,6 +1,5 @@
 import Home from "./components/Home";
 import FuelConsumptionReport from "./components/ConsumptionGrid";
-import ConsumptionReportGrid from "./components/ConsumptionReportGrid";
 import VehicleDataGrid from "./components/VehicleDataGrid";
 
 const AppRoutes = [
@@ -14,11 +13,7 @@ const AppRoutes = [
         element: <FuelConsumptionReport />
     },
 
-    {
-        path: "/Consumption-Report-Grid",
-        element: <ConsumptionReportGrid />
-    }
-    ,
+ 
     {
         path: "/Vehicle",
         element: <VehicleDataGrid />

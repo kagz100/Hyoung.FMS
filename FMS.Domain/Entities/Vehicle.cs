@@ -29,8 +29,11 @@ public partial class Vehicle
 
     public string? NumberPlate { get; set; }
 
-    //check  the vehicle fuel consumption type if it is using averagekm or liter per hour
     public bool AverageKmL { get; set; }
+
+    public string? Capacity { get; set; }
+
+    public string? CurrentPhysicalReading { get; set; }
 
     public virtual ICollection<Calibrationdatum> Calibrationdata { get; set; } = new List<Calibrationdatum>();
 

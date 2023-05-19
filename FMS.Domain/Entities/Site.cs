@@ -12,6 +12,8 @@ public partial class Site
 
     public string Name { get; set; } = null!;
 
+    public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
+
     public virtual ICollection<Issuetracker> Issuetrackers { get; set; } = new List<Issuetracker>();
 
     public virtual ICollection<Vehicleconsumption> Vehicleconsumptions { get; set; } = new List<Vehicleconsumption>();

@@ -1,4 +1,4 @@
-﻿using FMS.Application.Models;
+﻿using FMS.Application.Models.Vehicle;
 using FMS.Domain.Entities;
 using MediatR;
 using System;

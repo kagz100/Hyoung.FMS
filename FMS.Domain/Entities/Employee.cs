@@ -17,7 +17,13 @@ public partial class Employee
 
     public string? Employeestatus { get; set; }
 
+    public int? SiteId { get; set; }
+
+    public virtual Site? Site { get; set; }
+
     public virtual ICollection<Vehicleconsumption> Vehicleconsumptions { get; set; } = new List<Vehicleconsumption>();
+
+    public virtual ICollection<Vehicle> VehiclesNavigation { get; set; } = new List<Vehicle>();
 
     public virtual ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
 }

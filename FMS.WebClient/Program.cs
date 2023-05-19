@@ -21,12 +21,21 @@ using FMS.Application.Queries.Database.EmployeeQuery;
 using FMS.Application.Queries.Database.VehicleTypeQuery;
 using FMS.Application.MappingProfile;
 using Autofac.Core;
+using System.Security.Cryptography.Xml;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddJsonOptions(
+    options =>
+    {
+    // options.JsonSerializerOptions.ReferenceHandler  = ReferenceHandler.Preserve;
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        options.JsonSerializerOptions.MaxDepth = 0;
+    });
+
 
 
 //builder.Services.AddMediatR(typeof(ConsumptionController).GetTypeInfo().Assembly);
@@ -49,7 +58,7 @@ builder.Services.AddMediatR(cfg=>
 //builder.Services.AddScoped<IRequestHandler<GetConsumptionReportQuery,List<VehicleConsumptionInfo>>,GetConsumptionReportQueryHandler>();
 builder.Services.AddScoped<IGPSGateDirectoryWebservice, GPSGateDirectoryWebservice>();
 builder.Services.AddDbContext<GpsdataContext>(options =>
-          options.UseMySQL("server=10.0.10.150;port=3306;database=gpsdata;user=root;password=Niwewenamimi1000;connection timeout=200"));
+          options.UseMySQL("server=10.0.10.150;port=3306;database=gpsdata;user=root;password=Niwewenamimi1000;connection timeout=2000"));
 
 //Auto mapper profiles
 builder.Services.AddAutoMapper(typeof(VehicleMappingProfile));

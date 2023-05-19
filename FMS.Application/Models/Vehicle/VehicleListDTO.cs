@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FMS.Application.Models
+namespace FMS.Application.Models.Vehicle
 {
     public class VehicleListDTO
     {
@@ -22,7 +22,7 @@ namespace FMS.Application.Models
         /// <summary>
         /// year of manufacture ...change to date
         /// </summary>
-        public string? Yom { get; set; }
+        public string Yom { get; set; }
 
         public decimal ExpectedAveraged { get; set; }
 

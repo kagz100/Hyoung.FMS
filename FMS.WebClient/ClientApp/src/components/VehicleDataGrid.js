@@ -22,8 +22,7 @@ const VehicleDataGrid = () => {
             return response.data;
         },
         update: async (key, values) => {
-          
-            console.log('Key:', key);
+                 
             console.log('Request data:', { values, vehicleId: key });
             const originalData = await dataSource.byKey(key);
             const updatedData = { ...originalData, ...values ,vehicleId:key };
@@ -113,7 +112,7 @@ const VehicleDataGrid = () => {
             <h1>Vehicles</h1>
         </div>
             <Datagrid
-                  dataSource={dataSource}
+                dataSource={dataSource}
                 showBorders={true}
 
                 allowColumnReordering={true}
@@ -148,8 +147,12 @@ const VehicleDataGrid = () => {
                 </Column>
 
                 <Column dataField="vehicleTypeId" caption="Vehicle Type">
-                    <Lookup dataSource={vehicleTypeDataSource} valueExpr="id" displayExpr="name" />
+                    <Lookup
+                        dataSource={vehicleTypeDataSource}
+                        valueExpr="id"
+                        displayExpr="name" />
                 </Column>
+
                 <Column dataField="vehicleManufacturerId" caption="Vehicle Manufacturer">
                     <Lookup
                         dataSource={vehicleManufacturers}
@@ -158,7 +161,7 @@ const VehicleDataGrid = () => {
                     />
                 </Column>
                 <Column dataField="vehicleModelId" caption="Vehicle Model">
-                    {console.log("VehicleModel data source: ", vehicleModelDataSource)}
+                   
                     <Lookup dataSource={vehicleModelDataSource}
                         valueExpr="id"
                         displayExpr="name" />

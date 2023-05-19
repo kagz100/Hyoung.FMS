@@ -52,4 +52,6 @@ public partial class Vehicle
     public virtual ICollection<Vehicleconsumption> Vehicleconsumptions { get; set; } = new List<Vehicleconsumption>();
 
     public virtual Site? WorkingSite { get; set; }
+
+    public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
 }

@@ -15,7 +15,6 @@ public partial class GpsdataContext : DbContext
     {
     }
 
-
     public virtual DbSet<Calibrationdatum> Calibrationdata { get; set; }
 
     public virtual DbSet<Device> Devices { get; set; }
@@ -55,12 +54,11 @@ public partial class GpsdataContext : DbContext
     public virtual DbSet<Vehiclemodel> Vehiclemodels { get; set; }
 
     public virtual DbSet<Vehicletype> Vehicletypes { get; set; }
-    public object VehicleModel { get; set; }
 
-    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    // => optionsBuilder.UseMySql("server=10.0.10.150;port=3306;database=gpsdata;user=root;password=Niwewenamimi1000;connection timeout=200", Microsoft.EntityFrameworkCore.ServerVersion.Parse("5.5.61-mysql"));
+   // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+// => optionsBuilder.UseMySql("server=10.0.10.150;port=3306;database=gpsdata;user=root;password=Niwewenamimi1000;connection timeout=500", Microsoft.EntityFrameworkCore.ServerVersion.Parse("5.5.61-mysql"));
 
-    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
@@ -151,6 +149,8 @@ public partial class GpsdataContext : DbContext
 
             entity.ToTable("employee");
 
+            entity.HasIndex(e => e.SiteId, "Employee_site_idx");
+
             entity.HasIndex(e => e.NationalId, "NationalID_UNIQUE").IsUnique();
 
             entity.Property(e => e.Id)
@@ -172,6 +172,13 @@ public partial class GpsdataContext : DbContext
             entity.Property(e => e.NationalId)
                 .HasColumnType("bigint(20)")
                 .HasColumnName("NationalID");
+            entity.Property(e => e.SiteId)
+                .HasColumnType("int(11)")
+                .HasColumnName("SiteID");
+
+            entity.HasOne(d => d.Site).WithMany(p => p.Employees)
+                .HasForeignKey(d => d.SiteId)
+                .HasConstraintName("Employee_site");
         });
 
         modelBuilder.Entity<Fuelrefil>(entity =>
@@ -478,7 +485,7 @@ public partial class GpsdataContext : DbContext
                 .HasMaxLength(45)
                 .HasColumnName("YOM");
 
-            entity.HasOne(d => d.DefaultEmployee).WithMany(p => p.Vehicles)
+            entity.HasOne(d => d.DefaultEmployee).WithMany(p => p.VehiclesNavigation)
                 .HasForeignKey(d => d.DefaultEmployeeId)
                 .HasConstraintName("Vehicle_employee");
 
@@ -502,6 +509,32 @@ public partial class GpsdataContext : DbContext
             entity.HasOne(d => d.WorkingSite).WithMany(p => p.Vehicles)
                 .HasForeignKey(d => d.WorkingSiteId)
                 .HasConstraintName("vehicle_site");
+
+            entity.HasMany(d => d.Employees).WithMany(p => p.Vehicles)
+                .UsingEntity<Dictionary<string, object>>(
+                    "Employeevehicle",
+                    r => r.HasOne<Employee>().WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.ClientSetNull)
+                        .HasConstraintName("EmployeeID"),
+                    l => l.HasOne<Vehicle>().WithMany()
+                        .HasForeignKey("VehicleId")
+                        .OnDelete(DeleteBehavior.ClientSetNull)
+                        .HasConstraintName("VehicleID"),
+                    j =>
+                    {
+                        j.HasKey("VehicleId", "EmployeeId")
+                            .HasName("PRIMARY")
+                            .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
+                        j.ToTable("employeevehicles");
+                        j.HasIndex(new[] { "EmployeeId" }, "EmployeeID_idx");
+                        j.IndexerProperty<int>("VehicleId")
+                            .HasColumnType("int(11)")
+                            .HasColumnName("VehicleID");
+                        j.IndexerProperty<int>("EmployeeId")
+                            .HasColumnType("int(11)")
+                            .HasColumnName("EmployeeID");
+                    });
         });
 
         modelBuilder.Entity<Vehicleconsumption>(entity =>
@@ -609,5 +642,8 @@ public partial class GpsdataContext : DbContext
 
         OnModelCreatingPartial(modelBuilder);
     }
+
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
+
+

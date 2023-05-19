@@ -36,6 +36,14 @@ namespace FMS.WebClient.Controllers
 
         }
 
+        [HttpGet("getsimplevehiclelist")]
+        public async Task<IActionResult> GetSimpleVehicleList()
+        {
+            var query = new GetSimpleVehicleQuery();
+            var vehicles = await _mediator.Send(query);
+            return Ok(vehicles);
+        }
+
         [HttpPut("UpdateVehicle/{vehicleId}")]
         public async Task<IActionResult> UpdateVehicle(int vehicleId, [FromBody] VehicleViewModel model)
         {

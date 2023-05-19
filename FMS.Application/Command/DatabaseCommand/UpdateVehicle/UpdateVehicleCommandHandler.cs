@@ -39,6 +39,7 @@ namespace FMS.Application.Command.DatabaseCommand.UpdateVehicle
                 existingVehicle.DefaultEmployeeId = request.DefaultEmployeeId;  
                 existingVehicle.VehicleManufacturerId = request.VehicleManufacturerId;
                 existingVehicle.AverageKmL = request.AverageKmL;
+                existingVehicle.VehicleTypeId = request.VehicleTypeId.Value;
 
 
             //save the changes

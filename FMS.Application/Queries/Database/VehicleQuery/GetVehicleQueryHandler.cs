@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using FMS.Application.Models;
+using FMS.Application.Models.Vehicle;
 using FMS.Domain.Entities;
 using FMS.Persistence.DataAccess;
 using MediatR;
@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace FMS.Application.Queries.Database.VehicleQuery
 {
-    
+
     public class GetVehicleQueryHandler: IRequestHandler<GetVehicleQuery, List<VehicleListDTO>>
     {
 

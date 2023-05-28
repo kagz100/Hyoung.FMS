@@ -10,9 +10,6 @@ namespace FMS.Application.Queries.GPSGATEServer.GetconsumptionReport
 {
     public class GetConsumptionReportQuery : IRequest<List<VehicleConsumptionInfoDTO>>
     {
-
-
-
         public GetConsumptionReportQuery(GPSGateConections conn, int fuelConsumptionReportId, DateTime from, DateTime to)
         {
             this.conn = conn;
@@ -20,9 +17,6 @@ namespace FMS.Application.Queries.GPSGATEServer.GetconsumptionReport
             From = from;
             To = to;
         }
-
-
-
 
         public GPSGateConections conn { get; set; }
 

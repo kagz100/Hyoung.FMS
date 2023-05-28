@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FMS.Domain\FMS.Domain.csproj" />
+    <ProjectReference Include="..\FMS.Services\FMS.Services.csproj" />
   </ItemGroup>
 
 </Project>

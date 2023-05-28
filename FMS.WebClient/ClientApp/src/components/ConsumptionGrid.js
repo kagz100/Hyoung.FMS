@@ -1,42 +1,74 @@
 import React, { useState, useEffect } from 'react';
-import DataGrid, { Column, Paging, FilterRow, Sorting, ColumnChooser, ColumnFixing, FilterPanel, SearchPanel } from 'devextreme-react/data-grid';
+import EmployeeVehicleTagBox from './UIcomponents/EmployeeVehicleTagBox';
+import DataGrid, { Column, Paging, FilterRow, Sorting, ColumnChooser, ColumnFixing, Lookup,FilterPanel, SearchPanel } from 'devextreme-react/data-grid';
 import axios from "axios";
 import { HeaderFilter } from 'devextreme-react/pivot-grid-field-chooser';
 import SelectBox from 'devextreme-react/select-box';
 import CheckBox from 'devextreme-react/check-box';
 import DateBox from 'devextreme-react/date-box';
 import Button from 'devextreme-react/button';
+import LoadPanel from 'devextreme-react/load-panel';
 
 const ConsumptionGrid = () => {
     const [consumptionData, setConsumptionData] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null);
+    const [loading, setLoading] = useState(false); // New loading state
+
+
+    const calculateFilterExpression = (filterValue, selectedFilterOperation, target) => {
+        if (target === 'search' && typeof (filterValue) === 'string') {
+            return [this.dataField, 'contains', filterValue];
+        }
+        return function (data) {
+            return (data.Employees || []).indexOf(filterValue) !== -1;
+        }
+    };
+
+    const EmployeeTemplate = (container, options) => {
+        const noBreakSpace = '\u00A0';
+        const text = (options.value || []).map(element => element.fullName).join(', ');
+        container.textContent = text || noBreakSpace;
+        container.title = text;
+    };
+
+  
+
+
 
     const fetchData = async () => {
         if (!selectedDate) {
             return;
         }
+        setLoading(true); // Start loading
         const fromdate = selectedDate?.toISOString();
-        const response = await axios.get("https://localhost:7009/api/consumption", {
-            params: {
-                from: fromdate,
-            },
-        });
-        setConsumptionData(response.data);
+        try {
+            const response = await axios.get("https://localhost:7009/api/consumption", {
+                params: {
+                    from: fromdate,
+                },
+            });
+            setConsumptionData(response.data);
+        } catch (error) {
+            console.error("Fetch error:", error);
+        } finally {
+            setLoading(false); // End loading
+        }
     };
 
     useEffect(() => {
         fetchData();
     }, [selectedDate]);
-
     return (
 
-    <div>
+        <div>
+            <LoadPanel visible={loading} />  {/* New LoadPanel */}
         <div className="row">
             <div className="col-8">
-                <DateBox defaultValue={null} type="date" onValueChanged={(e) => setSelectedDate(e.value)} />
-            </div>
+                    <DateBox defaultValue={null} type="date"
+                        onValueChanged={(e) => setSelectedDate(e.value)} disabled={loading} />
+                </div>
             <div className="col-4">
-                <Button text="Load Data" onClick={fetchData} />
+                    <Button text="Load Data" onClick={fetchData} disabled={loading} />
             </div>
         </div>
    
@@ -76,8 +108,18 @@ const ConsumptionGrid = () => {
             fixed={true}
             caption="Hyoung No" />
         <Column caption="Employee Details" >
-        <Column dataField="defaultEmployee" caption="Name" />
-        <Column dataField="employeeWorkNumber" caption="Work Number" />
+                    <Column dataField="defaultEmployees"
+                        caption="Driver(s)" 
+                        width={200}
+                        allowSorting ={false}
+                        editCellComponent={EmployeeVehicleTagBox}
+                        cellTemplate={EmployeeTemplate}
+                        calculateFilterExpression={calculateFilterExpression}
+                    >
+                                     
+
+                    </Column>
+
         </Column>
         <Column dataField="maxSpeed" caption="Max Speed" />
         <Column dataField="avgSpeed" caption="AVG Speed" />

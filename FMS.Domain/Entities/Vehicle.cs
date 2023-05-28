@@ -41,6 +41,8 @@ public partial class Vehicle
 
     public virtual Device? Device { get; set; }
 
+    public virtual ICollection<Expectedaverage> Expectedaverages { get; set; } = new List<Expectedaverage>();
+
     public virtual ICollection<Issuetracker> Issuetrackers { get; set; } = new List<Issuetracker>();
 
     public virtual Vehiclemanufacturer? VehicleManufacturer { get; set; }

@@ -1,6 +1,7 @@
 ﻿using FMS.Domain.Entities;
 using FMS.Domain.Entities.Auth;
 using FMS.Infrastructure.DependancyInjection;
+using FMS.Services.Model;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -14,7 +15,11 @@ using System.Xml.Serialization;
 
 namespace FMS.Infrastructure.Webservice
 {
-     public class GPSGateDirectoryWebservice :IGPSGateDirectoryWebservice
+
+    /// <summary>
+    /// Provides services to interact with GPSGate.
+    /// </summary>
+    public class GPSGateDirectoryWebservice :IGPSGateDirectoryWebservice
     {
         private readonly DirectoryServiceReference1.DirectorySoapClient _DirectorySoapClient;
         private readonly ReportingServiceReference.ReportingSoapClient _ReportSoapClient;
@@ -31,17 +36,17 @@ namespace FMS.Infrastructure.Webservice
 
 
 
-        
+
 
         /// <summary>
-        /// Get Feul consumption report from GPSGate
+        /// Retrieves the fuel consumption report from GPSGate.
         /// </summary>
-        /// <param name="conn">GpsConnection SessionId </param>
-        /// <param name="FuelConsumptionReportID">FuelConsumption ID </param>
-        /// <param name="from">Start Date </param>
-        /// <param name="to">End Date  </param>
-        /// <returns></returns>
-        public async Task<List<Vehicleconsumption>> GetFuelConsumptionReportAsync(GPSGateConections conn, int FuelConsumptionReportID, DateTime from, DateTime to)
+        /// <param name="conn">The GPSGate connection.</param>
+        /// <param name="FuelConsumptionReportID">The ID of the fuel consumption report.</param>
+        /// <param name="from">The start date of the report.</param>
+        /// <param name="to">The end date of the report.</param>
+        /// <returns>A list of VehicleConsumptionModel objects representing the fuel consumption report.</returns>
+        public async Task<List<VehicleConsumptionModel>> GetFuelConsumptionReportAsync(GPSGateConections conn, int FuelConsumptionReportID, DateTime from, DateTime to)
         {
          string fromdatestr = from.ToString("o",CultureInfo.InvariantCulture) ;
           string todatestr = to.ToString("o",CultureInfo.InvariantCulture);
@@ -60,6 +65,8 @@ namespace FMS.Infrastructure.Webservice
 
             // Parse the report data into an XDocument object
             var reportXml = XDocument.Load(new StringReader(results.Body.GenerateReportResult.OuterXml));
+
+            //state can be Done or Processing
 
             // Retrieve the handleid and state data
             var handleId = reportXml.Descendants("handleid").FirstOrDefault()?.Value;
@@ -81,7 +88,7 @@ namespace FMS.Infrastructure.Webservice
             }
             
             
-                // If ready, get the report
+                // If "Done", get the report
                 var report = await _ReportSoapClient.FetchReportAsync(conn.SessionID, handleIdInt);
 
                 // Parse the report data into an XDocument object
@@ -90,17 +97,8 @@ namespace FMS.Infrastructure.Webservice
             //remove namespace from xml 
 
             reportXmls.Descendants().Attributes().Where(a => a.IsNamespaceDeclaration).Remove();
-
-               //debug
-               //extract all descedants
-               
-            //  foreach(var element in reportXmls.Descendants())
-            //{
-            //    Console.WriteLine(element.Name + " - " + element.Value + " Attributes- " + element.Attributes().ToString());
-            //}
-            
+       
                     
-
             var headerRow = reportXmls.Descendants("{http://gpsgate.com/xml/}Row").FirstOrDefault(r => r.Attribute("kind")?.Value == "h");
                 var dataRows = reportXmls.Descendants("{http://gpsgate.com/xml/}Row").Where(r => r.Attribute("kind")?.Value == "i").ToList();
 
@@ -112,15 +110,13 @@ namespace FMS.Infrastructure.Webservice
 
                 var headcell = headerRow.Descendants("{http://gpsgate.com/xml/}Cell").ToList();
 
-                var result = new List<Vehicleconsumption>();
+                var result = new List<VehicleConsumptionModel>();
 
 
                 foreach (var dataRow in dataRows)
                 {
-                          
-
+                  
                     var consumption = ParseVehicleConsumption(dataRow);
-
                     result.Add(consumption);
                 }
 
@@ -130,10 +126,15 @@ namespace FMS.Infrastructure.Webservice
 
         }
 
-        public Vehicleconsumption ParseVehicleConsumption(XElement dataRow)
+        // <summary>
+        /// Parses the VehicleConsumption data from the XML row.
+        /// </summary>
+        /// <param name="dataRow">The XML row containing the VehicleConsumption data.</param>
+        /// <returns>A VehicleConsumptionModel object.</returns>
+        public VehicleConsumptionModel ParseVehicleConsumption(XElement dataRow)
         {
 
-            var consumption = new Vehicleconsumption();
+            var consumption = new VehicleConsumptionModel();
 
             foreach(var datacell in dataRow.Descendants("{http://gpsgate.com/xml/}Cell"))
             {
@@ -236,12 +237,10 @@ namespace FMS.Infrastructure.Webservice
 
 
         /// <summary>
-        /// Parse the report data from GPSGate into an XDocument vehicleConsumption object
+        /// Logs into the GPSGate service.
         /// </summary>
-        /// <param name="headerCells"></param>
-        /// <param name="datacells"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentException"></exception>
+        /// <param name="conn">The GPSGate connection.</param>
+        /// <returns>A Task representing the asynchronous operation.</returns>
         public async Task<string> LoginAsyn(GPSGateConections conn)
         {
             var results = await _DirectorySoapClient.LoginAsync(conn.GPSGateUser.UserName, conn.GPSGateUser.Password, conn.ApplicationID);
@@ -267,13 +266,12 @@ namespace FMS.Infrastructure.Webservice
         }
 
 
-
         /// <summary>
-        /// Check on the Progress of the Report 
+        /// Retrieves the status of the report from GPSGate.
         /// </summary>
-        /// <param name="conn">GPSGATE Connnection</param>
-        /// <param name="handleIdInt">HandleID</param>
-        /// <returns></returns>
+        /// <param name="conn">The GPSGate connection.</param>
+        /// <param name="handleId">The handle ID of the report.</param>
+        /// <returns>A Task representing the asynchronous operation.</returns>
         private async Task<string> GetReportStatus(GPSGateConections conn, int handleId)
         {
             //check on GPSGATE API 
@@ -309,12 +307,6 @@ namespace FMS.Infrastructure.Webservice
 
             
         }
-
-
-
-
-
-
 
 
     }

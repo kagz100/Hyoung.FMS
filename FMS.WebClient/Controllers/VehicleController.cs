@@ -25,7 +25,7 @@ namespace FMS.WebClient.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("getvehiclelist")]
+        [HttpGet("getlist")]
         public async Task<IActionResult> GetVehicleList()
         {
             var query = new GetVehicleQuery();

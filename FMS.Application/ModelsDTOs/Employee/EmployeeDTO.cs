@@ -28,11 +28,16 @@ namespace FMS.Application.Models.Employee
         public long? NationalId { get; set; }
 
         [JsonPropertyName("employeestatus")]
-        public string Employeestatus { get; set; } = string.Empty;
+        public string Employeestatus { get; set; } = "Active";
 
         [JsonPropertyName("siteId")]
         public int? SiteId { get; set; }
 
+        //<todo> this is wrong: change from SimplevehicleDto to Vehicle
+        //</todo>
+        /// <summary>
+        /// this is wrong
+        /// </summary>
         [JsonPropertyName("vehicles")]
         public ICollection<SimpleVehicleDto> Vehicles { get; set; } = new List<SimpleVehicleDto>();
     }

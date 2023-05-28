@@ -14,7 +14,7 @@ namespace FMS.WebClient.Controllers
         {
             _mediator = mediator;
         }
-        [HttpGet("GetVehicleType")]
+        [HttpGet("getlist")]
         public async Task<IActionResult> GetVehicleType()
         {
             var query = new GetVehicleTypeQuery();

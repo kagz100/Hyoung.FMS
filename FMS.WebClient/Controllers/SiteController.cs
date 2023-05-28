@@ -19,7 +19,7 @@ namespace FMS.WebClient.Controllers
         }
 
         //return list of sites
-        [HttpGet("getsitelist")]
+        [HttpGet("getlist")]
         public async Task<IActionResult> GetSiteList()
         {
 

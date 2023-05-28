@@ -28,7 +28,7 @@ const EmployeeGrid = () => {
 
         },
         update: async (key, values) => {
-            console.log('Request data:', { values, id: key });
+            //console.log('Request data:', { values, id: key });
             const originalData = await dataSource.byKey(key);
             const updatedVehicles = values.vehicles ? values.vehicles.map(vehicleId => ({ vehicleId })) : originalData.vehicles;
             const updatedValues = { ...values, vehicles: updatedVehicles }; // Use the updated vehicles array
@@ -37,11 +37,28 @@ const EmployeeGrid = () => {
             if (updatedData.siteId == 0) {
                 delete updatedData.siteId;
             }
-            console.log("Updated data: ", updatedData);
+         //   console.log("Updated data: ", updatedData);
 
             const response = await axios.put(`${apiUrl}/employee/update/${key}`, updatedData);
+            return response.data;
+        },
+
+        insert: async (values) => {
+            const newVehicles = values.vehicles ? values.vehicles.map(vehicleId => ({ vehicleId })) : [];
+            const newValues = { ...values,employeestatus:"Active" ,vehicles: newVehicles };
+            if (newValues.siteId == 0) {
+                delete newValues.siteId;
+            }
+            const response = await axios.post(`${apiUrl}/employee/create`, newValues);
+            return response.data;
         }
     });
+
+    const onRowInserted = (e) => {
+        e.component.navigateToRow(e.key);
+    };
+   
+
 
     const siteDataSource = new CustomStore({
         key: 'id',
@@ -71,6 +88,8 @@ const EmployeeGrid = () => {
         return function (data) {
             return (data.Vehicles || []).indexOf(filterValue) !== -1;
         }
+
+
     };
             
 
@@ -82,7 +101,7 @@ const EmployeeGrid = () => {
                 keyExpr="id"
                 showBorders={true}
                 columnAutoWidth={true}
-                
+                onRowInserted={onRowInserted}
             >
                 <FilterRow visible={true} />
 
@@ -93,7 +112,7 @@ const EmployeeGrid = () => {
                     allowDeleting={false}
                     selectTextOnEditStart={true}
                     allowAdding={true}
-                    onR
+                    
                     startEditAction="click"
                 />
                 <Column dataField="id" allowEditing={false} visible={false} />

@@ -3,9 +3,6 @@ using System.Collections.Generic;
 
 namespace FMS.Domain.Entities;
 
-/// <summary>
-/// 			
-/// </summary>
 public partial class Site
 {
     public int Id { get; set; }
@@ -13,6 +10,8 @@ public partial class Site
     public string Name { get; set; } = null!;
 
     public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
+
+    public virtual ICollection<Expectedaverage> Expectedaverages { get; set; } = new List<Expectedaverage>();
 
     public virtual ICollection<Issuetracker> Issuetrackers { get; set; } = new List<Issuetracker>();
 

@@ -19,7 +19,7 @@ namespace FMS.WebClient.Controllers
         }
 
 
-        [HttpGet("GetVehicleManufacturer")]
+        [HttpGet("getlist")]
         public async Task<IActionResult> GetVehicleManufacturer()
         {
             var query = new GetVehicleManufacturerQuery();

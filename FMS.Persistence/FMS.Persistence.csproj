@@ -11,7 +11,7 @@
     <ProjectReference Include="..\FMS.Domain\FMS.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DataAccess\" />
+    <Folder Include="DataAccess\Nafta\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

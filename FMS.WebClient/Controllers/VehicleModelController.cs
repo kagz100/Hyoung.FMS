@@ -22,7 +22,7 @@ namespace FMS.WebClient.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("GetVehicleModel")]
+        [HttpGet("getlist")]
         public async Task<IActionResult> GetVehicleModel()
         {
 

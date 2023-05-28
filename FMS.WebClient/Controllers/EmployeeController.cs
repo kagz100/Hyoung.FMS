@@ -18,9 +18,23 @@ namespace FMS.WebClient.Controllers
         {
             _mediator = mediator;
         }
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateEmployee([FromBody] EmployeeDto employeeDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var command = new EmployeeCreateCmd
+            {
+                EmployeeDto = employeeDto
+            };
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
 
 
-        [HttpGet("getemployeelist")]
+        [HttpGet("getlist")]
         public async Task<IActionResult> GetEmployeeList()
         {
             var query = new GetEmployeeQuery();

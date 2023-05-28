@@ -11,8 +11,16 @@ namespace FMS.Application.Models.Vehicle
     {
         [JsonPropertyName("vehicleId")]
         public int VehicleId { get; set; }
-     
+
+        [JsonPropertyName("hyoungNo")]
         public string HyoungNo { get; set; }
+
+
+
+
+
+
+
     }
 
 }

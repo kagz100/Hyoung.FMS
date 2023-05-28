@@ -57,6 +57,11 @@ namespace FMS.Application.Command.DatabaseCommand.EmployeeCmd
                 }
             }
 
+            _context.Employees.Update(employee);
+
+
+
+
             await _context.SaveChangesAsync(cancellationToken);
 
             return true;

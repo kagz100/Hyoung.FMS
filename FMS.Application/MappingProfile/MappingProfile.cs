@@ -35,6 +35,16 @@ namespace FMS.Application.MappingProfile
                 .ForMember(dest => dest.ManufacturerId, opt => opt.MapFrom(src => src.ManufacturerId));
 
 
+            CreateMap <Expectedaverage,ExpectedAVGDto>()
+                .ForMember(dest=>dest.Id,opt=>opt.MapFrom(src=>src.Id))
+                .ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.VehicleId))
+                .ForMember(dest => dest.ExpectedAVG, opt => opt.MapFrom(src => src.ExpectedAverage1))
+                .ForMember(dest => dest.ExpectedAverageClassificationId, opt => opt.MapFrom(src => src.ExpectedAverageClassificationId))
+                
+                
+                .ReverseMap();
+
+            CreateMap<Expectedaverageclassification, ExpectedAVGClassficationDTO>().ReverseMap();
 
         }
     }

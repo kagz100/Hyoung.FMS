@@ -1,4 +1,4 @@
-﻿namespace FMS.Domain
+﻿namespace FMS.Services
 {
     public class Class1
     {

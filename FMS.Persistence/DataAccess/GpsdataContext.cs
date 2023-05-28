@@ -25,6 +25,10 @@ public partial class GpsdataContext : DbContext
 
     public virtual DbSet<Employee> Employees { get; set; }
 
+    public virtual DbSet<Expectedaverage> Expectedaverages { get; set; }
+
+    public virtual DbSet<Expectedaverageclassification> Expectedaverageclassifications { get; set; }
+
     public virtual DbSet<Fuelrefil> Fuelrefils { get; set; }
 
     public virtual DbSet<Issuecategory> Issuecategories { get; set; }
@@ -55,9 +59,9 @@ public partial class GpsdataContext : DbContext
 
     public virtual DbSet<Vehicletype> Vehicletypes { get; set; }
 
-   // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+// protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-// => optionsBuilder.UseMySql("server=10.0.10.150;port=3306;database=gpsdata;user=root;password=Niwewenamimi1000;connection timeout=500", Microsoft.EntityFrameworkCore.ServerVersion.Parse("5.5.61-mysql"));
+   // => optionsBuilder.UseMySql("server=10.0.10.150;port=3306;database=gpsdata;user=root;password=Niwewenamimi1000;connection timeout=10000;command timeout=10000", Microsoft.EntityFrameworkCore.ServerVersion.Parse("5.5.61-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -179,6 +183,62 @@ public partial class GpsdataContext : DbContext
             entity.HasOne(d => d.Site).WithMany(p => p.Employees)
                 .HasForeignKey(d => d.SiteId)
                 .HasConstraintName("Employee_site");
+        });
+
+        modelBuilder.Entity<Expectedaverage>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("expectedaverage");
+
+            entity.HasIndex(e => e.ExpectedAverageClassificationId, "Expected_classification_idx");
+
+            entity.HasIndex(e => e.VehicleId, "Expected_vehicle_idx");
+
+            entity.HasIndex(e => e.SiteId, "Site_idx");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("ID");
+            entity.Property(e => e.ExpectedAverage1)
+                .HasPrecision(5, 2)
+                .HasColumnName("ExpectedAverage");
+            entity.Property(e => e.ExpectedAverageClassificationId)
+                .HasColumnType("int(11)")
+                .HasColumnName("ExpectedAverageClassificationID");
+            entity.Property(e => e.SiteId)
+                .HasColumnType("int(11)")
+                .HasColumnName("SiteID");
+            entity.Property(e => e.VehicleId)
+                .HasColumnType("int(11)")
+                .HasColumnName("VehicleID");
+
+            entity.HasOne(d => d.ExpectedAverageClassification).WithMany(p => p.Expectedaverages)
+                .HasForeignKey(d => d.ExpectedAverageClassificationId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("Expected_classification");
+
+            entity.HasOne(d => d.Site).WithMany(p => p.Expectedaverages)
+                .HasForeignKey(d => d.SiteId)
+                .HasConstraintName("Expected_site");
+
+            entity.HasOne(d => d.Vehicle).WithMany(p => p.Expectedaverages)
+                .HasForeignKey(d => d.VehicleId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("Expected_vehicle");
+        });
+
+        modelBuilder.Entity<Expectedaverageclassification>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("expectedaverageclassification");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("ID");
+            entity.Property(e => e.Description).HasColumnType("text");
+            entity.Property(e => e.Name).HasMaxLength(545);
         });
 
         modelBuilder.Entity<Fuelrefil>(entity =>
@@ -644,6 +704,8 @@ public partial class GpsdataContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+
 }
 
 

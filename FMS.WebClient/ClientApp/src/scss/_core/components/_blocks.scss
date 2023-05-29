@@ -1,0 +1,254 @@
+/**
+
+	Various Blocks
+
+**/
+
+/*
+
+	Image stretch
+	Desktop only!
+
+*/
+@media only screen and (min-width: map-get($grid-breakpoints, "lg")) {
+	$stretch-margin-adjust: 	-19.6vw !default;
+
+	.stretch-end {
+		border-radius: $border-radius;
+		overflow: hidden;
+
+		@if $global-rtl-enable == false {
+			margin-right: $stretch-margin-adjust !important;
+
+			border-top-right-radius: 0 !important;
+			border-bottom-right-radius: 0 !important;
+		} @else {
+			margin-left: $stretch-margin-adjust !important;
+
+			border-top-left-radius: 0 !important;
+			border-bottom-left-radius: 0 !important;
+		}
+
+	}
+
+	.stretch-start {
+		border-radius: $border-radius;
+		overflow: hidden;
+
+		@if $global-rtl-enable == false {
+			margin-left: $stretch-margin-adjust !important;
+
+			border-top-left-radius: 0 !important;
+			border-bottom-left-radius: 0 !important;
+		} @else {
+			margin-right: $stretch-margin-adjust !important;
+
+			border-top-right-radius: 0 !important;
+			border-bottom-right-radius: 0 !important;
+		}
+
+	}
+}
+
+
+
+
+
+/*
+
+	Images Block
+
+*/
+.block-img-start .block-img,
+.block-img-end .block-img {
+	position: relative;
+	overflow: hidden;
+	border-radius: $border-radius;
+}
+
+@media only screen and (min-width: map-get($grid-breakpoints, "lg")) {
+	// single or primary
+	.block-img-start .block-img-2,
+	.block-img-end .block-img-2 {
+		margin-top: -400px;
+	}
+
+	@if $global-rtl-enable == false {
+
+		// start
+		.block-img-start .block-img-1 {
+			top: -80px;
+			left: -78%;
+		}
+		.block-img-start .block-img-2 {
+			left: -10%;
+		}
+		.block-img-start .block-img-3 {
+			margin-top: -300px;
+			left: -78%;
+		}
+
+		// end
+		.block-img-end .block-img-1 {
+			top: -80px;
+			right: -78%;
+		}
+		.block-img-end .block-img-2 {
+			right: -10%;
+		}
+		.block-img-end .block-img-3 {
+			margin-top: -300px;
+			right: -78%;
+		}
+
+	} @else {
+
+		// start
+		.block-img-start .block-img-1 {
+			top: -80px;
+			right: -78%;
+		}
+		.block-img-start .block-img-2 {
+			right: -10%;
+		}
+		.block-img-start .block-img-3 {
+			margin-top: -300px;
+			right: -78%;
+		}
+
+		// end
+		.block-img-end .block-img-1 {
+			top: -80px;
+			left: -78%;
+		}
+		.block-img-end .block-img-2 {
+			left: -10%;
+		}
+		.block-img-end .block-img-3 {
+			margin-top: -300px;
+			left: -78%;
+		}
+
+	}
+}
+
+// MOBILE
+@media only screen and (max-width: map-get($grid-breakpoints, "xl") - 1px) { // xl: 1200px, lg: 992px, md: 768px
+	
+	.block-img-start .block-img,
+	.block-img-end .block-img {
+		display: inline-block;
+		position: relative;
+		width: 50%;
+		top: 0;
+
+		@if $global-rtl-enable == false {
+			left: 0;
+		} @else {
+			right: 0;
+		}
+	}
+
+	@if $global-rtl-enable == false {
+
+		.block-img-start .block-img-1,
+		.block-img-end .block-img-1 {
+			left:0;
+		}
+		.block-img-start .block-img-2,
+		.block-img-end .block-img-2 {
+			left:25%;
+			margin-top: -100%;
+		}
+		.block-img-start .block-img-3,
+		.block-img-end .block-img-3 {
+			left: 50%;
+			margin-top: -100%;
+		}
+
+	} @else {
+
+		.block-img-start .block-img-1,
+		.block-img-end .block-img-1 {
+			right:0;
+		}
+		.block-img-start .block-img-2,
+		.block-img-end .block-img-2 {
+			right:25%;
+			margin-top: -100%;
+		}
+		.block-img-start .block-img-3,
+		.block-img-end .block-img-3 {
+			right: 50%;
+			margin-top: -100%;
+		}
+
+	}
+
+}
+
+
+
+
+/*
+
+	Images Block 2
+	All devices
+
+*/
+.block-img-card {
+	display: block;
+	position: relative;
+}
+.block-img-card .block-img {
+	display: inline-block;
+	width: 50%;
+	@if $global-rtl-enable == false {
+		left: 0;
+	} @else {
+		right: 0;
+	}
+
+	border-radius: $border-radius;
+
+}
+
+@if $global-rtl-enable == false {
+
+	.block-img-card .block-img-1 {
+		left:0;
+		top: 0;
+		position: relative;
+	}
+	.block-img-card .block-img-2 {
+		left:25%;
+		top: 5%;
+		position: absolute;
+	}
+	.block-img-card .block-img-3 {
+		left: 50%;
+		top: 10%;
+		position: absolute;
+	}
+
+} @else {
+
+	.block-img-card .block-img-1 {
+		right:0;
+	}
+	.block-img-card .block-img-2 {
+		right:25%;
+		top: 5%;
+		position: absolute;
+	}
+	.block-img-card .block-img-3 {
+		right: 50%;
+		top: 10%;
+		position: absolute;
+	}
+
+}
+
+
+
+

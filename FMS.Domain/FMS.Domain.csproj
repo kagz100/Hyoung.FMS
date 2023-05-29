@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Enum\**" />
+    <EmbeddedResource Remove="Enum\**" />
+    <None Remove="Enum\**" />
+  </ItemGroup>
+
+  
+    <ItemGroup>
+    <Folder Include="Entities\Common\Interface\" />
+  </ItemGroup>
+
+  
+  
+  <ItemGroup>
+    <Folder Include="Entities\Common\Interface\" />
+  </ItemGroup>
+
+  
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.15" />
+  </ItemGroup>
+
+</Project>

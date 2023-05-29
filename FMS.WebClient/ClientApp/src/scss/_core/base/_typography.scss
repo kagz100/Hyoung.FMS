@@ -1,0 +1,77 @@
+/*
+
+    Paragraphs
+
+*/
+
+/* resets */
+.bg-dark p {
+  color: $gray-500;
+}
+.text-white p {
+  color: $white;
+}
+.alert p {
+  color: inherit;
+}
+.bg-white-alt { /* used by sortable or other js that add/remove background */
+  background-color: $white;
+}
+
+.display-5 {
+  font-size: 3rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.hr {
+  display: block;
+  height: 1px;
+  border-top: 1px solid rgba(#000, .1);
+}
+
+
+// article : blogs, etc
+// not all editors are bootstrp specialized
+.article-format h2,
+.article-format h3 {
+  margin-bottom: 20px;
+}
+.article-format blockquote+h2,
+.article-format blockquote+h3,
+.article-format p:not(:empty)+h2,
+.article-format p:not(:empty)+h3 {
+  margin-top: 50px;
+}
+.article-format iframe,
+.article-format .embed-responsive,
+.article-format p,
+.article-format img {
+  margin-bottom: 25px;
+}
+  // blockquote
+  .article-format blockquote {
+    font-style: italic;
+    font-weight: 300;
+    padding: 1.5rem;
+    background-color: $gray-100;
+    font-size: 1.25rem;
+    margin: 0 0 2rem 0;
+    border-radius: $border-radius;
+  }
+    .article-format blockquote p {
+      margin-bottom: 0;
+    }
+
+
+
+// white : good browsers only (slightly correction)
+textarea.text-white::-webkit-input-placeholder,
+input.text-white::-webkit-input-placeholder {
+  color: rgba(255,255,255,0.5) !important;
+}
+textarea.text-white::-moz-placeholder,
+input.text-white::-moz-placeholder {
+  color: rgba(255,255,255,0.5) !important;
+}
+// --

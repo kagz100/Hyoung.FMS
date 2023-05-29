@@ -1,0 +1,275 @@
+/**
+
+		- Bordered Grid 			.row-grid
+		
+**/
+
+/* bordered grid */
+.ul-grid,
+.row-grid {
+	border-top: 1px solid $gray-200;
+
+	@if $global-rtl-enable == false {
+		border-left: 1px solid $gray-200;
+	} @else {
+		border-right: 1px solid $gray-200;
+	}
+
+}
+
+.ul-grid>li,
+.row-grid>div {
+	border-bottom: 1px solid $gray-200;
+	padding: 0;
+
+	@if $global-rtl-enable == false {
+		border-right: 1px solid $gray-200;
+	} @else {
+		border-left: 1px solid $gray-200;
+	}	
+}
+
+
+// -- -- -- -- -- -- -- -- --
+// Inline grid
+// -- -- -- -- -- -- -- -- --
+.d-inline-grid {
+    display: inline-grid !important;
+}
+
+@each $key, $val in $spacers {
+  .gap-auto-#{$key} {
+    grid-auto-flow: column;
+    grid-gap: $val;
+    align-items: center;
+  }
+}
+
+
+// -- -- -- -- -- -- -- -- --
+// BS grid 5 columns 
+// -- -- -- -- -- -- -- -- --
+.col-5th,
+.col-sm-5th,
+.col-md-5th,
+.col-lg-5th,
+.col-xl-5th {
+  position: relative;
+  /*width: 100%;*/
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.col-5th {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 20%;
+  flex: 0 0 20%;
+  max-width: 20%;
+}
+@media only screen and (min-width: map-get($grid-breakpoints, "sm")) {
+  .col-sm-5th {
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 20%;
+      flex: 0 0 20%;
+      max-width: 20%;
+  }
+}
+@media only screen and (min-width: map-get($grid-breakpoints, "md")) {
+  .col-md-5th {
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 20%;
+      flex: 0 0 20%;
+      max-width: 20%;
+  }
+}
+@media (min-width: 960px) {
+  .col-lg-5th {
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 20%;
+      flex: 0 0 20%;
+      max-width: 20%;
+  }
+}
+@media (min-width: 1200px) {
+  .col-xl-5th {
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 20%;
+      flex: 0 0 20%;
+      max-width: 20%;
+  }
+}
+
+
+
+
+
+
+
+/* 
+  Grid Gutters
+*/
+.gutters-xxs {
+    margin-right: -$gutters-xxs;
+    margin-left: -$gutters-xxs;
+    > [class*="col"] {
+      padding-right: $gutters-xxs;
+      padding-left: $gutters-xxs;
+    }
+  }
+.gutters-xs {
+    margin-right: -$gutters-xs;
+    margin-left: -$gutters-xs;
+    > [class*="col"] {
+      padding-right: $gutters-xs;
+      padding-left: $gutters-xs;
+    }
+  }
+.gutters-sm {
+    margin-right: -$gutters-sm;
+    margin-left: -$gutters-sm;
+    > [class*="col"] {
+      padding-right: $gutters-sm;
+      padding-left: $gutters-sm;
+    }
+  }
+
+
+// Should not be used, bootstrap default should be '-md'
+.gutters-md {
+    margin-right: -$gutters-md;
+    margin-left: -$gutters-md;
+    > [class*="col"] {
+      padding-right: $gutters-md;
+      padding-left: $gutters-md;
+    }
+  }
+
+
+.gutters-lg {
+    margin-right: -$gutters-lg;
+    margin-left: -$gutters-lg;
+    > [class*="col"] {
+      padding-right: $gutters-lg;
+      padding-left: $gutters-lg;
+    }
+  }
+
+.gutters-xl {
+    margin-right: -$gutters-xl;
+    margin-left: -$gutters-xl;
+    > [class*="col"] {
+      padding-right: $gutters-xl;
+      padding-left: $gutters-xl;
+    }
+  }
+
+
+
+
+
+
+/*
+  Bordered columns
+  old:  rgba(0,0,0,.1)
+*/
+$row-col-border-color: $dropdown-divider-bg !default; 
+
+.row.col-border > div:not(:first-child) {
+  @if $global-rtl-enable == false {
+    border-left: $row-col-border-color 1px solid; 
+  } @else {
+    border-right: $row-col-border-color 1px solid; 
+  }
+}
+
+@media only screen and (min-width: map-get($grid-breakpoints, "sm")) {
+  .row.col-border-sm > div:not(:first-child) {
+    @if $global-rtl-enable == false {
+      border-left: $row-col-border-color 1px solid; 
+    } @else {
+      border-right: $row-col-border-color 1px solid; 
+    }
+  }
+}
+
+@media only screen and (min-width: map-get($grid-breakpoints, "md")) {
+  .row.col-border-md > div:not(:first-child) {
+    @if $global-rtl-enable == false {
+      border-left: $row-col-border-color 1px solid; 
+    } @else {
+      border-right: $row-col-border-color 1px solid; 
+    }
+  }
+}
+
+@media only screen and (min-width: map-get($grid-breakpoints, "lg")) {
+  .row.col-border-lg > div:not(:first-child) {
+    @if $global-rtl-enable == false {
+      border-left: $row-col-border-color 1px solid; 
+    } @else {
+      border-right: $row-col-border-color 1px solid; 
+    }
+  }
+}
+
+
+
+/*
+
+  Kanban grid
+
+*/
+.kanban-grid{
+  flex-wrap:nowrap
+}
+.kanban-grid>[class*=col]{
+  width:350px
+}
+
+
+
+/*
+  Grid notes-like
+*/
+// 1px = 0.0625
+$line-notes-font-size:    $font-size-base !default;
+.grid-notebook {
+    display: block;
+    font-size: $line-notes-font-size;
+    line-height: ($line-notes-font-size * 2);
+    line-height: 200%;
+    padding: 0.455rem 1.5625rem 0 1.5625rem;
+    
+    background-image: -moz-linear-gradient(top , transparent, transparent ($line-notes-font-size * 2 - 0.0625rem),#E7EFF8 0px); 
+    background-image: -webkit-linear-gradient(top , transparent, transparent ($line-notes-font-size * 2 - 0.0625rem),#E7EFF8 0);
+    
+    -webkit-background-size:  100% $line-notes-font-size * 2;
+    background-size: 100%  $line-notes-font-size * 2;
+    background-attachment: local;
+}
+  .grid-notebook p,
+  .grid-notebook ul,
+  .grid-notebook ol {
+    margin-bottom: 0 !important;
+  }
+  .grid-notebook h1,
+  .grid-notebook h2,
+  .grid-notebook h3,
+  .grid-notebook h4,
+  .grid-notebook h5,
+  .grid-notebook h6 {
+    line-height: $line-notes-font-size * 2 !important;
+    margin-bottom: 0 !important;
+  }
+  .grid-notebook h1,
+  .grid-notebook h2 {
+    font-size: 1.5625rem !important;
+  }
+  .grid-notebook h3 {
+    font-size: 1.25rem !important;
+  }
+  .grid-notebook h4,
+  .grid-notebook h5,
+  .grid-notebook h6 {
+    font-size: 1.125rem !important;
+  }

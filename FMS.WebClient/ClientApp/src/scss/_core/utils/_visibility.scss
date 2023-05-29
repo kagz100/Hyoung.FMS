@@ -1,0 +1,59 @@
+/**
+
+		- Hide 
+
+**/
+.hide {
+	display: none;
+}
+.hide-force {
+	display: none !important;
+}
+
+/* autohide element if empty (no spaces, nothing) */
+.hide-empty:empty {
+	display: none !important;
+}
+
+.d-none-cloaked {
+	box-shadow: none!important;
+	opacity: 0!important;
+	position: absolute;
+	z-index: -1;
+	width: 2px;
+	height: 2px;
+}
+
+/* 
+
+	Items are hidden but visible on mouse over.
+	Example: seful to hide "delete" button but visible on hover
+	** Always visible on mobile!
+
+	<div class="show-hover-container">
+
+		<div class="show-hover-item">...</div>
+
+	</div>
+
+*/
+@media only screen and (min-width: map-get($grid-breakpoints, "lg")) {
+
+	.show-hover-container:not(:hover) .show-hover-item {
+		visibility: hidden;
+		transition: box-shadow 250ms ease,transform 250ms ease;
+	}
+		.show-hover-container:hover .show-hover-item {
+			visibility: visible !important;
+		}
+
+}
+
+/* all devices */
+	.show-hover-container-all:not(:hover) .show-hover-item-all {
+		visibility: hidden;
+		transition: box-shadow 250ms ease,transform 250ms ease;
+	}
+		.show-hover-container-all:hover .show-hover-item-all {
+			visibility: visible !important;
+		}

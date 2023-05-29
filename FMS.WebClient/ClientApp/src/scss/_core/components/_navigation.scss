@@ -1,0 +1,323 @@
+/**
+
+	DEFAULT BOOTSTRAP NAVIGATION
+
+**/
+/*:not(nav.navbar-dark) a.nav-link:not(.active):not(:hover) {*/ // not working on safari
+nav.navbar-light a.nav-link:not(.active):not(:hover) {
+	color: $body-color;
+}
+	.navbar-light .navbar-nav .nav-item:hover > .nav-link, 
+	.navbar-light .navbar-nav .nav-link[aria-expanded="true"] {
+		color: $primary !important;
+	}
+	.navbar-dark .navbar-nav .nav-item:hover > .nav-link, 
+	.navbar-dark .navbar-nav .nav-link[aria-expanded="true"] {
+		color: #ffffff !important;
+	}
+/* -- -- -- */
+
+
+
+
+
+
+
+/**
+
+	DEEP NAVIGATION
+		1. Inside content (mobile collasible)
+		2. Sidebar (including admin)
+
+**/
+
+/* group icon indicator */
+nav.nav-deep {
+	font-size: 0.92rem;
+}
+
+nav.nav-deep .nav-item .group-icon {
+	font-size: $nav-deep-icon-font-size;
+	margin-top: 3px;
+}
+		nav.nav-deep-dark .nav-item .group-icon {
+			color: $nav-deep-dark-link-color !important;
+		}
+		nav.nav-deep-dark-contrast .nav-item .group-icon {
+			color: #ffffff !important;
+		}
+		nav.nav-deep-light .nav-item .group-icon {
+			color: $nav-deep-light-link-color !important;
+		}
+
+
+/* light */
+nav.nav-deep-light .nav-item>a.nav-link {
+	color: $nav-deep-light-link-color;
+}
+	nav.nav-deep-light .nav-item:hover>.nav-link,
+	nav.nav-deep-light .nav-item.active>.nav-link {
+		color: $nav-deep-light-link-color-active;
+	}
+	/* hover background color */
+	nav.nav-deep-light.nav-deep-hover>ul>li.nav-item:hover,
+	nav.nav-deep-light.nav-deep-hover>ul>li.nav-item.active {
+		background-color: rgba(0,0,0,0.05);
+	}
+
+/* hover & active background color */
+nav.nav-deep-dark .nav-item>a.nav-link {
+	color: $nav-deep-dark-link-color;
+}
+nav.nav-deep-dark-contrast .nav-item>a.nav-link {
+	color: #ffffff;
+}
+	nav.nav-deep-dark .nav-item:hover>.nav-link,
+	nav.nav-deep-dark .nav-item.active>.nav-link {
+		color: $nav-deep-dark-link-color-active;
+	}
+
+	// set "strong" the active only!
+	nav.nav-deep-light .nav-item.active>.nav-link,
+	nav.nav-deep-dark .nav-item.active>.nav-link {
+		font-weight: $font-weight-medium;
+	}
+
+	/* hover background color */
+	nav.nav-deep-dark.nav-deep-hover>ul>li.nav-item:hover,
+	nav.nav-deep-dark.nav-deep-hover>ul>li.nav-item.active {
+		background-color: rgba(0,0,0,0.05);
+	}
+
+
+/*
+	Dot indicator
+	!sidebar only!
+*/
+aside nav.nav-deep-indicator-dot ul li .nav-item.active>.nav-link {
+	position: relative;
+}
+aside nav.nav-deep-light.nav-deep-indicator-dot ul li .nav-item.active>.nav-link:before,
+aside nav.nav-deep-dark.nav-deep-indicator-dot ul li .nav-item.active>.nav-link:before {
+	content:'';
+	position: absolute;
+	top: 50%;
+	margin-top: -2px;
+
+	border-radius: 100%;
+	width: 4px;
+	height: 4px;
+	background-color: #ffffff;
+
+	@if $global-rtl-enable == false {
+		left:0;
+	} @else {
+		right:0;
+	}
+}
+aside nav.nav-deep-light.nav-deep-indicator-dot ul li .nav-item.active>.nav-link:before {
+	background-color: $nav-deep-light-link-color;
+}
+
+
+
+/* 
+	Bordered nav 
+*/
+.nav-deep-bordered>ul>li {
+	border-bottom: rgba(0,0,0,0.1) 1px solid;
+}
+
+
+/* 
+	Icons 
+*/
+/* main link icon */
+nav.nav-deep>ul>li>a.nav-link>i.nav-icon {
+	width: 20px; 	/* bigger than font-size to set a nice looking on bigger webfonts */
+	font-size: 16px;
+	margin-top: -.2rem;
+
+	@if $global-rtl-enable == false {
+		float: left;
+		margin-right: 10px;
+		text-align: left;
+	} @else {
+		float: right;
+		margin-left: 10px;
+		text-align: right;
+	}
+
+}
+	/* childs main link icon (and no main icon, but there is an icon) */
+	nav.nav-deep>ul>li>a.nav-link>i:not(.nav-icon),
+	nav.nav-deep>ul ul>li>a.nav-link>i {
+		@if $global-rtl-enable == false {
+			margin-right: 10px;
+		} @else {
+			margin-left: 10px;
+		}
+	}
+	// svg main icon
+	nav.nav-deep>ul>li>a.nav-link>svg {
+		margin-top: -4px;
+		@if $global-rtl-enable == false {
+			margin-right: 10px;
+		} @else {
+			margin-left: 10px;
+		}
+	}
+
+
+
+
+
+
+
+/* childs */
+.nav-deep ul>li:not(.active)>ul {
+	display: none;
+}
+/* all childs setup */
+.nav-deep>ul ul {
+	display: block;
+	/*font-weight: 300;*/
+}
+
+/* 1. first level childs */
+.nav-deep>ul>li>ul {
+	@if $global-rtl-enable == false {
+		padding-left: 30px;
+	} @else {
+		padding-right: 30px;
+	}
+}
+	/* icons alignment */
+	.nav-deep>ul>li>ul>li>a>i {
+		@if $global-rtl-enable == false {
+			margin-right: 8px;
+			margin-left: -27px;
+		} @else {
+			margin-left: 8px;
+			margin-right: -27px;
+		}
+	}
+
+	/* 2. all other deep level childs */
+	.nav-deep>ul>li>ul ul {
+		@if $global-rtl-enable == false {
+			padding-left: 15px;
+		} @else {
+			padding-right: 15px;
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+	
+	Simple quick default navigation
+	Nav : Default
+	For any list
+
+		<ul class="list-unstyled nav-default shadow-xs">
+
+			<li class="active">
+				<a href="#!">
+					<i class="fi fi-check"></i>
+					<span>Lorem ipsum</span>
+				</a>
+			</li>
+
+		</ul>
+
+**/
+.nav-default a {
+	display: flex;
+	flex-grow: 1;
+	align-items: center;
+	padding: 0.54rem 1rem;
+	cursor: pointer;
+	transition: all 0.33s;
+	text-decoration: none;
+}
+
+	// hover, active : color
+	.nav-default li.active>a span,
+	.nav-default a.active span,
+	.nav-default a:hover span,
+	.nav-default li.active>a,
+	.nav-default a.active,
+	.nav-default a:hover {
+		color: $primary !important;
+	}
+		// hover, active : background
+		.nav-default li.active>a,
+		.nav-default a.active,
+		.nav-default a:hover {
+			background-color: $gray-100;
+		}
+
+	// icon
+	.nav-default a>i,
+	.nav-default a>span.group-icon {
+		flex: 0 0 36px;
+		font-size: 1.25rem;
+		line-height: 0;
+		color: $gray-600;
+	}
+
+	// text always inside span
+	.nav-default a>span:not(.group-icon) {
+		flex-grow: 1;
+		font-size: 1rem;
+		color: $gray-700;
+	}
+
+
+
+
+
+
+
+
+/**
+	
+	Responsive
+
+**/
+// DESKTOP
+@media only screen and (min-width: map-get($grid-breakpoints, "lg")) {
+
+/*	nav.nav-deep-light .nav-item a,
+	nav.nav-deep-dark .nav-item a,
+	nav.nav-deep-light .nav-item,
+	nav.nav-deep-dark .nav-item {
+		@include vendors-generate(transition, all .2s ease);
+	}
+*/
+}
+
+
+
+
+
+
+
+// MOBILE
+@media only screen and (max-width: map-get($grid-breakpoints, "lg")) {
+
+
+}

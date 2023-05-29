@@ -1,0 +1,213 @@
+/**
+
+    Load all variables,
+    we need them!
+
+**/
+@import '../../_core/mixins',
+        '../../variables',
+        '../../../../node_modules/bootstrap/scss/functions',
+        '../../../../node_modules/bootstrap/scss/variables';
+
+
+
+/** 
+
+	Stepofeb Header
+	www.stepofweb.com
+
+	Part of:
+		GULP/src/plugins/sow_pack/sow_header.js
+
+**/
+#header {
+    @if $header-font-size != $font-size-base {
+        font-size:  $header-font-size;
+    }
+    z-index:    $header-z-index;
+}
+
+
+
+/*body:not(.header-sticky) #header,*/
+body.header-over #header,
+body.header-scroll-reveal #header {
+    transition: all 500ms ease-in-out; 
+}
+
+body:not(.layout-admin).header-sticky #header {
+    transition: all 150ms linear; 
+}
+
+
+
+
+
+
+
+
+/**
+
+	HEADER : FIXED
+
+**/
+body.header-fixed #header {
+    position: fixed !important;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+
+
+
+
+
+
+/**
+
+    HEADER : SCROLL REVEAL
+
+**/
+body.header-scroll-reveal #header.header-down {
+    top: 0;
+}
+body.header-scroll-reveal #header.header-up {
+    top: -100%;
+}
+body.header-scroll-reveal:not(.header-is-on-top) #header.header-down #top_bar,
+body.header-scroll-reveal:not(.header-is-on-top) #header.header-up #top_bar {
+	display: none;
+}
+
+
+
+
+
+
+
+/**
+
+    HEADER : BOTTOM
+    not recommended, bad conversions
+
+**/
+body.header-bottom #header {
+    position: fixed;
+    bottom:0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+body.header-bottom .nav-item>.dropdown-menu {
+    top: auto;
+    bottom: $header-nav-height;
+}
+body.header-bottom .navbar-nav .nav-link.dropdown-toggle:not(.nav-link-caret-hide):before {
+    content: "\f19b";
+}
+
+
+
+
+
+
+
+
+
+/**
+
+    HEADER : NAV BRAND
+
+**/
+.navbar-brand>img:last-child {
+    display: none;
+}
+.navbar-brand>img:first-child {
+    display: inherit;
+}
+// safe max w:h
+.navbar-brand>img {
+    max-width: 140px;
+    max-height: $header-nav-height;
+}
+
+    // on scroll
+    body:not(.user-scrolled-down) .navbar-brand>img:first-child {
+        display: none;
+    }
+    body:not(.user-scrolled-down) .navbar-brand>img:last-child {
+        display: inline-block;
+    }
+
+
+
+
+
+
+/**
+
+    HEADER : OVER (slider|parallax|image)
+
+**/
+body.header-over:not(.user-scrolled-down) #header {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+    /* hide if exists, to avoid any possible issue */
+    body.header-over #js_header_spacer {
+        display: none !important;
+    }
+
+    body.header-over #header {
+        position: absolute;
+        width: 100%;
+    }
+        body.header-over:not(.header-scroll-reveal):not(.header-is-on-top):not(.header-sticky) #header {
+            position: absolute !important;
+        }
+
+    body.header-over.header-is-on-top #js_header_spacer {
+        margin-top: 0 !important;
+    }
+    body.header-over.header-scroll-reveal #js_header_spacer {
+        margin-top: 0 !important;
+    }
+    body.header-over:not(.header-scroll-reveal):not(.user-scrolled-down) #header #top_bar,
+    body.header-over.header-is-on-top:not(.user-scrolled-down) #header #top_bar {
+        background: transparent !important;
+        color: #fff;
+    }
+
+
+
+    // top_bar
+    body.header-over:not(.user-scrolled-down) #top_bar a,
+    body.header-over:not(.user-scrolled-down) #top_bar a>span {
+        color: #fff;
+    }
+
+    // mobile toggler
+    body.header-over:not(.user-scrolled-down) .navbar .navbar-toggler {
+        fill: #ffffff;
+        border: 0 !important;
+    }
+        // mobile close toggler
+        body.header-over:not(.user-scrolled-down) .navbar-collapse .navbar-toggler {
+            fill: inherit !important;
+        }
+
+    // btn options
+    body.header-over:not(.user-scrolled-down) #header .btn.rounded-circle:not(.text-white) {
+        color: #fff !important;
+        background-color: transparent !important;
+    }
+
+// DESKTOP
+@media only screen and (min-width: map-get($grid-breakpoints, "lg")) { // xl: 1200px, lg: 992px, md: 768px
+    // menu link color
+    body.header-over:not(.user-scrolled-down) .navbar .navbar-nav .nav-link {
+        color: #fff !important;
+    }
+}

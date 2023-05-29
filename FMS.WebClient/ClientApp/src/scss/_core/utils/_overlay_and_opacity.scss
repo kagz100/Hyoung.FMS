@@ -1,0 +1,187 @@
+/**
+
+		- Overlays & Opacity 		
+
+		.opacity-* [0-9], .opacity-none
+		.overlay-light, .overlay-dark, .overlay-opacity-* [0-9]
+		.backdrop-light, .backdrop-dark
+
+**/
+/* default overlay used on various places (mostly on admin) */
+#overlay-default,
+.overlay-default,
+.overlay-light-hover:after,
+.overlay-dark-hover:after,
+.overlay-light,
+.overlay-dark {
+	transition: all .2s ease;
+}
+
+#overlay-default,
+.overlay-default {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+  background-color: rgba($backdrop-dark, $backdrop-opacity);
+  backdrop-filter: $backdrop-filter;
+	z-index: $backdrop-z-index;
+}
+
+.overlay-light, .overlay-light-hover,
+.overlay-dark, .overlay-dark-hover {
+	position: relative;
+}
+	.overlay-light-hover>*,
+	.overlay-dark-hover>* {
+		z-index: 0;
+		position: relative;
+	}
+	.overlay-light>*,
+	.overlay-dark>* {
+		z-index: 1;
+		position: relative;
+	}
+
+/* used in few situations, like refreshing ajax content */
+.overlay-over:after {
+	z-index: 10 !important;
+}
+.overlay-light-hover:after,
+.overlay-dark-hover:after {
+	opacity: 0;
+	transition: all 0.3s ease-in-out;
+}
+
+// fix
+.rounded.overlay-light-hover:hover,
+.rounded.overlay-dark-hover:hover,
+.rounded.overlay-light:after,
+.rounded.overlay-dark:after {
+	border-radius: $border-radius;
+}
+
+.overlay-light-hover:after,
+.overlay-dark-hover:after,
+.overlay-light:after,
+.overlay-dark:after {
+	content:'';
+
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 0;
+}
+	.overlay-light-hover:hover:after,
+	.overlay-light:after {
+		background-color: $backdrop-light;
+	}
+	.overlay-dark-hover:hover:after,
+	.overlay-dark:after {
+	  background: $backdrop-dark;
+	}
+
+	/* overlay|opacity [0-9] */
+	.opacity-0,
+	.overlay-opacity-0:after {
+		opacity: 0;
+	}
+	.opacity-1,
+	.overlay-opacity-1:after {
+		opacity: 0.1;
+	}
+	.opacity-2,
+	.overlay-opacity-2:after {
+		opacity: 0.2;
+	}
+	.opacity-3,
+	.overlay-opacity-3:after {
+		opacity: 0.3;
+	}
+	.opacity-4,
+	.overlay-opacity-4:after {
+		opacity: 0.4;
+	}
+	.opacity-5,
+	.overlay-opacity-5:after {
+		opacity: 0.5;
+	}
+	.opacity-6,
+	.overlay-opacity-6:after {
+		opacity: 0.6;
+	}
+	.opacity-7,
+	.overlay-opacity-7:after {
+		opacity: 0.7;
+	}
+	.opacity-8,
+	.overlay-opacity-8:after {
+		opacity: 0.8;
+	}
+	.opacity-9,
+	.overlay-opacity-9:after {
+		opacity: 0.9;
+	}
+	.opacity-none { // no opacity
+		opacity: 1 !important;
+	}
+
+	// trick for using with z-index
+	.opacity-99 {
+		opacity: .99;
+	}
+
+	// hovers
+	.overlay-opacity-0-hover:hover:after { opacity: 0;  }
+	.overlay-opacity-1-hover:hover:after { opacity: 0.1;  }
+	.overlay-opacity-2-hover:hover:after { opacity: 0.2;  }
+	.overlay-opacity-3-hover:hover:after { opacity: 0.3;  }
+	.overlay-opacity-4-hover:hover:after { opacity: 0.4;  }
+	.overlay-opacity-5-hover:hover:after { opacity: 0.5;  }
+	.overlay-opacity-6-hover:hover:after { opacity: 0.6;  }
+	.overlay-opacity-7-hover:hover:after { opacity: 0.7;  }
+	.overlay-opacity-8-hover:hover:after { opacity: 0.8;  }
+	.overlay-opacity-9-hover:hover:after { opacity: 0.9;  }
+
+
+// Percentage (bootstrap style)
+.overlay-opacity-0:after, .overlay-opacity-0-hover:hover:after { opacity: 0; }
+.overlay-opacity-25:after, .overlay-opacity-25-hover:hover:after { opacity: .25; }
+.overlay-opacity-50:after, .overlay-opacity-50-hover:hover:after { opacity: .50; }
+.overlay-opacity-75:after, .overlay-opacity-75-hover:hover:after { opacity: .75; }
+.overlay-opacity-100:after, .overlay-opacity-100-hover:hover:after { opacity: .100; }
+
+
+// -- -- -- -- -- -- -- -- --
+// Backdrop (blur mode)
+// modals, etc
+// -- -- -- -- -- -- -- -- --
+#backdrop, #backdrop-dark, .backdrop, .backdrop-dark,
+#backdrop-light, .backdrop-light {
+  position: fixed;
+  left: 0; right: 0;
+  top: 0; bottom: 0;
+  
+  backdrop-filter: $backdrop-filter;
+  z-index: $backdrop-z-index;
+  opacity: 1; 
+
+  animation: _bkdFadeIn;
+  animation-duration: .25s;
+}
+	#backdrop, #backdrop-dark, .backdrop, .backdrop-dark {
+		background: rgba($backdrop-dark, $backdrop-opacity);
+	}
+	#backdrop-light, .backdrop-light {
+		background: rgba($backdrop-light, $backdrop-opacity);
+	}
+
+@keyframes _bkdFadeIn {
+  from  { opacity: 0; }
+  to    { opacity: 1; }
+}

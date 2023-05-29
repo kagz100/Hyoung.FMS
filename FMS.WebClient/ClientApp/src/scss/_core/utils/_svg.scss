@@ -1,0 +1,59 @@
+/**
+
+		- SVG Fills
+			.fill-primary, .fill-secondary, etc
+			.fill-gray-*
+
+**/
+@each $color, $value in $theme-colors {
+	.fill-#{$color} {
+		fill: $value !important;
+	}
+
+	.bg-#{$color}-soft .fill-#{$color} {
+
+		@if $color == 'warning' {
+
+			fill: darken(map-get($theme-colors, $color), 10%) !important;
+
+		} @else {
+
+			fill: lighten(map-get($theme-colors, $color), 5%) !important;
+		}
+
+	}
+}
+.fill-gray-100 { fill: $gray-100 !important; }
+.fill-gray-200 { fill: $gray-200 !important; }
+.fill-gray-300 { fill: $gray-300 !important; }
+.fill-gray-400 { fill: $gray-400 !important; }
+.fill-gray-500 { fill: $gray-500 !important; }
+.fill-gray-600 { fill: $gray-600 !important; }
+.fill-gray-700 { fill: $gray-700 !important; }
+.fill-gray-800 { fill: $gray-800 !important; }
+.fill-gray-900 { fill: $gray-900 !important; }
+.fill-muted    { fill: $text-muted !important; }
+
+
+
+
+/* 
+	svg drawlines 
+
+	<svg class="svg-drawlines h--20 position-absolute start-0 bottom-0 mb--n10" viewBox="0 0 154 13">
+		<path fill="none" d="M2 2c49.7 2.6 100 3.1 150 1.7-46.5 2-93 4.4-139.2 7.3 45.2-1.5 90.6-1.8 135.8-.6" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"></path>
+	</svg>
+
+*/
+.svg-drawlines {
+	stroke: rgb(247,52,94); /* red */
+	stroke-width: 4;
+	stroke-dasharray: 960px;
+	stroke-dashoffset: 960px;
+	animation: __svgDraw 2s normal forwards ease-out; 
+	animation-delay: 0.61s;
+}
+@keyframes __svgDraw {
+	0% { stroke-dashoffset: 960px }
+	100% { stroke-dashoffset: 0 }
+}

@@ -1,0 +1,40 @@
+// -- -- -- -- -- -- -- -- --
+// Colors : Radio / Checkbox
+// (bootstrap used)
+// -- -- -- -- -- -- -- -- --
+.form-check-input-primary:checked {   // primary
+  background-color: $primary !important;
+  border-color: $primary !important;
+}
+.form-check-input-danger:checked {    // danger
+  background-color: $red !important;
+  border-color: $red !important;
+}
+.form-check-input-warning:checked {   // warning
+  background-color: $yellow !important;
+  border-color: $yellow !important;
+}
+.form-check-input-success:checked {   // success
+  background-color: $green !important;
+  border-color: $green !important;
+}
+.form-check-input-info:checked {      // info
+  background-color: $cyan !important;
+  border-color: $cyan !important;
+}
+
+
+// -- -- -- -- -- -- -- -- --
+// Fix (tales)
+// -- -- -- -- -- -- -- -- --
+th > .form-check { padding-left: 0 !important; padding-right: 0 !important; }
+th > .form-check input { margin: 0 !important; }
+
+
+// -- -- -- -- -- -- -- -- --
+// Fix (inline)
+// -- -- -- -- -- -- -- -- --
+.form-check-input:checked[type=checkbox],
+.form-check-input:checked[type=radio] {
+  background-position: inherit;
+}

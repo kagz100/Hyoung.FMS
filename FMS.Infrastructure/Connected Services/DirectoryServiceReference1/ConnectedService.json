@@ -1,0 +1,20 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "http://10.0.10.150/GpsGateServer/Services/directory.asmx"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "namespaceMappings": [
+      "*, DirectoryServiceReference1"
+    ],
+    "references": [
+      "Autofac, {Autofac, 6.4.0}",
+      "System.Diagnostics.DiagnosticSource, {System.Diagnostics.DiagnosticSource, 4.7.1}"
+    ],
+    "targetFramework": "netcoreapp3.1",
+    "typeReuseMode": "All"
+  }
+}

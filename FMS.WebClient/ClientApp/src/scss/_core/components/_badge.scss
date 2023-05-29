@@ -1,0 +1,46 @@
+/* 
+
+  Soft badges
+    .badge-soft
+
+*/
+@each $btn-class, $rgba-percent in $theme-colors-soft {
+  .badge-soft.badge-#{$btn-class} {
+    color:            darken(map-get($theme-colors, $btn-class), 15%);
+    background-color: lighten(map-get($theme-colors, $btn-class), $rgba-percent);
+  }
+
+   .bg-#{$btn-class}-soft .badge-soft.badge-#{$btn-class} {
+    background-color: lighten(map-get($theme-colors, $btn-class), ($rgba-percent - 5));
+   }
+
+}
+
+
+.badge-ico,
+.badge-ico-sm,
+.badge-ico-md {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.badge-ico-sm {
+  width: 25px;
+  height: 25px;
+ 
+}
+.badge-ico,
+.badge-ico-md {
+  width: 35px;
+  height: 35px;
+  font-size: 16px;
+}
+  /* icon fix */
+  .badge-ico-sm>i,
+  .badge-ico-md>i {
+    display: inline-block;
+  }
+    .badge-ico-sm>i:before {
+      padding-top: 0;
+    }
+

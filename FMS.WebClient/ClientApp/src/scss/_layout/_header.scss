@@ -1,0 +1,559 @@
+/**
+	
+	LAYOUT :: HEADER
+
+	Note: Here are basic settings only!
+	Most header layouts are achived using helper classes (see Documentation->Utils).
+
+	Dropdowns are handled by _core/components/_dropdown.scss
+	All dropdowns are globally the same, is just a feeling/illusion that looks different on header.
+	Any header dropdown class can be used on any other dropdown (including deep navigation).
+
+	Functions like header reveal/sticky/over are all handled by Stepofweb plugin:
+	 _plugins/sow_header.scss and GULP/src/plugins/sow-header/sow_header.js
+
+**/
+header.main-nav,
+#header {
+	position: relative;
+	background-color: #ffffff;
+}
+
+	header.main-nav a,
+	#header a {
+		text-decoration: none;
+	}
+
+	// main link
+	.nav-item > a {
+		position: relative;
+	}
+
+	.nav-item .dropdown-menu {
+		min-width: 200px;
+	}
+		.nav-item>.dropdown-menu {
+			margin: 0;
+		}
+
+
+/* 
+	Main Links :: Icon Indicator
+*/
+@if $header-main-links-caret-enable == true {
+
+	.navbar-nav .nav-link.dropdown-toggle:not(.nav-link-caret-hide):before {
+	    font-family: 	"#{$header-main-links-caret-webfont}";
+	    content: 		icon-unquote($header-main-links-caret-main-ico);
+
+	    font-size: 12px;
+	    width: 12px;
+	    height: 12px;
+	    margin-top: -6px;
+
+	    position: absolute;
+	    line-height: 1em;
+	    top: 50%;
+		border: 0;
+
+		@if $global-rtl-enable == false {
+			right: 8px;
+		} @else {
+			left: 8px;
+		}
+	}
+
+}
+
+	/* icon align fix */
+	.navbar-nav .nav-link>i {
+		vertical-align: text-top;
+	}
+
+
+
+// scroll reveal : default shadow
+body.header-scroll-reveal.user-scrolled-down #header:not(.shadow-none) {
+	box-shadow: $box-shadow-xs;
+}
+
+
+
+
+/* 
+	Navbar Toggler
+*/
+.navbar-toggler {
+	
+	width: 					60px;
+	height: 				60px;
+//	max-width: 				$header-nav-height;
+	font-size: 				unset;
+
+	border-top-color: 		transparent !important;
+	border-bottom-color: 	transparent !important;
+
+	@if $global-rtl-enable == false {
+		border-left-color: transparent !important;
+		margin-left:  -15px;
+		margin-right:   8px;
+	} @else {
+		border-right-color: transparent !important;
+		margin-left:    8px;
+		margin-right: -15px;
+	}
+
+}
+	.navbar-toggler>svg {
+		display: none;
+	}
+		.navbar-toggler[aria-expanded="false"]>svg:first-child {
+			display: inline-block;
+		}
+		.navbar-toggler[aria-expanded="true"]>svg:last-child {
+			display: inline-block;
+		}
+
+
+
+
+
+
+
+
+
+/*
+	
+	HEADER TOGGLE 
+	up|down header
+
+*/
+body.header-hide.btn-header-toggle-show .btn-header-toggle {
+
+	animation: _btnslidedown .5s ease-out forwards;
+
+	position: fixed !important;
+
+	@if $global-rtl-enable == false {
+		right: 20px !important;
+	} @else {
+		left: 20px !important;
+	}
+
+}
+
+@keyframes _btnslidedown {
+	from 	{ top:-100px; }
+	to 		{ top:15px; }
+}
+
+/* hide spacer added by js : .btn-header-toggle */
+body.layout-admin #wrapper_content.js-animation-enable {
+	transition: all 150ms linear; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.navbar-toggler {
+	
+	width: 					60px;
+	height: 				60px;
+//	max-width: 				$header-nav-height;
+	font-size: 				unset;
+
+	border-top-color: 		transparent !important;
+	border-bottom-color: 	transparent !important;
+
+	@if $global-rtl-enable == false {
+		border-left-color: transparent !important;
+		margin-left:  -15px;
+		margin-right:   8px;
+	} @else {
+		border-right-color: transparent !important;
+		margin-left:    8px;
+		margin-right: -15px;
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+	
+	Responsive
+
+**/
+// DESKTOP
+@media only screen and (min-width: map-get($grid-breakpoints, "lg")) { // xl: 1200px, lg: 992px, md: 768px
+
+	// navbar height : required
+	nav.navbar:not(.h-auto) {
+		min-height: $header-nav-height;
+	}
+
+
+	/* 
+		Dropdown mega menu / full width
+	*/
+	.nav-item.dropdown-mega {
+		position: inherit;
+	}
+
+
+	/* 
+		Main Navigation Links
+	*/
+	.navbar-nav:not(.navbar-sm) {
+		height: $header-nav-height; /* avoid unwanted margins on wrong text/icon size - dropdown issue on hover */
+	}
+
+		.navbar .navbar-nav .nav-link {
+			cursor: pointer;
+			padding: ($header-nav-height/2 - 12px) 15px;
+		}
+
+		/* icon spacing */
+		.navbar-nav .nav-link>i+span {
+			display: inline-block;
+
+			@if $global-rtl-enable == false {
+				padding-left: 10px;
+			} @else {
+				padding-right: 10px;
+			}
+		}
+
+	@if $header-main-links-caret-enable == true {
+
+		.navbar .navbar-nav .nav-link.dropdown-toggle:not(.nav-link-caret-hide) {
+			@if $global-rtl-enable == false {
+				padding-right: 30px;
+			} @else {
+				padding-left: 30px;
+			}
+		}
+
+	}
+
+
+
+	/* 
+		.navbar-sm
+		used under large search
+		(header-variant-1.html)
+	*/
+	.navbar-nav.navbar-sm {
+		height: 55px;
+	}
+		.navbar .navbar-nav.navbar-sm .nav-link {
+			cursor: pointer;
+			padding: 15px;
+		}
+		.navbar .navbar-nav.navbar-sm .nav-item:first-child .nav-link {
+			@if $global-rtl-enable == false {
+				padding-left: 0;
+			} @else {
+				padding-right: 0;
+			}
+		}
+
+
+	// fix for Opera - is seing 1px space!
+	// This hould be on Desktop only!
+	// Else will create a bug on mobile!
+	.navbar .navbar-nav a.nav-link {
+		height: 100%;
+	}
+
+
+
+	/* 
+		Brand|Logo
+		Frontend only
+	*/
+	body:not(.layout-admin) .navbar-brand {
+		@if $global-rtl-enable == false {
+			margin-right: 50px;
+		} @else {
+			margin-left: 50px;
+		}
+	}
+
+
+	// open dropdown up instead of down
+	.navbar .dropdown-menu.dropdown-menu-up {
+		top:auto !important;
+		bottom:0 !important;
+	}
+
+	// used to position very long dropdown childs
+	@each $val in $header-dropdown-top-negative-pos {
+		.navbar .dropdown-menu.dropdown-menu-up-n#{$val} {
+			top:-#{$val}px !important;
+			bottom:auto !important;
+		}
+	}
+
+
+
+
+
+
+	/** 
+
+		Horizontal Navigation
+
+	**/
+	.navbar-toggler.navbar-toggler-horizontal {
+		display: inline-block;
+		width: 60px;
+		height: 100%;
+	}
+
+	body:not(.layout-boxed) .navbar-toggler.navbar-toggler-horizontal {
+		@if $global-rtl-enable == false {
+			margin-left: 0;
+			margin-right: 15px;
+		} @else {
+			margin-left: 15px;
+			margin-right: 0;
+		}
+	}
+		body:not(.layout-boxed) .navbar-light .navbar-toggler-horizontal {
+			border-left-color: $navbar-light-toggler-border-color !important;
+			border-right-color: $navbar-light-toggler-border-color !important;
+		}
+		body:not(.layout-boxed) .navbar-dark .navbar-toggler-horizontal {
+			border-left-color: $navbar-dark-toggler-border-color !important;
+			border-right-color: $navbar-dark-toggler-border-color !important;
+		}
+
+
+	/*
+		Overwrite Bootstrap
+		[floating dropdown]
+	*/
+	.nav-horizontal {
+		position: absolute;
+		top: 100%;
+		display: none;
+
+		@if $global-rtl-enable == false {
+			left: 0;
+		} @else {
+			right: 0;
+		}
+	}
+
+
+
+	.nav-horizontal .dropdown-mega {
+		position: inherit;
+	}
+	.nav-horizontal .dropdown-mega>.dropdown-menu {
+		padding: 15px;
+
+		min-width: auto;
+		max-width: 100%;
+
+		min-height: 100%;
+		max-height: 75vh;
+		overflow: hidden;
+
+	}
+
+}
+
+
+
+
+// MOBILE
+@media only screen and (max-width: map-get($grid-breakpoints, "lg") - 1px) { // xl: 1200px, lg: 992px, md: 768px
+
+	/* 
+		@FIX
+		Main Links :: Icon Indicator
+	*/
+	@if $header-main-links-caret-enable == true {
+		.navbar-nav .nav-link.dropdown-toggle:not(.nav-link-caret-hide):before {
+			top: 20px;
+		}
+	}
+
+
+	/* if max width was set */
+	.navbar-nav .dropdown-menu {
+		width: 100% !important;
+		max-width: 100% !important;
+		min-width: 1px !important; // required for horizontal navigation
+	}
+
+
+	/* 
+		Childs padding
+	*/
+	.navbar-nav .dropdown-menu>.dropdown-item>.dropdown-menu {
+		@if $global-rtl-enable == false {
+			padding-left: 15px !important;
+		} @else {
+			padding-right: 15px !important;
+		}
+	}
+
+
+
+	/*
+	
+		Styling
+
+	*/
+	$navbar-xs-height: 		70px !default;
+
+
+	// second navbar collapse fix (jumpy)
+	header.main-nav .navbar-collapse.collapsing {
+		display: none !important;
+	}
+
+
+	/* appearing animation */
+	.navbar-collapse.navbar-animate-bouncein {
+		animation: __utilBounceIn .35s ease-out forwards;
+	}
+	.navbar-collapse.navbar-animate-fadein {
+		animation: __utilFadeIn .35s ease-out forwards;
+	}
+	.navbar-collapse.navbar-animate-fadeinup {
+		animation: __utilFadeInUp .21s ease-out forwards;
+	}
+		#header .navbar-collapse.collapsing {
+			display: none !important;
+			transition: none !important;
+		}
+
+	// over content
+	.navbar-collapse.show {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: $gray-100;
+		z-index: 99999;
+	}
+		.navbar-collapse.show>.navbar-nav {
+			padding: 15px;
+			position: absolute;
+			background-color: $white;
+
+			top: $navbar-xs-height + 15px;
+			left:15px;
+			right:15px;
+			bottom:15px;
+
+			box-shadow: $box-shadow-lg;
+
+			overflow-y: scroll;
+			overflow-x: hidden;
+			-webkit-overflow-scrolling: touch;
+			height: auto;
+			max-height: 100%;
+
+		}
+			/* dark navbar */
+			.navbar-dark .navbar-collapse.show>.navbar-nav a {
+				color: $gray-700;
+			}
+
+		/* mobile bar (we add logo & toggler button) */
+		.navbar-xs {
+			display: block !important;
+			background-color: $white;
+
+			// .shadow-dark-xs
+			box-shadow: 0 0 25px rgba(0,0,0,.1); 
+		}
+
+
+			/* styling navbar-toggler */
+			.navbar-xs>.navbar-toggler {
+				width: $navbar-xs-height;
+				height: $navbar-xs-height;
+				border: 0;
+				margin: 0;
+
+				@if $global-rtl-enable == false {
+					float: right;
+				} @else {
+					float: left;
+				}
+
+			}
+
+			/* logo / .navbar-brand */
+			.navbar-xs>.navbar-brand {
+				min-height: $navbar-xs-height;
+				line-height: $navbar-xs-height;
+			}
+			.navbar-xs>.navbar-brand>img {
+				max-height: $navbar-xs-height !important;
+			}
+			.navbar-xs>.navbar-brand {
+				margin: 0 15px;
+			}
+
+
+		/* styling main links */
+		.navbar-nav .nav-item.dropdown>.nav-link {
+			font-weight: 500;
+			font-size: 18px;
+		}
+			/* links with dropdown only */
+			.navbar-nav .nav-item.dropdown>.nav-link.dropdown-toggle {
+				color: $gray-600;
+			}
+			/* hide dropdown icon indicator */
+			.navbar-nav .nav-item.dropdown>.nav-link:before {
+				display: none !important;
+			}
+
+		/* first level open by default */
+		.navbar-nav .nav-item.dropdown>.dropdown-menu {
+			display: block !important;
+			margin-bottom: 30px !important; // 10px
+			margin-top: 8px;
+		}
+		/* no shadow deep levels */
+		.nav-item .dropdown-menu {
+			box-shadow: none !important;
+		}
+		// reset font-size
+		.nav-item .dropdown-menu {
+			font-size: inherit;
+		}
+
+}

@@ -1,0 +1,272 @@
+// Load needed variables
+@import '../_core/mixins',
+        '../variables',
+        '../../../node_modules/bootstrap/scss/functions',
+        '../../../node_modules/bootstrap/scss/variables';
+
+
+
+
+
+$swiper-size: 				60px !default;
+$swiper-icon-font-family: 	Flaticon !default;
+$swiper-icon-next: 			"\f1ae" !default;
+$swiper-icon-prev: 			"\f1ac" !default;
+
+
+
+
+
+
+
+// Dedicated for 5.x
+// Swiper 5.0.3 - Released on September 19, 2019
+.swiper-container:not(.swiper-btn-group) .swiper-button-next:after,
+.swiper-container:not(.swiper-btn-group) .swiper-button-prev:after {
+	content: '';
+	display: none;
+}
+.swiper-container.swiper-btn-group .swiper-button-next:after,
+.swiper-container.swiper-btn-group .swiper-button-prev:after {
+	font-size: 40px;
+}
+
+
+
+
+
+
+
+
+// All below, successfully working on Swiper up to 4.5.1
+/**
+
+	Nav Buttons
+
+**/
+.swiper-container:not(.swiper-btn-group) .swiper-button-next,
+.swiper-container:not(.swiper-btn-group) .swiper-button-prev {
+	width: $swiper-size !important;
+	height: $swiper-size !important;
+	margin-top: -($swiper-size / 2)  !important;
+	text-align: center;
+	border-radius: $border-radius;
+}
+.swiper-container:not(.swiper-btn-group) .swiper-button-next:before, 
+.swiper-container:not(.swiper-btn-group) .swiper-button-prev:before {
+	font-family: $swiper-icon-font-family;
+	line-height: $swiper-size;
+}
+
+
+.swiper-container:not(.swiper-btn-group) .swiper-button-next:before {
+	@if $global-rtl-enable == false {
+		content: $swiper-icon-next;
+	} @else {
+		content: $swiper-icon-prev;
+	}
+}
+.swiper-container:not(.swiper-btn-group) .swiper-button-prev:before {
+	@if $global-rtl-enable == false {
+		content: $swiper-icon-prev;
+	} @else {
+		content: $swiper-icon-next;
+	}
+}
+
+.swiper-container-horizontal>.swiper-pagination-progressbar, 
+.swiper-container-vertical>.swiper-pagination-progressbar.swiper-pagination-progressbar-opposite {
+	background: $gray-200;
+}
+
+
+
+
+
+
+
+/**
+
+	Nav Styling
+	& progressbarr
+
+**/
+@each $color, $value in $theme-colors {
+	.swiper-container:not(.swiper-btn-group).swiper-#{$color} .swiper-pagination-bullet-active,
+	.swiper-container.swiper-#{$color} .swiper-pagination-progressbar .swiper-pagination-progressbar-fill,
+	.swiper-container:not(.swiper-btn-group).swiper-#{$color} .swiper-button-next,
+	.swiper-container:not(.swiper-btn-group).swiper-#{$color} .swiper-button-prev {
+		color: #fff !important;
+		background-image: none !important;
+		background: $value !important;
+	}
+
+}
+.swiper-container:not(.swiper-btn-group).swiper-white .swiper-pagination-bullet-active,
+.swiper-container:not(.swiper-btn-group).swiper-white .swiper-button-next,
+.swiper-container:not(.swiper-btn-group).swiper-white .swiper-button-prev {
+	color: #121212 !important;
+	background: #ffffff !important;
+}
+.swiper-container:not(.swiper-btn-group).swiper-black .swiper-pagination-bullet-active,
+.swiper-container:not(.swiper-btn-group).swiper-black .swiper-button-next,
+.swiper-container:not(.swiper-btn-group).swiper-black .swiper-button-prev {
+	color: #ffffff !important;
+	background: #111111 !important;
+}
+.swiper-container:not(.swiper-btn-group).swiper-dark .swiper-pagination-bullet-active,
+.swiper-container:not(.swiper-btn-group).swiper-dark .swiper-button-next,
+.swiper-container:not(.swiper-btn-group).swiper-dark .swiper-button-prev {
+	color: #ffffff !important;
+	background: #333333 !important;
+}
+.swiper-container:not(.swiper-btn-group).swiper-button-next:hover,
+.swiper-container:not(.swiper-btn-group).swiper-button-prev:hover {
+	transition: all 80ms linear !important;
+	box-shadow: $box-shadow-md !important;
+}
+
+.swiper-container:not(.swiper-btn-group).swiper-dark .swiper-pagination-progressbar .swiper-pagination-progressbar-fill,
+.swiper-container:not(.swiper-btn-group).swiper-black .swiper-pagination-progressbar .swiper-pagination-progressbar-fill,
+.swiper-container:not(.swiper-btn-group).swiper-white .swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+	background: #121212 !important;
+}
+
+
+
+
+
+
+
+/**
+
+	CUSTOM ALINGMNENT
+
+**/
+.swiper-btn-group .swiper-button-prev {
+    height: 30px !important;
+
+    @if $global-rtl-enable == false {
+        right: auto;
+        left: 30px;
+    } @else {
+        right: 30px;
+        left: auto;
+    }
+
+}
+
+.swiper-btn-group .swiper-button-next {
+    height: 30px !important;
+
+	@if $global-rtl-enable == false {
+		right: 30px;
+		left: auto;
+	} @else {
+		right: auto;
+		left: 30px;
+	}
+
+}
+
+
+
+
+
+
+
+/**
+
+	BUTTONS ALIGN : BOTTOM LEFT [RIGHT ON RTL]
+
+**/
+.swiper-btn-group-start .swiper-button-prev, 
+.swiper-btn-group-start.swiper-container-rtl .swiper-button-next {
+    top: auto;
+    bottom: 30px;
+
+	@if $global-rtl-enable == false {
+	    left: 30px;
+	    right: auto;
+	} @else {
+	    left: auto;
+	    right: 60px;
+	}
+}
+
+
+.swiper-btn-group-start .swiper-button-next, 
+.swiper-btn-group-start.swiper-container-rtl .swiper-button-prev {
+    top: auto;
+    bottom: 30px;
+
+	@if $global-rtl-enable == false {
+	    right: auto;
+	    left: 80px;
+	} @else {
+	    right: 20px;
+	    left: auto;
+	}
+}
+
+
+
+
+
+
+
+/**
+
+	BUTTONS ALIGN : BOTTOM RIGHT [LEFT ON RTL]
+
+**/
+.swiper-btn-group-end .swiper-button-prev, 
+.swiper-btn-group-end.swiper-container-rtl .swiper-button-next {
+    top: auto;
+    bottom: 30px;
+
+	@if $global-rtl-enable == false {
+	    right: 60px;
+	    left: auto;
+	} @else {
+	    right: auto;
+	    left: 20px;
+	}
+}
+
+
+.swiper-btn-group-end .swiper-button-next, 
+.swiper-btn-group-end.swiper-container-rtl .swiper-button-prev {
+    top: auto;
+    bottom: 30px;
+
+	@if $global-rtl-enable == false {
+	    right: 20px; // @Swiper Udate: v4.5.1 - 5.x Udate! 	20px for v5.x ; 30px for v4.x
+	} @else {
+	    left: 60px; // @Swiper Udate: v4.5.1 - 5.x Udate! 	20px for v5.x ; 30px for v4.x
+	}
+
+}
+
+
+.swiper-container.swiper-btn-group .swiper-pagination-bullet-active {
+	background: #ffffff !important;
+}
+
+
+
+
+
+/**
+
+	Overlays
+
+*/
+.swiper-slide.overlay-dark:after,
+.swiper-slide.overlay-light:after {
+	z-index: 1;
+}
+.swiper-slide.overlay-dark>*,
+.swiper-slide.overlay-light>* {
+	z-index: 2;
+}

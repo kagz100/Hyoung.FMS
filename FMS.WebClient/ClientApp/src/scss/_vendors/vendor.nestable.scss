@@ -1,0 +1,237 @@
+// Load needed variables
+@import '../_core/mixins',
+        '../variables',
+        '../../../node_modules/bootstrap/scss/functions',
+        '../../../node_modules/bootstrap/scss/variables';
+
+
+
+$nestable-height:			52px !default; 								// 46px
+$nestable-border-color: 	#eef2f5 !default; 							// $gray-300
+$nestable-box-shadow: 		0 0px 6px rgba(140,152,164,.06) !default; 	// none
+
+.dd-list {
+	display: block;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.dd-list .dd-list {
+	@if $global-rtl-enable == false {
+		padding-left: 30px;
+	} @else {
+		padding-right: 30px;
+	}
+}
+
+.dd-collapsed .dd-list {
+	display: none;
+}
+
+.dd-item,
+.dd-empty,
+.dd-placeholder {
+	position: relative;
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+
+
+.dd-item>button {
+	cursor: pointer;
+	border: 0;
+	padding: 0;
+	background: transparent;
+	text-align: center;
+	z-index: 2;
+
+	position: absolute;
+	max-width: 48px;
+	width: $nestable-height;
+	height: $nestable-height;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+}
+.dd-item>button+.nestable-options+.dd-handle,
+.dd-item>button+.dd-handle {
+	@if $global-rtl-enable == false {
+		padding-left: $nestable-height;
+	} @else {
+		padding-right: $nestable-height;
+	}
+}
+.dd-item>button:before {
+	/*content: '+';*/
+	font-family: "Flaticon";
+	content: "\f195";
+	color: $gray-600;
+}
+.dd-item>button[data-action="collapse"]:before {
+	/*content: '-';*/
+	font-family: "Flaticon";
+	content: "\f196";
+	color: $gray-500;
+}
+
+.dd-placeholder,
+.dd-empty {
+	margin: 5px 0;
+	padding: 10px;
+	background: #f2fbff;
+	border: 1px dashed #b6bcbf;
+	border-radius: $border-radius;
+	box-sizing: border-box;
+}
+
+.dd-dragel {
+	position: absolute;
+	pointer-events: none;
+	z-index: 9999;
+}
+
+.dd-dragel>.dd-item .dd-handle {
+	margin-top: 0;
+}
+
+
+
+
+
+
+
+/* Custom Handler */
+.dd-handle-custom>.dd-content,
+.dd-handle {
+	display: block;
+	position: relative;
+	margin: 7px 0;
+	padding: 0 10px;
+	font-size: 15px;
+	height: $nestable-height;
+	background: #fff;
+	box-shadow: $nestable-box-shadow;
+
+	text-decoration: none;
+	font-weight: 500;
+
+	border: 1px solid $nestable-border-color;
+	border-radius: $border-radius;
+
+	display: flex;
+	align-items: center;
+
+}
+	.dd-handle:hover {
+		color: $primary;
+	}
+	.dd-handle-custom>.dd-content {
+		@if $global-rtl-enable == false {
+			padding-left: $nestable-height;
+		} @else {
+			padding-right: $nestable-height;
+		}
+	}
+
+.dd-handle-custom>.dd-handle {
+    position: absolute;
+	border: 0;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    cursor: pointer;
+	width: $nestable-height;
+	height: $nestable-height;
+	background: transparent;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	@if $global-rtl-enable == false {
+		left: 0;
+	} @else {
+		right: 0;
+	}
+}
+
+// rtl fix
+@if $global-rtl-enable == true {
+	.dd-item>button {
+		margin-left: -$nestable-height !important;
+	}
+}
+
+.dd-handle-custom>button {
+	border-left: $gray-100 1px solid !important;
+	border-right: $gray-100 1px solid !important;
+
+	@if $global-rtl-enable == false {
+		margin-left: 48px !important;
+	} @else {
+		margin-right: 48px !important;
+	}
+
+}
+.dd-handle-custom>button+.dd-content {
+
+	@if $global-rtl-enable == false {
+		padding-left: $nestable-height + 50;
+	} @else {
+		padding-right: $nestable-height + 50;
+	}
+
+}
+
+
+
+/**
+	
+	Options
+
+**/
+.nestable-options {
+	z-index: 3;
+	position: absolute;
+	top:0;
+	
+	height: $nestable-height;
+
+	@if $global-rtl-enable == false {
+		right: 6px;
+	} @else {
+		left: 6px;
+	}
+}
+.nestable-options a {
+	text-decoration: none;
+	color: $gray-500;
+	display: inline-block;
+	padding: 0 3px;
+	height: $nestable-height;
+	line-height: $nestable-height;
+
+	@if $global-rtl-enable == false {
+		margin-right: 8px;
+	} @else {
+		margin-left: 8px;
+	}
+
+}
+.nestable-options a:hover {
+	color: $primary;
+}
+.dd-has-options>.dd-content.text-truncate,
+.dd-has-options>.dd-handle.text-truncate {
+	@if $global-rtl-enable == false {
+		padding-right: 100px;
+	} @else {
+		padding-left: 100px;
+	}
+}

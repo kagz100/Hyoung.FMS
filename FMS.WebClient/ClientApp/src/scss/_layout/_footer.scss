@@ -1,0 +1,119 @@
+/**
+	
+	DEFAULTS
+
+**/
+#footer a {
+	color: #121212;
+}
+
+#footer.text-white a:hover {
+	color: #ffffff !important;
+}
+
+
+/**
+	
+	LAYOUT :: FOOTER
+
+**/
+#footer.footer-dark {
+	color: 		$footer-dark-color;
+	background: $footer-dark-bg;
+	background: -moz-linear-gradient(top, lighten($footer-dark-bg, 8%) 0%, $footer-dark-bg 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten($footer-dark-bg, 8%)), color-stop(100%, $footer-dark-bg));
+	background: -webkit-linear-gradient(top, lighten($footer-dark-bg, 8%) 0%, $footer-dark-bg 100%);
+	background: -o-linear-gradient(top, lighten($footer-dark-bg, 8%) 0%, $footer-dark-bg 100%);
+	background: -ms-linear-gradient(top, lighten($footer-dark-bg, 8%) 0%, $footer-dark-bg 100%);
+	background: linear-gradient(to bottom, lighten($footer-dark-bg, 8%) 0%,$footer-dark-bg 100%);
+}
+	#footer.footer-dark .footer-svg-shape>svg {
+		fill: lighten($footer-dark-bg, 5%) !important;
+	}
+
+
+	#footer.footer-dark a {
+		color: $footer-dark-color;
+	}
+	#footer.footer-dark .bg-distinct {
+		background-color: rgba(0,0,0,0.1);
+	}
+	#footer.footer-dark hr {
+		border-color: rgba($gray-600, 0.3);
+	}
+
+#footer.footer-light {
+	color: 		$footer-light-color;
+	background: $footer-light-bg;
+	background: -moz-linear-gradient(top, lighten($footer-light-bg, 8%) 0%, $footer-light-bg 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten($footer-light-bg, 8%)), color-stop(100%, $footer-dark-bg));
+	background: -webkit-linear-gradient(top, lighten($footer-light-bg, 8%) 0%, $footer-light-bg 100%);
+	background: -o-linear-gradient(top, lighten($footer-light-bg, 8%) 0%, $footer-light-bg 100%);
+	background: -ms-linear-gradient(top, lighten($footer-light-bg, 8%) 0%, $footer-light-bg 100%);
+	background: linear-gradient(to bottom, lighten($footer-light-bg, 8%) 0%,$footer-light-bg 100%);
+
+}
+	#footer.footer-light .footer-svg-shape>svg {
+		fill: lighten($footer-light-bg, 5%) !important;
+	}
+	#footer.footer-light .bg-distinct {
+		background-color: rgba(0,0,0,0.03);
+	}
+
+
+
+
+
+/**
+	
+	Responsive
+
+**/
+// DESKTOP
+@media only screen and (min-width: map-get($grid-breakpoints, "lg")) {
+
+}
+
+
+
+
+
+// MOBILE
+@media only screen and (max-width: map-get($grid-breakpoints, "lg")) {
+
+	#footer .breadcrumb-item {
+		padding-left: 0;
+		padding-right: 0;
+		font-size: 17px;
+		float: none !important;
+		display: block;
+		margin-top: 3px;
+		width: 100%;
+		text-align: center;
+	}
+	
+	#footer .breadcrumb-item a {
+		padding: 8px !important;
+		display: block;
+		background-color: rgba(255,255,255,0.02);
+		text-decoration: none;
+		border-radius: $border-radius;
+	}
+	#footer .breadcrumb .breadcrumb-item:hover a {
+		background-color: rgba(255,255,255,0.03);
+	}
+
+	// light footer
+	#footer:not(.footer-dark) .breadcrumb-item a {
+		background-color: rgba(0,0,0,0.02);
+	}
+	#footer:not(.footer-dark) .breadcrumb-item:hover a {
+		background-color: rgba(0,0,0,0.03);
+	}
+
+	#footer .breadcrumb-item+.breadcrumb-item::before {
+		display: none !important;
+		padding: 0;
+	}
+
+}

@@ -1,0 +1,405 @@
+/**
+	
+	LAYOUT :: ADMIN
+
+	We set here very few important & general rules to 
+	avoid issues on fixed sidebar/header
+
+**/
+:root { // when .card-body used without .card wrapper
+  --bs-card-spacer-y: 1rem;
+  --bs-card-spacer-x: 1rem;
+}
+
+body.layout-admin {
+	background-color: $layout-admin-body-bg;
+
+	display: flex;
+	flex-direction: column;
+
+	@if $layout-admin-font-family != $font-family-base {
+		font-family: $layout-admin-font-family !important;
+	}
+
+}
+body.layout-admin #wrapper {
+	flex: 1;
+}
+body.layout-admin #header {
+	z-index: $header-z-index;
+}
+body.layout-admin #middle {
+	/* general rules for #middle are added to global.scss */
+	padding: $layout-admin-middle-padding;
+
+	// guessing the header height 
+	// just to have a modest empty page
+	// without too much bottom
+	/*min-height: calc(100vh - 80px); */
+}
+
+/* page header */
+body.layout-admin #middle > .container>header,
+body.layout-admin #middle > header {
+	margin-bottom: $layout-admin-middle-padding;
+}
+	body.layout-admin #middle > .container>header h1,
+	body.layout-admin #middle > header h1 {
+		margin-bottom: 0;
+	}
+
+/* section settings */
+body.layout-admin #middle section,
+body.layout-admin #middle .section {
+	color: 				$layout-admin-section-color;
+	margin-bottom:		$layout-admin-section-margin;
+	font-size: 			$layout-admin-section-font-size;
+	border: 			0;
+	min-width: 			0;
+
+	/* in case .d-flex is used */
+	flex-direction: 	column;
+}
+	body.layout-admin #middle section:not(.section-clean),
+	body.layout-admin #middle .section:not(.section-clean) {
+		padding: 			$layout-admin-section-padding;
+		background-color: 	$layout-admin-section-bg;
+		box-shadow: 		$layout-admin-section-shadow;
+		border-radius:		$layout-admin-section-border-radius;
+	}
+
+	/* section header */
+	body.layout-admin #middle section>header,
+	body.layout-admin #middle .section-header {
+		position: 			relative;
+		word-break: 		normal;
+
+		/* make it full */
+		margin-top: 		-#{$layout-admin-section-padding};
+		margin-left: 		-#{$layout-admin-section-padding};
+		margin-right: 		-#{$layout-admin-section-padding};
+
+		/* readjust spacings */
+		padding: 			$layout-admin-section-padding;
+		margin-bottom:		$layout-admin-section-padding;
+
+		/* rounded */
+		border-top-left-radius: 	$layout-admin-section-border-radius;
+		border-top-right-radius: 	$layout-admin-section-border-radius;
+
+	}
+		body.layout-admin #middle section>header>.ui-options,
+		body.layout-admin #middle .section-header>.ui-options {
+
+			@if $global-rtl-enable == false {
+				padding-right: 	$layout-admin-section-padding;
+				margin-right: 	-#{$layout-admin-section-padding};
+				margin-left: 	15px;
+			} @else {
+				padding-left: 	$layout-admin-section-padding;
+				margin-left: 	-#{$layout-admin-section-padding};
+				margin-right: 	15px;
+			}
+
+		}
+			body.layout-admin #middle header>.ui-options>a,
+			body.layout-admin #middle section>header>.ui-options>a,
+			body.layout-admin #middle .section-header>.ui-options>a {
+				color: #313131;
+				text-decoration: none;
+
+				@if $global-rtl-enable == false {
+					margin-left: 10px;
+				} @else {
+					margin-right: 10px;
+				}
+			}
+		body.layout-admin #middle section>header:not(.bg-light):not(.b-0):not(.b--0):not(.border-0):after,
+		body.layout-admin #middle .section-header:not(.bg-light):not(.b-0):not(.b--0):not(.border-0):after {
+			content:'';
+			display: block;
+			border-bottom: rgba($black, .1) 1px solid;
+			position: absolute;
+			height: 0;
+			left: 0; right: 0;
+			bottom: 0;
+		}
+
+		// remove margin of last section
+		body.layout-admin #middle>section:last-child,
+		body.layout-admin #middle>.section:last-child {
+			margin-bottom: 0;
+		}
+
+	/* body section */
+	body.layout-admin #middle .section-body {
+		position: relative; // required for ajax loading icon
+	}
+
+	/* footer */
+	#footer .dropdown-item {
+		font-size: .9rem;
+	}
+
+	// matching the gradient!
+	body.layout-admin #header.bg-dark {
+		background: #454545 !important;
+	}
+
+	/* portlet : flex */
+	.portlet {
+		background: #fff;
+		box-shadow: $box-shadow-xs;
+		font-size: 16px;
+		color: $gray-700;
+		border-radius: $layout-admin-section-border-radius;
+
+		display: flex;
+		justify-content: space-between;
+		align-items: stretch;
+		flex-direction: column;
+
+		height: 100%;
+	}
+		.portlet-header {
+			padding: 1rem;
+			width: 100%;
+			align-self: baseline;
+
+			&>span {
+				display: block;
+				font-weight: 500;
+				color: $text-muted;
+				// truncate
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+
+		}
+		.portlet-body {
+			padding: 1rem;
+			height: 100%;
+			width: 100%;
+			align-self: baseline;
+		}
+		.portlet-footer {
+			padding: 1rem;
+			display: flex;
+			align-self: baseline;
+			width: 100%;
+		}
+			.portlet .border:not(.medium-editor):not(.dropdown-toggle),
+			.portlet .border-bottom,
+			.portlet .border-top {
+				border-color: $gray-200 !important;
+			}
+
+
+	/**
+
+		Not fully supported by old browsers!
+		But is ok for admin!
+		
+		https://caniuse.com/#feat=css-sticky
+
+	**/
+	@supports (position: sticky) {
+
+		/* sticky : header */
+		body.layout-admin.header-sticky:not(.header-fixed):not(.header-hide) #header {
+			position: -webkit-sticky;
+			position: sticky;
+			top: 0;
+		}
+
+		/* sticky : footer */
+		body.layout-admin.footer-sticky #footer {
+			position: -webkit-sticky;
+			position: sticky;
+			bottom: 0;
+		}
+		
+	}
+
+
+
+/*
+	Fixes
+*/
+// -- top nav --
+// spacing, if icon used
+body.layout-admin #header ul.navbar-nav a.nav-link i+span {
+
+	@if $global-rtl-enable == false {
+		padding-left: 10px;
+	} @else {
+		padding-right: 10px;
+	}
+
+}
+// dropdowns font-size
+body.layout-admin #middle.dropdown-menu {
+	font-size: 14px;
+}
+
+// maximum mega menu
+body.layout-admin .dropdown-mega>.dropdown-menu {
+	max-width: 1200px;
+}
+aside.overlay-dark:after {
+	border-radius: $border-radius;
+}
+
+
+
+
+
+
+
+
+
+
+/**
+	
+	Responsive
+
+**/
+// DESKTOP
+@media only screen and (min-width: map-get($grid-breakpoints, "lg")) {
+
+
+	body.layout-admin #middle.mx-auto {
+		max-width: $layout-admin-middle-max-width !important;
+	}
+
+
+	/* logo width on aside-focus */
+	body.layout-admin:not(.aside-focus) #header .navbar-brand.aside-width {
+		width: $aside-width !important;
+		margin: 0 !important;
+
+		@if $global-rtl-enable == false {
+			margin-left: -15px !important;
+			padding-left: 15px !important;
+		} @else {
+			margin-right: -15px !important;
+			padding-right: 15px !important;
+		}
+
+	}
+
+
+
+
+
+
+
+	/**
+		
+		LAYOUT : PADDED
+
+	**/
+	body.layout-admin.layout-padded {
+		padding: $layout-admin-padded;
+	}
+	body.layout-admin.layout-padded .aside-start,
+	body.layout-admin.layout-padded .aside-end {
+		top: $layout-admin-padded !important;
+		bottom: $layout-admin-padded !important;
+		height: auto !important;
+		border-radius: $border-radius;
+		transition: none !important;
+	}
+		body.layout-admin.layout-padded .aside-wrapper {
+			border-radius: $border-radius;
+		}
+
+	body.layout-admin.layout-padded .aside-start {
+		@if $global-rtl-enable == false {
+			left: $layout-admin-padded;
+		} @else {
+			right: $layout-admin-padded;
+		}
+	}
+	body.layout-admin.layout-padded .aside-end {
+		@if $global-rtl-enable == false {
+			right: $layout-admin-padded;
+		} @else {
+			left: $layout-admin-padded;
+		}
+	}
+	body.layout-admin.layout-padded #header {
+		@if $global-rtl-enable == false {
+			margin-left: $aside-width + $layout-admin-middle-padding !important;
+		} @else {
+			margin-right: $aside-width + $layout-admin-middle-padding !important;
+		}
+	}
+	body.layout-admin.layout-padded #middle {
+		@if $global-rtl-enable == false {
+			padding-right: 0;
+		} @else {
+			padding-left: 0;
+		}
+	}
+	body.layout-admin.layout-padded #footer {
+		@if $global-rtl-enable == false {
+			padding-left: $aside-width + $layout-admin-middle-padding !important;
+		} @else {
+			padding-right: $aside-width + $layout-admin-middle-padding !important;
+		}
+	}
+
+}
+
+
+
+
+// MOBILE
+@media only screen and (max-width: map-get($grid-breakpoints, "lg")) {
+
+	// header min height
+	body.layout-admin #header {
+		min-height: 68px;
+	}
+
+	// header logo max width
+//	body.layout-admin #header .navbar .navbar-brand:not(.w-auto),
+//	body.layout-admin #header .navbar .navbar-brand:not(.w-auto)>img {
+//		max-width: 100px !important;
+//	}
+
+	// header navbar toggler fix on no sidebar
+	body.layout-admin:not(.aside-sticky) #header .navbar-toggler {
+		@if $global-rtl-enable == false {
+			margin-left: 0 !important;
+		} @else {
+			margin-right: 0 !important;
+		}
+	}
+
+	// because sections already has paddings!
+	body.layout-admin section>.container,
+	body.layout-admin .section>.container {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	// rewrite on mobile!
+	body.layout-admin #middle {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+
+	// -- top nav --
+	// remove bg from top main, mobile only
+	body.layout-admin #header ul.navbar-nav a.nav-link>span {
+		background-color: transparent !important;
+	}
+	// fix width
+	body.layout-admin .navbar-collapse.show li.nav-item {
+		width: 100%;
+	}
+
+}

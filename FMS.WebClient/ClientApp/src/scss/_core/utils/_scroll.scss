@@ -1,0 +1,170 @@
+/**
+
+		- Scroll 				.scrollable-vertical
+								.scrollable-horizontal
+
+**/
+
+// stop scrolling entire page 
+// when boundries reached
+.scrollable-vertical,
+.scrollable-horizontal {
+	-ms-scroll-chaining: none;
+
+	-webkit-scroll-behavior: smooth;
+			scroll-behavior: smooth;
+
+	-webkit-overscroll-behavior: contain;
+			overscroll-behavior: contain;
+}
+
+
+
+/* scrollable vertical */
+.scrollable-vertical {
+
+	overflow-y: auto;
+	-ms-overflow-style: -ms-autohiding-scrollbar;
+	-webkit-overflow-scrolling: touch; /* mobile smooth scroll */
+
+	height: auto;
+	max-height: 100%;
+
+}
+
+
+
+/* 
+
+	scrollable horizontal 
+	Do not use dropdowns inside
+
+	@Dependencies: 		_responsive.scss
+						scroll styling : desktop only
+
+*/
+.scrollable-horizontal {
+
+	/*overflow: hidden;*/
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+
+	display: block;
+	width: auto;
+	white-space: nowrap;
+	position: relative;
+	z-index: 100;
+
+	// Hide scrollbar
+	-ms-overflow-style: none;  	// IE 10+
+	   scrollbar-width: none; 	// Firefox
+
+	&::-webkit-scrollbar {
+		width: 0px !important;
+		height: 0px !important;
+		background: transparent !important;
+	}
+	&::-webkit-scrollbar-track {
+		-webkit-box-shadow: none !important;
+		background: transparent !important;
+	}
+	&::-webkit-scrollbar-thumb {
+		-webkit-box-shadow: none !important;
+		background: transparent !important;
+		width: 0px !important;
+		height: 0px !important;
+		outline: none !important;
+	}
+	&::-webkit-scrollbar-button {
+		background: transparent !important;
+		width: 0px !important;
+		height: 0px !important;
+		outline: none !important;
+	}
+
+}
+
+
+@media only screen and (min-width: map-get($grid-breakpoints, "md")) {
+
+	/* webkit scrollbar style */
+	$scrollable-style-width: 3px !default;
+
+	// default : dark
+	.scrollable-vertical {
+		scrollbar-color: #121212 #eeeeee;
+		scrollbar-width: thin;
+	}
+	.scrollable-vertical::-webkit-scrollbar-track,
+	.scrollable-vertical::-webkit-scrollbar,
+	.scrollable-vertical::-webkit-scrollbar-thumb,
+
+	.scrollable-styled-dark::-webkit-scrollbar-track,
+	.scrollable-styled-light::-webkit-scrollbar-track,
+	.scrollable-styled-dark::-webkit-scrollbar,
+	.scrollable-styled-light::-webkit-scrollbar,
+	.scrollable-styled-dark::-webkit-scrollbar-thumb,
+	.scrollable-styled-light::-webkit-scrollbar-thumb {
+		margin: 3px 0;
+		border-radius: $border-radius;
+	}
+	.scrollable-vertical::-webkit-scrollbar,
+	.scrollable-styled-dark::-webkit-scrollbar,
+	.scrollable-styled-light::-webkit-scrollbar {
+		width: $scrollable-style-width;
+	}
+
+	/* hidden, shown on mouse over */
+	.scrollable-styled-light::-webkit-scrollbar,
+	.scrollable-styled-light::-webkit-scrollbar-thumb,
+	.scrollable-styled-light::-webkit-scrollbar-track {
+		background-color: rgba(0,0,0,0);
+	}
+	.scrollable-styled-dark::-webkit-scrollbar-track,
+	.scrollable-styled-light::-webkit-scrollbar-track {
+		-webkit-box-shadow: inset 0 0 $scrollable-style-width rgba(0,0,0,0);
+	}
+
+
+	/* dark vertical : default */
+	.scrollable-vertical:hover::-webkit-scrollbar {
+		background-color: rgba(255,255,255,0.1);
+	}
+	.scrollable-vertical:hover::-webkit-scrollbar-thumb {
+		background-color: rgba(0,0,0,0.2);
+	}
+	.scrollable-vertical:hover::-webkit-scrollbar-track {
+		-webkit-box-shadow: inset 0 0 $scrollable-style-width rgba(0,0,0,0.3);
+		background-color: rgba(255,255,255,0.1);
+	}
+
+
+	/* light */
+	.scrollable-styled-light:hover::-webkit-scrollbar {
+		background-color: rgba(0,0,0,0.1);
+	}
+
+	.scrollable-styled-light:hover::-webkit-scrollbar-thumb {
+		background-color: rgba(255,255,255,0.4);
+	}
+
+	.scrollable-styled-light:hover::-webkit-scrollbar-track {
+		-webkit-box-shadow: inset 0 0 $scrollable-style-width rgba(0,0,0,0.3);
+		background-color: rgba(0,0,0,0.1);
+	}
+
+	/* dark */
+	.scrollable-styled-dark:hover::-webkit-scrollbar {
+		background-color: rgba(255,255,255,0.1);
+	}
+
+	.scrollable-styled-dark:hover::-webkit-scrollbar-thumb {
+		background-color: rgba(0,0,0,0.3);
+	}
+
+	.scrollable-styled-dark:hover::-webkit-scrollbar-track {
+		-webkit-box-shadow: inset 0 0 $scrollable-style-width rgba(0,0,0,0.3);
+		background-color: rgba(255,255,255,0.1);
+	}
+
+}

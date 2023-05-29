@@ -1,0 +1,559 @@
+/**
+	
+	SIDEBAR
+
+	Dropped .aside-left & .aside-right
+		.aside-start = left  on LTR 
+		.aside-start = right on RTL 
+
+		.aside-end = right  on LTR 
+		.aside-end = left on RTL 
+
+
+
+	Header : match sidebar background color
+		#header.header-match-aside-primary
+		#header.header-match-aside-secondary
+
+**/
+aside {
+	font-size: 16px;
+	position: relative;
+	flex-shrink: 0;
+	/**  DO NOT SET z-index HERE : MOBILE ONLY * ASIDE STICKY **/
+}
+
+aside.aside-start,
+aside.aside-end {
+	transition: all .3s cubic-bezier(0.47, 0, 0.745, 0.715);
+	height: 100%;
+}
+	.aside-width, // utility class!
+	body:not(.aside-compact) aside.aside-start,
+	body:not(.aside-compact) aside.aside-end {
+		width: $aside-width;
+	}
+	body.aside-compact aside.aside-start,
+	body.aside-compact aside.aside-end {
+		width: $aside-compact-width;
+	}
+
+
+aside.aside-start {
+	@if $global-rtl-enable == false {
+		left: 0;
+		right: auto;
+	} @else {
+		left: auto;
+		right: 0;
+	}
+}
+aside.aside-end {
+	@if $global-rtl-enable == false {
+		left: auto;
+		right: 0;
+	} @else {
+		left: 0;
+		right: auto;
+	}
+}
+
+
+/* sidebar (also used by admin) */
+.aside-secondary {
+	color: $nav-deep-light-link-color;
+	background-color: $aside-secondary-bg;
+}
+	// used as a match text color
+	.aside-secondary .text-aside {
+		color: $nav-deep-light-link-color-active;
+	}
+
+
+.aside-primary {
+	color: $nav-deep-dark-link-color;
+	background-color: $aside-primary-bg;
+}
+	// used as a match text color
+	.aside-primary .text-aside {
+		color: $nav-deep-dark-link-color-active;
+	}
+	.bg-aside {
+		background-color: $aside-primary-bg;
+	}
+
+
+
+
+
+
+
+
+/* 
+
+	Nav Item
+	Paddings 
+	orig: .5rem 1rem
+
+*/
+// -md (default) childs not mdified
+aside .nav-deep>ul>li.nav-title,
+aside .nav-deep>ul>li>a.nav-link {
+	padding: .8rem 1rem;
+}
+
+
+// -lg
+aside .nav-deep.nav-deep-lg>ul>li.nav-title,
+aside .nav-deep.nav-deep-lg>ul>li>a.nav-link {
+	padding-top: .8rem;
+	padding-bottom: .8rem;
+}
+	// childs
+	aside .nav-deep.nav-deep-lg>ul>li li.nav-title,
+	aside .nav-deep.nav-deep-lg>ul>li ul>li>a {
+		padding-top: .5rem;
+		padding-bottom: .5rem;
+	}
+
+
+// -sm
+aside .nav-deep.nav-deep-sm>ul>li.nav-title,
+aside .nav-deep.nav-deep-sm>ul>li>a.nav-link {
+	padding-top: .6rem;
+	padding-bottom: .6rem;
+}
+	// childs
+	aside .nav-deep.nav-deep-sm>ul>li li.nav-title,
+	aside .nav-deep.nav-deep-sm>ul>li ul>li>a {
+		padding-top: .4rem;
+		padding-bottom: .4rem;
+	}
+
+
+// -xs
+aside .nav-deep.nav-deep-xs>ul>li.nav-title,
+aside .nav-deep.nav-deep-xs>ul>li>a.nav-link {
+	padding-top: .3rem;
+	padding-bottom: .3rem;
+}
+	// childs
+	aside .nav-deep.nav-deep-xs>ul>li li.nav-title,
+	aside .nav-deep.nav-deep-xs>ul>li ul>li>a {
+		padding-top: .3rem;
+		padding-bottom: .3rem;
+	}
+
+
+
+
+
+
+
+
+
+
+
+/* 
+	hover & active background color 
+	overwrite _navigations.scss
+*/
+.aside-secondary nav.nav-deep-hover>ul>li.nav-item:hover,
+.aside-secondary nav.nav-deep-hover>ul>li.nav-item.active {
+	background-color: $aside-secondary-bg-active !important;
+
+}
+.aside-primary nav.nav-deep-hover>ul>li.nav-item:hover,
+.aside-primary nav.nav-deep-hover>ul>li.nav-item.active {
+	background-color: $aside-primary-bg-active !important;
+}
+
+
+
+/* 
+	disabled links
+*/
+.aside-secondary a.disabled {
+	color: lighten($nav-deep-light-link-color, 50%) !important;
+}
+.aside-primary a.disabled {
+	color: darken($nav-deep-dark-link-color, 30%) !important;
+}
+
+/* 
+	spacings
+*/
+//.aside-secondary nav.nav-deep-hover>ul>li.nav-item {
+//	margin-bottom: 1px;
+//}
+
+
+/*
+
+	EXTENDED NAV 
+	Like a secondary sidebar
+
+*/
+aside .nav-item.nav-item-extended>div.aside-item {
+	position: fixed;
+	top:95px; // 80px header
+	bottom:15px;
+	font-size: 	$font-size-base;
+	overflow: hidden;
+
+	// defaults
+	color: #121212;
+	min-width: $aside-width;
+	max-width: calc(100vw - 15px - #{$aside-width});
+	background-color: rgba(0,0,0,0.05);
+	border-radius: $border-radius;
+
+	@if $global-rtl-enable == false {
+		left: 		$aside-width;
+		border-left: 0;
+
+		// allow user to user .rounded-xl
+		border-top-left-radius: 0 !important;
+		border-bottom-left-radius: 0 !important;
+
+	} @else {
+		border-right: 0;
+		right: 		$aside-width;
+
+		// allow user to user .rounded-xl
+		border-top-left-radius: 0 !important;
+		border-bottom-left-radius: 0 !important;
+
+	}
+
+}
+
+
+	/* hide : is inactive */
+	aside .nav-item.nav-item-extended:not(.active)>div.aside-item {
+		display: none !important;
+	}
+
+	/* overlay */
+	aside .nav-item.nav-item-extended:not(.active).overlay-light:after,
+	aside .nav-item.nav-item-extended:not(.active).overlay-dark:after {
+		display: none !important;
+	}
+	aside .nav-item.nav-item-extended.active.overlay-light:after,
+	aside .nav-item.nav-item-extended.active.overlay-dark:after {
+		position: fixed;
+		z-index: -1;
+
+		@if $global-rtl-enable == false {
+			left: $aside-width;
+			right: 0;
+		} @else {
+			left: 0;
+			right: $aside-width;
+		}
+	}
+
+
+/* fade in animation */
+aside .nav-item.nav-item-extended.active>.aside-item {
+	animation: __utilFadeIn .25s ease-out forwards;
+}
+
+
+
+
+
+
+
+/*
+
+	Header : match sidebar 
+	background color
+
+*/
+#header.header-match-aside-primary {
+	background-color: $aside-primary-bg;
+}
+#header.header-match-aside-secondary {
+	background-color: $aside-secondary-bg;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+	
+	CUSTOM, SIMPLE 
+	(ecommerce cart, etc)
+
+**/
+.aside-custom-start,
+.aside-custom-end,
+.aside-custom {
+
+	position: fixed !important;
+	
+	top:0; bottom:0; 
+	height: 100%;
+	left:0;
+
+	width: 90%; max-width: 400px;
+	background: #ffffff;
+	z-index: $header-z-index + 1;
+
+	/* Chrome load hack */
+	animation: __asidePageLoadFix;
+	animation-duration: 0.01s; // 10ms
+
+	@if $global-rtl-enable == false {
+		transform: translate3d(-100%, 0, 0);
+	} @else {
+		transform: translate3d(100%, 0, 0);
+	}
+
+	// transition: transform .3s cubic-bezier(0, .52, 0, 1) !important;
+	transition: transform .56s cubic-bezier(.6,.4,.05,.95) !important;
+
+}
+@keyframes __asidePageLoadFix {
+	from 	{  }
+	to 		{ transform: none; }
+}
+
+	.aside-custom-end {
+
+		@if $global-rtl-enable == false {
+			right:0; left:auto;
+			transform: translate3d(100%, 0, 0);
+		} @else {
+			right:auto; left:0;
+			transform: translate3d(-100%, 0, 0);
+		}
+
+	}
+
+.aside-custom-start.js-aside-show,
+.aside-custom-end.js-aside-show,
+.aside-custom.js-aside-show {
+
+	@if $global-rtl-enable == false {
+		transform: translate3d(0, 0, 0);
+	} @else {
+		transform: translate3d(0, 0, 0);
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+/**
+	
+	Responsive
+
+**/
+// DESKTOP
+@media only screen and (min-width: map-get($grid-breakpoints, "lg")) {
+
+	/* 
+		ASIDE : FOCUS
+		Push header
+	*/
+	body.aside-sticky aside {
+		position: fixed;
+		top:0; bottom:0;
+		z-index: $header-z-index + 1;
+	}
+	body:not(.aside-compact).layout-admin #footer {
+		@if $global-rtl-enable == false {
+			padding-left: $aside-width;
+		} @else {
+			padding-right: $aside-width;
+		}
+	}
+	body.aside-sticky:not(.aside-compact) #wrapper_content,
+	body.aside-sticky:not(.aside-compact) #header,
+	body.aside-sticky:not(.aside-compact) #js_header_spacer {
+		@if $global-rtl-enable == false {
+			margin-left: $aside-width;
+		} @else {
+			margin-right: $aside-width;
+		}
+	}
+
+	// compact
+	body.layout-admin.aside-compact #footer {
+		@if $global-rtl-enable == false {
+			padding-left: $aside-compact-width;
+		} @else {
+			padding-right: $aside-compact-width;
+		}
+	}
+	body.aside-sticky.aside-compact #wrapper_content,
+	body.aside-sticky.aside-compact #header,
+	body.aside-sticky.aside-compact #js_header_spacer {
+		@if $global-rtl-enable == false {
+			margin-left: $aside-compact-width;
+		} @else {
+			margin-right: $aside-compact-width;
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+	/**
+
+		FRONTEND DEDICATED
+
+	**/
+	body.aside-start:not(.layout-boxed) #wrapper {
+		@if $global-rtl-enable == false {
+			margin-left: $aside-width;
+		} @else {
+			margin-right: $aside-width;
+		}
+	}
+
+	body.aside-end:not(.layout-boxed) #wrapper {
+		@if $global-rtl-enable == false {
+			margin-right: $aside-width;
+		} @else {
+			margin-left: $aside-width;
+		}
+	}
+
+	body.aside-start.header-fixed:not(.layout-boxed) #header,
+	body.aside-end.header-fixed:not(.layout-boxed) #header {
+		max-width: 100% !important;
+		width: auto !important;
+	}
+
+
+	/**
+
+		ASIDE FLOAT
+
+	**/
+	body.aside-float aside {
+		z-index: $header-z-index + 1; // header + 1
+
+		position: fixed;
+		top: 0;
+		bottom: 0;
+	}
+		body.aside-start.aside-sticky:not(.header-sticky) #header,
+		body.aside-float #header {
+			margin-left: 0 !important;
+			margin-right: 0 !important;
+		}
+		body.aside-float:not(.aside-show) .aside-start:not(.js-aside-show) {
+			@if $global-rtl-enable == false {
+				margin-left: -100%;
+			} @else {
+				margin-right: -100%;
+			}
+		}
+		body.aside-float:not(.aside-show) .aside-end:not(.js-aside-show) {
+			@if $global-rtl-enable == false {
+				margin-right: -100%;
+			} @else {
+				margin-left: -100%;
+			}
+		}
+
+}
+
+
+
+
+
+
+
+
+// MOBILE
+@media only screen and (max-width: map-get($grid-breakpoints, "lg") - 1px) {
+
+	aside {
+		z-index: $header-z-index + 1; 	// header + 1
+		position: fixed !important; 	// because we want to use overlays which are relative!
+		top: 0;
+		bottom: 0;
+	}
+
+
+	/*
+
+		HIDE|SHOW
+
+	*/
+
+	aside:not(.js-aside-show).aside-start {
+		@if $global-rtl-enable == false {
+			margin-left: -$aside-width;
+		} @else {
+			margin-right: -$aside-width;
+		}
+	}
+	aside:not(.js-aside-show).aside-end {
+		@if $global-rtl-enable == false {
+			margin-right: -$aside-width;
+		} @else {
+			margin-left: -$aside-width;
+		}
+	}
+	/* extended */
+	aside:not(.js-aside-show).aside-start .nav-item-extended>div.aside-item {
+		@if $global-rtl-enable == false {
+			left: -100%;
+		} @else {
+			right: -100%;
+		}
+	}
+	aside:not(.js-aside-show).aside-end .nav-item-extended>div.aside-item {
+		@if $global-rtl-enable == false {
+			right: -100%;
+		} @else {
+			left: -100%;
+		}
+	}
+
+
+	/* extended - position forced */
+	aside .nav-item.nav-item-extended>div.aside-item {
+		top: 15px;
+		bottom: 15px;
+		left:15px;
+		right:15px;
+		width: auto !important;
+		height: auto !important;
+		max-width: 100% !important;
+		max-height: 100% !important;
+		border-radius: $border-radius;
+
+		z-index: 9999;
+	}
+
+}

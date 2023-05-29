@@ -1,0 +1,144 @@
+/**
+
+		- Transform 3D 				.transform-3d-left, .transform-3d-right
+
+**/
+.transform-3d-right,
+.transform-3d-left {
+	perspective-origin: center; 	// bottom
+	transform-style: preserve-3d;
+	perspective: 1024px;
+}
+
+	.transform-3d-left>img,
+	.transform-3d-left>figure,
+	.transform-3d-left>div {
+		transform: rotateY(35deg) rotateX(15deg) translateZ(0);
+		-webkit-backface-visibility: hidden;
+		backface-visibility: hidden;
+	}
+	.transform-3d-right>img,
+	.transform-3d-right>figure,
+	.transform-3d-right>div {
+		transform: rotateY(-35deg) rotateX(15deg) translateZ(0);
+		-webkit-backface-visibility: hidden;
+		backface-visibility: hidden;
+	}
+
+
+
+
+/*
+
+	Block
+
+*/
+@if $global-rtl-enable == false {
+	.block-over-start-top {
+		transform: translate(25px, -25px);
+	}
+	.block-over-start-bottom {
+		transform: translate(25px, 25px);
+	}
+	.block-over-end-top {
+		transform: translate(-25px, -25px);
+	}
+	.block-over-end-bottom {
+		transform: translate(-25px, 25px);
+	}
+} @else {
+	.block-over-start-top {
+		transform: translate(-25px, -25px);
+	}
+	.block-over-start-bottom {
+		transform: translate(-25px, 25px);
+	}
+	.block-over-end-top {
+		transform: translate(25px, -25px);
+	}
+	.block-over-end-bottom {
+		transform: translate(25px, 25px);
+	}
+}
+
+
+
+
+
+/**
+
+		- Rotate 					.rotate-90  	(rotate text)
+		@Rewrite needed!
+**/
+.text-rotate {
+
+	@if $global-rtl-enable == false {
+		writing-mode: vertical-lr;
+	} @else {
+		writing-mode: vertical-rl;
+	}
+
+}
+
+
+
+/**
+
+	Text Rotate 90, 180
+	++ A fixed container is required (width, height)
+
+**/
+.text-rotate-180,
+.text-rotate-90 {
+
+	//
+	// vertical-rl : not supported by browsers
+	// using rotate below to invert
+	//
+	-webkit-writing-mode: vertical-lr;
+	    -ms-writing-mode: tb-lr;
+	        writing-mode: vertical-lr;
+
+	width: 100%;  height: 100%;
+	top: 	 0;   bottom: 0;
+	left:    0;	  right: auto;
+
+	position: absolute;
+	margin: 0;
+
+}
+
+	.text-rotate-180 {
+
+	    -webkit-transform: rotate(-180deg); 
+	    -moz-transform:    rotate(-180deg); 
+	    -ms-transform:     rotate(-180deg); 
+	    -o-transform:      rotate(-180deg); 
+
+	    -webkit-transform-origin: 0 0;
+	    -moz-transform-origin:    0 0;
+	    -ms-transform-origin:     0 0;
+	    -o-transform-origin:      0 0;
+
+		left: auto;  right:  -100%;
+		top:  auto;  bottom: -100%;
+
+	}
+
+
+
+
+
+
+/**
+	
+	Right in the center
+
+**/
+.transform-center-fixed {
+	position: fixed !important;
+	top: 50% !important;
+	left: 50% !important;
+	transform: translate(-50%, -50%) !important;
+	z-index: 100;
+}

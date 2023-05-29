@@ -1,0 +1,83 @@
+// Load needed variables
+@import '../_core/mixins',
+        '../variables',
+        '../../../node_modules/bootstrap/scss/functions',
+        '../../../node_modules/bootstrap/scss/variables';
+
+
+.cocoen {
+  box-sizing: border-box;
+  cursor: pointer;
+  line-height: 0;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  user-select: none;
+
+
+  img,
+  picture > img {
+    max-width: none;
+  }
+
+  > img,
+  > picture > img {
+    display: block;
+    width: 100%;
+  }
+
+  > div {
+    &:first-child,
+    picture & {
+      height: 100%;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 50%;
+    }
+  }
+
+  &-drag {
+    background: rgba(255,255,255,0.3);
+    width: 1px;
+    bottom: 0;
+    cursor: move;
+    left: 50%;
+    margin-left: -1px;
+    position: absolute;
+    top: 0;
+
+    &::before {
+      content: '';
+      left: 50%;
+      position: absolute;
+      top: 50%;
+
+      margin-left: -22px;
+      margin-top: -22px;
+      height: 44px;
+      width: 44px;
+      border-radius: $border-radius-pill;
+
+      background-color: $primary;
+      overflow: hidden;
+
+      box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+
+    }
+
+    &::after {
+      font-family: Flaticon!important;
+      content: "\f14d";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      color: #fff;
+      margin-left: -10px;
+      font-size: 22px;
+    }
+
+  }
+}

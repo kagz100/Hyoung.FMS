@@ -1,0 +1,46 @@
+table.table-align-middle td,
+table.table-align-middle th {
+  vertical-align: middle;
+}
+	/* checkbox */
+	table label.form-checkbox,
+	table label.form-radio {
+		width: 20px !important;
+		height: 20px !important;
+		margin: 0;
+		padding: 0;
+	}
+	table label.form-checkbox>i,
+	table label.form-radio>i {
+		margin-right: 0;
+		margin-left: 0;
+	}
+		table thead th label.form-checkbox,
+		table thead th label.form-radio,
+		table tfoot th label.form-checkbox,
+		table tfoot th label.form-radio {
+			margin-top: 3px;
+		}
+
+/* setup */
+.table:not(.table-framed):not(.table-bordered) thead>tr>th {
+	border-top-width: 0;
+}
+.table thead>tr>th {
+	border-bottom-width: 1px;
+}
+.table-framed tfoot th {
+	border-bottom: $table-border-color 1px solid;
+}
+/* large */
+.table-lg tr>th,
+.table-lg tr>td {
+	padding: 1.5rem 2rem;
+}
+
+
+/* stripped table */
+table.table-striped th, 
+table.table-striped td {
+    border: 0;
+}

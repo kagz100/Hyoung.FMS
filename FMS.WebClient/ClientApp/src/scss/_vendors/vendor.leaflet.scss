@@ -1,0 +1,75 @@
+// Load needed variables
+@import '../_core/mixins',
+        '../variables',
+        '../../../node_modules/bootstrap/scss/functions',
+        '../../../node_modules/bootstrap/scss/variables';
+
+
+
+
+/**
+
+    Import official leaflet map css
+
+**/
+@import "../../../node_modules/leaflet/dist/leaflet";
+
+/**
+
+    Styling
+
+**/
+$map-shadow: 0 1px 3px 0 rgba(50,50,93,0.15), 0 4px 6px 0 rgba(112,157,199,0.15) !default;
+
+.map-leaflet {
+    z-index: 1;
+}
+
+/* buttons container */
+.leaflet-touch .leaflet-bar, 
+.leaflet-touch .leaflet-control-layers {
+
+    @include vendors-generate(box-shadow, $map-shadow);
+    background-clip: padding-box;
+    border: 0;
+}
+
+/* buttons */
+.leaflet-touch .leaflet-bar a:first-child {
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+}
+.leaflet-touch .leaflet-bar a:last-child {
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+}
+    .leaflet-touch .leaflet-bar a {
+        width: 36px;
+        height: 36px;
+        line-height: 33px;
+    }
+        .leaflet-touch .leaflet-bar a:hover {
+            background-color: $gray-100;
+        }
+    /* icon color */
+    .leaflet-touch .leaflet-control-zoom-in, 
+    .leaflet-touch .leaflet-control-zoom-out {
+        font-size: 22px;
+    }
+
+
+
+/* popover */
+.leaflet-popup-content-wrapper {
+    @include vendors-generate(border-radius, $border-radius);
+    @include vendors-generate(box-shadow, $map-shadow);
+}
+.leaflet-popup-content {
+    margin: 20px 15px;
+}
+
+
+/* grayscale */
+.map-grayscale .leaflet-tile-pane {
+    @include vendors-generate(filter, grayscale(100%));
+}

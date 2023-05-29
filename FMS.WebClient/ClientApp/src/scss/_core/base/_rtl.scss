@@ -1,0 +1,72 @@
+/**
+
+	BOOTSTRAP RTL FIXES
+		various positioning
+
+**/
+@if $global-rtl-enable == true {
+
+
+	// RTL OFFSET COLUMNS
+	@include make-grid-columns-rtl();
+
+
+	.breadcrumb-item { 
+		float: right;
+	}
+
+	.nav,
+	.nav-tabs,
+	nav>ul.list-inline {
+		padding-right: 0;
+	}
+
+	.modal-header .close {
+		margin: -1rem auto -1rem -1rem;
+	}
+		.close { // alerts
+			float: left;
+		}
+
+	.dropdown-menu {
+		left: auto;
+		right: 0;
+	}
+
+	ul.list-unstyled {
+		padding-right: 0;
+	}
+
+	// list inline
+	ul.list-inline {
+		padding-right:0;
+	}
+	.list-inline-item:not(:first-child) {
+		margin-right: 0.5rem;
+	}
+	.list-inline-item:not(:last-child) {
+		margin-right: 0;
+	}
+
+	// input group - keep it as it is (append|prepend is available on bootstrap)
+	.input-group {
+		direction: ltr;
+	}
+
+	// btn group
+	.btn-group>.btn-group:not(:last-child), 
+	.btn-group>.btn:not(:last-child) {
+		margin-right: -1px;
+		margin-left: auto;
+	}
+
+	// custom upload file input
+	.custom-file-label::after {
+		right: auto;
+		left: 0;
+		border-right: inherit;
+		border-left: 0;
+		@include vendors-generate(border-radius, $border-radius 0 0 $border-radius);
+	}
+
+} // end if RTL

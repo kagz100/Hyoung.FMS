@@ -1,0 +1,202 @@
+// -- -- -- -- -- -- -- -- --
+// Simple Timeline
+// -- -- -- -- -- -- -- -- --
+/*
+
+    <ul class="sow-timeline">
+
+      <li>
+        <h3 class="mb-5">
+        	Clean Timeline
+        </h3>
+      </li>
+
+      <li class="pb-5">
+
+        <h4 class="sow-timeline-title font-weight-light mb-0 position-relative d-flex align-items-center">
+          Event Title
+        </h4>
+        <small class="text-muted">Tue Nov 10, 2020</small>
+       	
+       	<div class="mt-4">
+        	<p>Lorem ipsum...</p>
+        	<a href="#!" class="text-dashed">read more</a>
+        </div>
+
+      </li>
+
+    </ul>
+
+*/
+$sow-timeline-padding: 			1.75rem !default;
+$sow-timeline-bullet-width: 	1.25rem !default;
+
+.sow-timeline {
+
+	list-style: none;
+	padding: 0 $sow-timeline-padding !important;
+	margin-left: ($sow-timeline-bullet-width / 2) !important;
+	margin-right: ($sow-timeline-bullet-width / 2) !important;
+
+	@if $global-rtl-enable == false {
+		border-left: $border-color 2px dashed;
+	} @else {
+		border-right: $border-color 2px dashed;
+	}
+
+}
+.sow-timeline-title:before {
+	content: "";
+	position: absolute;
+	
+	width: $sow-timeline-bullet-width;
+	height: $sow-timeline-bullet-width;
+	border-radius: 50%;
+	background: $border-color;
+
+	@if $global-rtl-enable == false {
+		left: -($sow-timeline-padding + ($sow-timeline-bullet-width / 2) + 0.0625); //  0.0625 = 1px
+	} @else {
+		right: -($sow-timeline-padding + ($sow-timeline-bullet-width / 2) + 0.0625); //  0.0625 = 1px
+	}
+
+}
+
+
+
+// -- -- -- -- -- -- -- -- --
+// Timeline 2
+// -- -- -- -- -- -- -- -- --
+$timeline-side-space: 			100px !default;
+$timeline-bullet-width: 		17px !default;
+$timeline-bullet-border: 		4px !default;
+$timeline-line-width: 			4px !default;
+
+.timeline-container>div,
+.timeline-container {
+	position: relative;
+}
+.timeline-container:before {
+	content: '';
+	position: absolute;
+	width: $timeline-line-width;
+	top: $timeline-bullet-border + 3;
+	bottom: $timeline-bullet-border + 3;
+	height: calc(100% - (#{$timeline-bullet-border} + 3));
+	background-color: $gray-200;
+
+	@if $global-rtl-enable == false {
+		left: $timeline-side-space;
+	} @else {
+		right: $timeline-side-space;
+	}
+
+}
+.timeline-container i.badge {
+	width: $timeline-bullet-width;
+	height: $timeline-bullet-width;
+	border: transparent $timeline-bullet-border solid;
+	display: inline-block;
+	position: absolute;
+	padding: 0;
+	top: $timeline-bullet-border + 3;
+
+	@if $global-rtl-enable == false {
+		left: $timeline-side-space - ($timeline-bullet-width/2 - $timeline-bullet-border/2);
+	} @else {
+		right: $timeline-side-space - ($timeline-bullet-width/2 - $timeline-bullet-border/2);
+	}
+}
+
+.timeline-container i.badge:after {
+	content:'';
+	width: $timeline-bullet-width + ($timeline-bullet-border * 2);
+	height: $timeline-bullet-width + ($timeline-bullet-border * 2);
+	border: $white $timeline-bullet-border solid;
+	position: absolute;
+	z-index: 0;
+	border-radius: $border-radius-pill;
+	top: -($timeline-bullet-border * 2);
+
+	@if $global-rtl-enable == false {
+		left: -($timeline-bullet-border * 2); 
+	} @else {
+		right: -($timeline-bullet-border * 2); 
+	}
+}
+
+.timeline-container .timeline-content,
+.timeline-container .timeline-title {
+	position: relative;
+	display: block;
+
+	@if $global-rtl-enable == false {
+		padding-left: 24px;
+		margin-left: $timeline-side-space;
+		border-left: transparent $timeline-line-width solid;
+	} @else {
+		padding-right: 24px;
+		margin-right: $timeline-side-space;
+		border-right: transparent $timeline-line-width solid;
+	}
+}
+
+
+
+/* invert */
+.timeline-container.timeline-invert {
+	@if $global-rtl-enable == false {
+		text-align: right;
+	} @else {
+		text-align: left;
+	}
+}
+.timeline-container.timeline-invert:before {
+	@if $global-rtl-enable == false {
+		left: auto;
+		right: $timeline-side-space;
+	} @else {
+		left: $timeline-side-space;
+		right: auto;
+	}
+}
+.timeline-container.timeline-invert i.badge {
+	@if $global-rtl-enable == false {
+		left: auto;
+		right: $timeline-side-space - ($timeline-bullet-width/2 - $timeline-bullet-border/2);
+	} @else {
+		left: $timeline-side-space - ($timeline-bullet-width/2 - $timeline-bullet-border/2);
+		right: auto;
+	}
+}
+
+.timeline-container.timeline-invert i.badge:after {
+	@if $global-rtl-enable == false {
+		left: auto;
+		right: -($timeline-bullet-border * 2); 
+	} @else {
+		left: -($timeline-bullet-border * 2); 
+		right: auto;
+	}
+}
+
+.timeline-container.timeline-invert .timeline-content,
+.timeline-container.timeline-invert .timeline-title {
+	@if $global-rtl-enable == false {
+		padding-left: 0;
+		padding-right: 24px;
+		margin-left: 0;
+		margin-right: $timeline-side-space;
+		border-left: 0;
+		border-right: transparent $timeline-line-width solid;
+	} @else {
+		padding-right: 0;
+		padding-left: 24px;
+		margin-right: 0;
+		margin-left: $timeline-side-space;
+		border-right: 0;
+		border-left: transparent $timeline-line-width solid;
+		text-align: left;
+	}
+}
+

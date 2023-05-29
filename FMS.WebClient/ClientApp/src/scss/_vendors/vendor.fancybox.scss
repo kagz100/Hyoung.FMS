@@ -1,0 +1,43 @@
+// Load needed variables
+@import '../_core/mixins',
+        '../variables',
+        '../../../node_modules/bootstrap/scss/functions',
+        '../../../node_modules/bootstrap/scss/variables';
+
+
+
+
+.fancybox-container .fancybox-bg {
+  background-color: rgba($white, 0.96);
+}
+.fancybox-caption {
+  background: linear-gradient(to top,rgba(255,255,255,.85) 0,rgba(255,255,255,.3) 50%,rgba(255,255,255,.15) 65%,rgba(255,255,255,.075) 75.5%,rgba(255,255,255,.037) 82.85%,rgba(255,255,255,.019) 88%,rgba(255,255,255,0) 100%) !important;
+}
+.fancybox-caption__body {
+  color: #121212;
+}
+
+
+.fancybox-close-small {
+  margin-top: -22px !important;
+  margin-left: -8px !important;
+  margin-right: -8px !important;
+}
+.fancybox-button--zoom,
+.fancybox-button--close,
+.fancybox-close-small,
+.fancybox-button--download {
+  width: 40px !important;
+  height: 40px !important;
+}
+.fancybox-button--close {
+  color: #212121 !important;
+  font-size: 35px !important;
+}
+
+.fancybox-button--arrow_left,
+.fancybox-button--arrow_right {
+  width: 60px !important;
+  height: 60px !important;
+  font-size: 20px !important;
+}

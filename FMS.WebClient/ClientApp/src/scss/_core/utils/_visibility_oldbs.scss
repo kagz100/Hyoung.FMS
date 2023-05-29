@@ -1,0 +1,29 @@
+/* 
+
+	VIZIBILITY CLASSES, EASIER|INTUITIVE (old bootstrap)
+	INSTEAD OF .d-*
+	https://getbootstrap.com/docs/4.3/utilities/display/
+
+	MIXIN USED
+
+*/
+$old-core-grid-breakpoints: (
+	xs: map-get($grid-breakpoints, "xs"),
+	sm: map-get($grid-breakpoints, "sm"),
+	md: map-get($grid-breakpoints, "md"),
+	lg: map-get($grid-breakpoints, "lg"),
+	xl: map-get($grid-breakpoints, "xl")
+);
+
+@each $cgb in map-keys($old-core-grid-breakpoints) {
+	.hidden-#{$cgb}-up {
+		@include media-breakpoint-up($cgb, $old-core-grid-breakpoints) {
+			display: none !important;
+		}
+	}
+	.hidden-#{$cgb}-down {
+		@include media-breakpoint-down($cgb, $old-core-grid-breakpoints) {
+			display: none !important;
+		}
+	}
+}

@@ -1,0 +1,115 @@
+// Load needed variables
+@import '../_core/mixins';
+@import '../variables';
+@import '../../../node_modules/bootstrap/scss/functions';
+@import '../../../node_modules/bootstrap/scss/variables';
+
+
+.fc-bootstrap .fc-dayGrid-view .fc-day-number, 
+.fc-bootstrap .fc-dayGrid-view .fc-week-number {
+  background: rgba($gray-100, 0.9);
+  margin: 6px;
+  width: 26px;
+  height: 26px;
+  line-height: 26px;
+  font-size: 14px;
+  text-align: center;
+  border-radius: $border-radius-pill;
+}
+.fc-bootstrap .fc-dayGrid-view .fc-today .fc-day-number, 
+.fc-bootstrap .fc-dayGrid-view .fc-today .fc-week-number {
+  background: rgba($white, 0.5);
+}
+
+
+.fc-bootstrap .table-bordered td, 
+.fc-bootstrap .table-bordered th {
+  border-color: $gray-300;
+  background: $white;
+}
+
+.fc-bootstrap .table-bordered th.fc-day-header>span {
+  display: block;
+  padding: 6px 0;
+  font-weight: 500;
+  color: $gray-700;
+  font-size: 1rem;
+}
+
+// some paddings
+.fc-bootstrap .fc-day-grid-event .fc-content,
+.fc-bootstrap .fc-time-grid-event .fc-content {
+
+  font-size: 13px;
+
+  // truncate
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @if $global-rtl-enable == false {
+    padding: .30rem .30rem .30rem 2rem;
+  } @else {
+    padding: .30rem 2rem .30rem .30rem;
+  }
+
+}
+
+// 'more...' popup
+.fc-bootstrap .fc-popover .fc-header .fc-close {
+  font-size: 1em;
+  padding: 0 6px;
+}
+.fc-bootstrap .fc-popover .fc-header {
+  background: $gray-100;
+  padding: 6px 4px;
+  font-size: 15px;
+}
+
+
+// Styling : bullet
+.fc-bootstrap .fc-day-grid-event .fc-content:before, 
+.fc-bootstrap .fc-time-grid-event .fc-content:before {
+  display: inline-block;
+  content: "";
+  position: absolute;
+  height: 8px;
+  width: 8px;
+  top: 10px;
+
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+
+  background: $gray-100;
+
+  @if $global-rtl-enable == false {
+    left: .66rem;
+  } @else {
+    right: .66rem;
+  }
+
+}
+  @each $btn-class, $rgba-percent in $theme-colors-soft {
+    .fc-bootstrap .bg-#{$btn-class} .fc-content:before,
+    .fc-bootstrap .bg-#{$btn-class}-soft .fc-content:before {
+      background:     lighten(map-get($theme-colors, $btn-class), 15%) !important;
+    }
+  }
+
+
+.fc-bootstrap .fc-time-grid-event .fc-time {
+  padding-top: 3px;
+}
+
+
+.btn-group>.btn-group:not(:last-child)>.btn, 
+.btn-group>.btn:not(:last-child):not(.dropdown-toggle) {
+  font-size: 14px;
+}
+
+// Google Clendar
+.fc-bootstrap .fc-smarty-gcal {}
+.fc-bootstrap .fc-smarty-gcal .fc-content:before {
+  -webkit-border-radius: 0 !important;
+  border-radius: 0 !important;
+}

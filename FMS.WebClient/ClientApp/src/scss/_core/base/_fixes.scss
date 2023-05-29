@@ -1,0 +1,48 @@
+/**
+
+  Various Fixes
+
+**/
+
+// bootstrap .col
+// required for flex grid to have
+// a perfect width fit
+.col { min-width: 0; }
+
+
+// addEventListener()
+// javascript subelements click issue
+// wrong bind if a button has an icon/svg only
+a > i, a > svg,
+button > i, button > svg,
+.pointer-events-none {
+  pointer-events: none;
+}
+
+.blockquote-footer {
+  margin-top: 0 !important;
+}
+
+
+// Wrong in boostrap
+.max-vh-25 {
+  min-height: auto !important;
+  max-height: 25vh !important;
+}
+
+.max-vh-50 {
+  min-height: auto !important;
+  max-height: 50vh !important;
+}
+
+.max-vh-75 {
+  min-height: auto !important;
+  max-height: 75vh !important;
+}
+
+
+// Bootstrap table fix
+// inset shadow do not allow cell background color
+.table:not(.table-striped):not(.table-hover)>:not(caption)>*>* {
+  box-shadow: inherit;
+}

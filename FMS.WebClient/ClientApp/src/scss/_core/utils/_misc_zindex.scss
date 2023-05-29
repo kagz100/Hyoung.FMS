@@ -1,0 +1,48 @@
+/**
+
+		- Z Index
+
+**/
+/* z-index */
+.z-index-n1 {
+	z-index: -1 !important;
+}
+.z-index-0 {
+	z-index: 0 !important;
+}
+.z-index-1 {
+	z-index: 1 !important;
+}
+.z-index-2 {
+	z-index: 2 !important;
+}
+.z-index-3 {
+	z-index: 3 !important;
+}
+.z-index-4 {
+	z-index: 4 !important;
+}
+.z-index-5 {
+	z-index: 5 !important;
+}
+.z-index-10 {
+	z-index: 10 !important;
+}
+.z-index-99 {
+	z-index: 99 !important;
+}
+.z-index-100 {
+	z-index: 100 !important;
+}
+.z-index-1000 {
+	z-index: 1000 !important;
+}
+.z-index-9999 {
+	z-index: 9999 !important;
+}
+
+// z-index higher + 1 than header
+$z-index-higher-than-header: $header-z-index + 1 !default;
+.z-index-#{$z-index-higher-than-header} {
+	z-index: $header-z-index + 1 !important;
+}

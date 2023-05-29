@@ -1,0 +1,435 @@
+// Load needed variables
+@import '../_core/mixins',
+	'../variables',
+	'../../../node_modules/bootstrap/scss/functions',
+	'../../../node_modules/bootstrap/scss/variables';
+
+// ------------------------------------------------------
+// Custom Layout
+// Original SCSS has hardcoded images.
+// ------------------------------------------------------
+
+
+
+
+
+// ------------------------------------------------------
+// _main-settings.scss
+// ------------------------------------------------------
+$pswp__show-hide-transition-duration:                           333ms;
+$pswp__controls-transition-duration:                            333ms;
+$pswp__background-color:                                        rgba($backdrop-dark,0.5);
+$pswp__placeholder-color:                                       linear-gradient(to top,rgba(255,255,255,.85) 0,rgba(255,255,255,.3) 50%,rgba(255,255,255,.15) 65%,rgba(255,255,255,.075) 75.5%,rgba(255,255,255,.037) 82.85%,rgba(255,255,255,.019) 88%,rgba(255,255,255,0) 100%) !important;
+$pswp__box-sizing-border-box:                                   true;                   // disable .pswp * { box-sizing:border-box } (in case you already have it in your site css)
+$pswp__root-z-index:                                            99999;
+$pswp__assets-path:                                             '';                     // path to skin assets folder (preloader, PNG and SVG sprite)
+$pswp__error-text-color:                                        #CCC;                   // "Image not loaded" text color
+$pswp__include-minimal-style:                                   true;
+@import '../../../node_modules/photoswipe/src/css/main.scss';
+
+
+
+// ------------------------------------------------------
+// default-skin.scss
+// ------------------------------------------------------
+/*
+
+	PhotoSwipe Default UI CSS by Dmitry Semenov | photoswipe.com | MIT license
+
+	Contents:
+
+	1. Buttons
+	2. Share modal and links
+	3. Index indicator ("1 of X" counter)
+	4. Caption
+	5. Loading indicator
+	6. Additional styles (root element, top bar, idle state, hidden state, etc.)
+
+*/
+
+
+/*
+	
+	1. Buttons
+
+ */
+
+/* <button> css reset */
+.pswp__button {
+	cursor: pointer;
+	overflow: visible;
+	-webkit-appearance: none;
+	display: block;
+	border: 0;
+	padding: 0;
+	margin: 0;
+	
+
+	@if $global-rtl-enable == false {
+		float: right;
+	} @else {
+		float: left;
+	}
+
+	opacity: 0.75;
+	transition: opacity 0.2s;
+	box-shadow: none;
+
+	&:focus,
+	&:hover {
+		opacity: 1;
+	}
+	
+	&:active {
+		outline: none;
+		opacity: 0.9;
+	}
+
+	&::-moz-focus-inner {
+		padding: 0;
+		border: 0
+	}
+}
+
+/* pswp__ui--over-close class it added when mouse is over element that should close gallery */
+.pswp__ui--over-close .pswp__button--close {
+	opacity: 1;
+}
+
+
+/* no arrows on touch screens */
+.pswp--touch {
+	.pswp__button--arrow--left,
+	.pswp__button--arrow--right {
+		visibility: hidden;             
+	}
+}
+
+/*
+	Arrow buttons hit area
+	(icon is added to :before pseudo-element)
+*/
+.pswp__button--arrow--left,
+.pswp__button--arrow--right {
+	background: none;
+	top: 50%;
+	margin-top: -50px;
+	width: 70px;
+	height: 100px;
+	position: absolute;
+}
+
+.pswp__button--arrow--left {
+
+	@if $global-rtl-enable == false {
+		left: 0;
+	} @else {
+		right: 0;
+	}
+
+}
+
+.pswp__button--arrow--right {
+
+	@if $global-rtl-enable == false {
+		right: 0;
+	} @else {
+		left: 0;
+	}
+
+}
+
+
+
+
+/*
+
+	2. Share modal/popup and links
+
+ */
+
+.pswp__counter,
+.pswp__share-modal {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+.pswp__share-modal {
+	display: block;
+	width: 100%;
+	height: 100%;
+	top: 0;
+
+	@if $global-rtl-enable == false {
+		left: 0;
+	} @else {
+		right: 0;
+	}
+
+	padding: 10px;
+	position: absolute;
+	z-index: $pswp__root-z-index + 100;
+	opacity: 0;
+	transition: opacity 0.25s ease-out;
+	-webkit-backface-visibility: hidden;
+	will-change: opacity;
+}
+
+.pswp__share-modal--hidden {
+	display: none;
+}
+
+.pswp__share-tooltip {
+	z-index: $pswp__root-z-index + 120;
+	position: absolute;
+	background: #FFF;
+	top: 15px;
+	border-radius: 2px;
+	display: block;
+	width: auto;
+	
+
+	@if $global-rtl-enable == false {
+		right: 44px;
+	} @else {
+		left: 44px;
+	}
+
+	box-shadow: $box-shadow-md;
+	transform: translateY(6px);
+	transition: transform 0.25s;
+	-webkit-backface-visibility: hidden;
+	will-change: transform;
+
+	a {
+		display: block;
+		padding: 8px 12px;
+		color: #000;
+		text-decoration: none;
+		font-size: 14px;
+
+		&:hover {
+			text-decoration: none;
+		}
+
+		
+		&:first-child {
+			/* round corners on the first/last list item */
+			border-radius: $border-radius $border-radius 0 0;
+		}
+		
+		&:last-child {
+			border-radius: 0 0 $border-radius $border-radius;
+		}
+
+		&:not(.last-child) {
+			border-bottom: $gray-200 1px solid;
+		}
+	}
+}
+
+.pswp__share-modal--fade-in {
+	opacity: 1;
+
+	.pswp__share-tooltip {
+		transform: translateY(0);
+	}
+}
+
+/* increase size of share links on touch devices */
+.pswp--touch .pswp__share-tooltip a {
+	padding: 16px 12px;
+	color: #313131;
+}
+.pswp--touch .pswp__share-tooltip a:hover {
+	background-color: $gray-100;
+}
+.pswp--touch .pswp__share-tooltip a:first-child {
+	border: 6px solid rgba(0, 0, 0, 0);
+}
+
+
+
+
+
+
+
+
+/*
+
+	Preloader
+
+ */
+.pswp__preloader {
+	display: none;
+}
+.pswp__preloader--active {
+	display: inherit;
+}
+
+
+
+
+/*
+
+	3. Index indicator ("1 of X" counter)
+
+ */
+
+.pswp__counter {
+	position: absolute;
+
+	@if $global-rtl-enable == false {
+		left: 0;
+	} @else {
+		right: 0;
+	}
+
+	top: 0;
+	height: 44px;
+	font-size: 13px;
+	line-height: 44px;
+	color: $body-color;
+	opacity: 0.75;
+	padding: 0 10px;
+}
+
+
+/*
+	
+	4. Caption
+
+ */
+
+.pswp__caption {
+	position: absolute;
+	@if $global-rtl-enable == false {
+		left: 0;
+	} @else {
+		right: 0;
+	}
+	bottom: 0;
+	width: 100%;
+	min-height: 44px;
+	
+	small {
+		font-size: 11px;
+		color: #BBB;
+	}
+}
+
+.pswp__caption__center {
+	text-align: left;
+	max-width: 420px;
+	margin: 0 auto;
+	font-size: 13px;
+	padding: 10px;
+	line-height: 20px;
+	color: $body-color;
+}
+
+.pswp__caption--empty {
+	display: none;
+}
+
+/* Fake caption element, used to calculate height of next/prev image */
+.pswp__caption--fake {
+	visibility: hidden;
+}
+
+
+
+
+/*
+	
+	6. Additional styles
+
+ */
+
+/* root element of UI */
+.pswp__ui {
+	-webkit-font-smoothing: auto;
+	visibility: visible;
+	opacity: 1;
+	z-index: $pswp__root-z-index + 50;
+}
+
+/* top black bar with buttons and "1 of X" indicator */
+.pswp__top-bar {
+	position: absolute;
+	@if $global-rtl-enable == false {
+		left: 0;
+	} @else {
+		right: 0;
+	}
+	top: 0;
+	height: 44px;
+	width: 100%;
+}
+
+.pswp__caption,
+.pswp__top-bar,
+.pswp--has_mouse .pswp__button--arrow--left,
+.pswp--has_mouse .pswp__button--arrow--right {
+	-webkit-backface-visibility: hidden; 
+	will-change: opacity;
+	transition: opacity $pswp__controls-transition-duration cubic-bezier(.4,0,.22,1);
+}
+
+/* pswp--has_mouse class is added only when two subsequent mousemove events occur */
+.pswp--has_mouse {
+	.pswp__button--arrow--left,
+	.pswp__button--arrow--right {
+		visibility: visible;
+	}
+}
+
+
+/* pswp__ui--idle class is added when mouse isn't moving for several seconds (JS option timeToIdle) */
+	
+.pswp__ui--idle {
+	.pswp__top-bar { 
+		opacity: 0; 
+	}
+
+	.pswp__button--arrow--left,
+	.pswp__button--arrow--right {
+		opacity: 0;
+	}
+}
+
+/*
+	pswp__ui--hidden class is added when controls are hidden
+	e.g. when user taps to toggle visibility of controls
+*/
+.pswp__ui--hidden {
+	.pswp__top-bar,
+	.pswp__caption,
+	.pswp__button--arrow--left,
+	.pswp__button--arrow--right {
+		/* Force paint & create composition layer for controls. */
+		opacity: 0.001; 
+	}
+}
+
+/* pswp__ui--one-slide class is added when there is just one item in gallery */
+.pswp__ui--one-slide {
+	.pswp__button--arrow--left,
+	.pswp__button--arrow--right,
+	.pswp__counter {
+		display: none;
+	}
+}
+
+.pswp__element--disabled {
+	display: none !important;
+}
+
+@if $pswp__include-minimal-style == true {
+	.pswp--minimal--dark {
+		.pswp__top-bar {
+			background: none;
+		}
+	}
+}

@@ -1,0 +1,226 @@
+// -- -- -- -- -- -- -- -- --
+// Form : Switches
+// -- -- -- -- -- -- -- -- --
+$switch-icon-width-xs:         1.875rem !default;   // 1.875rem = 30px
+$switch-icon-width-sm:         2.5rem !default;     // 2.5rem   = 40px
+$switch-icon-width-md:         3.125rem !default;   // 3.125rem = 50px
+$switch-icon-width-lg:         3.875rem !default;   // 3.875rem = 62px
+
+$switch-icon-height-xs:        0.875rem !default;   // 0.875rem = 14px
+$switch-icon-height-sm:        1rem !default;       // 1rem = 16px
+$switch-icon-height-md:        1.625rem !default;   // 1.625rem = 26px
+$switch-icon-height-lg:        2.0625rem !default;  // 2.0625rem = 33px
+
+$switch-icon-margin:           0.125rem !default;   // 2px = 0.125rem ; 3px = 0.1875rem
+$switch-icon-bg-color:         $gray-200 !default;  // #E7EAF3
+$switch-icon-shadow:           0px 3px 6px 0px rgba(131, 149, 164, 0.28) !default;
+/*
+
+  <i class="switch-icon"></i> 
+  <i class="switch-icon active"></i>
+  <i class="switch-icon disabled"></i>
+
+  <!-- .hide-cloaked class required on input -->
+  <label class="d-flex align-items-center mb-4">
+    <input class="hide-cloaked" type="checkbox" name="test" value="1">
+    <i class="switch-icon"></i>
+    <span class="px-3">
+      Default Switch
+      <small class="fs--13 d-block text-muted">
+        Use anything by creating your own custom css/js.
+      </small>
+    </span>
+  </label>
+
+*/
+// -- -- -- -- -- -- -- -- --
+// Switch : Setup
+// -- -- -- -- -- -- -- -- --
+.switch-icon {
+  width: 100%; 
+  display: inline-block;
+  background-color: $switch-icon-bg-color;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50rem;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+}
+.switch-icon:before {
+  content: "";
+  position: absolute;
+  border-radius: 50rem;;
+  background-color: #fbfbfb;
+  box-shadow: $switch-icon-shadow;
+  
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  -webkit-transition: all 114ms ease-in;
+      transition: all 114ms ease-in;
+
+  margin: $switch-icon-margin;
+  left: 0;
+
+  /* 
+
+    SASS MATH
+      height: 35px   (.switch-icon)
+      margin: 3px
+      
+      height - (margin * 2)
+      35px   - (3px   * 2)
+
+      = 29px
+
+    width: 29px; 
+    height: 29px;
+
+  */
+
+}
+
+/* active */
+input:checked + .switch-icon:before,
+.active + .switch-icon:before,
+.switch-icon.active:before {
+  background-color: #ffffff;
+
+  /* 
+
+    SASS MATH
+      height: 29px   (.switch-icon:before)
+      margin: 3px
+      
+      100% - height - margin
+      100% - 29px  - 3px
+  
+    margin-left: calc(100% - 29px - 3px);
+
+  */
+
+}
+
+
+/* disabled */
+input[disabled] + .switch-icon,
+.switch-icon.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+/* invalid */
+.was-validated input:not([disabled]).is-invalid + .switch-icon + *,
+.was-validated input:not([disabled]):invalid + .switch-icon + * {
+  color: $red;
+}
+
+
+/* colors */
+input:checked + .switch-icon, .active + .switch-icon, .switch-icon.active {
+  background-color: $gray-700; // default
+}
+input:checked + .switch-icon-primary, .active + .switch-icon-primary, .switch-icon-primary.active {
+  background-color: $primary; // primary
+}
+input:checked + .switch-icon-danger, .active + .switch-icon-danger, .switch-icon-danger.active {
+  background-color: $red;     // danger
+}
+input:checked + .switch-icon-warning, .active + .switch-icon-warning, .switch-icon-warning.active {
+  background-color: $yellow;  // warning
+}
+input:checked + .switch-icon-success, .active + .switch-icon-success, .switch-icon-success.active {
+  background-color: $green;   // success
+}
+input:checked + .switch-icon-info, .active + .switch-icon-info, .switch-icon-info.active {
+  background-color: $cyan;    // info
+}
+
+
+
+
+
+
+// -- -- -- -- -- -- -- -- --
+// Switch : Default / Normal
+// -- -- -- -- -- -- -- -- --
+.switch-icon {
+  height: $switch-icon-height-md + ($switch-icon-margin * 2);
+  min-width: $switch-icon-width-md; 
+  max-width: $switch-icon-width-md; 
+}
+.switch-icon:before {
+  width: $switch-icon-height-md; 
+  height: $switch-icon-height-md;
+}
+input:checked + .switch-icon:before,
+.active + .switch-icon:before,
+.switch-icon.active:before {
+  margin-left: calc(100% - #{$switch-icon-height-md} - #{$switch-icon-margin});
+}
+
+
+
+
+// -- -- -- -- -- -- -- -- --
+// Switch : Large [-lg]
+// -- -- -- -- -- -- -- -- --
+.switch-icon-lg {
+  height: $switch-icon-height-lg + ($switch-icon-margin * 2);
+  min-width: $switch-icon-width-lg;
+  max-width: $switch-icon-width-lg; 
+}
+.switch-icon-lg:before {
+  width: $switch-icon-height-lg; 
+  height: $switch-icon-height-lg;
+}
+input:checked + .switch-icon-lg:before,
+.active + .switch-icon-lg:before,
+.switch-icon.active-lg:before {
+  margin-left: calc(100% - #{$switch-icon-height-lg} - #{$switch-icon-margin});
+}
+
+
+
+
+// -- -- -- -- -- -- -- -- --
+// Switch : Small [-sm]
+// -- -- -- -- -- -- -- -- --
+.switch-icon-sm {
+  height: $switch-icon-height-sm + ($switch-icon-margin * 2);
+  min-width: $switch-icon-width-sm; 
+  max-width: $switch-icon-width-sm; 
+}
+.switch-icon-sm:before {
+  width: $switch-icon-height-sm; 
+  height: $switch-icon-height-sm;
+}
+input:checked + .switch-icon-sm:before,
+.active + .switch-icon-sm:before,
+.switch-icon.active-sm:before {
+  margin-left: calc(100% - #{$switch-icon-height-sm} - #{$switch-icon-margin});
+}
+
+
+
+
+// -- -- -- -- -- -- -- -- --
+// Switch : Extra Small [-xs]
+// -- -- -- -- -- -- -- -- --
+.switch-icon-xs {
+  height: $switch-icon-height-xs + ($switch-icon-margin * 2);
+  min-width: $switch-icon-width-xs; 
+  max-width: $switch-icon-width-xs; 
+}
+.switch-icon-xs:before {
+  width: $switch-icon-height-xs; 
+  height: $switch-icon-height-xs;
+}
+input:checked + .switch-icon-xs:before,
+.active + .switch-icon-xs:before,
+.switch-icon.active-xs:before {
+  margin-left: calc(100% - #{$switch-icon-height-xs} - #{$switch-icon-margin});
+}

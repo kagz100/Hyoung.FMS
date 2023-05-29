@@ -1,0 +1,58 @@
+
+/**
+	
+	LAYOUT :: MISC
+
+**/
+
+/**
+	
+	Wrapper
+
+**/
+/**
+body:not(.layout-admin) #wrapper {
+	max-width: 2200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+**/
+
+
+/**
+	
+	Top bar
+
+**/
+#top_bar {
+	font-size: 0.875rem; // 0.875rem = 14px
+}
+#top_bar .dropdown-menu {
+	min-width: 1rem;
+	max-height: 350px;
+}
+#top_bar .dropdown-item {
+	padding: 0.8rem !important;
+	font-size: 0.9rem;
+}
+
+
+
+/**
+	
+	Responsive
+
+**/
+// DESKTOP
+@media only screen and (min-width: map-get($grid-breakpoints, "lg")) {
+
+}
+
+
+
+
+
+// MOBILE
+@media only screen and (max-width: map-get($grid-breakpoints, "lg")) {
+
+}

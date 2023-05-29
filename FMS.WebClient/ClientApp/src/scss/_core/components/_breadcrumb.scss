@@ -1,0 +1,11 @@
+.breadcrumb-sublime a {
+	color: #b2b6c3;
+	text-decoration: none;
+	transition: all 0.3s;
+}
+.breadcrumb-sublime a:hover {
+	color: inherit;
+}
+.breadcrumb-sublime .breadcrumb-item.active {
+	color:#b2b6c3;
+}

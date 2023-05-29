@@ -1,0 +1,20 @@
+// Load needed variables
+@import '../_core/mixins',
+        '../variables',
+        '../../../node_modules/bootstrap/scss/functions',
+        '../../../node_modules/bootstrap/scss/variables';
+
+
+@import '../../../node_modules/@simonwep/pickr/src/scss/base.scss';
+@import '../../../node_modules/@simonwep/pickr/src/scss/themes/classic.scss';
+@import '../../../node_modules/@simonwep/pickr/src/scss/themes/monolith.scss';
+@import '../../../node_modules/@simonwep/pickr/src/scss/themes/nano.scss';
+
+
+// custom
+.form-control-pill .pcr-button,
+.input-group-over.form-control-pill .pcr-button {
+	overflow: hidden;
+	-webkit-border-radius: $border-radius-pill !important;
+			border-radius: $border-radius-pill !important;
+}

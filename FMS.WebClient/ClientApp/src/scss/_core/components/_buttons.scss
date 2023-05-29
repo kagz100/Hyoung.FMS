@@ -1,0 +1,516 @@
+/**
+
+	// slightly gradient! veeeery slightly!
+	// to have that "something" and not complete FLAT!
+	// Check first if Botstrap gradients enabled in variables!
+
+	@if $enable-gradients == false {
+
+		.btn {
+			position: relative;
+		}
+
+		.btn:not(.bg-transparent):not(.btn-ghost):not(.bg-nogradient):after {
+			content:'';
+			background-image: linear-gradient(-315deg,rgba(255,255,255,0),rgba(255,255,255,.08));
+			position: absolute;
+			top:0;
+			bottom:0;
+			left:0;
+			right:0;
+		}
+
+			.btn.rounded-circle:after {
+				border-radius: 50%;
+			}
+			.btn.btn-pill:after {
+				border-radius: $border-radius-pill;
+			}
+			.btn.rounded-xl:after {
+				border-radius: .8rem;
+			}
+
+		// reset .btn-group
+		.btn-group .btn-pill:after,
+		.btn-group .rounded-circle:after {
+			background-image: none;
+			display: none;
+		}
+
+	}
+
+
+**/
+
+
+
+
+/**
+
+	BUTTONS
+		Soft buttons 		: based on bootstrap scheme
+		Shadowed buttons 	: shadow on hover;
+		Vendor buttons
+		Pill buttons
+		Icon buttons
+
+			* cancel hover shadow by adding .btn-noshadow
+
+**/
+
+
+// Removed on BS5
+.close {
+	background: transparent;
+	border: 0;
+	cursor: pointer;
+	padding: 0;
+  font-size: 1.59375rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .5;
+
+	@if $global-rtl-enable == false {
+		float: right;
+	} @else {
+		float: start;
+	}
+
+}
+.close:hover { opacity: 1; }
+
+
+
+/* 
+
+	Icon Spacing|Correction
+
+		Usage - span is required only if icon is present
+			<a href="#!" class="btn btn-primary">
+				<span>Button Text</span>
+				<i class="fi fi-arrow-right fs--13"></i>
+			</a>
+
+			<a href="#!" class="btn btn-primary">
+				<i class="fi fi-arrow-right fs--13"></i>
+				<span>Button Text</span>
+			</a>
+
+*/
+ul.list-icons>li>i,
+.btn:not(.rounded-circle)>i {
+	display: inline-block;
+
+	@if $global-rtl-enable == false {
+		margin-right: 10px;
+	} @else {
+		margin-left: 10px;
+	}
+}
+
+	/* 
+		using .group-icon 
+		or icon is placed last one
+	*/
+	.btn>span+.group-icon,
+	.btn>.group-icon+span,
+	.btn:not(.rounded-circle)>span+i,
+	.btn:not(.rounded-circle)>span+svg {
+		display: inline-block;
+		@if $global-rtl-enable == false {
+			margin-left: 10px;
+			margin-right: 0;
+		} @else {
+			margin-left: 0;
+			margin-right: 10px;
+		}
+	}
+
+// two buttons in a row
+.btn+.btn {
+	@if $global-rtl-enable == false {
+		margin-left: .5rem;
+	} @else {
+		margin-right: .5rem;
+	}
+}
+
+
+
+/* 
+
+	Modal & Alert Close Buttons
+
+*/
+button.close .fi {
+	font-size: 18px;
+}
+
+
+
+
+/* 
+
+	Soft buttons
+		.btn-soft 			- transition to original button color
+		.btn-soft-static 	- no transition, keep same color
+
+*/
+@each $btn-class, $rgba-percent in $theme-colors-soft {
+
+	.btn-soft-static.btn-#{$btn-class}:not([aria-expanded="true"]):not(.active),
+	.btn-soft.btn-#{$btn-class}:not(:hover):not([aria-expanded="true"]):not(.active) {
+		color: 				darken(map-get($theme-colors, $btn-class), 15%);
+		border-color: 		lighten(map-get($theme-colors, $btn-class), $rgba-percent);
+		@if $enable-gradients == true {
+			background: transparent; /* required if $enable-gradients set to true */
+		}
+		background-color: 	lighten(map-get($theme-colors, $btn-class), $rgba-percent);
+	}
+
+}
+
+
+
+
+
+
+/* 
+
+	Shadowed buttons
+		* cancel hover shadow by adding .btn-noshadow -or- .shadow-none
+
+*/
+@if $btn-hover-shadow-color-enable == true {
+
+	@each $btn-class, $btn-color in $theme-colors {
+
+		.btn-#{$btn-class}:not(.btn-noshadow):hover, 
+		.btn-#{$btn-class}:not(.btn-noshadow):not(.btn-soft):focus, 
+		.btn-#{$btn-class}:not(.btn-noshadow):not(.btn-soft):active {
+			box-shadow: $btn-hover-shadow-color-size rgba($btn-color, 0.35);
+		}
+
+	}
+
+}
+
+
+
+/* 
+
+	Vendor buttons
+		* cancel hover shadow by adding .btn-noshadow
+
+*/
+@each $brand-name, $brand-color in $brand-color-list {
+
+	.btn-#{$brand-name},
+	.btn-#{$brand-name}:hover {
+		color: #fff;
+		background-color: $brand-color;
+		border-color: $brand-color;
+	}
+
+	@if $btn-hover-shadow-color-enable == true {
+
+		.btn-#{$brand-name}:hover, 
+		.btn-#{$brand-name}:focus, 
+		.btn-#{$brand-name}:active {
+			box-shadow: $btn-hover-shadow-color-size rgba($brand-color, 0.35);
+	  	}
+
+  	}
+
+}
+
+
+
+
+/* 
+
+	Pill buttons
+	Also, we have .rounded-bill in bootstrap
+
+*/
+.btn-pill {
+	border-radius: $border-radius-pill;
+}
+
+
+
+
+
+/* 
+
+	Icon buttons
+
+*/
+
+$btn-rounded-circle-width-sm:		1.94rem !default;
+$btn-rounded-circle-width-lg:		3.125rem !default;
+
+$btn-rounded-circle-py-diff-sm:		.76rem !default;
+$btn-rounded-circle-py-diff-md:		.75rem !default;
+$btn-rounded-circle-py-diff-lg:		.74rem !default;
+
+
+/* no rounded - fixed paddings */
+.btn.btn-icon {
+	padding-left:  .75rem;
+	padding-right: .75rem;
+}
+
+/* rounded */
+.btn.rounded-circle {
+	position: relative;
+	line-height: 1.6;
+	padding: $input-btn-padding-y + $btn-rounded-circle-py-diff-md $input-btn-padding-y + $btn-rounded-circle-py-diff-md;
+	font-size: $input-btn-font-size; 
+	text-align: center;
+}
+	.btn.btn-sm.rounded-circle {
+		padding: $input-btn-padding-y-sm + $btn-rounded-circle-py-diff-sm $input-btn-padding-y-sm + $btn-rounded-circle-py-diff-sm;
+		font-size: $input-btn-font-size-sm; 
+		width: $btn-rounded-circle-width-sm;
+		height: $btn-rounded-circle-width-sm;
+	}
+	.btn.btn-lg.rounded-circle {
+		padding: $input-btn-padding-y-lg + $btn-rounded-circle-py-diff-lg $input-btn-padding-y-lg + $btn-rounded-circle-py-diff-lg;
+		font-size: $input-btn-font-size-lg; 
+		width: $btn-rounded-circle-width-lg;
+		height: $btn-rounded-circle-width-lg;
+	}
+
+		// Ugly hack - required in case the button size is changed from variables.scss
+		.btn.rounded-circle>span:not(.badge),
+		.btn.rounded-circle>svg,
+		.btn.rounded-circle>i {
+			font-size: 1rem !important;
+
+			position: absolute;
+			top: 50%;
+			left: 0;
+			right: 0;
+			text-align: center;
+			margin: 0 !important;
+			padding: 0 !important;
+
+			transform: translateY(-50%);
+
+		}
+
+
+
+/* 
+
+	Ghost buttons
+
+*/
+.btn-ghost:not(:hover):not(:active):not(:focus) {
+	background-color: transparent !important;
+	border-color: transparent !important;
+}
+
+
+
+// MOBILE
+@media only screen and (max-width: map-get($grid-breakpoints, "lg") - 1) {
+
+/* 
+	Example usage case
+
+	<a href="#" class="btn btn-sm rounded-circle-xs btn-primary">
+		<i class="fi fi-menu-dots"></i>
+		<span>Projects</span>
+	</a>
+
+ */
+.btn.rounded-circle-xs {
+	position: relative;
+	line-height: 1.6;
+	padding: $input-btn-padding-y + $btn-rounded-circle-py-diff-md $input-btn-padding-y + $btn-rounded-circle-py-diff-md;
+	font-size: $input-btn-font-size; 
+	text-align: center;
+}
+	.btn.btn-sm.rounded-circle-xs {
+		padding: $input-btn-padding-y-sm + $btn-rounded-circle-py-diff-sm $input-btn-padding-y-sm + $btn-rounded-circle-py-diff-sm;
+		font-size: $input-btn-font-size-sm; 
+		width: $btn-rounded-circle-width-sm;
+		height: $btn-rounded-circle-width-sm;
+	}
+	.btn.btn-lg.rounded-circle-xs {
+		padding: $input-btn-padding-y-lg + $btn-rounded-circle-py-diff-lg $input-btn-padding-y-lg + $btn-rounded-circle-py-diff-lg;
+		font-size: $input-btn-font-size-lg; 
+		width: $btn-rounded-circle-width-lg;
+		height: $btn-rounded-circle-width-lg;
+	}
+
+		// Ugly hack - required in case the button size is changed from variables.scss
+		.btn.rounded-circle-xs>span,
+		.btn.rounded-circle-xs>svg,
+		.btn.rounded-circle-xs>i {
+			font-size: 1rem !important;
+
+			position: absolute;
+			top: 50%;
+			left: 0;
+			right: 0;
+			text-align: center;
+			margin: 0 !important;
+			padding: 0 !important;
+
+			@include vendors-generate(transform, translateY(-50%));
+
+		}
+
+	/* hide button text, keep the icon only (or group icon) */
+	.btn.rounded-circle-xs>.group-icon {
+		float: none !important;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
+	.btn.rounded-circle-xs>span+span,
+	.btn.rounded-circle-xs>svg+span,
+	.btn.rounded-circle-xs>i+span {
+		display: none;
+	}
+}
+
+
+
+
+
+
+/*
+
+	Toggle Button
+
+*/
+.group-icon>span,
+.group-icon>svg,
+.group-icon>i {
+	font-style: normal;
+}
+/* by javascript */
+.group-icon>span:last-child,
+.group-icon>svg:last-child,
+.group-icon>i:last-child {
+	display: none;
+}
+.group-icon>span:first-child,
+.group-icon>svg:first-child,
+.group-icon>i:first-child {
+	display: inline-block;
+}
+
+/* active */
+.active>a>.group-icon>span:last-child,
+.active>a>.group-icon>svg:last-child,
+.active>a>.group-icon>i:last-child,
+.active>.group-icon>span:last-child,
+.active>.group-icon>svg:last-child,
+.active>.group-icon>i:last-child {
+	display: inline-block;
+}
+.active>a>.group-icon>span:first-child,
+.active>a>.group-icon>i:first-child,
+.active>.group-icon>span:first-child,
+.active>.group-icon>svg:first-child,
+.active>.group-icon>i:first-child {
+	display: none;
+}
+
+	/* by bootstrap (dropdowns, collapse, etc) */
+	[aria-expanded="true"] .group-icon>span:first-child,
+	[aria-expanded="true"] .group-icon>svg:first-child,
+	[aria-expanded="true"] .group-icon>i:first-child {
+		display: none;
+	}
+	[aria-expanded="true"] .group-icon>span:last-child,
+	[aria-expanded="true"] .group-icon>svg:last-child,
+	[aria-expanded="true"] .group-icon>i:last-child {
+		display: inline-block;
+	}
+
+
+
+
+
+/*
+
+	Burger menu button
+
+*/
+$burger-menu-border-weight: 2px !default;
+.burger-menu {
+	display: block;
+	border-top: $gray-800 $burger-menu-border-weight solid;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transition: all .3s cubic-bezier(.34,1.61,.7,1);
+}
+	.burger-menu:before {
+		content:"";
+		display: block;
+		position: absolute;
+		width: 75%;
+		top: 50%;
+		margin-top: -$burger-menu-border-weight;
+		height: 1px;
+		border-top: $gray-800 $burger-menu-border-weight solid;
+		transition: all .3s cubic-bezier(.34,1.61,.7,1);
+	}
+	.burger-menu:after {
+		content:"";
+		display: block;
+		position: absolute;
+		width: 25%;
+		bottom:0;
+		height: 1px;
+		border-bottom: $gray-800 $burger-menu-border-weight solid;
+		transition: all .3s cubic-bezier(.34,1.61,.7,1);
+	}
+
+	// start
+	.start-0 .burger-menu:before,
+	.start-0 .burger-menu:after {
+		@if $global-rtl-enable == false {
+			left: 0;
+		} @else {
+			right: 0;
+		}
+	}
+
+	// end
+	.end-0 .burger-menu:before,
+	.end-0 .burger-menu:after {
+		@if $global-rtl-enable == false {
+			right: 0;
+		} @else {
+			left: 0;
+		}
+	}
+
+	// color bg - white lines
+	a.btn-burger-menu:not(.bg-white) .burger-menu,
+	a.btn-burger-menu:not(.bg-white) .burger-menu:before,
+	a.btn-burger-menu:not(.bg-white) .burger-menu:after {
+		border-color: $white;
+	}
+
+a.btn-burger-menu:hover .burger-menu:before,
+a.btn-burger-menu:hover .burger-menu:after,
+
+a.btn-burger-menu[aria-expanded=true] .burger-menu:before,
+a.btn-burger-menu[aria-expanded=true] .burger-menu:after,
+
+a.btn-burger-menu.active:hover .burger-menu:before,
+a.btn-burger-menu.active:hover .burger-menu:after {
+	width: 100%;
+}

@@ -1,0 +1,697 @@
+/* 
+
+	DROPDOWN : GENERAL SETUP
+	
+	--
+
+	Bootstrap is "missing" nested|multilevel dropdowns and opening them on mouse over!
+	So, instead of developing new plugins reinventing the weel (more code, more issues), 
+	we use dropdowns for almost everything!
+
+	++++++++++++++++++++++
+	NOTE: many rules are splitted on desktop/mobile for specific functions/fixes
+	So also check the bottom @media before making changes!
+	++++++++++++++++++++++
+
+*/
+
+/* animation on hover, also on mobile (collapsing) */
+.dropdown-menu {
+	animation: $dropdown-transition;
+	font-size: $dropdown-font-size;
+
+	@if $global-rtl-enable == false {
+		text-align: left;
+	} @else {
+		text-align: right;
+	}
+}
+
+	/* box shadow */
+	/*.dropdown-menu:not(.shadow-none) {*/
+	.dropdown-menu {
+		box-shadow: $dropdown-box-shadow;
+	}
+
+/* force disabled link */
+.dropdown-link.disabled {
+	color: $dropdown-link-disabled-color !important;
+	pointer-events: none;
+}
+
+
+/* 
+	default dropdown link 
+	hovers : see @media on bottom
+*/
+.dropdown-link {
+	color: $body-color;
+}
+	.active>.dropdown-link,
+	.dropdown-link.active {
+		color: $dropdown-link-active-color;
+		background-color: $dropdown-link-active-bg;
+	}
+
+/* dropdown header */
+.dropdown-header {
+	font-size: $font-size-base;
+}
+	
+/* dropdown footer */
+.dropdown-footer {
+	padding: $dropdown-footer-padding;
+	position: relative;
+	display: block;
+}
+	a.dropdown-footer,
+	.dropdown-footer {
+		text-decoration: none;
+	}
+		a.dropdown-footer:not(:hover),
+		.dropdown-footer>a:not(:hover) {
+			color: $body-color;
+		}
+
+
+/* dropdown item */
+.dropdown-menu .dropdown-item {
+	padding: 0;
+	margin: 0;
+}
+
+	/* keep icons in place */
+	a.dropdown-item { 
+		position: relative;
+	}
+
+	/* 
+		highlighted/active color
+		hovers : see @media
+	*/
+	.dropdown-menu .dropdown-item.show>a {
+		color: $primary;
+	}
+
+	.dropdown-menu li:not(.dropdown-item)>a,
+	.dropdown-menu a.dropdown-item,
+	.dropdown-menu .dropdown-item>a {
+		display: block;
+		position: relative;
+
+		@if $global-rtl-enable == false {
+			padding: $dropdown-item-padding-y 40px $dropdown-item-padding-y $dropdown-item-padding-x;
+		} @else {
+			padding: $dropdown-item-padding-y $dropdown-item-padding-x $dropdown-item-padding-y 40px;
+		}
+
+		transition: all .3s ease;
+
+	}
+		// fix
+		.dropdown-menu a:not([data-bs-toggle="dropdown"]) {
+			@if $global-rtl-enable == false {
+				padding-right: 15px;
+			} @else {
+				padding-left: 15px;
+			}
+		}
+
+		// mega menu
+		.dropdown-item .row ul:not(.prefix-link-icon) .dropdown-link {
+			padding-left: 0; 	//8px;
+			padding-right: 0; //8px;
+		}
+
+
+	/* icons positioning for a nice default look */
+	.dropdown-menu a.dropdown-item>i,
+	.dropdown-menu li:not(.dropdown-item)>a>i,
+	.dropdown-menu .dropdown-item>a>i {
+		@if $global-rtl-enable == false {
+			margin-right: 15px;
+		} @else {
+			margin-left: 15px;
+		}
+	}
+	.dropdown-item > span+span,
+	.dropdown-item > svg+span,
+	.dropdown-item > i+span,
+	.dropdown-item > span+svg,
+	.dropdown-item > span+i {
+		@if $global-rtl-enable == false {
+			margin-left: 12px;
+		} @else {
+			margin-right: 12px;
+		}
+	}
+
+
+
+
+/* 
+
+	DROPDOWN : UPPERCASE FORCED
+	also font scaled down to avoid too large looking
+
+*/
+.dropdown-menu.dropdown-menu-uppercase a {
+	text-transform: uppercase;
+	font-size: 13px;
+}
+
+
+/* 
+
+	DROPDOWN : CLEAN
+	no background color on hover 
+
+*/
+.dropdown-menu-clean li.active>a:not(.btn),
+.dropdown-menu-clean li.active,
+.dropdown-menu-clean a:not(.btn).active,
+.dropdown-menu-clean li:focus,
+.dropdown-menu-clean li:hover,
+.dropdown-menu-clean a:not(.btn):focus,
+.dropdown-menu-clean a:not(.btn):hover {
+	background-color: transparent !important;
+	text-decoration: none;
+}
+	.dropdown-menu-clean:not(.prefix-link-icon) a:not(.btn):hover {
+		color: $primary;
+	}
+
+
+
+
+/* 
+
+	DROPDOWN : INVERT
+	open in oposite direction
+
+*/
+.dropdown-menu.dropdown-menu-invert {
+	@if $global-rtl-enable == false {
+		left: auto;
+		right: 0;
+	} @else {
+		left: 0;
+		right: auto;
+	}
+}
+
+
+
+/*
+
+	DROPDOWN : NESTED POSITIONING
+	again, bootstrap was not developed for this
+
+*/
+.dropdown-menu li>.dropdown-menu {
+	top:0 !important;
+
+	@if $global-rtl-enable == false {
+		left: 100% !important;
+		right: auto !important;
+	} @else {
+		left: auto !important;
+		right: 100% !important;
+	}
+
+}
+
+	/* deep level icon indicator */
+	@if $dropdown-suffix-enable == true {
+
+		.dropdown-menu:not(.dropdown-menu-invert) li>a[data-bs-toggle="dropdown"]:after {
+		    font-family: "Flaticon";
+		    
+		    opacity: $dropdown-deep-indicator-opcity;
+		    
+		    opacity: all .3s ease;
+		   	transition: all .2s ease;
+
+		    top: 50%;
+		    margin-top: -6px;
+
+		    font-size: 12px;
+		    line-height: 1;
+
+		    position: absolute;
+
+			@if $global-rtl-enable == false {
+				content: icon-unquote(\f1ae);
+				right: 15px;
+			} @else {
+				content: icon-unquote(\f1ac);
+				left: 15px;
+			}
+		}
+			.dropdown-menu:not(.dropdown-menu-invert) .dropdown-item.show>a:after,
+			.dropdown-menu:not(.dropdown-menu-invert) .dropdown-item:hover>a:after {
+				opacity: 1;
+			}
+
+		/* turn down icon */
+		@media only screen and (max-width: map-get($grid-breakpoints, "lg") - 1px) { // xl: 1200px, lg: 992px, md: 768px
+
+			/* 
+				deep links indicator 
+				turn icon down on active
+			*/
+			.dropdown-menu:not(.dropdown-menu-invert) .dropdown-item.show>a:after {
+				@if $global-rtl-enable == false {
+					transform: rotate(90deg);
+				} @else {
+					transform: rotate(-90deg);
+				}
+
+			}
+
+		}
+
+	}
+
+
+
+
+/* 
+	DROPDOWN : MEGA 
+	Dropdown links inside mega menu
+
+	Links are formatted for dropdown.
+	We make them fit inside mega menu
+
+	NOTE: Use <ul> instead of <div> for mega dropdowns
+	REASON: avoiding grid collisions
+*/
+
+.dropdown-mega .row ul:not(.dropdown-menu) {
+	padding: 0;
+
+	@if $global-rtl-enable == false {
+		margin-left: -($dropdown-item-padding-x - 25px); // 0.3125rem = 5px
+		margin-right: 0;
+	} @else {
+		margin-left: 0;
+		margin-right: -($dropdown-item-padding-x - 25px); // 0.3125rem = 5px
+	}
+
+}
+
+.dropdown-mega .row ul:not(.dropdown-menu) .dropdown-divider {
+	
+	margin-top: 1px;
+	margin-bottom: 1px;
+
+	@if $global-rtl-enable == false {
+		margin-left: ($dropdown-item-padding-x - 25px); // 0.3125rem = 5px
+	} @else {
+		margin-right: ($dropdown-item-padding-x - 25px); // 0.3125rem = 5px
+	}
+}
+
+
+
+/* 
+	Dropdown mega menu 
+	multiple lists, same column
+*/
+.dropdown-mega .row ul+div,
+.dropdown-mega .row ul+h2,
+.dropdown-mega .row ul+h3,
+.dropdown-mega .row ul+h4,
+.dropdown-mega .row ul+h5,
+.dropdown-mega .row ul+h6 {
+	margin-top: 1.22rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+	PREFIX ICON|INDICATOR
+		
+		Add to .dropdown-menu following classes:
+			.prefix-link-icon .prefix-icon-dot 		- link prefix
+			.prefix-link-icon .prefix-icon-line 	- link prefix
+			.prefix-link-icon .prefix-icon-ico 		- link prefix
+			.prefix-link-icon .prefix-icon-arrow 	- link prefix
+
+			.prefix-icon-ignore 					- ignore, do not use on a specific link
+
+*/
+@if $dropdown-prefix-enable == true {
+
+	/* dropdown header */
+	.prefix-link-icon .dropdown-header {
+		padding: $dropdown-header-padding;
+	}
+
+
+	$prefix-icon-paddings: 	40px !default;
+	$prefix-icon-color: 	$gray-200 !default;
+
+	a.prefix-link-icon:not(.prefix-icon-ico):not(.prefix-icon-ignore),
+	 .prefix-link-icon:not(.prefix-icon-ico) a:not(.prefix-icon-ignore) {
+		@if $global-rtl-enable == false {
+			padding-left: 	$prefix-icon-paddings !important;
+			padding-right: 	$prefix-icon-paddings / 2 + 5 !important;
+		} @else {
+			padding-left: 	$prefix-icon-paddings / 2 + 5 !important;
+			padding-right: 	$prefix-icon-paddings !important;
+		}
+	}
+		/* setup */
+		a.prefix-link-icon:not(.prefix-icon-ignore):before,
+		.prefix-link-icon a:not(.prefix-icon-ignore):before {
+			content:'';
+			color: 				$prefix-icon-color;
+			background-color: 	$prefix-icon-color;
+
+			transition: all .2s ease;
+			
+			position: absolute;
+			top: 50%;
+
+			@if $global-rtl-enable == false {
+				left: $prefix-icon-paddings / 2;
+			} @else {
+				right: $prefix-icon-paddings / 2;
+			}
+		}
+			/* dot */
+			a.prefix-icon-dot:not(.prefix-icon-ignore):before,
+			.prefix-icon-dot a:not(.prefix-icon-ignore):before {
+
+				$prefix-icon-dot-width: 4px !default;
+				border-radius: 100%;
+
+				width: 			$prefix-icon-dot-width;
+				height: 		$prefix-icon-dot-width;
+				margin-top:    -$prefix-icon-dot-width/2;
+
+				@if $global-rtl-enable == false {
+					left: ($prefix-icon-paddings / 2) + ($prefix-icon-dot-width/2);
+				} @else {
+					right: ($prefix-icon-paddings / 2) + ($prefix-icon-dot-width/2);
+				}
+
+			}
+
+			/* line */
+			a.prefix-icon-line:not(.prefix-icon-ignore):before,
+			.prefix-icon-line a:not(.prefix-icon-ignore):before {
+
+				$prefix-icon-line-width:  10px !default;
+				$prefix-icon-line-height: 1px !default;
+
+				width: 			$prefix-icon-line-width;
+				height: 		$prefix-icon-line-height;
+				margin-top:    -$prefix-icon-line-height;
+
+				@if $global-rtl-enable == false {
+					left: ($prefix-icon-paddings / 2) - 1px;
+				} @else {
+					right: ($prefix-icon-paddings / 2) - 1px;
+				}
+
+			}
+
+			/* square */
+			a.prefix-icon-square:not(.prefix-icon-ignore):before,
+			.prefix-icon-square a:not(.prefix-icon-ignore):before {
+
+				$prefix-icon-square-width:  4px !default;
+				$prefix-icon-square-height: 4px !default;
+
+				width: 			$prefix-icon-square-width;
+				height: 		$prefix-icon-square-height;
+				margin-top:    -$prefix-icon-square-height/2 - 1px;
+
+				@if $global-rtl-enable == false {
+					left: ($prefix-icon-paddings / 2) + ($prefix-icon-square-width/2) - 1px;
+				} @else {
+					right: ($prefix-icon-paddings / 2) + ($prefix-icon-square-width/2) - 1px;
+				}
+
+			}
+
+			/* arrow */
+			a.prefix-icon-arrow:not(.prefix-icon-ignore):before,
+			.prefix-icon-arrow a:not(.prefix-icon-ignore):before {
+
+				$prefix-icon-arrow-width:  12px !default;
+				$prefix-icon-arrow-height: 12px !default;
+
+				width: 			$prefix-icon-arrow-width;
+				height: 		$prefix-icon-arrow-height;
+				font-size: 		$prefix-icon-arrow-height;
+				margin-top:    -$prefix-icon-arrow-height/2;
+				line-height: 	1;
+			    font-family: 	"Flaticon";
+			    background-color: transparent;
+
+				@if $global-rtl-enable == false {
+					content: icon-unquote(\f1ae);
+					left: ($prefix-icon-paddings / 2)  - 1px;
+				} @else {
+					content: icon-unquote(\f1ac);
+					right: ($prefix-icon-paddings / 2) - 1px;
+				}
+
+			}
+
+
+			/* hover color */
+			.prefix-link-icon:not(.prefix-icon-arrow) .dropdown-item.show:not(.prefix-icon-ignore):before,
+			.prefix-link-icon:not(.prefix-icon-arrow) .dropdown-item.show>a:not(.prefix-icon-ignore):before,
+			.prefix-link-icon:not(.prefix-icon-arrow) .dropdown-item.active:not(.prefix-icon-ignore):before,
+			.prefix-link-icon:not(.prefix-icon-arrow) .dropdown-item.active>a:not(.prefix-icon-ignore):before,
+			.prefix-link-icon:not(.prefix-icon-arrow) .dropdown-item:hover:not(.prefix-icon-ignore):before,
+			.prefix-link-icon:not(.prefix-icon-arrow) .dropdown-item:hover>a:not(.prefix-icon-ignore):before {
+				background-color: $primary !important;
+			}
+
+			.prefix-link-icon.prefix-icon-arrow .dropdown-item.show:not(.prefix-icon-ignore):before,
+			.prefix-link-icon.prefix-icon-arrow .dropdown-item.show>a:not(.prefix-icon-ignore):before,
+			.prefix-link-icon.prefix-icon-arrow .dropdown-item.active:not(.prefix-icon-ignore):before,
+			.prefix-link-icon.prefix-icon-arrow .dropdown-item.active>a:not(.prefix-icon-ignore):before,
+			.prefix-link-icon.prefix-icon-arrow .dropdown-item:hover:not(.prefix-icon-ignore):before,
+			.prefix-link-icon.prefix-icon-arrow .dropdown-item:hover>a:not(.prefix-icon-ignore):before {
+				color: $primary !important;
+			}
+
+}
+
+
+// All resolutions
+.text-white > .dropdown-item > a {
+	color: $gray-300 !important;
+}
+.text-white > .dropdown-item > a:hover,
+.text-white > .dropdown-item.active > a {
+	color: #fff !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* desktop only */
+@media only screen and (min-width: map-get($grid-breakpoints, "lg") - 1px) { // xl: 1200px, lg: 992px, md: 768px
+
+	/* keep link highlighted on hover */
+	.dropdown-menu .dropdown-item:hover>a {
+		color: $primary;
+		text-decoration: none;
+	}
+	.dropdown-link:hover {
+		color: $dropdown-link-active-color;
+		background-color: $dropdown-link-active-bg;
+	}
+
+	/* show on mouse over */
+	[data-bs-toggle="dropdown"] + .dropdown-menu-hover {
+		margin-top: 0 !important; /* the margin will cause the dropdown close on mouse over the "space" area */
+	}
+		[data-bs-toggle="dropdown"]:hover + .dropdown-menu-hover,
+		[data-bs-toggle="dropdown"]:hover ~ .dropdown-menu-hover,
+		.dropdown-menu-hover:hover,
+		.dropdown-menu-hover+.dropdown-menu:hover,
+		.dropdown-menu-hover:hover+.dropdown-menu {
+			display: block;
+		}
+
+
+	/* 
+		Dropdown mega menu : full width
+	*/
+	.dropdown-mega>.dropdown-menu { /* first level only */
+		width: 100%;
+		max-width: 100%;
+		left: 0;
+		right: 0;
+		padding: $dropdown-item-padding-x;
+	}
+
+
+	/* 
+		Dropdown mega menu : Sizes 
+	*/
+	.dropdown-mega-sm 	{ width: 300px; }
+	.dropdown-mega-md 	{ width: 400px; }
+	.dropdown-mega-lg 	{ width: 600px; }
+	.dropdown-mega-xl 	{ width: 700px; }
+	.dropdown-mega-xxl 	{ width: 800px; }
+
+
+
+	/*
+
+		DROPDOWN : DARK 
+	*/
+	.dropdown-menu-dark,
+	.dropdown-menu-dark .dropdown-menu {
+		color: #fff;
+		background-color: #333333;
+	}
+
+		/* links */
+		.dropdown-menu-dark a {
+			color: darken(#fff, 20%) !important; 
+		}
+		.dropdown-menu-dark a.dropdown-item:hover,
+		.dropdown-menu-dark a.dropdown-item.active,
+		.dropdown-menu-dark .dropdown-item:hover>a,
+		.dropdown-menu-dark .dropdown-item.active>a,
+		.dropdown-menu-dark .dropdown-item>a.active,
+		.dropdown-menu-dark a:hover {
+			color: #fff !important;
+		}
+
+		/* grid */
+		.dropdown-menu-dark .dropdown-divider,
+		.dropdown-menu-dark .row.col-border>div,
+		.dropdown-menu-dark .row.col-border-sm>div,
+		.dropdown-menu-dark .row.col-border-md>div,
+		.dropdown-menu-dark .row.col-border-lg>div {
+			border-color: lighten(#333333, 10%);
+		}
+
+
+	/* multilevel dropdown inside content : multilevel click issue : [hack|overwriting popper.js] */
+	.dropdown-menu-block-md .dropdown-item>.dropdown-menu {
+		transform: none !important;
+	}
+
+
+
+	/* Animate : Fade In Up */
+	.dropdown-fadeinup {
+		animation: __utilFadeInUp .25s ease-out forwards !important;
+	}
+
+	.dropdown-fadeindown {
+		animation: __utilFadeInDown .25s ease-out forwards !important;
+	}
+
+
+	/* Animate : Bounce In Up */
+	.dropdown-bounceinup {
+		animation: __utilBounceInUp .25s ease-out forwards !important;
+	}
+
+
+
+
+
+}
+
+/* mobile only */
+@media only screen and (max-width: map-get($grid-breakpoints, "lg") - 1px) { // xl: 1200px, lg: 992px, md: 768px
+	
+	/* 
+		default dropdown link 
+		do not keep it active on second click
+	*/
+	a.dropdown-link:hover {
+		color: inherit;
+	}
+
+
+
+	/* 
+		Dropdown mega menu / full width
+	*/
+	/* links inside mega menu */
+	.dropdown-mega .row {
+		@if $global-rtl-enable == false {
+			margin-left: 0;
+		} @else {
+			margin-right: 0;
+		}
+	}
+		.dropdown-mega .row>div:not(:last-child) {
+			margin-bottom: 30px;
+		}
+
+
+	/* multilevel dropdown inside content */
+	.dropdown-menu-block-md .dropdown-item>.dropdown-menu {
+		position: relative !important;
+		left: 0 !important;
+		right: 0 !important;
+		width: 100% !important; /* parent fit */
+		background-color: rgba(0,0,0,0.02) !important;
+
+		box-shadow: none !important;
+		border-radius: 0;
+	}
+
+
+	/* fix position of dropdown on navbar */
+	.dropdown-menu-navbar-autopos {
+		position: fixed;
+		top: auto !important;
+		bottom: auto !important;
+		margin-left: 8px;
+		margin-right: 8px;
+	}
+}

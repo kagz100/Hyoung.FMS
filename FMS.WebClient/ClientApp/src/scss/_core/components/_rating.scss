@@ -1,0 +1,90 @@
+/** STAR (STAR)
+ *************************************************** **/
+.rating-0_0,
+.rating-0,
+.rating-0_5,
+.rating-1,
+.rating-1_0,
+.rating-1_5,
+.rating-2,
+.rating-2_0,
+.rating-2_5,
+.rating-3,
+.rating-3_0,
+.rating-3_5,
+.rating-4,
+.rating-4_0,
+.rating-4_5,
+.rating-5,
+.rating-5_0 {
+  font: normal normal normal 18px/1 '#{$rating-font}';
+  letter-spacing: 3px;
+}
+
+
+.rating-0_0:before,
+.rating-0:before {
+  content: icon-unquote(#{$rating-icon-empty}#{$rating-icon-empty}#{$rating-icon-empty}#{$rating-icon-empty}#{$rating-icon-empty});
+  display: inline-block;
+}
+  .rating-0_5:before {
+    content:  icon-unquote(#{$rating-icon-half}#{$rating-icon-empty}#{$rating-icon-empty}#{$rating-icon-empty}#{$rating-icon-empty});
+    display: inline-block;
+  }
+.rating-1:before,
+.rating-1_0:before {
+  content: icon-unquote(#{$rating-icon-full}#{$rating-icon-empty}#{$rating-icon-empty}#{$rating-icon-empty}#{$rating-icon-empty});
+  display: inline-block;
+}
+  .rating-1_5:before {
+    content:  icon-unquote(#{$rating-icon-full}#{$rating-icon-half}#{$rating-icon-empty}#{$rating-icon-empty}#{$rating-icon-empty});
+    display: inline-block;
+  }
+.rating-2:before,
+.rating-2_0:before {
+  content: icon-unquote(#{$rating-icon-full}#{$rating-icon-full}#{$rating-icon-empty}#{$rating-icon-empty}#{$rating-icon-empty});
+  display: inline-block;
+}
+  .rating-2_5:before {
+    content:  icon-unquote(#{$rating-icon-full}#{$rating-icon-full}#{$rating-icon-half}#{$rating-icon-empty}#{$rating-icon-empty});
+    display: inline-block;
+  }
+.rating-3:before,
+.rating-3_0:before {
+  content: icon-unquote(#{$rating-icon-full}#{$rating-icon-full}#{$rating-icon-full}#{$rating-icon-empty}#{$rating-icon-empty});
+  display: inline-block;
+}
+  .rating-3_5:before {
+    content:  icon-unquote(#{$rating-icon-full}#{$rating-icon-full}#{$rating-icon-full}#{$rating-icon-half}#{$rating-icon-empty});
+    display: inline-block;
+  }
+.rating-4:before,
+.rating-4_0:before {
+  content: icon-unquote(#{$rating-icon-full}#{$rating-icon-full}#{$rating-icon-full}#{$rating-icon-full}#{$rating-icon-empty});
+  display: inline-block;
+}
+  .rating-4_5:before {
+    content:  icon-unquote(#{$rating-icon-full}#{$rating-icon-full}#{$rating-icon-full}#{$rating-icon-full}#{$rating-icon-half});
+    display: inline-block;
+  }
+.rating-5:before,
+.rating-5_0:before {
+  content: icon-unquote(#{$rating-icon-full}#{$rating-icon-full}#{$rating-icon-full}#{$rating-icon-full}#{$rating-icon-full});
+  display: inline-block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

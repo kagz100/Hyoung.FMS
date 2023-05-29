@@ -1,0 +1,160 @@
+/**
+
+		- Transitions 				.transition-all-ease-*, .transition-bg-ease-*
+
+		- Hover Transitions 		.transition-hover-top, .transition-hover-right, .transition-hover-bottom, .transition-hover-left
+									.transition-hover-zoom
+									.transition-none
+
+**/
+/**
+
+	Transitions
+		.transition-all-ease-*
+		.transition-bg-ease-*
+
+
+	Bug Fixes
+		Chrome known bug: will fire transitons on page load if <script> tag does not exist!
+		Fix: Add a script tag with a simple space like this:
+			<script> </script>
+
+
+	Repaint Fix
+		We use separate params so we can overwrite them for shadow hover
+		like this:
+
+		transition-property: box-shadow, transform !important;
+
+
+**/
+.transition-all-ease-150 {
+	transition-property: all;
+	transition-timing-function: ease;
+	transition-duration: 150ms !important;
+}
+.transition-all-ease-200 {
+	transition-property: all;
+	transition-timing-function: ease;
+	transition-duration: 200ms !important;
+}
+.transition-all-ease-250 {
+	transition-property: all;
+	transition-timing-function: ease;
+	transition-duration: 250ms !important;
+}
+.transition-all-ease-500 {
+	transition-property: all;
+	transition-timing-function: ease;
+	transition-duration: 500ms !important;
+}
+
+
+.transition-bg-ease-150 {
+	transition-property: background-color !important;
+	transition-timing-function: linear;
+	transition-duration: 150ms !important;
+}
+.transition-bg-ease-200 {
+	transition-property: background-color !important;
+	transition-timing-function: linear;
+	transition-duration: 200ms !important;
+}
+.transition-bg-ease-250 {
+	transition-property: background-color !important;
+	transition-timing-function: linear;
+	transition-duration: 250ms !important;
+}
+.transition-bg-ease-500 {
+	transition-property: background-color !important;
+	transition-timing-function: linear;
+	transition-duration: 500ms !important;
+}
+
+
+
+/**
+
+	Hover Transitions
+		.transition-hover-top, .transition-hover-right, .transition-hover-bottom, .transition-hover-left
+
+**/
+	// reset
+	.transition-hover-top,
+	.transition-hover-right,
+	.transition-hover-bottom,
+	.transition-hover-left {
+
+		transform: translateX(0);
+		transform: translateY(0);
+		transform: translateZ(0);
+
+	}
+
+
+	// top
+	.transition-hover-top:hover, 
+	.transition-hover-top:focus {
+		transform: translateY(-3px);
+	}
+
+	// right
+	.transition-hover-right:hover, 
+	.transition-hover-right:focus {
+		transform: translateX(3px);
+	}
+
+	// bottom
+	.transition-hover-bottom:hover, 
+	.transition-hover-bottom:focus {
+		transform: translateY(3px);
+	}
+
+	// left
+	.transition-hover-left:hover, 
+	.transition-hover-left:focus {
+		transform: translateX(-3px);
+	}
+	
+	// start
+	.transition-hover-start:hover, 
+	.transition-hover-start:focus {
+		@if $global-rtl-enable == false {
+			transform: translateX(-3px);
+		} @else {
+			transform: translateX(3px);
+		}
+	}
+
+	// end
+	.transition-hover-end:hover, 
+	.transition-hover-end:focus {
+		@if $global-rtl-enable == false {
+			transform: translateX(3px);
+		} @else {
+			transform: translateX(-3px);
+		}
+	}
+
+.transition-none {
+	transition: none !important;
+}
+
+
+/* transition hover zoom */
+.transition-hover-zoom-img img,
+.transition-hover-zoom {
+	transition: all .3s ease-in-out;
+}
+.transition-hover-zoom-img:hover img,
+.transition-hover-zoom:hover {
+	transform: scale(1.1);
+}
+
+
+// Mobile Only
+@media only screen and (max-width: map-get($grid-breakpoints, "md")) {
+
+
+
+}

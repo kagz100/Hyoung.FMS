@@ -1,0 +1,95 @@
+// Load needed variables
+@import '../_core/mixins',
+        '../variables',
+        '../../../node_modules/bootstrap/scss/functions',
+        '../../../node_modules/bootstrap/scss/variables';
+
+
+.dt-autofill-list .btn {
+  padding: .46rem 1rem;
+}
+
+// table header fixed/floating
+table.dataTable.fixedHeader-floating {
+  position: fixed !important;
+  opacity: 0.91;
+  box-shadow: $box-shadow-md;
+  border-radius: $border-radius;
+  margin-top: -2px !important;
+}
+
+// order group
+table.dataTable tr.dtrg-group td {
+  background: #fff;
+  padding-top: 30px;
+  color: $primary;
+}
+
+// selected
+table.dataTable tbody>tr.selected, 
+table.dataTable tbody>tr>.selected {
+  background-color: #eaf1ff;
+  color: #121212 !important;
+}
+
+// dropdowns
+.dt-button-collection {
+  // position: unset !important; // BS4
+  position: absolute !important; // BS5
+}
+  .dt-button-collection .dropdown-menu {
+    padding: 3px 3px 2px 3px;
+
+    // dropdown position fix
+    top: 100%;
+    @if $global-rtl-enable == false {
+      right: 0;
+    }
+
+  }
+    .dt-button-collection .dropdown-menu a {
+      color: #121212;
+      margin-bottom: 1px;
+    }
+    .dt-button-collection .dropdown-menu a.active {
+      background-color: $gray-100;
+    }
+    .dt-button-collection .dropdown-menu a:hover {
+      background-color: darken($gray-100, 3%);
+    }
+    table.dataTable .btn i {
+      margin: 0 !important;
+    }
+
+// spacings
+.dataTables_filter {
+  @if $global-rtl-enable == false {
+    margin-right: 15px;
+  } @else {
+    margin-left: 15px;
+  }
+}
+
+
+
+
+
+// DESKTOP
+@media only screen and (min-width: map-get($grid-breakpoints, "lg")) {
+  table.dataTable:not(.fixedHeader-floating) {
+    width: 100% !important;
+  }
+}
+
+
+// MOBILE
+@media only screen and (max-width: map-get($grid-breakpoints, "lg")) {
+  table.dataTable>tbody>tr.child ul.dtr-details {
+    display: block;
+  }
+
+  div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+    margin-top: 15px;
+    justify-content: center!important;
+  }
+}

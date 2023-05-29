@@ -1,0 +1,90 @@
+// -- -- -- -- -- -- -- -- --
+// Pills/Tabs
+// -- -- -- -- -- -- -- -- --
+/*
+
+    <!-- Tab Pills -->
+    <ul class="nav nav-sm nav-invert rounded-pill" id="nav-tab-1" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" href="#nav-tab-1-preview" id="nav-tab-1-preview-link" aria-controls="nav-tab-1-preview" data-bs-toggle="pill" role="tab" aria-selected="true">
+          Preview
+         </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#nav-tab-1-html" id="nav-tab-1-html-link" aria-controls="nav-tab-1-html" data-bs-toggle="pill" role="tab" aria-selected="false">
+          HTML
+         </a>
+      </li>
+    </ul>
+    <!-- /Tab Pills -->
+
+*/
+.nav-invert {
+  padding: .25rem;
+  display: inline-flex;
+  background-color: $nav-pills-link-active-bg;
+}
+	.nav-invert,
+	.nav-invert .nav-link {
+  	border-radius: $border-radius;
+	}
+  .nav-pills.nav-invert {
+    border-radius: $nav-pills-border-radius;
+  }
+    .nav-invert .nav-link.active {
+      color: $nav-pills-invert-link-active-color !important;
+      background-color: $nav-pills-invert-link-active-bg;
+      box-shadow: $nav-pills-invert-link-active-shadow;
+    }
+
+.rounded-pill .nav-link { 
+	border-radius: $nav-pills-border-radius;
+}
+
+// SM
+.nav-sm .nav-link {
+  font-size: 0.875rem; // 14px
+  padding: .344rem .65rem;
+}
+
+// LG
+.nav-lg .nav-link {
+  padding: 0.7rem 1.4rem;
+}
+
+
+
+// -- -- -- -- -- -- -- -- --
+// Tabs : bordered
+// -- -- -- -- -- -- -- -- --
+.nav-tabs-border-top,
+.nav-tabs-border-bottom {
+	border: 0;
+}
+.nav-tabs-border-top .nav-item:not(:last-child),
+.nav-tabs-border-bottom .nav-item:not(:last-child) {
+	@if $global-rtl-enable == false {
+		margin-right: 15px;
+	} @else {
+		margin-left: 15px;
+	}
+}
+.nav-tabs-border-top .nav-link,
+.nav-tabs-border-bottom .nav-link {
+	border: 0;
+	border-radius: 0;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+	.nav-tabs-border-top .nav-link.active {
+		border-top: $primary 1px solid !important;
+	}
+	.nav-tabs-border-bottom .nav-link.active {
+		border-bottom: $primary 1px solid !important;
+	}
+
+// icon tabs
+.nav-pills .nav-link.btn:not(.active) {
+	background: $white !important;
+	color: $gray-600 !important;
+}

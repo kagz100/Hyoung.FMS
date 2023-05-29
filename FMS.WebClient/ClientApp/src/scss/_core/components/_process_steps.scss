@@ -1,0 +1,75 @@
+/*
+
+	Process Steps
+	
+	.process-steps-primary
+
+	<ol class="process-steps text-muted">
+		<li class="process-step-item complete">Step 1</li>
+		<li class="process-step-item active">Step 2</li>
+		<li class="process-step-item">Step 3</li>
+		<li class="process-step-item">Done!</li>
+	</ol>
+
+*/
+$process-step-border-width: 	3px !default;
+$process-step-bullet-width: 	12px !default;
+
+
+.process-steps {
+	font-size: 14px;
+	width: 100%;
+	margin: 0;
+	padding: 0 0 24px 0;
+	list-style: none outside;
+	overflow: hidden;
+	display: flex;
+}
+	.process-step-item {
+		width: 100%;
+		padding: 0 0 .8em 0;
+		margin: 0;
+		text-align: center;
+		position: relative;
+		border-bottom: $process-step-border-width solid $gray-200;
+	}
+
+	.process-step-item:before {
+		content: "";
+		position: absolute;
+		bottom: 0; left: 50%;
+		border-radius: 100%;
+
+		background: #ffffff;
+		border: $process-step-border-width solid $gray-200;
+		
+		width: $process-step-bullet-width;
+		height: $process-step-bullet-width;
+		margin-left: -($process-step-bullet-width / 2);
+		margin-bottom: -(($process-step-bullet-width / 2) + ($process-step-border-width / 2));
+	}
+		// complete, active
+		.process-step-item.active,
+		.process-step-item.complete {
+			border-color: $gray-600;
+		}
+		.process-step-item.active:before,
+		.process-step-item.complete:before {
+			border-color: $gray-600;
+			background: $gray-600;
+		}
+		.process-step-item.active:before {
+			background: #ffffff !important;
+		}
+
+
+	// Primary Color
+	.process-steps-primary>.active,
+	.process-steps-primary>.complete {
+		border-color: $primary;
+	}
+	.process-steps-primary>.active:before,
+	.process-steps-primary>.complete:before {
+		background: $primary;
+		border-color: $primary;
+	}

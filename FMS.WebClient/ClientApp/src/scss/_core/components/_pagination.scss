@@ -1,0 +1,40 @@
+// rtl correction
+@if $global-rtl-enable == true {
+	.pagination .page-item:first-child .page-link {
+			border-top-right-radius: $border-radius !important;
+			border-bottom-right-radius: $border-radius !important;
+			border-top-left-radius: 0 !important;
+			border-bottom-left-radius: 0 !important;
+			border-left: 0 !important;
+	}
+	.pagination .page-item:last-child .page-link {
+			border-top-right-radius: 0 !important;
+			border-bottom-right-radius: 0 !important;
+			border-top-left-radius: $border-radius !important;
+			border-bottom-left-radius: $border-radius !important;
+	}
+}
+
+/**
+
+	PAGINATION : PILL
+
+**/
+.pagination-pill>.page-item:first-child>.page-link {
+	@if $global-rtl-enable == false {
+		border-top-left-radius: $border-radius-pill;
+		border-bottom-left-radius: $border-radius-pill;
+	} @else {
+		border-top-right-radius: $border-radius-pill;
+		border-bottom-right-radius: $border-radius-pill;
+	}
+}
+.pagination-pill>.page-item:last-child>.page-link {
+	@if $global-rtl-enable == false {
+		border-top-right-radius: $border-radius-pill;
+		border-bottom-right-radius: $border-radius-pill;
+	} @else {
+		border-top-left-radius: $border-radius-pill;
+		border-bottom-left-radius: $border-radius-pill;
+	}
+}

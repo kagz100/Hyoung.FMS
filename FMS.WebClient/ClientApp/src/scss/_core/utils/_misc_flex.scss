@@ -1,0 +1,60 @@
+/**
+
+		- Flex
+
+**/
+.flex-none {
+	flex: none !important;
+}
+.d-flex-align-middle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.d-flex-1-0-auto {
+	flex: 1 0 auto;
+}
+.d-flex-1-1-auto {
+    flex: 1 1 auto !important;
+}
+.d-flex-inherit {
+	flex: inherit !important;
+}
+.justify-content-inherit {
+	justify-content: inherit !important;
+}
+
+
+/**
+
+		:: WORKING : DISABLED|NOT NEEDED ::
+
+		Squared Grid
+		:: Chrome, FF, Opera, Safari (IE not tested)
+
+
+.row-squared {
+	display: flex;
+	flex-wrap: wrap;
+}
+	.col-squared {
+		width: 100%;
+	}
+
+@media (min-width: map-get($grid-breakpoints, "lg")) {
+	.col-squared {
+		width: 50%;
+	}
+}
+@media (max-width: map-get($grid-breakpoints, "lg") - 1) { // xl: 1200px, lg: 992px, md: 768px
+	.col-squared {
+		width: 25%;
+	}
+}
+.col-squared:before {
+	content: "";
+	float: left;
+	padding-top: 100%;
+}
+
+**/

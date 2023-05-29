@@ -1,0 +1,119 @@
+.smaller { font-size: 0.75rem !important; }
+.text-dashed { border-bottom: 1px dashed $text-muted;  }
+
+
+/* slightly text shadow */
+.text-shadow-dark {
+	text-shadow: rgba(0,0,0,0.3) 0 1px 0;
+}
+
+// fix, in case antialiased used
+.text-monospace {
+	-webkit-font-smoothing: initial;
+}
+
+/* text color missing from botostrap */
+.text-gray-100 {
+	color: $gray-100 !important;
+}
+.text-gray-200 {
+	color: $gray-200 !important;
+}
+.text-gray-300 {
+	color: $gray-300 !important;
+}
+.text-gray-400 {
+	color: $gray-400 !important;
+}
+.text-gray-500 {
+	color: $gray-500 !important;
+}
+.text-gray-600 {
+	color: $gray-600 !important;
+}
+.text-gray-700 {
+	color: $gray-700 !important;
+}
+.text-gray-800 {
+	color: $gray-800 !important;
+}
+.text-gray-900 {
+	color: $gray-900 !important;
+}
+
+
+
+// -- -- -- -- -- -- -- -- --
+// Links
+// -- -- -- -- -- -- -- -- --
+.link-muted {
+	color: $text-muted;
+	/*border-bottom: #97a4af 1px dashed;*/
+	text-decoration: none !important;
+
+	// 04:13 AM Sunday, September 27, 2020
+	// Disabled : issue on page load;
+	// Use with .text-primary-hover for the same effect
+	// transition: $transition-base;
+}
+
+.link-dashed {
+  color: $primary !important;
+  border-bottom: 1px dashed $primary !important;
+  text-decoration: none !important;
+}
+	.link-dashed-hover,
+  .link-dashed:hover {
+    border-bottom: 1px dashed $primary;
+  }
+
+.link-normal {
+	color: $body-color;
+}
+	.link-normal:hover {
+		color: $primary;
+	}
+
+.disabled {
+	opacity: .65;
+  pointer-events: none;
+}
+
+/* 
+
+	Links
+		.text-
+		.text-*-hover
+
+*/
+@each $btn-class, $rgba-percent in $theme-colors-soft {
+	
+	.text-#{$btn-class}-hover {
+		transition: $transition-base;
+	}
+
+	a.text-#{$btn-class}-hover:focus,
+	a.text-#{$btn-class}-hover:hover {
+		color: map-get($theme-colors, $btn-class) !important;
+	}
+
+}
+
+
+/* 
+
+	Color text
+
+*/
+.text-danger-gradient {
+	color: #f7345e;
+	background: linear-gradient(-107deg, #82009f 0%, #f7345e 100%);
+	position: relative;
+	display: inline-block;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent
+}
+	em.text-danger-gradient {
+		font-style: normal;
+		transform: skewX(-10deg);
+	}

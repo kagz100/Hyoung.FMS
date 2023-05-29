@@ -1,0 +1,76 @@
+// -- -- -- -- -- -- -- -- --
+// Avatar
+// -- -- -- -- -- -- -- -- --
+.avatar {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: $border-radius;
+  width: map-get($avatar-size, "md");
+  height: map-get($avatar-size, "md");
+  font-weight: 500;
+
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+}
+    // Initials / icons
+    .avatar > i {
+      position: absolute;
+      font-style: normal;
+    }
+
+    // Border
+    .avatar-border {
+      border: #ffffff 0.125rem solid; // 2px
+    }
+    .avatar-border-lg {
+      border: #ffffff 0.25rem solid; // 4px
+    }
+
+    // Status indicator
+    $avatar-status-width: 0.7rem !default;
+    .avatar-status {
+      bottom: 0;
+      width: $avatar-status-width;
+      height: $avatar-status-width;
+      font-size: 0.5rem;
+      border-radius: 50%;
+      border: #ffffff 0.125rem solid; // 2px
+    }
+      .avatar:not(.rounded-circle) .avatar-status {
+        margin: -($avatar-status-width / 2);
+      }
+
+    // Group, hover
+    .avatar-group { 
+      display: inline-flex; 
+      align-items: center; 
+    }
+      .avatar-group > .avatar:hover { 
+        z-index: 1; 
+      }
+
+    // Colors, size group
+    @each $key, $val in $avatar-size {
+
+      .avatar-#{$key} { 
+        width: $val !important; 
+        height: $val !important; 
+        @if $key == 'xs' { font-size: 0.75rem; } 
+        @if $key == 'sm' { font-size: 0.875rem; } 
+        @if $key == 'md' { font-size: 1rem; } 
+        @if $key == 'lg' { font-size: 1.1rem; } 
+        @if $key == 'xl' { font-size: 1.3rem; } 
+      }
+
+      .avatar-group>.avatar-#{$key}:not(:first-child) {
+        @if $global-rtl-enable == false {
+            margin-left: -($val / 3);
+        } @else {
+            margin-right: -($val / 3);
+        }
+      }
+
+    }

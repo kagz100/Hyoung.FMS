@@ -1,6 +1,7 @@
 ﻿using FMS.Application.Command.DatabaseCommand.ExpectedAVGCmd;
 using FMS.Application.Command.DatabaseCommand.ExptAVGClassification;
 using FMS.Application.Models;
+using FMS.Application.ModelsDTOs.ExpectedAVG;
 using FMS.Application.Queries.Database.ExpectedAvg;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

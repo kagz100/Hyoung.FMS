@@ -18,7 +18,7 @@ const EmployeeGrid = () => {
     const dataSource = new CustomStore({
         key: 'id',
         load: async () => {
-            const response = await axios.get(`${apiUrl}/employee/getemployeelist`);
+            const response = await axios.get(`${apiUrl}/employee/getlist`);
             return response.data;
         },
         byKey: async (key) => {
@@ -64,7 +64,7 @@ const EmployeeGrid = () => {
         key: 'id',
         loadMode: 'raw',
         load: async () => {
-            const response = await axios.get(`${apiUrl}/site/GetSiteList`);
+            const response = await axios.get(`${apiUrl}/site/GetList`);
             return response.data;
         }
     

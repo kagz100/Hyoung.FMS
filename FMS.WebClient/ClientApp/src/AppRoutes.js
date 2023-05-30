@@ -4,6 +4,8 @@ import VehicleDataGrid from "./components/VehicleDataGrid";
 import EmployeeDataGrid from "./components/EmployeeDataGrid";
 import ExpectedAVGClassification from "./components/ExpectedAVGClassification";
 import ExpectedAvg from "./components/ExpectedAvgDatagrid"; 
+import CreateExpectedAvg from "./components/ExpectedAvgParentComponent";
+
 
 const AppRoutes = [
   {
@@ -32,6 +34,10 @@ const AppRoutes = [
     {
         path: "/ExpectedAvg",
         element:<ExpectedAvg/>
+    },
+    {
+        path: "/CreateExpectedAvg",
+        element: <CreateExpectedAvg />
     }
 
 

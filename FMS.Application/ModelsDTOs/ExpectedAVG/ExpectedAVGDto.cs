@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace FMS.Application.Models
+namespace FMS.Application.ModelsDTOs.ExpectedAVG
 {
     public class ExpectedAVGDto
     {

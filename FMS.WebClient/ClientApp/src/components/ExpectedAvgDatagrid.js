@@ -3,6 +3,7 @@ import DataGrid, { Column, Editing, Lookup, FilterRow, HeaderFilter } from 'deve
 import CustomStore from 'devextreme/data/custom_store';
 import axios from 'axios';
 import SelectBox from 'devextreme-react/select-box';
+import TextArea from 'devextreme-react/text-area';
 
 const apiUrl = "https://localhost:7009/api";
 
@@ -48,7 +49,6 @@ const ExpectedAvgDatagrid = () => {
 
 
 
-
     const handleApplyExpectedValue = () => {
 
         //apply the expected value to all filtered rows int the expectedavgdatagrid 
@@ -80,14 +80,7 @@ const ExpectedAvgDatagrid = () => {
                 return response.data;
             }
         });
-    //const siteDataSource = new CustomStore(
-    //    {
-    //        key: 'id',
-    //        load: async () => {
-    //            const response = await axios.get(`${apiUrl}/site/getsitelist`);
-    //            return response.data;
-    //        }
-    //    });
+
     const siteDataSource = new CustomStore(
         { 
             key: 'id', 
@@ -100,7 +93,7 @@ const ExpectedAvgDatagrid = () => {
         {
             key: 'id',
             load: async () => {
-                const response = await axios.get(`${apiUrl}/vehiclemanufacture/getlist`);
+                const response = await axios.get(`${apiUrl}/vehiclemanufacturer/getlist`);
                 return response.data;
             }
         });
@@ -123,24 +116,41 @@ const ExpectedAvgDatagrid = () => {
 
     return (
 
-        <div class="row">
-            <div class="col">
-               <SelectBox
-                dataSource={vehicleTypeDataSource}
-                displayExpr="name"
-                valueExpr="id"
-                placeholder="Select a Vehicle Type"
-                onValueChanged={(e) => setSelectedVehicleType(e.value)}
-                />
-              </div>
-           <div class="col">
-            <div class="row">
-                 <label>Expected Value: </label>
-                <input type="text" value={expectedValue} onChange={(e) => setExpectedValue(e.target.value)} />
-                <button onClick={handleApplyExpectedValue}>Apply Expected Value</button>
-            
+        <div className="row">
+    
+            <div>
+                <h3>Vehicles Filter </h3>
+                <div className="form">
+
+                    <div className="col-md-3">
+                        <div className="dx-field-label">Expected Value </div>
+                        <div className="dx-field-value ">
+                            <SelectBox
+                                dataSource={expAVGclassificationDataSource}
+                                displayExpr="name"
+                                valueExpr="id"
+                                placeholder="Select a Expected value"
+                            //Modify this    //onValueChanged={(e) => }
+                            />
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="dx-field-value ">
+                            <TextArea height={50}
+                                readOnly={true}
+                                value
+                            />
+                        </div>
+
+
+                    </div>
+
+                    <div className="col-md-3">
+                        <div className="dx-field-label">Vehicle Type </div>
+
+                    </div>
                 </div>
-             </div>
+            </div>
 
         
 
@@ -163,20 +173,17 @@ const ExpectedAvgDatagrid = () => {
                  useIcons={true}/>
 
             <Column dataField="id" caption="ID" width={50} allowEditing={false} />
-            <Column dataField="vehicleId" caption="Vehicle">
-                <Lookup dataSource={vehicleDataSource} valueExpr="id" displayExpr="hyoungNo" />
-            </Column>
-            <Column dataField="expectedAverage1" caption="Expected AVG" />
-            <Column dataField="expAVGclassificationId" caption="Classification" width={100}>
-                <Lookup
-                    dataSource={expAVGclassificationDataSource}
-                    valueExpr="id" displayExpr="name" />
-            </Column>
-            <Column dataField="siteId" caption="Site" >
-                <Lookup dataSource={siteDataSource}
-                    valueExpr="id"
-                    displayExpr="name" />
-            </Column>
+                <Column dataField="vehicleId">
+                      <Lookup dataSource={vehicleDataSource} valueExpr="vehicleId" displayExpr="hyoungNo" />
+                </Column>          
+                <Column dataField="vehicleManufacturer" caption="Vehicle Manufacturer">
+                    <Lookup dataSource={vehicleManufactureDataSource} valueExpr="id" displayExpr="name" />
+                </Column>
+                <Column dataField="site" caption="Site">
+                 <Lookup dataSource={siteDataSource} valueExpr="id" displayExpr="name" />
+                </Column>
+               
+         
         </DataGrid>
     </div>
     );

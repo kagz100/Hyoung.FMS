@@ -1,22 +1,24 @@
-﻿import Datagrid, { Paging, HeaderFilter, SearchPanel, Editing, FilterRow, Column, Lookup, Sorting, RequiredRule } from 'devextreme-react/data-grid';
-import SelectBox from 'devextreme-react/select-box';
+﻿import Datagrid, { Paging, HeaderFilter, SearchPanel, Editing, FilterRow, Column, Lookup, Sorting,Selection, RequiredRule } from 'devextreme-react/data-grid';
+
 import { Button } from 'devextreme-react';
 import CustomStore from 'devextreme/data/custom_store';
 import 'devextreme/dist/css/dx.light.css';
 import axios from "axios";
 import React, { useState, useRef, useEffect } from 'react';
-import AddVehicleModel from './AddVehicleModel';
-import DataSource from 'devextreme/data/data_source';
-import ArrayStore from 'devextreme/data/array_store';
-import VehicleTypeUIComponent from './UIcomponents/VehicleTypeUIComponent';
-import { Selection } from '../../../../../node_modules/devextreme-react/tree-list';
+import TextArea from 'devextreme-react/text-area';
+//import { NumberBox } from '../../../../../node_modules/devextreme-react/index';
+
+// { Selection } from '../../../../../node_modules/devextreme-react/tree-list';
+//import { TextBox } from '../../../../../node_modules/devextreme-react/index';
 //import { Sorting } from '../../../../node_modules/devextreme-react/tree-list';
 const apiUrl = "https://localhost:7009/api";
 
 
 
+const VehicleFilterPanel = ({ setSelectedVehicles, addVehicle, setSelectedClassificationId, setNumberBoxValue }) => {
 
-const VehicleDataGrid = () => {
+    
+
     const dataSource = new CustomStore({
         key: 'vehicleId',
         load: async () => {
@@ -92,26 +94,38 @@ const VehicleDataGrid = () => {
 
 
         })
+
+
+
     };
-    // Load vehicle manufacturers data
+    // Load Expected classfication data
+
+
+  
+    const getSelectedVehicles = (e) => {
+        setSelectedVehicles(e.selectedRowsData);
+    };
 
 
     return (
         <div className="container">
-            <div>
-                <h1>Vehicles</h1>
-            </div>
+            
             <Datagrid
                 dataSource={dataSource}
                 showBorders={true}
-
+                onSelectionChanged={getSelectedVehicles}
                 allowColumnReordering={true}
                 allowColumnResizing={true}
                 columnAutoWidth={true}
                 rowAlternationEnable={true}
-                repaintChangesOnly={true}>
-                <Paging enabled={false} />
 
+                repaintChangesOnly={true}
+               // onSelectionChanged={(e) => setSelectedVehicles(e.selectedRowsData)}
+                onSelectionChanged={getSelectedVehicles}
+            >
+
+                <Paging enabled={true} />
+                <Paging defaultPageSize={10} />
                 <FilterRow visible={true} />
                 <HeaderFilter visible={true} />
                 <Sorting mode="multiple" />
@@ -129,14 +143,9 @@ const VehicleDataGrid = () => {
                 <Column dataField="averageKmL" caption="is km/l" width={70} />
 
 
-                <Column dataField="defaultEmployeeId" caption="Default Employee" visible={false}>
-                    <Lookup dataSource={employeeDataSource} valueExpr="id" displayExpr="fullName" />
-                </Column>
-
                 <Column dataField="vehicleTypeId"
                     caption="Vehicle Type"
-                // editCellComponent = {VehicleTypeUIComponent}
-                >
+                            >
                     <Lookup
                         dataSource={vehicleTypeDataSource}
                         valueExpr="id"
@@ -167,4 +176,4 @@ const VehicleDataGrid = () => {
         </div>
     );
 };
-export default VehicleDataGrid;
+export default VehicleFilterPanel;

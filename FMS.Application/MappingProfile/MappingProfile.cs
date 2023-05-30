@@ -2,6 +2,7 @@
 using FMS.Application.Models;
 using FMS.Application.Models.Employee;
 using FMS.Application.Models.Vehicle;
+using FMS.Application.ModelsDTOs.ExpectedAVG;
 using FMS.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,7 @@ namespace FMS.Application.MappingProfile
             CreateMap <Expectedaverage,ExpectedAVGDto>()
                 .ForMember(dest=>dest.Id,opt=>opt.MapFrom(src=>src.Id))
                 .ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.VehicleId))
-                .ForMember(dest => dest.ExpectedAVG, opt => opt.MapFrom(src => src.ExpectedAverage1))
+                .ForMember(dest => dest.ExpectedAverage1, opt => opt.MapFrom(src => src.ExpectedAverage1))
                 .ForMember(dest => dest.ExpectedAverageClassificationId, opt => opt.MapFrom(src => src.ExpectedAverageClassificationId))
                 
                 

@@ -19,7 +19,7 @@ const VehicleDataGrid = () => {
     const dataSource = new CustomStore({
         key: 'vehicleId',
         load: async () => {
-            const response = await axios.get(`${apiUrl}/vehicle/getvehiclelist`);
+            const response = await axios.get(`${apiUrl}/vehicle/getlist`);
             return response.data;
         },
         update: async (key, values) => {
@@ -33,7 +33,7 @@ const VehicleDataGrid = () => {
            return response.data;
         },
         byKey: async (key) => {
-            const response = await axios.get(`${apiUrl}/vehicle/getvehiclelist`);
+            const response = await axios.get(`${apiUrl}/vehicle/getlist`);
             const originalData = response.data.find((item) => item.vehicleId === key);
             return originalData;
         }
@@ -48,7 +48,7 @@ const VehicleDataGrid = () => {
             key: 'id',
             loadMode: 'raw',
             load: async () => {
-                const response = await axios.get(`${apiUrl}/site/GetSiteList`);
+                const response = await axios.get(`${apiUrl}/site/GetList`);
                 return response.data;
             }
         })
@@ -61,7 +61,7 @@ const VehicleDataGrid = () => {
             key: 'id',
             loadMode: 'raw',
             load: async () => {
-                const response = await axios.get(`${apiUrl}/employee/getemployeelist`);
+                const response = await axios.get(`${apiUrl}/employee/getlist`);
                 return response.data;
             }
         })
@@ -74,7 +74,7 @@ const VehicleDataGrid = () => {
             key: 'id',
             loadMode: 'raw',
             load: async () => {
-                const response = await axios.get(`${apiUrl}/VehicleType/GetVehicleType`);
+                const response = await axios.get(`${apiUrl}/VehicleType/getlist`);
                 return response.data;
 
             }
@@ -87,7 +87,7 @@ const VehicleDataGrid = () => {
             key: 'id',
             loadMode: 'raw',
             load: async () => {
-                const response = await axios.get(`${apiUrl}/VehicleModel/GetVehicleModel`);
+                const response = await axios.get(`${apiUrl}/VehicleModel/getlist`);
                 return response.data;
             }
         })
@@ -98,7 +98,7 @@ const VehicleDataGrid = () => {
             key: 'id',
             loadMode: 'raw',
             load: async () => {
-                const response = await axios.get(`${apiUrl}/VehicleManufacturer/GetVehicleManufacturer`);
+                const response = await axios.get(`${apiUrl}/VehicleManufacturer/getlist`);
                 return response.data;
             }
       

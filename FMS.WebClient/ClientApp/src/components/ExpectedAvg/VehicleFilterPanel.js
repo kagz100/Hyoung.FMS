@@ -15,10 +15,10 @@ const apiUrl = "https://localhost:7009/api";
 
 
 
-const VehicleFilterPanel = ({ setSelectedVehicles, addVehicle, setSelectedClassificationId, setNumberBoxValue }) => {
+const VehicleFilterPanel = ({ setSelectedVehicles }) => {
+
 
     
-
     const dataSource = new CustomStore({
         key: 'vehicleId',
         load: async () => {
@@ -100,17 +100,28 @@ const VehicleFilterPanel = ({ setSelectedVehicles, addVehicle, setSelectedClassi
     };
     // Load Expected classfication data
 
+    const dataGridRef = useRef(null);
 
-  
     const getSelectedVehicles = (e) => {
-        setSelectedVehicles(e.selectedRowsData);
+        // get the instance of the DataGrid
+        const dataGridInstance = dataGridRef.current.instance;
+
+        // get the visible rows
+        const visibleRows = dataGridInstance.getVisibleRows();
+
+        // filter the visible rows for only the ones that are selected
+        const selectedVisibleVehicles = visibleRows.filter(row => row.isSelected);
+
+        setSelectedVehicles(selectedVisibleVehicles);
     };
+
 
 
     return (
         <div className="container">
             
             <Datagrid
+                ref={dataGridRef}
                 dataSource={dataSource}
                 showBorders={true}
                 onSelectionChanged={getSelectedVehicles}
@@ -125,7 +136,7 @@ const VehicleFilterPanel = ({ setSelectedVehicles, addVehicle, setSelectedClassi
             >
 
                 <Paging enabled={true} />
-                <Paging defaultPageSize={10} />
+                <Paging defaultPageSize={50} />
                 <FilterRow visible={true} />
                 <HeaderFilter visible={true} />
                 <Sorting mode="multiple" />

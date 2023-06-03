@@ -9,17 +9,15 @@ export default class VehicleTypeUIComponent extends React.Component {
 
     constructor(props) {
         super(props);
+            console.log('props:', props);  // Logs the incoming props
         this.state = {
             selectedRowKeys: [props.data.value],
             isDropDownBoxOpened: false
         };
-        this.onSelectionChange = this.onSelectionChange.bind(this);
-        this.contentRender = this.contentRender.bind(this);
-        this.boxOptionChanged = this.boxOptionChanged.bind(this);
-
+      
     };
 
-    boxOptionChanged(e) {
+    boxOptionChanged=(e)=> {
         if (e.name === "opened") {
             this.setState({
                 isDropDownBoxOpened: e.value
@@ -27,11 +25,12 @@ export default class VehicleTypeUIComponent extends React.Component {
         }
     }
 
-    contentRender() {
+    contentRender=()=>{
         return (
             <DataGrid
-                datasource={this.props.data.column.lookup.datasource}
-                remoteOperations={true}
+                datasource={this.props.data.column.lookup.dataSource}
+                            
+               // remoteOperations={true}
                 height={200}
                 selectedRowKeys={this.state.selectedRowKeys}
                 hoverStateEnable={true}
@@ -50,14 +49,27 @@ export default class VehicleTypeUIComponent extends React.Component {
             </DataGrid>
         );
     }
-    onSelectionChanged(selectionChangedArgs) {
+
+    onSelectionChange = (selectionChangedArgs) => {
+        console.log('selectedRowKeys:', selectionChangedArgs.selectedRowKeys); // Logs the selected row keys
         this.setState({
             selectedRowKeys: selectionChangedArgs.selectedRowKeys,
             isDropDownOpened: false,
         });
         this.props.data.setValue(this.state.selectedRowKeys[0]);
     }
-    render() {
+
+    render = () => {
+        console.log('DropDownBox props:', {
+            onOptionChanged: this.boxOptionChanged,
+            opened: this.state.isDropDownBoxOpened,
+            dropDownOptions: dropDownOptions,
+            dataSource: this.props.data.column.lookup.dataSource,
+            value: this.state.selectedRowKeys[0],
+            displayExpr: 'name',
+            valueExpr: 'id',
+            contentRender: this.contentRender
+        });
         return (
             <DropDownBox
                 onOptionChanged={this.boxOptionChanged}

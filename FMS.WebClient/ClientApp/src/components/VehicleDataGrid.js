@@ -41,6 +41,8 @@ const VehicleDataGrid = () => {
     });
   //Add data source for lookup columns
 
+
+
     // Fetch working site data
     const workingSiteDataSource = {
         store: new CustomStore({
@@ -151,7 +153,7 @@ const VehicleDataGrid = () => {
 
                 <Column dataField="vehicleTypeId"
                     caption="Vehicle Type"
-                   // editCellComponent = {VehicleTypeUIComponent}
+                  // editCellComponent = {VehicleTypeUIComponent}
                 >
                     <Lookup
                         dataSource={vehicleTypeDataSource}

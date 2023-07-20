@@ -50,7 +50,9 @@ namespace FMS.Application.Queries.GPSGATEServer.GetconsumptionReport
 
                 if (vehicle != null)
                 {
-                    return new VehicleConsumptionInfoDTO
+                var vehicle = vehicles.FirstOrDefault(x => x.VehicleId == consumption.VehicleId);
+
+                if(vehicle !=null)
                     {
                         VehicleId = vehicle.VehicleId,
                         TotalFuel = Consumption.TotalFuel,

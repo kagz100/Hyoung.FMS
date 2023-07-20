@@ -11,19 +11,21 @@ namespace FMS.Application.Models
     public class VehicleConsumptionInfoDTO
     {
               
+
+          public int Id { get; set; }
             public int VehicleId { get; set; }
 
 
-        
+          
             public decimal? TotalFuel
               { get;set; }
             public string HyoungNo { get; set; }
             public String VehicleType { get; set; }
             public string VehicleModel { get; set; }
             public string VehicleManufacturer { get; set; }
-            public decimal ExpectedAveraged { get; set; }
-            public List<EmployeeDto> DefaultEmployees { get; set; }
-            public string Site { get; set; }
+             public Decimal? WorkingExpectedAverage { get; set; }
+            public int WorkingEmployeesID {get;set;}
+            public int WorkingSiteID { get; set; }
             public decimal? ExcessWorkingHrCost { get; set; }
            public DateTime Date { get; set; }
 
@@ -53,5 +55,7 @@ namespace FMS.Application.Models
         public bool IsNightShift { get; set; }
 
         public string Comments { get; set; }
+
+        public bool IsModified { get; set; }
     }
 }

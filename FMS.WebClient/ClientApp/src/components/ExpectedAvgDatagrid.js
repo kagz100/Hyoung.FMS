@@ -25,10 +25,7 @@ const ExpectedAvgDatagrid = () => {
                 const response = await axios.get(`${apiUrl}/expectedavg/getlist`);
                 return response.data;
             },
-            insert: async (values) => {
-                const response = await axios.post(`${apiUrl}/expectedavg/create`, values);
-                return response.data;
-            },
+        
             update: async (key, values) => {
                 const originalItem = await dataSource.byKey(key);
                 const updatedItem = { ...originalItem, ...values, id: key };
@@ -116,44 +113,7 @@ const ExpectedAvgDatagrid = () => {
 
     return (
 
-        <div className="row">
-    
-            <div>
-                <h3>Vehicles Filter </h3>
-                <div className="form">
-
-                    <div className="col-md-3">
-                        <div className="dx-field-label">Expected Value </div>
-                        <div className="dx-field-value ">
-                            <SelectBox
-                                dataSource={expAVGclassificationDataSource}
-                                displayExpr="name"
-                                valueExpr="id"
-                                placeholder="Select a Expected value"
-                            //Modify this    //onValueChanged={(e) => }
-                            />
-                        </div>
-                    </div>
-                    <div className="col-md-3">
-                        <div className="dx-field-value ">
-                            <TextArea height={50}
-                                readOnly={true}
-                                value
-                            />
-                        </div>
-
-
-                    </div>
-
-                    <div className="col-md-3">
-                        <div className="dx-field-label">Vehicle Type </div>
-
-                    </div>
-                </div>
-            </div>
-
-        
-
+        <div className="row">      
         <DataGrid
             dataSource={dataSource}
             keyExpr="id"
@@ -168,20 +128,18 @@ const ExpectedAvgDatagrid = () => {
             <Editing
                 mode="batch"
                 allowUpdating={true}
-                allowDeleting={false}
-                allowAdding={true}
+                    allowDeleting={true}
+                    allowAdding={false}
                  useIcons={true}/>
 
             <Column dataField="id" caption="ID" width={50} allowEditing={false} />
-                <Column dataField="vehicleId">
-                      <Lookup dataSource={vehicleDataSource} valueExpr="vehicleId" displayExpr="hyoungNo" />
-                </Column>          
-                <Column dataField="vehicleManufacturer" caption="Vehicle Manufacturer">
-                    <Lookup dataSource={vehicleManufactureDataSource} valueExpr="id" displayExpr="name" />
-                </Column>
-                <Column dataField="site" caption="Site">
-                 <Lookup dataSource={siteDataSource} valueExpr="id" displayExpr="name" />
-                </Column>
+                <Column dataField="hyoungNo" caption="Hyoung No" allowEditing={false} />
+                <Column dataField="expectedAverageClassificationName" caption="Expected Average Classification" allowEditing={false} />
+                <Column dataField="vehicleManufacturer" caption="Vehicle Manufacturer" allowEditing={false} />
+                <Column dataField="vehicleType" caption="Vehicle type" allowEditing={false} />
+                <Column dataField="site" caption="Site" allowEditing={false} />
+                <Column dataField="expectedAveragevalue" caption="expectedAveragevalue" allowEditing={true} alignment="center" />
+
                
          
         </DataGrid>

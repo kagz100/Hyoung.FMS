@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using FMS.Domain.Entities;
+
 namespace FMS.Persistence.DataAccess;
 
 public partial class GpsdataContext : DbContext
@@ -59,9 +60,9 @@ public partial class GpsdataContext : DbContext
 
     public virtual DbSet<Vehicletype> Vehicletypes { get; set; }
 
-// protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-   // => optionsBuilder.UseMySql("server=10.0.10.150;port=3306;database=gpsdata;user=root;password=Niwewenamimi1000;connection timeout=10000;command timeout=10000", Microsoft.EntityFrameworkCore.ServerVersion.Parse("5.5.61-mysql"));
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+    //      => optionsBuilder.UseMySql("server=10.0.10.150;port=3306;database=gpsdata;user=root;password=Niwewenamimi1000;connection timeout=10000;command timeout=10000", Microsoft.EntityFrameworkCore.ServerVersion.Parse("5.5.61-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -197,6 +198,8 @@ public partial class GpsdataContext : DbContext
 
             entity.HasIndex(e => e.SiteId, "Site_idx");
 
+            entity.HasIndex(e => new { e.VehicleId, e.SiteId, e.ExpectedAverageClassificationId }, "UniqueRecord").IsUnique();
+
             entity.Property(e => e.Id)
                 .HasColumnType("int(11)")
                 .HasColumnName("ID");
@@ -220,6 +223,7 @@ public partial class GpsdataContext : DbContext
 
             entity.HasOne(d => d.Site).WithMany(p => p.Expectedaverages)
                 .HasForeignKey(d => d.SiteId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("Expected_site");
 
             entity.HasOne(d => d.Vehicle).WithMany(p => p.Expectedaverages)
@@ -503,6 +507,8 @@ public partial class GpsdataContext : DbContext
 
             entity.HasIndex(e => e.DefaultEmployeeId, "Vehicle_employee_idx");
 
+            entity.HasIndex(e => e.WorkingExpectedAverage, "vehicleExpectedAverage_idx");
+
             entity.HasIndex(e => e.VehicleManufacturerId, "vehicle_manufacturer_idx");
 
             entity.HasIndex(e => e.VehicleModelId, "vehicle_model_idx");
@@ -525,7 +531,6 @@ public partial class GpsdataContext : DbContext
                 .HasColumnType("int(11)")
                 .HasColumnName("DeviceID");
             entity.Property(e => e.ExcessWorkingHrCost).HasPrecision(10);
-            entity.Property(e => e.ExpectedAveraged).HasPrecision(10);
             entity.Property(e => e.HyoungNo).HasMaxLength(45);
             entity.Property(e => e.NumberPlate).HasMaxLength(45);
             entity.Property(e => e.VehicleManufacturerId)
@@ -538,6 +543,7 @@ public partial class GpsdataContext : DbContext
                 .HasDefaultValueSql("'1'")
                 .HasColumnType("int(11)")
                 .HasColumnName("VehicleTypeID");
+            entity.Property(e => e.WorkingExpectedAverage).HasColumnType("int(11)");
             entity.Property(e => e.WorkingSiteId)
                 .HasColumnType("int(11)")
                 .HasColumnName("WorkingSiteID");
@@ -565,6 +571,10 @@ public partial class GpsdataContext : DbContext
                 .HasForeignKey(d => d.VehicleTypeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("vehicle_vehicleType");
+
+            entity.HasOne(d => d.WorkingExpectedAverageNavigation).WithMany(p => p.Vehicles)
+                .HasForeignKey(d => d.WorkingExpectedAverage)
+                .HasConstraintName("vehicleExpectedAverage");
 
             entity.HasOne(d => d.WorkingSite).WithMany(p => p.Vehicles)
                 .HasForeignKey(d => d.WorkingSiteId)
@@ -609,6 +619,8 @@ public partial class GpsdataContext : DbContext
 
             entity.HasIndex(e => e.SiteId, "vehicleconsumption_site_idx");
 
+            entity.HasIndex(e => e.ModifiedBy, "vehicleconsumption_user_idx");
+
             entity.Property(e => e.Id)
                 .HasColumnType("int(11)")
                 .HasColumnName("ID");
@@ -630,10 +642,12 @@ public partial class GpsdataContext : DbContext
             entity.Property(e => e.IsKmperhr)
                 .HasDefaultValueSql("b'0'")
                 .HasColumnType("bit(1)");
+            entity.Property(e => e.IsModified).HasColumnType("tinyint(4)");
             entity.Property(e => e.IsNightShift)
                 .HasDefaultValueSql("b'0'")
                 .HasColumnType("bit(1)");
             entity.Property(e => e.MaxSpeed).HasPrecision(10, 2);
+            entity.Property(e => e.ModifiedBy).HasColumnType("int(11)");
             entity.Property(e => e.SiteId)
                 .HasColumnType("int(11)")
                 .HasColumnName("SiteID");
@@ -646,6 +660,10 @@ public partial class GpsdataContext : DbContext
             entity.HasOne(d => d.Employee).WithMany(p => p.Vehicleconsumptions)
                 .HasForeignKey(d => d.EmployeeId)
                 .HasConstraintName("vehicleconsumption_employee");
+
+            entity.HasOne(d => d.ModifiedByNavigation).WithMany(p => p.Vehicleconsumptions)
+                .HasForeignKey(d => d.ModifiedBy)
+                .HasConstraintName("vehicleconsumption_user");
 
             entity.HasOne(d => d.Site).WithMany(p => p.Vehicleconsumptions)
                 .HasForeignKey(d => d.SiteId)
@@ -704,8 +722,5 @@ public partial class GpsdataContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-
-
 }
-
 

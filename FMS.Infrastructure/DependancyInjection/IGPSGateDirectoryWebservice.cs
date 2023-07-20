@@ -12,7 +12,7 @@ namespace FMS.Infrastructure.DependancyInjection
     {
 
         Task<string> LoginAsyn(GPSGateConections user);
-        Task<List<VehicleConsumptionModel>> GetFuelConsumptionReportAsync(GPSGateConections conn, int FuelConsumptionReportID, DateTime from, DateTime to);
+        Task<List<VehicleConsumptionServiceModel>> GetFuelConsumptionReportAsync(GPSGateConections conn, int FuelConsumptionReportID, DateTime from, DateTime to);
 
     }
 }

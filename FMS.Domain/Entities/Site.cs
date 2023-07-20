@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace FMS.Domain.Entities;
 
+/// <summary>
+/// 			
+/// </summary>
 public partial class Site
 {
     public int Id { get; set; }

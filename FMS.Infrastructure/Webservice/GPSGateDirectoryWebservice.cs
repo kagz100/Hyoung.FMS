@@ -46,7 +46,7 @@ namespace FMS.Infrastructure.Webservice
         /// <param name="from">The start date of the report.</param>
         /// <param name="to">The end date of the report.</param>
         /// <returns>A list of VehicleConsumptionModel objects representing the fuel consumption report.</returns>
-        public async Task<List<VehicleConsumptionModel>> GetFuelConsumptionReportAsync(GPSGateConections conn, int FuelConsumptionReportID, DateTime from, DateTime to)
+        public async Task<List<VehicleConsumptionServiceModel>> GetFuelConsumptionReportAsync(GPSGateConections conn, int FuelConsumptionReportID, DateTime from, DateTime to)
         {
          string fromdatestr = from.ToString("o",CultureInfo.InvariantCulture) ;
           string todatestr = to.ToString("o",CultureInfo.InvariantCulture);
@@ -80,11 +80,11 @@ namespace FMS.Infrastructure.Webservice
             {
                 // If not ready, wait 1 second and check again
                 await Task.Delay(1000);
-                await GetReportStatus(conn, handleIdInt);
+             state =   await GetReportStatus(conn, handleIdInt);
 
-                var reportstatus = await _ReportSoapClient.GetReportStatusAsync(conn.SessionID, handleIdInt);
+               // var reportstatus = await _ReportSoapClient.GetReportStatusAsync(conn.SessionID, handleIdInt);
 
-                state = reportstatus.Body.GetReportStatusResult.ToString();
+//state = reportstatus.Body.GetReportStatusResult.ToString();
             }
             
             
@@ -110,7 +110,7 @@ namespace FMS.Infrastructure.Webservice
 
                 var headcell = headerRow.Descendants("{http://gpsgate.com/xml/}Cell").ToList();
 
-                var result = new List<VehicleConsumptionModel>();
+                var result = new List<VehicleConsumptionServiceModel>();
 
 
                 foreach (var dataRow in dataRows)
@@ -131,10 +131,10 @@ namespace FMS.Infrastructure.Webservice
         /// </summary>
         /// <param name="dataRow">The XML row containing the VehicleConsumption data.</param>
         /// <returns>A VehicleConsumptionModel object.</returns>
-        public VehicleConsumptionModel ParseVehicleConsumption(XElement dataRow)
+        public VehicleConsumptionServiceModel ParseVehicleConsumption(XElement dataRow)
         {
 
-            var consumption = new VehicleConsumptionModel();
+            var consumption = new VehicleConsumptionServiceModel();
 
             foreach(var datacell in dataRow.Descendants("{http://gpsgate.com/xml/}Cell"))
             {
@@ -280,19 +280,30 @@ namespace FMS.Infrastructure.Webservice
 
             // Deserialize the report data into a ReportHandler object
 
-            var serializer = new XmlSerializer(typeof(ReportHandler));
+
+            var xdoc = XDocument.Parse(reportStatus.Body.GetReportStatusResult.OuterXml);
+
+            var reportHandler = new ReportHandler
+            {
+                HandleId = (int)xdoc.Root.Element("handleid"),
+                State = (string)xdoc.Root.Element("state")
+            };
+
+
+//
+         //   var serializer = new XmlSerializer(typeof(ReportHandler));
             //retrieve the handleid and state data
 
-            var reportHandler = (ReportHandler)serializer.Deserialize(new XmlTextReader(reportStatus.Body.GetReportStatusResult.ToString()));
+        //    var reportHandler = (ReportHandler)serializer.Deserialize(new XmlTextReader(reportStatus.Body.GetReportStatusResult.OuterXml.ToString()));
 
             //retrieve the handleid and state data
 
-            var state = reportHandler.State;
-            var handleID = reportHandler.HandleId;
+          //  var state = reportHandler.State;
+          //  var handleID = reportHandler.HandleId;
 
             //return the status 
 
-            return state;
+            return reportHandler.State;
            
         }
 

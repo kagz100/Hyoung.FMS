@@ -23,4 +23,6 @@ public partial class User
     public virtual ICollection<Issuetracker> IssuetrackerOpenbyNavigations { get; set; } = new List<Issuetracker>();
 
     public virtual Usertype? UserTypeNavigation { get; set; }
+
+    public virtual ICollection<Vehicleconsumption> Vehicleconsumptions { get; set; } = new List<Vehicleconsumption>();
 }

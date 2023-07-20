@@ -34,6 +34,14 @@ namespace FMS.WebClient.Controllers
             return Ok(expectedAVGs);
         }
 
+        [HttpGet("getlistbyvehiclebysite")]
+        public async Task<IActionResult> GetExpectedAVGListByVehicleBySite(int vehicleId, int siteId)
+        {
+            var query = new GetExpectedAverageByVehicleBySite { VehicleId = vehicleId, SiteId = siteId };
+            var expectedAVGs = await _mediator.Send(query);
+            return Ok(expectedAVGs);
+        }
+
         [HttpGet("classification/getlist")]
         public async Task<IActionResult> GetClassificationList()
         {

@@ -181,6 +181,8 @@ namespace FMS.Application.Queries.GPSGATEServer.GetconsumptionReport;
                                       .Include(v=>v.Vehicle.VehicleManufacturer)
                                       .Include(v=>v.Vehicle.VehicleModel)
                                       .Include(v=>v.Vehicle.VehicleType)
+                                      .Include(v=>v.Site)
+                                      .Include(v=>v.Employee)
                                      .Where(v => v.Date.Date >= request.From.Date && v.Date.Date <= request.To.Date && v.IsModified == 0).ToListAsync();
 
         if(vehicleConsumptionData.Count == 0) throw new ArgumentNullException(nameof(vehicleConsumptionData));

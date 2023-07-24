@@ -24,16 +24,9 @@ namespace FMS.Application.Command.DatabaseCommand.ConsumtionCmd.Update
 
         public decimal? FuelEfficiency { get; set; }
         public DateTime Date { get; set; }
-
         public decimal? MaxSpeed { get; set; }
-
-
-
         public decimal? AvgSpeed { get; set; }
-
-
-
-        public decimal? FuelLost { get; set; }
+       public decimal? FuelLost { get; set; }
 
         public bool IsKmperhr { get; set; }
 

@@ -23,7 +23,24 @@ const ConsumptionGrid = () => {
 
 
     //make sure consumptionData is an array
-     
+    const onRowUpdating = async (e) => {
+        e.cancel = true; // Prevent Grid default request
+
+        //transform data to be sent to server
+        const consumptionDataTransformed = {
+            ...e.oldData,
+            ...e.newData
+        };
+
+        try {
+            await axios.put(`${apiUrl}/consumption/update`, consumptionDataTransformed);
+            e.component.refresh(); // Refresh grid
+        }
+        catch (error) {
+            console.error("error", error);
+        }
+    }
+
 
     const [data, setData] = useState([consumptionData]);
     const [changes, setChanges] = useState([]);
@@ -76,40 +93,7 @@ const ConsumptionGrid = () => {
         });
 
 
-    const createSelectedConsumptionData = async () => {
-        // start loading
-        setLoading(true);
-        try {
-            let newGridData = [...consumptionData]; // Copy the current grid data
-            // loop through each selected row
-
-            console.log("selectedRows", selectedRows);
-            for (let id of selectedRows) {
-                // find the corresponding row data
-                let index = newGridData.findIndex(data => data.vehicleId === id);
-                let rowData = newGridData[index];
-                // transform data to be sent to server
-                let consumptionDataTransformed = { ...rowData }; // copy the row data
-                delete consumptionDataTransformed.defaultEmployees; // remove the original employees
-                consumptionDataTransformed.defaultEmployees = rowData.defaultEmployees.map(employee => employee.id); // replace with the id array
-                // send POST request
-                const response = await axios.post(`${apiUrl}/consumption/create`, consumptionDataTransformed);
-                // log response
-                console.log("response", response);
-                // remove this row from the grid data
-                newGridData.splice(index, 1);
-            }
-            // update the grid data
-            setConsumptionData(newGridData);
-        } catch (error) {
-            console.error("error", error);
-        } finally {
-            // stop loading
-            setLoading(false);
-            // clear selection
-            setSelectedRows([]);
-        }
-    };
+   
 
 
 
@@ -162,26 +146,7 @@ const ConsumptionGrid = () => {
                 rowAlternationEnable={true}
                 height={500}
                 onSelectionChanged={onSelectionChanged} // handle row selection
-            
-               
-
-                onRowUpdating={async (e) => {
-                    e.cancel = true; //Prevent Grid default request
-
-                    const consumptionDataTransformed = {
-
-
-
-                    };//transform data to be sent to server
-
-                    try {
-                        await createSelectedConsumptionData(consumptionDataTransformed);
-                        e.component.refresh(); //refresh grid
-                    }
-                    catch (error) {
-                        console.error("error", error);
-                    }
-                }}
+                 onRowUpdating={onRowUpdating}
              
 
             >
@@ -275,7 +240,7 @@ const ConsumptionGrid = () => {
                 <Column dataField="Comments" caption="Comments" />
 
                 <Toolbar>
-                    <Item location="after" widget="dxButton" options={{ text: "Save Selected Data", onClick: createSelectedConsumptionData, disabled: loading }} />
+                    <Item location="after" widget="dxButton" options={{ text: "Save Selected Data", disabled: loading }} />
                 </Toolbar>
             </DataGrid>
         </div>

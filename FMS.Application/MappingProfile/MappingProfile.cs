@@ -67,7 +67,7 @@ namespace FMS.Application.MappingProfile
     .ForMember(dest => dest.EngHours, opt => opt.MapFrom(src => src.EngHours))
     //.ForMember(dest => dest.IsModified, opt => opt.MapFrom(src => src.IsModified))
 
-    .ForMember(dest => dest.FlowMeterEngineHrs, opt => opt.MapFrom(src => src.FlowMeterEngineHrs));
+    .ForMember(dest => dest.FlowMeterEngineHrs, opt => opt.MapFrom(src => src.FlowMeterEngineHrs)).ReverseMap();
 
 
 
@@ -94,7 +94,7 @@ namespace FMS.Application.MappingProfile
     .ForMember(dest => dest.EngHours, opt => opt.MapFrom(src => src.EngHours))
     .ForMember(dest => dest.IsModified, opt => opt.MapFrom(src => src.IsModified))
     
-    .ForMember(dest => dest.FlowMeterEngineHrs, opt => opt.MapFrom(src => src.FlowMeterEngineHrs));
+    .ForMember(dest => dest.FlowMeterEngineHrs, opt => opt.MapFrom(src => src.FlowMeterEngineHrs)).ReverseMap();
    
 
 

@@ -11,7 +11,7 @@
     "FMS.WebClient": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:7009",
+      "applicationUrl": "http://localhost:7009",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"

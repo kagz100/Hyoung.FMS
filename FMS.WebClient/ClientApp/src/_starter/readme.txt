@@ -1,1 +1,0 @@
-This folder is copied by gulp :create command

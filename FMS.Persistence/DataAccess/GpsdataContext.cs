@@ -531,6 +531,7 @@ public partial class GpsdataContext : DbContext
                 .HasColumnType("int(11)")
                 .HasColumnName("DeviceID");
             entity.Property(e => e.ExcessWorkingHrCost).HasPrecision(10);
+            entity.Property(e => e.WorkingExpectedAverage).HasPrecision(10);
             entity.Property(e => e.HyoungNo).HasMaxLength(45);
             entity.Property(e => e.NumberPlate).HasMaxLength(45);
             entity.Property(e => e.VehicleManufacturerId)

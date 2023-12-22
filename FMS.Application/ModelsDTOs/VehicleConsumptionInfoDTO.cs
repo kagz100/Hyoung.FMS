@@ -23,9 +23,9 @@ namespace FMS.Application.Models
             public String VehicleType { get; set; }
             public string VehicleModel { get; set; }
             public string VehicleManufacturer { get; set; }
-             public Decimal? WorkingExpectedAverage { get; set; }
-            public int WorkingEmployeesID {get;set;}
-            public int WorkingSiteID { get; set; }
+            public decimal ExpectedAveraged { get; set; }
+            public List<EmployeeDto> DefaultEmployees { get; set; }
+            public string Site { get; set; }
             public decimal? ExcessWorkingHrCost { get; set; }
            public DateTime Date { get; set; }
 

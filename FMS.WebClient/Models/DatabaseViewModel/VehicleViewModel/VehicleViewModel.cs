@@ -24,8 +24,8 @@ namespace FMS.WebClient.Models.DatabaseViewModel.VehicleViewModel
         [JsonPropertyName("yom")]
         public string? Yom { get; set; }
 
-        [JsonPropertyName("expectedAveraged")]
-        public decimal ExpectedAveraged { get; set; }
+        [JsonPropertyName("workingExpectedAveraged")]
+        public decimal WorkingExpectedAveraged { get; set; }
 
         [JsonPropertyName("defaultEmployeeId")]
         public int? DefaultEmployeeId { get; set; }

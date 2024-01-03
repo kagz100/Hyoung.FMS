@@ -1,6 +1,6 @@
 ﻿using FMS.Domain.Entities;
 using FMS.Domain.Entities.Auth;
-using FMS.Services.Model;
+using FMS.Services.GPSServiceModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,7 +12,7 @@ namespace FMS.Infrastructure.DependancyInjection
     {
 
         Task<string> LoginAsyn(GPSGateConections user);
-        Task<List<VehicleConsumptionModel>> GetFuelConsumptionReportAsync(GPSGateConections conn, int FuelConsumptionReportID, DateTime from, DateTime to);
+        Task<List<VehicleConsumptionServiceModel>> GetFuelConsumptionReportAsync(GPSGateConections conn, int FuelConsumptionReportID, DateTime from, DateTime to);
 
     }
 }

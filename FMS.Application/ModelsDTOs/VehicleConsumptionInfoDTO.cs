@@ -11,10 +11,12 @@ namespace FMS.Application.Models
     public class VehicleConsumptionInfoDTO
     {
               
+
+          public int Id { get; set; }
             public int VehicleId { get; set; }
 
 
-        
+          
             public decimal? TotalFuel
               { get;set; }
             public string HyoungNo { get; set; }
@@ -53,5 +55,7 @@ namespace FMS.Application.Models
         public bool IsNightShift { get; set; }
 
         public string Comments { get; set; }
+
+        public bool IsModified { get; set; }
     }
 }

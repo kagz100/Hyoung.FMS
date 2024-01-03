@@ -1,0 +1,137 @@
+      
+      Assist me in this step by step
+      I have to change back end code to make things simple ., this is by including id in vehiceconsumptioninfodto
+    //below method is a handler for the query to get the consumption report from GPSGATE REST API and map it to the VehicleConsumptionInfoDTO which we will 
+      // have to change , we will have to either save the data to GpsdataContext to sql database and retrieve the data from database with newly created id and map 
+      //it to the vehicleconsumptionInfoDTO , then pass to front end for the datagrid to be able to edit . We can add additional properties to the vehicleconsumption to 
+      // track if the report has been edited or not , newly added will be false , also modifieddate column to track when the report was modified . we can also add a column 
+      //modifiedby to track who modified the report . 
+      
+      public async Task<List<VehicleConsumptionInfoDTO>> Handle(GetConsumptionReportQuery request, CancellationToken cancellationToken)
+        {
+
+            //call the GPSGate webservice to get the consumption report
+ var consumptionReport = await _gpsGateDirectoryWebservice.GetFuelConsumptionReportAsync(request.conn, request.FuelConsumptionReportId.Value, request.From, request.To);
+
+
+
+
+            //fetch all vehicle from database
+            var vehicles = _Context.Vehicles
+                           .Include(v => v.VehicleType)
+                            .Include(v => v.VehicleModel)
+                            .Include(v => v.Employees)
+                            .Include(v => v.WorkingSite)
+                            .Include(v => v.Expectedaverages)
+                            .ToList();
+            //To:do create a new VehicleConsumption for GPSGAtecontext and map it to the vehicleConsumptionInfoDTO
+
+            var result = consumptionReport.Select(Consumption =>
+            {
+              var vehicle = vehicles.FirstOrDefault(x => x.VehicleId == Consumption.VehicleId);
+
+                    if (vehicle != null)
+                    {
+                    return new VehicleConsumptionInfoDTO { 
+                        
+                        VehicleId = vehicle.VehicleId,
+                        TotalFuel = Consumption.TotalFuel,
+                        HyoungNo = vehicle.HyoungNo,
+                        VehicleType = vehicle.VehicleType?.Name,
+                        VehicleModel = vehicle.VehicleModel?.Name,
+                        WorkingExpectedAverage = vehicle.WorkingExpectedAverage,                          
+                        WorkingSiteID = vehicle.WorkingSite?.Id??0,
+                        ExcessWorkingHrCost = vehicle.ExcessWorkingHrCost,
+                        DefaultEmployeesID = vehicle.Employees.Select(e =>e.Id).ToList(),
+                        Date = Consumption.Date,
+                        MaxSpeed = Consumption.MaxSpeed,
+                        AvgSpeed = Consumption.AvgSpeed,
+                        TotalDistance = Consumption.TotalDistance.Value,
+                        EngHours = Consumption.EngHours,
+                        //IsNightShift = vehicle.,
+                       // FuelEfficiency = Consumption.FuelEfficiency,
+                        IsAverageKm = vehicle.AverageKmL
+                        };
+                }
+                else
+                {
+                    //if the vehicle is not found , you can return null or default instance of the vehicleConsumptionInfo
+
+                    //TODO : if its empty it means you need to add the ID of vehicle To Mysql Database ..
+                    // create a notification to tell the user to create a new user that matches the vehicleID  
+
+                    return null;
+                }
+            }).Where(confinfo => confinfo != null).ToList();
+
+            return result;
+
+
+        }
+
+
+        //below shows current MYSQL schema for the vehicleconsumption table which also has data of previous years . 
+
+        //lets add dummy data for the rows created 
+
+        1. create column modifiedby :     Assist me in this step    add data for all current records  where id is 1 .
+        userTABle 
+        `user` (
+  `id` int(11) NOT NULL,
+  `Full Name` varchar(45) DEFAULT NULL,
+  `Email` varchar(100) DEFAULT NULL,
+  `userType` int(11) DEFAULT NULL,
+  `password` varchar(1045) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_usertype_idx` (`userType`),
+  CONSTRAINT `user_usertype` FOREIGN KEY (`userType`) REFERENCES `usertype` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='	'
+
+2.create column  ModifiedDate(bool) . update data to all recordsdate to be now , 
+3 create column Ismodified (bool) .. update data to all current records to be true
+
+      //belwo is schema for vehicleconsumption table in mysql database .
+       TABLE `vehicleconsumption` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `VehicleID` int(11) NOT NULL,
+  `SiteID` int(11) NOT NULL,
+  `Date` datetime NOT NULL,
+  `MaxSpeed` decimal(10,2) DEFAULT NULL,
+  `AvgSpeed` decimal(10,2) DEFAULT NULL,
+  `ExpectedConsumption` decimal(10,0) DEFAULT NULL,
+  `TotalDistance` decimal(10,0) DEFAULT NULL,
+  `EmployeeID` int(11) DEFAULT '0',
+  `Comments` varchar(100) DEFAULT NULL,
+  `FuelLost` decimal(10,0) DEFAULT NULL,
+  `FuelEfficiency` decimal(10,2) DEFAULT NULL,
+  `TotalFuel` decimal(10,0) DEFAULT NULL,
+  `FlowMeterFuelUsed` decimal(10,0) DEFAULT NULL,
+  `FlowMeterFuelLost` decimal(10,0) DEFAULT NULL,
+  `FlowMeterEffiency` decimal(10,0) DEFAULT NULL,
+  `EngHours` decimal(10,0) DEFAULT NULL,
+  `FlowMeterEngineHrs` decimal(10,0) DEFAULT NULL,
+  `ExcessWorkingHrsCost` decimal(10,0) DEFAULT NULL,
+  `IsNightShift` bit(1) NOT NULL DEFAULT b'0',
+  `IsKmperhr` bit(1) NOT NULL DEFAULT b'0',
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `vehicle_date_shift_unique` (`VehicleID`,`Date`,`IsNightShift`),
+  KEY `vehicleconsumption_site_idx` (`SiteID`),
+  KEY `vehicleconsumption_employee_idx` (`EmployeeID`),
+  CONSTRAINT `vehicleconsumption_employee` FOREIGN KEY (`EmployeeID`) REFERENCES `employee` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `vehicleconsumption_site` FOREIGN KEY (`SiteID`) REFERENCES `site` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `vehicleconsumption_vehicle` FOREIGN KEY (`VehicleID`) REFERENCES `vehicle` (`vehicleID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=483810 DEFAULT CHARSET=latin1
+
+
+
+//do scafolding to update the vehicleconsumption table in from sql 
+
+// Modify vehicleconsumptionInfoDTO to have the new columns
+
+
+//Modify above task Handle method to get data to do 
+ //Save the data to GPSGateContext from webservice
+  //get the data from recently saved data from GPSGateContext
+//map the data to the vehicleConsumptionInfoDTO
+
+//before starting tell me if im correct on above changes which will make it easier for me to do Modification on the datagrid to be able to edit the data and save it to the database

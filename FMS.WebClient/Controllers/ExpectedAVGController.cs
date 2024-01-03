@@ -1,7 +1,10 @@
-﻿using FMS.Application.Command.DatabaseCommand.ExpectedAVGCmd;
+﻿using AutoMapper;
+using FMS.Application.Command.DatabaseCommand.ExpectedAVGCmd;
 using FMS.Application.Command.DatabaseCommand.ExptAVGClassification;
 using FMS.Application.Models;
+using FMS.Application.ModelsDTOs.ExpectedAVG;
 using FMS.Application.Queries.Database.ExpectedAvg;
+using FMS.WebClient.Models.DatabaseViewModel.ExpectedViewModel;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,10 +17,11 @@ namespace FMS.WebClient.Controllers
     {
        
         private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
 
-
-        public ExpectedAVGController(IMediator mediator)
+        public ExpectedAVGController(IMediator mediator,IMapper mapper)
         {
+            _mapper = mapper;
             _mediator = mediator;
         }
 
@@ -26,6 +30,14 @@ namespace FMS.WebClient.Controllers
         public async Task<IActionResult> GetExpectedAVGList()
         {
             var query = new GetExpectedAVGQuery();
+            var expectedAVGs = await _mediator.Send(query);
+            return Ok(expectedAVGs);
+        }
+
+        [HttpGet("getlistbyvehiclebysite")]
+        public async Task<IActionResult> GetExpectedAVGListByVehicleBySite(int vehicleId, int siteId)
+        {
+            var query = new GetExpectedAverageByVehicleBySite { VehicleId = vehicleId, SiteId = siteId };
             var expectedAVGs = await _mediator.Send(query);
             return Ok(expectedAVGs);
         }
@@ -82,19 +94,29 @@ namespace FMS.WebClient.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateExpectedAVG([FromBody] ExpectedAVGDto expectedAVGDto)
+        public async Task<IActionResult> CreateExpectedAVG(List<ExpectedAVGViewModel> expectedAVGViewModel)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest();
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest();
+                }
+
+                var map = _mapper.Map<List<ExpectedAVGDto>>(expectedAVGViewModel); // mapping to a list
+
+                var command = new ExpectedAVGCreateCmd
+                {
+                    ExpectedAVGDto = map
+                };
+                var result = await _mediator.Send(command);
+                return Ok(result);
             }
-            var command = new ExpectedAVGCreateCmd
+            catch (Exception ex)
             {
-                ExpectedAVGDto = expectedAVGDto
-            };
-            var result = await _mediator.Send(command);
-            return Ok(result);
-        }
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Message = ex.Message });
+            }
+            }
 
     }
 }

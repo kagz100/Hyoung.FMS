@@ -4,7 +4,6 @@ using System.Reflection;
 
 using FMS.Application.Models;
 using FMS.Infrastructure.DependancyInjection;
-using FMS.Infrastructure.Webservice;
 using MediatR;
 using AutoMapper;
 
@@ -23,6 +22,7 @@ using FMS.Application.MappingProfile;
 using Autofac.Core;
 using System.Security.Cryptography.Xml;
 using System.Text.Json.Serialization;
+using FMS.Infrastructure.Webservice.GPSService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,7 +58,7 @@ builder.Services.AddMediatR(cfg=>
 //builder.Services.AddScoped<IRequestHandler<GetConsumptionReportQuery,List<VehicleConsumptionInfo>>,GetConsumptionReportQueryHandler>();
 builder.Services.AddScoped<IGPSGateDirectoryWebservice, GPSGateDirectoryWebservice>();
 builder.Services.AddDbContext<GpsdataContext>(options =>
-          options.UseMySQL("server=10.0.10.150;port=3306;database=gpsdata;user=root;password=Niwewenamimi1000;connection timeout=2000"));
+          options.UseMySQL("server=10.0.10.150;port=3306;database=gpsdata;user=root;password=Niwewenamimi1000;connection timeout=2000;command timeout=2000"));
 
 //Auto mapper profiles
 builder.Services.AddAutoMapper(typeof(VehicleMappingProfile));
@@ -69,7 +69,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowSpecificOrigin", build =>
     {
         build
-        .WithOrigins("https://localhost:44403") //change
+        .WithOrigins("https://localhost:3000") //change
         .AllowAnyHeader()
         .AllowAnyMethod();
     });
@@ -82,10 +82,31 @@ if (!app.Environment.IsDevelopment())
 {
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
-    app.UseCors("AllowSpecificOrigin");
+    app.UseExceptionHandler("/Home/Error");
+   // app.UseCors("AllowSpecificOrigin");
     }
 app.UseCors("AllowSpecificOrigin");
+app.Use(async (context, next) =>
+{
+    //log request information here 
+     
+    var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
 
+    logger.LogInformation("Handling request: {RequestMethod} {RequestPath}", context.Request.Method, context.Request.Path);
+    try
+    {
+        await next.Invoke();
+        //log response information here
+
+        logger.LogInformation("Finished handling request. Response status code: {ResponseStatusCode}", context.Response.StatusCode);
+    }catch  (Exception ex)
+    {
+        logger.LogError(ex, "An unhandled exception has occurred while executing the request. Response status code: {ResponseStatusCode}", context.Response.StatusCode);
+        throw;
+    }
+
+
+});
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
@@ -95,6 +116,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");
 
-app.MapFallbackToFile("index.html");
+//app.MapFallbackToFile("index.html");
 
 app.Run();

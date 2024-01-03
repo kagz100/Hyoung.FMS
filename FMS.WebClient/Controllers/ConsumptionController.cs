@@ -5,6 +5,10 @@ using FMS.Application.Queries.GPSGATEServer.GetconsumptionReport;
 using FMS.Domain.Entities.Auth;
 using System.Globalization;
 using FMS.Application.Queries.GPSGATEServer.LoginQuery;
+using FMS.WebClient.Models.DatabaseViewModel;
+using FMS.Application.Command.DatabaseCommand.ConsumptionCmd;
+using AutoMapper;
+using FMS.Application.Command.DatabaseCommand.ConsumtionCmd.Update;
 
 namespace FMS.WebClient.Controllers
 {
@@ -15,9 +19,11 @@ namespace FMS.WebClient.Controllers
     {
         private readonly IMediator _mediator;
         private readonly IConfiguration _configuration;
+        private readonly IMapper _mapper;
 
-        public ConsumptionController (IMediator mediator, IConfiguration configuration)
+        public ConsumptionController (IMediator mediator, IConfiguration configuration,IMapper mapper)
         {
+            _mapper = mapper;
             _mediator = mediator;
             _configuration = configuration;
         }
@@ -57,6 +63,43 @@ namespace FMS.WebClient.Controllers
             return Ok(results);
 
         }
+
+        [HttpPost("Create")]
+        public async Task<IActionResult> ConsumptionCreate([FromBody] ConsumptionViewModel model)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+         
+            var command = _mapper.Map<ConsumptionCreateCmd>(model);
+
+            await _mediator.Send(command);
+
+            return Ok();
+
+        }
+
+        [HttpPut("Update/{id}")]
+        public async Task<IActionResult> ConsumptionUpdate(int id, [FromBody] ConsumptionViewModel model)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+         
+            var command = _mapper.Map<ComsumptionUpdateCmd>(model);
+
+            command.Id = id;
+
+            await _mediator.Send(command);
+
+            return Ok();
+
+        }
+
+
+
 
         [HttpGet("test")]
         public IActionResult Test()

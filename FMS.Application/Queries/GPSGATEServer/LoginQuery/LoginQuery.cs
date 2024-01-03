@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace FMS.Application.Queries.GPSGATEServer.LoginQuery
 {
+    /// <summary>
+    /// To login in to the GPSGate server
+    /// </summary>
     public  class LoginQuery : IRequest<GPSGateConections>
     {
 
@@ -17,7 +20,9 @@ namespace FMS.Application.Queries.GPSGATEServer.LoginQuery
 
     }
 
-
+    /// <summary>
+    /// Login Query Handler 
+    /// </summary>
     public class LoqinQuery: IRequestHandler<LoginQuery, GPSGateConections>
     {
 
@@ -28,6 +33,12 @@ namespace FMS.Application.Queries.GPSGATEServer.LoginQuery
             _gpsGateDirectoryWebservice = gPSGateDirectoryWebservice;
         }
 
+        /// <summary>
+        /// To login in to the GPSGate server
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>GPSConnections information conns</returns>
              public async Task<GPSGateConections> Handle(LoginQuery request, CancellationToken cancellationToken)
         {
             var conn = request.GPSGateConections;

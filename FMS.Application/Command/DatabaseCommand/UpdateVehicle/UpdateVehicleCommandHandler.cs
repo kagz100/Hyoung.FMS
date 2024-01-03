@@ -33,7 +33,7 @@ namespace FMS.Application.Command.DatabaseCommand.UpdateVehicle
 
                //update the properties of the vehicle using properties of the request
                 existingVehicle.VehicleModelId = request.VehicleModelId;
-                existingVehicle.ExpectedAveraged = request.ExpectedAveraged;
+               // existingVehicle.WorkingExpectedAverage = request.ExpectedAveraged;
                 existingVehicle.WorkingSiteId = request.WorkingSiteId;
                 existingVehicle.ExcessWorkingHrCost = request.ExcessWorkingHrCost;
                 existingVehicle.DefaultEmployeeId = request.DefaultEmployeeId;  

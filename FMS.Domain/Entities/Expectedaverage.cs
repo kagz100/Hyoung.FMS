@@ -13,11 +13,13 @@ public partial class Expectedaverage
 
     public decimal ExpectedAverage1 { get; set; }
 
-    public int? SiteId { get; set; }
+    public int SiteId { get; set; }
 
     public virtual Expectedaverageclassification ExpectedAverageClassification { get; set; } = null!;
 
-    public virtual Site? Site { get; set; }
+    public virtual Site Site { get; set; } = null!;
 
     public virtual Vehicle Vehicle { get; set; } = null!;
+
+    public virtual ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
 }

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using FMS.Application.Models;
+using FMS.Application.ModelsDTOs.ExpectedAVG;
 using FMS.Persistence.DataAccess;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

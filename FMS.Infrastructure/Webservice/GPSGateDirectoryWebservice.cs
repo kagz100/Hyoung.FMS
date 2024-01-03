@@ -46,7 +46,7 @@ namespace FMS.Infrastructure.Webservice
         /// <param name="from">The start date of the report.</param>
         /// <param name="to">The end date of the report.</param>
         /// <returns>A list of VehicleConsumptionModel objects representing the fuel consumption report.</returns>
-        public async Task<List<VehicleConsumptionModel>> GetFuelConsumptionReportAsync(GPSGateConections conn, int FuelConsumptionReportID, DateTime from, DateTime to)
+        public async Task<List<VehicleConsumptionServiceModel>> GetFuelConsumptionReportAsync(GPSGateConections conn, int FuelConsumptionReportID, DateTime from, DateTime to)
         {
          string fromdatestr = from.ToString("o",CultureInfo.InvariantCulture) ;
           string todatestr = to.ToString("o",CultureInfo.InvariantCulture);
@@ -72,6 +72,7 @@ namespace FMS.Infrastructure.Webservice
             var handleId = reportXml.Descendants("handleid").FirstOrDefault()?.Value;
             var state = reportXml.Descendants("state").FirstOrDefault()?.Value;
 
+
             // Change handleid to int
             int.TryParse(handleId, out int handleIdInt);
 
@@ -89,6 +90,9 @@ namespace FMS.Infrastructure.Webservice
             
             
                 // If "Done", get the report
+
+
+
                 var report = await _ReportSoapClient.FetchReportAsync(conn.SessionID, handleIdInt);
 
                 // Parse the report data into an XDocument object
@@ -110,7 +114,7 @@ namespace FMS.Infrastructure.Webservice
 
                 var headcell = headerRow.Descendants("{http://gpsgate.com/xml/}Cell").ToList();
 
-                var result = new List<VehicleConsumptionModel>();
+                var result = new List<VehicleConsumptionServiceModel>();
 
 
                 foreach (var dataRow in dataRows)
@@ -131,10 +135,10 @@ namespace FMS.Infrastructure.Webservice
         /// </summary>
         /// <param name="dataRow">The XML row containing the VehicleConsumption data.</param>
         /// <returns>A VehicleConsumptionModel object.</returns>
-        public VehicleConsumptionModel ParseVehicleConsumption(XElement dataRow)
+        public VehicleConsumptionServiceModel ParseVehicleConsumption(XElement dataRow)
         {
 
-            var consumption = new VehicleConsumptionModel();
+            var consumption = new VehicleConsumptionServiceModel();
 
             foreach(var datacell in dataRow.Descendants("{http://gpsgate.com/xml/}Cell"))
             {
@@ -274,11 +278,24 @@ namespace FMS.Infrastructure.Webservice
         /// <returns>A Task representing the asynchronous operation.</returns>
         private async Task<string> GetReportStatus(GPSGateConections conn, int handleId)
         {
-            //check on GPSGATE API 
+            try
+            {
+                //check on GPSGATE API 
 
-            var reportStatus = await _ReportSoapClient.GetReportStatusAsync(conn.SessionID, handleId);
+                var reportStatus = await _ReportSoapClient.GetReportStatusAsync(conn.SessionID, handleId);
 
-            // Deserialize the report data into a ReportHandler object
+
+                //Ensure that the result is not null or empty 
+                var resultXml = "<reportHandler>" +  reportStatus.Body.GetReportStatusResult?.InnerXml + "</reportHandler>";
+
+                if (string.IsNullOrWhiteSpace(resultXml))
+                {
+                    throw new InvalidOperationException("Received empty or null Responce for report status");
+                }
+
+
+
+                // Deserialize the report data into a ReportHandler object
 
             var serializer = new XmlSerializer(typeof(ReportHandler));
             //retrieve the handleid and state data
@@ -290,7 +307,7 @@ namespace FMS.Infrastructure.Webservice
             var state = reportHandler.State;
             var handleID = reportHandler.HandleId;
 
-            //return the status 
+                //return the status 
 
             return state;
            
@@ -312,7 +329,7 @@ namespace FMS.Infrastructure.Webservice
     }
 
 
-  
+    [XmlRoot(ElementName = "reportHandler")]
     public class ReportHandler
     {
         [XmlElement(ElementName = "handleid")]

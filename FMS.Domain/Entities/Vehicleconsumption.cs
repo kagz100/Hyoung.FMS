@@ -47,7 +47,15 @@ public partial class Vehicleconsumption
 
     public ulong IsKmperhr { get; set; }
 
+    public int? ModifiedBy { get; set; }
+
+    public DateTime? ModifiedDate { get; set; }
+
+    public sbyte? IsModified { get; set; }
+
     public virtual Employee? Employee { get; set; }
+
+    public virtual User? ModifiedByNavigation { get; set; }
 
     public virtual Site Site { get; set; } = null!;
 

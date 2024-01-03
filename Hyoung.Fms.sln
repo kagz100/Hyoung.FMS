@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FMS.WebClient", "FMS.WebCli
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{CA77650D-F125-4B01-B3D1-0CC0404F0AFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMS.Services", "FMS.Services\FMS.Services.csproj", "{800E78F7-04EB-4724-9CF7-2342C715835B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FMS.Services", "FMS.Services\FMS.Services.csproj", "{800E78F7-04EB-4724-9CF7-2342C715835B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -17,10 +17,6 @@ public partial class Vehicle
 
     public string? Yom { get; set; }
 
-
-    public decimal? WorkingExpectedAverage { get; set; }
-
-
     public int? DeviceId { get; set; }
 
     public int? DefaultEmployeeId { get; set; }
@@ -37,7 +33,7 @@ public partial class Vehicle
 
     public string? CurrentPhysicalReading { get; set; }
 
-   // public int? WorkingExpectedAverage { get; set; }
+    public int? WorkingExpectedAverage { get; set; }
 
     public virtual ICollection<Calibrationdatum> Calibrationdata { get; set; } = new List<Calibrationdatum>();
 

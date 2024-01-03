@@ -72,6 +72,7 @@ namespace FMS.Infrastructure.Webservice
             var handleId = reportXml.Descendants("handleid").FirstOrDefault()?.Value;
             var state = reportXml.Descendants("state").FirstOrDefault()?.Value;
 
+
             // Change handleid to int
             int.TryParse(handleId, out int handleIdInt);
 
@@ -80,15 +81,18 @@ namespace FMS.Infrastructure.Webservice
             {
                 // If not ready, wait 1 second and check again
                 await Task.Delay(1000);
-             state =   await GetReportStatus(conn, handleIdInt);
+                await GetReportStatus(conn, handleIdInt);
 
-               // var reportstatus = await _ReportSoapClient.GetReportStatusAsync(conn.SessionID, handleIdInt);
+                var reportstatus = await _ReportSoapClient.GetReportStatusAsync(conn.SessionID, handleIdInt);
 
-//state = reportstatus.Body.GetReportStatusResult.ToString();
+                state = reportstatus.Body.GetReportStatusResult.ToString();
             }
             
             
                 // If "Done", get the report
+
+
+
                 var report = await _ReportSoapClient.FetchReportAsync(conn.SessionID, handleIdInt);
 
                 // Parse the report data into an XDocument object
@@ -274,36 +278,38 @@ namespace FMS.Infrastructure.Webservice
         /// <returns>A Task representing the asynchronous operation.</returns>
         private async Task<string> GetReportStatus(GPSGateConections conn, int handleId)
         {
-            //check on GPSGATE API 
-
-            var reportStatus = await _ReportSoapClient.GetReportStatusAsync(conn.SessionID, handleId);
-
-            // Deserialize the report data into a ReportHandler object
-
-
-            var xdoc = XDocument.Parse(reportStatus.Body.GetReportStatusResult.OuterXml);
-
-            var reportHandler = new ReportHandler
+            try
             {
-                HandleId = (int)xdoc.Root.Element("handleid"),
-                State = (string)xdoc.Root.Element("state")
-            };
+                //check on GPSGATE API 
+
+                var reportStatus = await _ReportSoapClient.GetReportStatusAsync(conn.SessionID, handleId);
 
 
-//
-         //   var serializer = new XmlSerializer(typeof(ReportHandler));
+                //Ensure that the result is not null or empty 
+                var resultXml = "<reportHandler>" +  reportStatus.Body.GetReportStatusResult?.InnerXml + "</reportHandler>";
+
+                if (string.IsNullOrWhiteSpace(resultXml))
+                {
+                    throw new InvalidOperationException("Received empty or null Responce for report status");
+                }
+
+
+
+                // Deserialize the report data into a ReportHandler object
+
+            var serializer = new XmlSerializer(typeof(ReportHandler));
             //retrieve the handleid and state data
 
-        //    var reportHandler = (ReportHandler)serializer.Deserialize(new XmlTextReader(reportStatus.Body.GetReportStatusResult.OuterXml.ToString()));
+            var reportHandler = (ReportHandler)serializer.Deserialize(new XmlTextReader(reportStatus.Body.GetReportStatusResult.ToString()));
 
             //retrieve the handleid and state data
 
-          //  var state = reportHandler.State;
-          //  var handleID = reportHandler.HandleId;
+            var state = reportHandler.State;
+            var handleID = reportHandler.HandleId;
 
-            //return the status 
+                //return the status 
 
-            return reportHandler.State;
+            return state;
            
         }
 
@@ -323,7 +329,7 @@ namespace FMS.Infrastructure.Webservice
     }
 
 
-  
+    [XmlRoot(ElementName = "reportHandler")]
     public class ReportHandler
     {
         [XmlElement(ElementName = "handleid")]

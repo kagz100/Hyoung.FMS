@@ -4,7 +4,7 @@ import CustomStore from 'devextreme/data/custom_store';
 import axios from 'axios';
 import EmployeeVehicleTagBox from './employeevehicleTagbox';
 
-const apiUrl = "https://localhost:7009/api";
+const apiUrl = "http://localhost:7009/api";
 
 const vehicleTemplate = (container, options) => {
     const noBreakSpace = '\u00A0';

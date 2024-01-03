@@ -6,7 +6,7 @@ import SelectBox from 'devextreme-react/select-box';
 
 const apiUrl = "https://localhost:7009/api";
 
-const expectedAVGdatagrid = () => {
+const ExpectedAVGdatagrid  = () => {
 
 
     const [selectedVehicleType, setSelectedVehicleType] = useState('');
@@ -181,4 +181,4 @@ const expectedAVGdatagrid = () => {
     </div>
     );
 };
-export default expectedAVGdatagrid;
+export default ExpectedAVGdatagrid ;

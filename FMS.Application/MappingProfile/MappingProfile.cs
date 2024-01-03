@@ -3,9 +3,10 @@ using FMS.Application.Command.DatabaseCommand.ConsumtionCmd.Update;
 using FMS.Application.Models;
 using FMS.Application.Models.Employee;
 using FMS.Application.Models.Vehicle;
+using FMS.Application.ModelsDTOs.ATG;
 using FMS.Application.ModelsDTOs.ExpectedAVG;
 using FMS.Domain.Entities;
-using FMS.Services.Model;
+using FMS.Services.GPSServiceModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,10 @@ namespace FMS.Application.MappingProfile
     public class MappingProfile:Profile
     {
         public MappingProfile() { 
+
+
+           
+    
         
         CreateMap<Vehicle,VehicleListDTO>().ReverseMap();
          CreateMap<Employee,EmployeeDto>()
@@ -48,6 +53,11 @@ namespace FMS.Application.MappingProfile
                 .ReverseMap();
 
             CreateMap<Expectedaverageclassification, ExpectedAVGClassficationDTO>().ReverseMap();
+
+
+           
+
+
 
 
             CreateMap<ComsumptionUpdateCmd,Vehicleconsumption>()
@@ -93,7 +103,7 @@ namespace FMS.Application.MappingProfile
     //ForMember(dest => dest.FuelEfficiency, opt => opt.MapFrom(src => src.FuelEfficiency))
     .ForMember(dest => dest.EngHours, opt => opt.MapFrom(src => src.EngHours))
     .ForMember(dest => dest.IsModified, opt => opt.MapFrom(src => src.IsModified))
-    
+    .ForMember(dest => dest.Site, opt => opt.MapFrom(src =>src.Site))
     .ForMember(dest => dest.FlowMeterEngineHrs, opt => opt.MapFrom(src => src.FlowMeterEngineHrs)).ReverseMap();
    
 

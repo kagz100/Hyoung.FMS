@@ -12,6 +12,9 @@ using FMS.Domain.Entities;
 using Microsoft.Extensions.Logging;
 using AutoMapper.Configuration.Annotations;
 using FMS.Application.ModelsDTOs.ATG.Common;
+using FMS.Application.Command.DatabaseCommand.ATGCommands.InTankDeliveryCommand;
+using FMS.Application.Command.DatabaseCommand.ATGCommands.PumpTransactoinCommand;
+using FMS.Application.Command.DatabaseCommand.ATGCommands.AlertRecordCommand;
 
 namespace FMS.WebClient.Controllers;
 
@@ -128,22 +131,38 @@ namespace FMS.WebClient.Controllers;
             foreach (var packet in ptsRequestDTO.Packets)
             {
 
+                 string localResponse = string.Empty; 
+
                 switch (packet.Type)
                 {
                     case "UploadTankMeasurement":
 
                         var command = new CreateTankMeasurementCommand { PtsRequestDto = ptsRequestDTO };
-                        response = await _mediator.Send(command);
-                        return response.Contains("OK") ? Ok(response) : BadRequest(response);
+                        localResponse = await _mediator.Send(command);
+                        break;
 
                     case "UploadPumpTransaction":
-                        //  return await HandleExpectedAVG(jsonRequest);
+                        var pumpCommand = new CreatePumpTransactionCommand { PtsRequestDto = ptsRequestDTO };
+                        localResponse = await _mediator.Send(pumpCommand);
+                       break;
+                    case "UploadInTankDelivery":
+                         var deliveryCommand = new CreateInTankDeliveryCommand { PtsRequestDto = ptsRequestDTO };
+                        localResponse = await _mediator.Send(deliveryCommand);
+                         break;
+                    case "UploadAlertRecord":
+                         var alertCommand = new CreateAlertRecordCommand { PtsRequestDto = ptsRequestDTO };
+                         localResponse = await _mediator.Send(alertCommand);
                         break;
                     default:
                         _logger.LogError("Unknown request type: {RequestType}", packet.Type);
                         return BadRequest("Unknown request type");
                 }
+                if(!localResponse.Contains("OK"))
+                {
+                    return BadRequest(localResponse);
+                }
             }
+
         }
         catch (Exception ex)
         {

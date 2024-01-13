@@ -62,7 +62,7 @@ namespace FMS.Application.Command.DatabaseCommand.ATGCommands.TankMeasurementsCo
                             PacketId = packet.Id,
                             Tank = tankdata.Tank,
                             ProductUllage = tankdata.ProductUllage,
-                            PTSId = request.PtsRequestDto.PtsId,
+                            Ptsid = request.PtsRequestDto.PtsId,
                             DateTime = tankdata.DateTime,
                             FuelGradeId = tankdata.FuelGradeId,
                             ProductHeight = tankdata.ProductHeight,
@@ -80,7 +80,6 @@ namespace FMS.Application.Command.DatabaseCommand.ATGCommands.TankMeasurementsCo
 
                         };
 
-                        _context.Tankmeasurements.Add(tankmeasurementsdata);
 
 
                         //process alamrs and add to tankmeasurementsdata
@@ -90,15 +89,16 @@ namespace FMS.Application.Command.DatabaseCommand.ATGCommands.TankMeasurementsCo
                             if (alarm != null)
                             {
 
-                                tankmeasurementsdata.AlarmTankmeasurements.Add(new AlarmTankmeasurement
+                                tankmeasurementsdata.AlarmTankMeasurements.Add(new AlarmTankmeasurement
                                 {
                                     AlarmId = alarm.Id,
                                     TankMeausement = tankmeasurementsdata
                                 });
 
                             }
+                            
                         }
-
+                        _context.Tankmeasurements.Add(tankmeasurementsdata);
 
                         requestid = tankmeasurementsdata.PacketId;
 
@@ -108,12 +108,12 @@ namespace FMS.Application.Command.DatabaseCommand.ATGCommands.TankMeasurementsCo
                 // _context.Tankmeasurements.Add(tankmeasurementsdata);
                 await _context.SaveChangesAsync(cancellationToken);
               
-                return ConfirmationMessage.CreateConfirmationMessage(requestid, "UploadTankMeasurement");
+                return ConfirmationMessage.Success(requestid, "UploadTankMeasurement");
 
             } catch (Exception ex)
             {
                 
-                return ConfirmationMessage.CreateErrorMessage(requestid, "UploadTankMeasurement", 500, ex.Message);
+                return ConfirmationMessage.Error(requestid, "UploadTankMeasurement", 500, ex.Message);
             }
 
            

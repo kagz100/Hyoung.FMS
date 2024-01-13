@@ -20,8 +20,6 @@ public partial class Site
 
     public virtual ICollection<Pts> Pts { get; set; } = new List<Pts>();
 
-    public virtual ICollection<Tankmeasurement> Tankmeasurements { get; set; } = new List<Tankmeasurement>();
-
     public virtual ICollection<Vehicleconsumption> Vehicleconsumptions { get; set; } = new List<Vehicleconsumption>();
 
     public virtual ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();

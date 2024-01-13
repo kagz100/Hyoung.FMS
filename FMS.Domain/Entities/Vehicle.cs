@@ -35,6 +35,8 @@ public partial class Vehicle
 
     public int? WorkingExpectedAverage { get; set; }
 
+    public sbyte? GpsgategeneratedId { get; set; }
+
     public virtual ICollection<Calibrationdatum> Calibrationdata { get; set; } = new List<Calibrationdatum>();
 
     public virtual Employee? DefaultEmployee { get; set; }

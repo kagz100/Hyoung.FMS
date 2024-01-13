@@ -15,6 +15,4 @@ public partial class Tank
 
     public virtual ICollection<Pts> Pts { get; set; } = new List<Pts>();
 
-    public virtual ICollection<PtsTank> PtsTanks { get; set; } = new List<PtsTank>();
-    public virtual ICollection<Tankmeasurement> Tankmeasurements { get; set; } = new List<Tankmeasurement>();
 }

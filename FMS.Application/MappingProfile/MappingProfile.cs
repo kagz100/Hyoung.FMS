@@ -4,6 +4,7 @@ using FMS.Application.Models;
 using FMS.Application.Models.Employee;
 using FMS.Application.Models.Vehicle;
 using FMS.Application.ModelsDTOs.ATG;
+using FMS.Application.ModelsDTOs.Consumption;
 using FMS.Application.ModelsDTOs.ExpectedAVG;
 using FMS.Domain.Entities;
 using FMS.Services.GPSServiceModels;
@@ -23,11 +24,40 @@ namespace FMS.Application.MappingProfile
            
     
         
-        CreateMap<Vehicle,VehicleListDTO>().ReverseMap();
+        CreateMap<Vehicle,VehicleListDTO>()
+                
+              .ForMember(dest=>dest.VehicleId,opt =>opt.MapFrom(src =>src.VehicleId))
+             .ForMember(dest => dest.VehicleManufacturerId, opt => opt.MapFrom(src => src.VehicleManufacturer.Id))
+             .ForMember(dest => dest.DefaultExpectedAverageId, opt => opt.MapFrom(src => src.DefaultExptdAvg.Id))
+             .ForMember(dest => dest.ExpectedAverageclassificationName, opt => opt.MapFrom(src => src.DefaultExptdAvg.ExpectedAverageClassification.Name))
+             .ForMember(dest => dest.ExpectedAverageValue, opt => opt.MapFrom(src => src.DefaultExptdAvg.ExpectedAverageValue))
+             // .ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.VehicleId))
+             //.ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.VehicleId))
+             //.ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.VehicleId))
+             //.ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.VehicleId))
+             // .ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.VehicleId))
+             //.ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.VehicleId))
+             //.ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.VehicleId))
+             //.ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.VehicleId))
+             // .ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.VehicleId))
+             //.ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.VehicleId))
+             //.ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.VehicleId))
+             //.ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.VehicleId))
+
+
+
+
+                .ReverseMap();
+
          CreateMap<Employee,EmployeeDto>()
                 .ForMember(dest => dest.SiteId, opt => opt.MapFrom(src => src.SiteId))
-                
+                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.FullName))
+                .ForMember(dest => dest.EmployeeWorkNo, opt => opt.MapFrom(src => src.EmployeeWorkNo))
+               .ForMember(dest => dest.EmployeephoneNumber, opt => opt.MapFrom(src => src.EmployeephoneNumber))
+                .ForMember(dest => dest.Employeestatus, opt => opt.MapFrom(src => src.Employeestatus))
+                  .ForMember(dest => dest.NationalId, opt => opt.MapFrom(src => src.NationalId))         
                 .ReverseMap();
+
             CreateMap<Vehicle, SimpleVehicleDto>()
                 .ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.VehicleId))
                 .ForMember(dest => dest.HyoungNo, opt => opt.MapFrom(src => src.HyoungNo)).ReverseMap();
@@ -46,16 +76,37 @@ namespace FMS.Application.MappingProfile
             CreateMap <Expectedaverage,ExpectedAVGDto>()
                 .ForMember(dest=>dest.Id,opt=>opt.MapFrom(src=>src.Id))
                 .ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.VehicleId))
-                .ForMember(dest => dest.ExpectedAverage1, opt => opt.MapFrom(src => src.ExpectedAverage1))
-                .ForMember(dest => dest.ExpectedAverageClassificationId, opt => opt.MapFrom(src => src.ExpectedAverageClassificationId))
-                
+                .ForMember(dest => dest.ExpectedAverageValue, opt => opt.MapFrom(src => src.ExpectedAverageValue))
+                .ForMember(dest => dest.ExpectedAverageClassificationId, opt => opt.MapFrom(src => src.ExpectedAverageClassificationId))       
+                .ForMember(dest => dest.ExpectedAverageclassificationName, opt => opt.MapFrom(src => src.ExpectedAverageClassification.Name))
                 
                 .ReverseMap();
 
             CreateMap<Expectedaverageclassification, ExpectedAVGClassficationDTO>().ReverseMap();
 
 
-           
+            CreateMap<Vehicleconsumption, HistoryConsumptionDTO>()
+      .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+      .ForMember(dest => dest.TotalFuel, opt => opt.MapFrom(src => src.TotalFuel))
+      .ForMember(dest => dest.ExpectedAveraged, opt => opt.MapFrom(src => src.ExpectedConsumption))
+      .ForMember(dest => dest.Employee, opt => opt.MapFrom(src => src.Employee != null ? src.Employee.FullName : string.Empty))
+      .ForMember(dest => dest.Site, opt => opt.MapFrom(src => src.Site.Name))
+      .ForMember(dest => dest.ExcessWorkingHrCost, opt => opt.MapFrom(src => src.ExcessWorkingHrsCost))
+      .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.Date))
+      .ForMember(dest => dest.MaxSpeed, opt => opt.MapFrom(src => src.MaxSpeed))
+      .ForMember(dest => dest.AvgSpeed, opt => opt.MapFrom(src => src.AvgSpeed))
+      .ForMember(dest => dest.TotalDistance, opt => opt.MapFrom(src => src.TotalDistance))
+      .ForMember(dest => dest.FlowMeterFuelUsed, opt => opt.MapFrom(src => src.FlowMeterFuelUsed))
+      .ForMember(dest => dest.FlowMeterFuelLost, opt => opt.MapFrom(src => src.FlowMeterFuelLost))
+      .ForMember(dest => dest.FlowMeterEngineHrs, opt => opt.MapFrom(src => src.FlowMeterEngineHrs))
+      .ForMember(dest => dest.IsAverageKm, opt => opt.MapFrom(src => src.IsKmperhr))
+      .ForMember(dest => dest.IsNightShift, opt => opt.MapFrom(src => src.IsNightShift))
+            .ForMember(dest => dest.EngHours, opt => opt.MapFrom(src => src.EngHours))
+                  .ForMember(dest => dest.Comments, opt => opt.MapFrom(src => src.Comments))
+                        .ForMember(dest => dest.ExcessWorkingHrCost, opt => opt.MapFrom(src => src.ExcessWorkingHrsCost));
+
+
+;
 
 
 

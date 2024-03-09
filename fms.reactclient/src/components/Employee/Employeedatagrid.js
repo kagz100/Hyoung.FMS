@@ -4,7 +4,8 @@ import CustomStore from 'devextreme/data/custom_store';
 import axios from 'axios';
 import EmployeeVehicleTagBox from './employeevehicleTagbox';
 
-const apiUrl = "http://localhost:7009/api";
+const apiUrl = process.env.REACT_APP_FMS_API_URL;
+
 
 const vehicleTemplate = (container, options) => {
     const noBreakSpace = '\u00A0';
@@ -18,7 +19,7 @@ const Employeedatagrid = () => {
     const dataSource = new CustomStore({
         key: 'id',
         load: async () => {
-            const response = await axios.get(`${apiUrl}/employee/getemployeelist`);
+            const response = await axios.get(`${apiUrl}/employee/getlist`);
             return response.data;
         },
         byKey: async (key) => {
@@ -64,7 +65,7 @@ const Employeedatagrid = () => {
         key: 'id',
         loadMode: 'raw',
         load: async () => {
-            const response = await axios.get(`${apiUrl}/site/GetSiteList`);
+            const response = await axios.get(`${apiUrl}/site/GetList`);
             return response.data;
         }
 
@@ -95,7 +96,10 @@ const Employeedatagrid = () => {
 
 
     return (
+
+      
         <div>
+              <h1>Employees</h1>
             <DataGrid
                 dataSource={dataSource}
                 keyExpr="id"

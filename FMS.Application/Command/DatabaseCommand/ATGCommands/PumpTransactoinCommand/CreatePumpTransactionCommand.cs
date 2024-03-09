@@ -38,9 +38,8 @@ namespace FMS.Application.Command.DatabaseCommand.ATGCommands.PumpTransactoinCom
             {
                 foreach(var packet in request.PtsRequestDto.Packets)
                 {
-                    foreach(var dataobject in packet.Data)
-                    {
-                        var pumpdata = dataobject.ToObject<PumpTransactionDto>();
+                   
+                        var pumpdata = packet.Data.ToObject<PumpTransactionDto>();
                         if (pumpdata == null) continue;
 
                         var pumptransactiondata = new Pumptransaction
@@ -69,7 +68,7 @@ namespace FMS.Application.Command.DatabaseCommand.ATGCommands.PumpTransactoinCom
                         requestid = pumptransactiondata.Id;
 
 
-                    }
+                    
                  await _context.SaveChangesAsync(cancellationToken);
 
                 }

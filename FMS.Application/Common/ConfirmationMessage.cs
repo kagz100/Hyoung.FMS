@@ -23,10 +23,10 @@ namespace FMS.Application.Common
             {
                 return JsonConvert.SerializeObject(new
                 {
-                    Protocal = "jsonPTS",
+                    Protocol = "jsonPTS",
                     Packets = new[]
                     {
-                        new {Id=id,Type = type,Message = message }
+                        new {Id=id,Type = type,Message = "OK" }
                     }
                 });
             }
@@ -43,7 +43,7 @@ namespace FMS.Application.Common
             {
                 return JsonConvert.SerializeObject(new
                 {
-                    Protocal = "jsonPTS",
+                    Protocol = "jsonPTS",
                     Packets = new[]
                     {
                         new {Id=id,Type = type,Code =code,  Message = message }

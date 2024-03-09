@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container } from 'reactstrap';
 import { NavMenu } from './NavMenu';
+import { Height } from 'devextreme-react/chart';
 
 
 export class Layout extends Component {

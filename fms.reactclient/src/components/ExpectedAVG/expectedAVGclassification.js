@@ -3,7 +3,7 @@ import DataGrid, { Column, Paging, FilterRow, Sorting, ColumnChooser, ColumnFixi
 import axios from 'axios';
 import CustomStore from 'devextreme/data/custom_store';
 
-const apiUrl = "https://localhost:7009/api";
+const apiUrl = process.env.REACT_APP_FMS_API_URL;
 
 const expectedAVGclassification = () => {
     const dataSource = new CustomStore({
@@ -57,6 +57,7 @@ const expectedAVGclassification = () => {
                 allowEditing={false} />
             <Column dataField="name" caption="Name" />
             <Column dataField="description" caption="Description" />
+            <Column dataField="iskmperLiter" caption="Is km per Liter" />
         </DataGrid>
     );
 };

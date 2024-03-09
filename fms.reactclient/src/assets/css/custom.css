@@ -12,3 +12,13 @@ code {
     background-color: #1b6ec2;
     border-color: #1861ac;
 }
+
+  
+.chart-container {
+    height: 700px; /* or set to 100% depending on layout */
+    overflow-y: auto; /* enables vertical scrolling if the content is taller than the container */
+  }
+
+  .container{
+    width: 1500px;
+  }

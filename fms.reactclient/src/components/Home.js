@@ -1,11 +1,10 @@
 import React from "react";
-import ConsumptionGrid from "./ConsumptionGrid";
+//import ConsumptionGrid from "./ConsumptionGrid";
 
 const HomePage = () => {
     return (
         <div>
-            <h1>Consumption Report</h1>
-            <ConsumptionGrid />
+            <h1>FMS system</h1>
         </div>
     );
 };

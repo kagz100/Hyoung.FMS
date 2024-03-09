@@ -42,9 +42,7 @@ public partial class Tankmeasurement
 
     public int Tank { get; set; }
 
-    [JsonIgnore]
     public virtual ICollection<Alarm> Alarms { get; set; } = new List<Alarm>();
 
-    public virtual ICollection<AlarmTankmeasurement> AlarmTankMeasurements { get; set; } = new List<AlarmTankmeasurement>();
 
 }

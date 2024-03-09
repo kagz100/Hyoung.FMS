@@ -78,6 +78,7 @@ public partial class GpsdataContext : DbContext
 
     public virtual DbSet<Vehicletype> Vehicletypes { get; set; }
 
+
     //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
     //  => optionsBuilder.UseMySql("server=10.0.10.150;port=3306;database=gpsdata;user=root;password=Niwewenamimi1000;connection timeout=10000;command timeout=10000", Microsoft.EntityFrameworkCore.ServerVersion.Parse("5.5.61-mysql"));
@@ -314,12 +315,10 @@ public partial class GpsdataContext : DbContext
             entity.Property(e => e.Id)
                 .HasColumnType("int(11)")
                 .HasColumnName("ID");
-            entity.Property(e => e.ExpectedAverage1)
-                .HasPrecision(5, 2)
-                .HasColumnName("ExpectedAverage");
             entity.Property(e => e.ExpectedAverageClassificationId)
                 .HasColumnType("int(11)")
                 .HasColumnName("ExpectedAverageClassificationID");
+            entity.Property(e => e.ExpectedAverageValue).HasPrecision(5, 2);
             entity.Property(e => e.SiteId)
                 .HasColumnType("int(11)")
                 .HasColumnName("SiteID");
@@ -353,6 +352,7 @@ public partial class GpsdataContext : DbContext
                 .HasColumnType("int(11)")
                 .HasColumnName("ID");
             entity.Property(e => e.Description).HasColumnType("text");
+            entity.Property(e => e.IskmperLiter).HasColumnType("tinyint(4)");
             entity.Property(e => e.Name).HasMaxLength(545);
         });
 
@@ -555,26 +555,6 @@ public partial class GpsdataContext : DbContext
                 .HasForeignKey(d => d.SiteId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("PTS_Site");
-
-            entity.HasMany(d => d.Tanks).WithMany(p => p.Pts)
-                .UsingEntity<Dictionary<string, object>>(
-                    "Ptstank",
-                    r => r.HasOne<Tank>().WithMany()
-                        .HasForeignKey("TankId")
-                        .HasConstraintName("FK_PtsTanks_tank_TankId"),
-                    l => l.HasOne<Pts>().WithMany()
-                        .HasForeignKey("PtsId")
-                        .HasConstraintName("FK_PtsTanks_pts_PtsId"),
-                    j =>
-                    {
-                        j.HasKey("PtsId", "TankId")
-                            .HasName("PRIMARY")
-                            .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
-                        j.ToTable("ptstanks");
-                        j.HasIndex(new[] { "TankId" }, "IX_PtsTanks_TankId");
-                        j.IndexerProperty<int>("PtsId").HasColumnType("int(11)");
-                        j.IndexerProperty<int>("TankId").HasColumnType("int(11)");
-                    });
         });
 
         modelBuilder.Entity<Pumptransaction>(entity =>
@@ -659,10 +639,19 @@ public partial class GpsdataContext : DbContext
 
             entity.ToTable("tank");
 
+            entity.HasIndex(e => e.PtsId, "pts_tank_idx");
+
             entity.Property(e => e.Id).HasColumnType("int(11)");
             entity.Property(e => e.Name).HasMaxLength(45);
+            entity.Property(e => e.PtsId)
+                .HasColumnType("int(11)")
+                .HasColumnName("ptsID");
             entity.Property(e => e.TankHeight).HasPrecision(10);
             entity.Property(e => e.TankVolume).HasPrecision(10);
+
+            entity.HasOne(d => d.Pts).WithMany(p => p.Tanks)
+                .HasForeignKey(d => d.PtsId)
+                .HasConstraintName("pts_tank");
         });
 
         modelBuilder.Entity<Tankmeasurement>(entity =>
@@ -684,26 +673,26 @@ public partial class GpsdataContext : DbContext
             entity.Property(e => e.TankFillingPercentage).HasColumnType("int(11)");
             entity.Property(e => e.WaterHeight).HasColumnName("waterHeight");
 
-            entity.HasMany(d => d.Alarms).WithMany(p => p.TankMeausements)
+            entity.HasMany(d => d.Alarms).WithMany(p => p.TankMeasurements)
                 .UsingEntity<Dictionary<string, object>>(
                     "AlarmTankmeasurement",
                     r => r.HasOne<Alarm>().WithMany()
                         .HasForeignKey("AlarmId")
                         .HasConstraintName("alarmmeasurement_alarm"),
                     l => l.HasOne<Tankmeasurement>().WithMany()
-                        .HasForeignKey("TankMeausementId")
+                        .HasForeignKey("TankMeasurementId")
                         .HasConstraintName("alarmMeasurement_tankmeasurement"),
                     j =>
                     {
-                        j.HasKey("TankMeausementId", "AlarmId")
+                        j.HasKey("TankMeasurementId", "AlarmId")
                             .HasName("PRIMARY")
                             .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
                         j.ToTable("alarm_tankmeasurement");
-                        j.HasIndex(new[] { "TankMeausementId" }, "alarmMeasurement_tankmeasurement_idx");
+                        j.HasIndex(new[] { "TankMeasurementId" }, "alarmMeasurement_tankmeasurement_idx");
                         j.HasIndex(new[] { "AlarmId" }, "alarmmeasurement_alarm_idx");
-                        j.IndexerProperty<int>("TankMeausementId")
+                        j.IndexerProperty<int>("TankMeasurementId")
                             .HasColumnType("int(11)")
-                            .HasColumnName("tankMeausementID");
+                            .HasColumnName("tankMeasurementID");
                         j.IndexerProperty<int>("AlarmId")
                             .HasColumnType("int(11)")
                             .HasColumnName("alarmID");
@@ -765,7 +754,7 @@ public partial class GpsdataContext : DbContext
 
             entity.HasIndex(e => e.DefaultEmployeeId, "Vehicle_employee_idx");
 
-            entity.HasIndex(e => e.WorkingExpectedAverage, "vehicleExpectedAverage_idx");
+            entity.HasIndex(e => e.DefaultExptdAvgid, "vehicle_expectedAvg_idx");
 
             entity.HasIndex(e => e.VehicleManufacturerId, "vehicle_manufacturer_idx");
 
@@ -785,6 +774,9 @@ public partial class GpsdataContext : DbContext
             entity.Property(e => e.DefaultEmployeeId)
                 .HasColumnType("int(11)")
                 .HasColumnName("DefaultEmployeeID");
+            entity.Property(e => e.DefaultExptdAvgid)
+                .HasColumnType("int(11)")
+                .HasColumnName("DefaultExptdAVGId");
             entity.Property(e => e.DeviceId)
                 .HasColumnType("int(11)")
                 .HasColumnName("DeviceID");
@@ -804,7 +796,6 @@ public partial class GpsdataContext : DbContext
                 .HasDefaultValueSql("'1'")
                 .HasColumnType("int(11)")
                 .HasColumnName("VehicleTypeID");
-            entity.Property(e => e.WorkingExpectedAverage).HasColumnType("int(11)");
             entity.Property(e => e.WorkingSiteId)
                 .HasColumnType("int(11)")
                 .HasColumnName("WorkingSiteID");
@@ -815,6 +806,10 @@ public partial class GpsdataContext : DbContext
             entity.HasOne(d => d.DefaultEmployee).WithMany(p => p.VehiclesNavigation)
                 .HasForeignKey(d => d.DefaultEmployeeId)
                 .HasConstraintName("Vehicle_employee");
+
+            entity.HasOne(d => d.DefaultExptdAvg).WithMany(p => p.Vehicles)
+                .HasForeignKey(d => d.DefaultExptdAvgid)
+                .HasConstraintName("vehicle_expectedAvg");
 
             entity.HasOne(d => d.Device).WithMany(p => p.Vehicles)
                 .HasForeignKey(d => d.DeviceId)
@@ -830,12 +825,8 @@ public partial class GpsdataContext : DbContext
 
             entity.HasOne(d => d.VehicleType).WithMany(p => p.Vehicles)
                 .HasForeignKey(d => d.VehicleTypeId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                //.OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("vehicle_vehicleType");
-
-            entity.HasOne(d => d.WorkingExpectedAverageNavigation).WithMany(p => p.Vehicles)
-                .HasForeignKey(d => d.WorkingExpectedAverage)
-                .HasConstraintName("vehicleExpectedAverage");
 
             entity.HasOne(d => d.WorkingSite).WithMany(p => p.Vehicles)
                 .HasForeignKey(d => d.WorkingSiteId)

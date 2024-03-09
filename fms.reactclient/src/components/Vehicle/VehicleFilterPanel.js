@@ -5,13 +5,14 @@ import CustomStore from 'devextreme/data/custom_store';
 import 'devextreme/dist/css/dx.light.css';
 import axios from "axios";
 import React, { useState, useRef, useEffect } from 'react';
-import AddVehicleModel from './AddVehicleModel';
+import AddVehicleModel from '../../pages/VehicleModel/VehicleModelDatagrid';
 import DataSource from 'devextreme/data/data_source';
 import ArrayStore from 'devextreme/data/array_store';
 import VehicleTypeUIComponent from './UIcomponents/VehicleTypeUIComponent';
 import { Selection } from '../../../../../node_modules/devextreme-react/tree-list';
 //import { Sorting } from '../../../../node_modules/devextreme-react/tree-list';
-const apiUrl = "https://localhost:7009/api";
+const apiUrl = process.env.REACT_APP_FMS_API_URL;
+
 
 
 
@@ -110,6 +111,15 @@ const VehicleDataGrid = () => {
                 columnAutoWidth={true}
                 rowAlternationEnable={true}
                 repaintChangesOnly={true}>
+
+                   <Editing
+                    mode="cell"
+                    allowUpdating={true}
+                    allowDeleting={false}
+                    allowAdding={false}
+                    />
+
+
                 <Paging enabled={false} />
 
                 <FilterRow visible={true} />
@@ -121,17 +131,11 @@ const VehicleDataGrid = () => {
 
                 <Column dataField="vehicleId" caption="Vehicle ID" allowEditing={false} visible={false} />
                 <Column dataField="hyoungNo" caption="Hyoung No" allowEditing={false} width={70} />
-                <Column dataField="expectedAveraged" width={150} caption="Expected Averaged" allowEditing={true} alignment="center" width="70" />
 
-                <Column dataField="workingSiteId" caption="Working Site">
+                <Column dataField="workingSiteId" caption="Site" allowEditing={true} >
                     <Lookup dataSource={workingSiteDataSource} valueExpr="id" displayExpr="name" />
                 </Column>
                 <Column dataField="averageKmL" caption="is km/l" width={70} />
-
-
-                <Column dataField="defaultEmployeeId" caption="Default Employee" visible={false}>
-                    <Lookup dataSource={employeeDataSource} valueExpr="id" displayExpr="fullName" />
-                </Column>
 
                 <Column dataField="vehicleTypeId"
                     caption="Vehicle Type"
@@ -143,14 +147,14 @@ const VehicleDataGrid = () => {
                         displayExpr="name" />
                 </Column>
 
-                <Column dataField="vehicleManufacturerId" caption="Vehicle Manufacturer">
+                <Column dataField="vehicleManufacturerId" caption="Vehicle Manufacturer" allowEditing={false} >
                     <Lookup
                         dataSource={vehicleManufacturers}
                         valueExpr="id"
                         displayExpr="name"
                     />
                 </Column>
-                <Column dataField="vehicleModelId" caption="Vehicle Model">
+                <Column dataField="vehicleModelId" caption="Vehicle Model" allowEditing={false} >
 
                     <Lookup dataSource={vehicleModelDataSource}
                         valueExpr="id"

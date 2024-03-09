@@ -11,5 +11,7 @@ public partial class Expectedaverageclassification
 
     public string? Description { get; set; }
 
+    public sbyte? IskmperLiter { get; set; }
+
     public virtual ICollection<Expectedaverage> Expectedaverages { get; set; } = new List<Expectedaverage>();
 }

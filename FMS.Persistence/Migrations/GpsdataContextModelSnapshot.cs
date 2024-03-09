@@ -262,7 +262,7 @@ namespace FMS.Persistence.Migrations
                         .HasColumnType("int(11)")
                         .HasColumnName("ID");
 
-                    b.Property<decimal>("ExpectedAverage1")
+                    b.Property<decimal>("ExpectedAverage")
                         .HasPrecision(5, 2)
                         .HasColumnType("decimal(5,2)")
                         .HasColumnName("ExpectedAverage");

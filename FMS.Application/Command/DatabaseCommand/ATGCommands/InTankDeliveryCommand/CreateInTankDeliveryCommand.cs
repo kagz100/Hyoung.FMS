@@ -41,9 +41,9 @@ namespace FMS.Application.Command.DatabaseCommand.ATGCommands.InTankDeliveryComm
             {
                 foreach(var packet in request.PtsRequestDto.Packets)
                 {
-                    foreach(var dataobject in packet.Data)
-                    {
-                        var intankdeliverydata = dataobject.ToObject<InTankDeliveryDTO>();
+                   
+                    
+                        var intankdeliverydata = packet.Data.ToObject<InTankDeliveryDTO>();
                         if (intankdeliverydata == null) continue;
 
                         
@@ -52,10 +52,10 @@ namespace FMS.Application.Command.DatabaseCommand.ATGCommands.InTankDeliveryComm
                            intankdelivery.Ptsid = request.PtsRequestDto.PtsId;
 
                             _context.Intankdeliveries.Add(intankdelivery);
-                            requestid = intankdelivery.DeliveryId;
+                            requestid = intankdelivery.PacketId;
 
 
-                    }
+                    
                       
                     await _context.SaveChangesAsync(cancellationToken);
 

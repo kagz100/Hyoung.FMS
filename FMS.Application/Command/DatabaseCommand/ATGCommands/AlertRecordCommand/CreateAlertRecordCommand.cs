@@ -45,9 +45,8 @@ namespace FMS.Application.Command.DatabaseCommand.ATGCommands.AlertRecordCommand
             {
                 foreach(var packet in request.PtsRequestDto.Packets)
                 {
-                    foreach(var dataobject in packet.Data)
-                    {
-                        var alertrecorddata = dataobject.ToObject<AlertRecordDTO>();
+                   
+                        var alertrecorddata = packet.Data.ToObject<AlertRecordDTO>();
                         if (alertrecorddata == null) continue;
 
                         var alertrecord = _mapper.Map<Alertrecord>(alertrecorddata);
@@ -56,7 +55,7 @@ namespace FMS.Application.Command.DatabaseCommand.ATGCommands.AlertRecordCommand
 
                         _context.Alertrecords.Add(alertrecord);
                         requetsid = alertrecord.AlertId;
-                    }
+                   
                 }
                 await _context.SaveChangesAsync(cancellationToken);
                 return  ConfirmationMessage.Success(requetsid, "UploadAlertRecord");

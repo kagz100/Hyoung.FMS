@@ -13,5 +13,6 @@ public partial class Alarm
 
     public string? Description { get; set; }
                                                 
-    public virtual ICollection<Tankmeasurement> TankMeausements { get; set; } = new List<Tankmeasurement>();
+    public virtual ICollection<Tankmeasurement> TankMeasurements { get; set; } = new List<Tankmeasurement>();
+
 }

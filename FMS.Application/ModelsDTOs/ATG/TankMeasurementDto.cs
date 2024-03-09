@@ -5,16 +5,18 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using FMS.Domain.Entities;
+using Newtonsoft.Json;
 
 namespace FMS.Application.ModelsDTOs.ATG
 {
     public class TankMeasurementDto
     {
-        
+
+        [JsonProperty("DateTime")]
         public DateTime DateTime { get; set; }
 
         public int Tank { get; set; }
-        public string? Status { get; set; }
+        public string Status { get; set; }
         public int FuelGradeId { get; set; }
 
         public double? ProductHeight { get; set; }
@@ -34,15 +36,11 @@ namespace FMS.Application.ModelsDTOs.ATG
 
         public int? TankFillingPercentage { get; set; }
 
-        public string? ConfigurationId { get; set; }
+        public string ConfigurationId { get; set; }
 
         public List<string> Alarms { get; set; }
 
-        [JsonIgnore]
-        public List<Alarm> AlarmObjects { get;set; }
 
-
-        public virtual ICollection<AlarmTankmeasurement> AlarmTankmeasurements { get; set; } = new List<AlarmTankmeasurement>();
 
     }
 }

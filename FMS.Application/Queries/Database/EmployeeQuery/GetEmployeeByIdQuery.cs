@@ -35,13 +35,7 @@ namespace FMS.Application.Queries.Database.EmployeeQuery
                 .Include(e=>e.Vehicles)
                 .FirstOrDefaultAsync(e=>e.Id==request.Id,cancellationToken);
 
-
-            if (result == null)
-            {
-                return null;
-            }
-            var employeeDto = _mapper.Map<EmployeeDto>(result);
-            return employeeDto;
+            return result != null ? _mapper.Map<EmployeeDto>(result) : null;
         }
 
 

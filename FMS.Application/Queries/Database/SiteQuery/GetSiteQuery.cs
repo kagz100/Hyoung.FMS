@@ -14,9 +14,7 @@ namespace FMS.Application.Queries.Database.SiteQuery
     public class GetSiteQuery : IRequest<List<Site>>
 
     {
-        public GetSiteQuery()
-        {
-        }
+     
     }
 
     public class GetSiteQueryHandler : IRequestHandler<GetSiteQuery, List<Site>>

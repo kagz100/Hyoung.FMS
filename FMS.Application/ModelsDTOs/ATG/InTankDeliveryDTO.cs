@@ -14,7 +14,7 @@ namespace FMS.Application.ModelsDTOs.ATG
 
         public int FuelGradeId { get; set; }
 
-        public string? FuelGradeName { get; set; }
+        public string FuelGradeName { get; set; }
 
         public DateTime? StartDateTime { get; set; }
 
@@ -64,7 +64,7 @@ namespace FMS.Application.ModelsDTOs.ATG
 
         public float? PumpsDispensedVolume { get; set; }
 
-        public string? ConfigurationId { get; set; }
+        public string ConfigurationId { get; set; }
    
  
     }

@@ -7,6 +7,7 @@ using FMS.Application.ModelsDTOs.ATG.Common;
 using FMS.Domain.Entities;
 using FMS.Persistence.DataAccess;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Org.BouncyCastle.Asn1.Ocsp;
 using System;
 using System.Collections.Generic;
@@ -42,19 +43,28 @@ namespace FMS.Application.Command.DatabaseCommand.ATGCommands.TankMeasurementsCo
         public async Task<string> Handle(CreateTankMeasurementCommand request, CancellationToken cancellationToken)
         {
             var requestid =0;
-           try
+
+            var tankMeasurements = new List<Tankmeasurement>();
+            var allAlarmNames = request.PtsRequestDto.Packets
+                               .SelectMany(p => p.Data.ToObject<TankMeasurementDto>()?.Alarms ?? new List<string>())
+                               .Distinct();
+
+            var alarms = await _context.Alarms
+                              .Where(a => allAlarmNames.Contains(a.Name))
+                              .ToListAsync(cancellationToken);
+
+
+            using (var transaction = _context.Database.BeginTransaction())
             {
-
-
-                foreach (var packet in request.PtsRequestDto.Packets)
+                try
                 {
 
 
-                    foreach (var dataobject in packet.Data)
+                    foreach (var packet in request.PtsRequestDto.Packets)
                     {
-
                         //deserialize the Json object to TankmeasurementDto
-                        var tankdata = dataobject.ToObject<TankMeasurementDto>();
+                        var tankdata = packet.Data.ToObject<TankMeasurementDto>();
+
                         if (tankdata == null) continue;
 
                         var tankmeasurementsdata = new Tankmeasurement
@@ -75,49 +85,34 @@ namespace FMS.Application.Command.DatabaseCommand.ATGCommands.TankMeasurementsCo
                             ProductMass = tankdata.ProductMass,
                             TankFillingPercentage = tankdata.TankFillingPercentage,
                             ConfigurationId = tankdata.ConfigurationId,
-                            Status = tankdata.Status
-
-
+                            Status = tankdata.Status,
+                            Alarms = alarms.Where(a => tankdata.Alarms.Contains(a.Name)).ToList()
+                        
                         };
 
-
-
-                        //process alamrs and add to tankmeasurementsdata
-                        foreach (var alarmName in tankdata.Alarms)
-                        {
-                            var alarm = _context.Alarms.FirstOrDefault(x => x.Name == alarmName);
-                            if (alarm != null)
-                            {
-
-                                tankmeasurementsdata.AlarmTankMeasurements.Add(new AlarmTankmeasurement
-                                {
-                                    AlarmId = alarm.Id,
-                                    TankMeausement = tankmeasurementsdata
-                                });
-
-                            }
-                            
-                        }
-                        _context.Tankmeasurements.Add(tankmeasurementsdata);
-
+                        tankMeasurements.Add(tankmeasurementsdata);
                         requestid = tankmeasurementsdata.PacketId;
 
+
                     }
+                    _context.Tankmeasurements.AddRange(tankMeasurements);
+
+                   
+
+                    // _context.Tankmeasurements.Add(tankmeasurementsdata);
+                    await _context.SaveChangesAsync(cancellationToken);
+                    transaction.Commit();
+                    return ConfirmationMessage.Success(requestid, "UploadTankMeasurement");
+
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return ConfirmationMessage.Error(requestid, "UploadTankMeasurement", 500, ex.Message);
                 }
 
-                // _context.Tankmeasurements.Add(tankmeasurementsdata);
-                await _context.SaveChangesAsync(cancellationToken);
-              
-                return ConfirmationMessage.Success(requestid, "UploadTankMeasurement");
 
-            } catch (Exception ex)
-            {
-                
-                return ConfirmationMessage.Error(requestid, "UploadTankMeasurement", 500, ex.Message);
             }
-
-           
-
         }
     }
 

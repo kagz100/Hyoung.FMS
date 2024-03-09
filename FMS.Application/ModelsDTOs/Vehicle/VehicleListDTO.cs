@@ -1,7 +1,9 @@
-﻿using System;
+﻿using FMS.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace FMS.Application.Models.Vehicle
@@ -37,5 +39,19 @@ namespace FMS.Application.Models.Vehicle
         /// Change if vehicle is using km/l or l/hr
         /// </summary>
         public bool AverageKmL { get; set; }
+
+
+        public int? DefaultExpectedAverageId { get; set; }
+
+[JsonIgnore()]
+
+        public string ExpectedAverageclassificationName { get; set; } = null!;
+
+[JsonIgnore()]
+        public decimal? ExpectedAverageValue { get; set; }
+
+
+         public string CombinedExpectedAverage => $"{ExpectedAverageclassificationName} {ExpectedAverageValue}"  ?? "";
+
     }
 }

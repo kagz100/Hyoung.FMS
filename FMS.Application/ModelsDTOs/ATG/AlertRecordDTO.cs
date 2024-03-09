@@ -17,7 +17,7 @@ public partial class AlertRecordDTO
 
     public int Code { get; set; }
 
-    public string? ConfigurationId { get; set; }
+    public string ConfigurationId { get; set; }
 
     public string Ptsid { get; set; } = null!;
 

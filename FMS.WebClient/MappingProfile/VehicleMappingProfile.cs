@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using FMS.Application.Command.DatabaseCommand.ConsumptionCmd;
 using FMS.Application.Command.DatabaseCommand.ConsumtionCmd.Update;
-using FMS.Application.Command.DatabaseCommand.UpdateVehicle;
+using FMS.Application.Command.DatabaseCommand.VehicleCmd;
 using FMS.Application.ModelsDTOs.ExpectedAVG;
 using FMS.Domain.Entities;
 using FMS.WebClient.Models.DatabaseViewModel;
@@ -32,26 +32,19 @@ namespace FMS.WebClient.MappingProfile
        .ForMember(dest => dest.ExpectedAveraged, opt => opt.MapFrom(src => src.WorkingExpectedAveraged))
        .ForMember(dest => dest.DefaultEmployeeId, opt => opt.MapFrom(src => src.DefaultEmployeeId))
        .ForMember(dest => dest.WorkingSiteId, opt => opt.MapFrom(src => src.WorkingSiteId))
+       .ForMember(dest => dest.DefaultExpectedAVGId, opt => opt.MapFrom(src => src.DefaultExpectedAverageId))
        .ForMember(dest => dest.ExcessWorkingHrCost, opt => opt.MapFrom(src => src.ExcessWorkingHrCost))
        .ForMember(dest => dest.AverageKmL, opt => opt.MapFrom(src => src.AverageKmL));
 
 
 
-
+            //expectedAverage
             CreateMap<ExpectedAVGDto, ExpectedAVGViewModel>()
-                       .ForMember(dest => dest.ExpectedAverage1, opt => opt.MapFrom(src => src.ExpectedAverage1))
+                       .ForMember(dest => dest.ExpectedAverageValue, opt => opt.MapFrom(src => src.ExpectedAverageValue))
                        .ForMember(dest => dest.ExpectedAverageClassificationId, opt => opt.MapFrom(src => src.ExpectedAverageClassificationId))
                        .ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.VehicleId))
-                       .ForMember(dest => dest.SiteId, opt => opt.MapFrom(src => src.SiteId))
-                       ;
+                       .ForMember(dest => dest.SiteId, opt => opt.MapFrom(src => src.SiteId)).ReverseMap();                       ;
 
-            // Reverse mapping
-            CreateMap<ExpectedAVGViewModel, ExpectedAVGDto>()
-                .ForMember(dest => dest.ExpectedAverage1, opt => opt.MapFrom(src => src.ExpectedAverage1))
-                .ForMember(dest => dest.ExpectedAverageClassificationId, opt => opt.MapFrom(src => src.ExpectedAverageClassificationId))
-                .ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.VehicleId))
-                .ForMember(dest => dest.SiteId, opt => opt.MapFrom(src => src.SiteId))
-               ;
 
 
 

@@ -20,6 +20,8 @@ namespace FMS.Application.Command.DatabaseCommand.ExptAVGClassification
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
 
+        public bool IskmperLiter { get; set; }
+
     }
 
     public class ExpectedAVGClassificationUpdateCmdHandler : IRequestHandler<ExpectedAVGClassificationUpdateCmd, int>
@@ -44,6 +46,7 @@ namespace FMS.Application.Command.DatabaseCommand.ExptAVGClassification
 
             entity.Name = request.Name;
             entity.Description = request.Description;
+            entity.IskmperLiter= request.IskmperLiter ? (sbyte)1:(sbyte)0;
             _context.Expectedaverageclassifications.Update(entity);
             await _context.SaveChangesAsync(cancellationToken);
 

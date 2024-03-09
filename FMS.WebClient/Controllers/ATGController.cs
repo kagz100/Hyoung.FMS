@@ -1,4 +1,5 @@
 ﻿using System;
+using NLog;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using System.Security.Cryptography;
@@ -15,51 +16,82 @@ using FMS.Application.ModelsDTOs.ATG.Common;
 using FMS.Application.Command.DatabaseCommand.ATGCommands.InTankDeliveryCommand;
 using FMS.Application.Command.DatabaseCommand.ATGCommands.PumpTransactoinCommand;
 using FMS.Application.Command.DatabaseCommand.ATGCommands.AlertRecordCommand;
+using FMS.Application.Common;
+using Microsoft.AspNetCore.SignalR;
+using FMS.WebClient.Signal;
+using FMS.Domain.ATGStatus;
+using FMS.Application.Command.SignalCommand;
 
 namespace FMS.WebClient.Controllers;
 
 
     [ApiController]
-    [Route("[controller]")]
+    [Route("ATG")]
  public class ATGController : ControllerBase
     {
         private readonly IMediator _mediator;
         private readonly IConfiguration _configuration;
       private  readonly ILogger<ATGController> _logger;
+    private readonly IHubContext<PtsStatusHub> _hubContext;
 
 
-        public ATGController(IMediator mediator, IConfiguration configuration , ILogger<ATGController> logger )
+
+
+        public ATGController(IMediator mediator, IConfiguration configuration , ILogger<ATGController> logger ,IHubContext<PtsStatusHub> hubContext  )
         {
             _logger = logger;
             _mediator = mediator;
             _configuration = configuration;
+           _hubContext = hubContext;
         }
+
 
 
     [HttpPost]
-    [Route("testupload")]
-    public async Task<IActionResult> TestUpload( )
+    [Route("test")]
+    public async Task<IActionResult> Test()
     {
-      
-            using (var reader = new StreamReader(Request.Body))
-            {
-                var body = await reader.ReadToEndAsync();
-                JObject jsonRequest;
-                try
-                {
-                    jsonRequest = JObject.Parse(body);
-                }
-                catch (JsonReaderException jex)
-                {
-                    _logger.LogError("Error parsing JSON request: {Message}", jex.Message);
-                    return BadRequest("Invalid JSON format");
-                }
+        string requestBody;
 
-                _logger.LogInformation("Request data: {RequestData}", jsonRequest.ToString());
-                return Ok(jsonRequest);
-            
+
+        using (var reader = new StreamReader(Request.Body))
+        {
+            requestBody = await reader.ReadToEndAsync();
         }
 
+        try
+        {
+            var jsonRequest = JObject.Parse(requestBody);
+                _logger.LogInformation(1,jsonRequest.ToString());
+                var ptsRequestDTO = jsonRequest.ToObject<PtsRequestDto>();
+
+            if (ptsRequestDTO == null || ptsRequestDTO.Packets == null || !ptsRequestDTO.Packets.Any())
+            {
+                return BadRequest("Invalid or missing packet data");
+            }
+
+            // Assuming you want to respond with the first packet's ID and a custom message
+            var firstPacketId = ptsRequestDTO.Packets.First().Id;
+
+            var confirm = ConfirmationMessage.Success(firstPacketId, "UploadTankMeasurement", "OK");
+            var response = new ContentResult
+            {
+                
+                Content = confirm,
+                ContentType = "application/json; charset=utf-8",
+                StatusCode = 200
+            };
+            Response.Headers["Connection"] = "close";
+
+
+            //_logger.LogInformation(confirm.ToString(),"Response");
+            return response;
+        }
+        catch (Exception ex)
+        {
+            // Log the exception here
+            return BadRequest(ConfirmationMessage.Error(0, "Error", 500, ex.Message));
+        }
     }
 
 
@@ -71,31 +103,26 @@ namespace FMS.WebClient.Controllers;
     /// <param name="request"></param>
     /// <returns></returns>
     [HttpPost]
-    [Route("upload")] // The URI provided to the PTS-2 controller
+    [Route("post")] // The URI provided to the PTS-2 controller
     public async Task<IActionResult> Post()
     {
         string requestBody;
-        string response = "";
 
 
         using (var reader = new StreamReader(Request.Body))
         {
             requestBody = await reader.ReadToEndAsync();
         }
-          JObject jsonRequest;
+         
         try
         {
-            jsonRequest = JObject.Parse(requestBody);
-        }
-        catch (JsonReaderException jex)
-        {
-            _logger.LogError("Error parsing JSON request: {Message}", jex.Message);
-            return BadRequest("Invalid JSON format");
-        }
+            var jsonRequest = JObject.Parse(requestBody);
+      
 
         if(jsonRequest == null)
         {
-            return BadRequest("jsonRequest is null or improperly formatted");
+                _logger.LogError("jsonRequest is null or improperly formatted");
+            return BadRequest("Invalid or missing packet data");
         }
 
         var secretKey = _configuration["SecretKey"];
@@ -118,56 +145,108 @@ namespace FMS.WebClient.Controllers;
 
         //var jsonRequest = JsonConvert.DeserializeObject<JObject>(requestBody);
 
-        try
-        {
+       
             var ptsRequestDTO = jsonRequest.ToObject<PtsRequestDto>();
+
 
             if (ptsRequestDTO == null || ptsRequestDTO.Packets == null || !ptsRequestDTO.Packets.Any())
             {
-                _logger.LogError("Invalid or missing packet data");
+                Response.StatusCode = 400;
+                await Response.WriteAsync("Invalid or missing packet data");
+                //_logger.LogError("Invalid or missing packet data");
                 return BadRequest("Invalid or missing packet data");
             }
 
+            bool isUploadStatus = false;
+
+            List<string> responses = new List<string>();
             foreach (var packet in ptsRequestDTO.Packets)
             {
 
-                 string localResponse = string.Empty; 
+                    string localResponse = string.Empty;
 
-                switch (packet.Type)
-                {
-                    case "UploadTankMeasurement":
+                    switch (packet.Type)
+                    {
 
-                        var command = new CreateTankMeasurementCommand { PtsRequestDto = ptsRequestDTO };
-                        localResponse = await _mediator.Send(command);
-                        break;
+                        case "UploadStatus":
 
-                    case "UploadPumpTransaction":
-                        var pumpCommand = new CreatePumpTransactionCommand { PtsRequestDto = ptsRequestDTO };
-                        localResponse = await _mediator.Send(pumpCommand);
-                       break;
-                    case "UploadInTankDelivery":
-                         var deliveryCommand = new CreateInTankDeliveryCommand { PtsRequestDto = ptsRequestDTO };
-                        localResponse = await _mediator.Send(deliveryCommand);
-                         break;
-                    case "UploadAlertRecord":
-                         var alertCommand = new CreateAlertRecordCommand { PtsRequestDto = ptsRequestDTO };
-                         localResponse = await _mediator.Send(alertCommand);
-                        break;
-                    default:
-                        _logger.LogError("Unknown request type: {RequestType}", packet.Type);
-                        return BadRequest("Unknown request type");
+                            isUploadStatus = true;
+                            var command = new UploadStatusCommand { Data = packet.Data };
+
+                        //do other processing here too 
+                       var  uploadStatus =  await _mediator.Send(command);
+
+                        //convert loca
+
+                            await _hubContext.Clients.All.SendAsync("ReceiveStatusUpdate", uploadStatus);
+
+                            //process the update status
+                            var confirmation = ConfirmationMessage.Success(packet.Id, "UploadStatus", "OK");
+                            responses.Add(confirmation);
+                            break;
+
+                        case "UploadTankMeasurement":
+
+                            var tankcommand = new CreateTankMeasurementCommand { PtsRequestDto = ptsRequestDTO };
+                            //_logger.Log(LogLevel.Debug, packet.ToString());
+                            localResponse = await _mediator.Send(tankcommand);
+                            responses.Add(localResponse);
+                            break;
+
+                        case "UploadPumpTransaction":
+                            var pumpCommand = new CreatePumpTransactionCommand { PtsRequestDto = ptsRequestDTO };
+                            localResponse = await _mediator.Send(pumpCommand);
+                            responses.Add(localResponse);
+                            break;
+                        case "UploadInTankDelivery":
+                            var deliveryCommand = new CreateInTankDeliveryCommand { PtsRequestDto = ptsRequestDTO };
+                            localResponse = await _mediator.Send(deliveryCommand);
+                            responses.Add(localResponse);
+                            break;
+                        case "UploadAlertRecord":
+                            var alertCommand = new CreateAlertRecordCommand { PtsRequestDto = ptsRequestDTO };
+                            localResponse = await _mediator.Send(alertCommand);
+                            responses.Add(localResponse);
+                            break;
+                        default:
+                            _logger.LogError("Unknown request type: {RequestType}", packet.Type);
+                            return BadRequest("Unknown request type");
+                    }
+
+                    responses.Add(localResponse);
                 }
-                if(!localResponse.Contains("OK"))
-                {
-                    return BadRequest(localResponse);
-                }
+            
+            if(responses.All(r=>r.Contains("OK")))
+            {
+               
+                    Response.ContentType = "application/json; charset=utf-8";
+                    Response.Headers["Connection"] = "close";
+                    Response.StatusCode = 200; // OK
+
+                    foreach (var response in responses)
+                    {
+                        var chunkSizeBytes = Encoding.UTF8.GetByteCount(response);
+                        await Response.Body.WriteAsync(Encoding.UTF8.GetBytes(chunkSizeBytes.ToString("X")));
+                        await Response.Body.WriteAsync(Encoding.UTF8.GetBytes("\r\n"));
+                        await Response.Body.WriteAsync(Encoding.UTF8.GetBytes(response));
+                        await Response.Body.WriteAsync(Encoding.UTF8.GetBytes("\r\n"));
+                    }
+
+                    await Response.Body.WriteAsync(Encoding.UTF8.GetBytes("0\r\n\r\n")); // End of chunks
+                
             }
+            else
+            {
+                Response.StatusCode = 500; // Internal Server Error
+                await Response.WriteAsync("Error processing request");
+            }
+        
 
         }
-        catch (Exception ex)
+        catch (JsonReaderException ex)
         {
-            _logger.LogError(ex, "An error occurred while processing the request");
-            return BadRequest("An error occurred while processing the request");
+            _logger.LogError(ex, "Invalid Json Format");
+            return BadRequest("Invalid Json Format");
         }
         return BadRequest("Request could not be processed");
     }

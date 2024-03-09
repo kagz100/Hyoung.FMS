@@ -8,7 +8,7 @@ namespace FMS.WebClient.Models.DatabaseViewModel.ExpectedViewModel
       
 
         [JsonPropertyName("expectedValue")]
-        public decimal ExpectedAverage1 { get; set; }
+        public decimal ExpectedAverageValue { get; set; }
 
         [JsonPropertyName("classification")]
         public int ExpectedAverageClassificationId { get; set; }

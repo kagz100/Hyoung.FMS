@@ -32,7 +32,7 @@ namespace FMS.WebClient.Controllers
         [HttpGet("test")]
         public IActionResult Test()
         {
-            return Ok("Test endpoint");
+            return   Ok("Test endpoint");
         }
 
     }

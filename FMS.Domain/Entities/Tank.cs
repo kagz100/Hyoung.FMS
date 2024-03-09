@@ -13,8 +13,9 @@ public partial class Tank
 
     public decimal TankHeight { get; set; }
 
-    public virtual ICollection<Pts> Pts { get; set; } = new List<Pts>();
+    public int PtsId { get; set; }
 
-    public virtual ICollection<PtsTank> PtsTanks { get; set; } = new List<PtsTank>();
-    public virtual ICollection<Tankmeasurement> Tankmeasurements { get; set; } = new List<Tankmeasurement>();
+    //Todo: Check if this is truly required = new pts();
+    public virtual Pts Pts { get; set; } = new Pts();
+
 }

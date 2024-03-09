@@ -15,9 +15,19 @@ namespace FMS.Application.ModelsDTOs.ExpectedAVG
         [JsonPropertyName("id")]
         public int Id { get; set; }
 
-        [JsonPropertyName("ExpectedAverage1")]
-        public decimal ExpectedAverage1 { get; set; }
+        [JsonPropertyName("ExpectedAverageValue")]
+        public decimal ExpectedAverageValue { get; set; }
 
+        [JsonPropertyName("ExpectedAverageclassificationName")]
+        public string ExpectedAverageclassificationName { get; set; }
+
+       [JsonPropertyName("combinedExpectedAverage")]
+   
+         public string CombinedExpectedAverage => $"{ExpectedAverageclassificationName} {ExpectedAverageValue}";
+
+        [JsonPropertyName("SiteName")]
+        public string SiteName { get; set; }
+        
         [JsonPropertyName("expectedAverageClassificationId")]
         public int ExpectedAverageClassificationId { get; set; }
 

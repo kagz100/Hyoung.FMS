@@ -3,10 +3,11 @@ import DataGrid, { Column, Editing, Lookup, FilterRow, HeaderFilter } from 'deve
 import CustomStore from 'devextreme/data/custom_store';
 import axios from 'axios';
 import SelectBox from 'devextreme-react/select-box';
+import TextArea from 'devextreme-react/text-area';
 
-const apiUrl = "https://localhost:7009/api";
+const apiUrl = process.env.REACT_APP_FMS_API_URL;
 
-const ExpectedAVGdatagrid  = () => {
+const ExpectedAvgDatagrid = () => {
 
 
     const [selectedVehicleType, setSelectedVehicleType] = useState('');
@@ -24,10 +25,7 @@ const ExpectedAVGdatagrid  = () => {
                 const response = await axios.get(`${apiUrl}/expectedavg/getlist`);
                 return response.data;
             },
-            insert: async (values) => {
-                const response = await axios.post(`${apiUrl}/expectedavg/create`, values);
-                return response.data;
-            },
+        
             update: async (key, values) => {
                 const originalItem = await dataSource.byKey(key);
                 const updatedItem = { ...originalItem, ...values, id: key };
@@ -45,7 +43,6 @@ const ExpectedAVGdatagrid  = () => {
         const onRowInserted = (e) => {
             e.component.navigateToRow(e.key);
         };
-
 
 
 
@@ -80,14 +77,7 @@ const ExpectedAVGdatagrid  = () => {
                 return response.data;
             }
         });
-    //const siteDataSource = new CustomStore(
-    //    {
-    //        key: 'id',
-    //        load: async () => {
-    //            const response = await axios.get(`${apiUrl}/site/getsitelist`);
-    //            return response.data;
-    //        }
-    //    });
+
     const siteDataSource = new CustomStore(
         { 
             key: 'id', 
@@ -100,7 +90,7 @@ const ExpectedAVGdatagrid  = () => {
         {
             key: 'id',
             load: async () => {
-                const response = await axios.get(`${apiUrl}/vehiclemanufacture/getlist`);
+                const response = await axios.get(`${apiUrl}/vehiclemanufacturer/getlist`);
                 return response.data;
             }
         });
@@ -123,27 +113,7 @@ const ExpectedAVGdatagrid  = () => {
 
     return (
 
-        <div class="row">
-            <div class="col">
-               <SelectBox
-                dataSource={vehicleTypeDataSource}
-                displayExpr="name"
-                valueExpr="id"
-                placeholder="Select a Vehicle Type"
-                onValueChanged={(e) => setSelectedVehicleType(e.value)}
-                />
-              </div>
-           <div class="col">
-            <div class="row">
-                 <label>Expected Value: </label>
-                <input type="text" value={expectedValue} onChange={(e) => setExpectedValue(e.target.value)} />
-                <button onClick={handleApplyExpectedValue}>Apply Expected Value</button>
-            
-                </div>
-             </div>
-
-        
-
+        <div className="row">      
         <DataGrid
             dataSource={dataSource}
             keyExpr="id"
@@ -156,29 +126,24 @@ const ExpectedAVGdatagrid  = () => {
             <HeaderFilter visible={true} />
 
             <Editing
-                mode="batch"
+                mode="row"
                 allowUpdating={true}
-                allowDeleting={false}
-                allowAdding={true}
+                    allowDeleting={true}
+                    allowAdding={false}
                  useIcons={true}/>
 
             <Column dataField="id" caption="ID" width={50} allowEditing={false} />
-            <Column dataField="vehicleId" caption="Vehicle">
-                <Lookup dataSource={vehicleDataSource} valueExpr="id" displayExpr="hyoungNo" />
-            </Column>
-            <Column dataField="expectedAverage1" caption="Expected AVG" />
-            <Column dataField="expAVGclassificationId" caption="Classification" width={100}>
-                <Lookup
-                    dataSource={expAVGclassificationDataSource}
-                    valueExpr="id" displayExpr="name" />
-            </Column>
-            <Column dataField="siteId" caption="Site" >
-                <Lookup dataSource={siteDataSource}
-                    valueExpr="id"
-                    displayExpr="name" />
-            </Column>
+                <Column dataField="hyoungNo" caption="Hyoung No" allowEditing={false} />
+                <Column dataField="expectedAverageClassificationName" caption="Expected Average Classification" allowEditing={false} />
+                <Column dataField="vehicleManufacturer" caption="Vehicle Manufacturer" allowEditing={false} />
+                <Column dataField="vehicleType" caption="Vehicle type" allowEditing={false} />
+                <Column dataField="site" caption="Site" allowEditing={false} />
+                <Column dataField="expectedAveragevalue" caption="expectedAveragevalue" allowEditing={true} alignment="center" />
+
+               
+         
         </DataGrid>
     </div>
     );
 };
-export default ExpectedAVGdatagrid ;
+export default ExpectedAvgDatagrid;

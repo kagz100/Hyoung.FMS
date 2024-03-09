@@ -36,6 +36,7 @@ namespace FMS.Application.Queries.Database.ExpectedAvg
                                    Include(x => x.Vehicle.VehicleModel).
                                    Include(x => x.Vehicle.VehicleType).
                                    Include(x => x.Vehicle.WorkingSite).
+                                   Include(x => x.ExpectedAverageClassification).
                                    Select(item => new ExpectedAVGVehicleDetailsDTO
                                    {                                              
                                     id = item.Id,
@@ -48,7 +49,7 @@ namespace FMS.Application.Queries.Database.ExpectedAvg
                                     siteId= item.SiteId,
                                     site = item.Vehicle.WorkingSite.Name,
                                     expectedAverageClassificationName = item.ExpectedAverageClassification.Name,
-                                    expectedAveragevalue = item.ExpectedAverage1
+                                    expectedAveragevalue = item.ExpectedAverageValue
                                     
                                     }).
                                    ToListAsync(cancellationToken);

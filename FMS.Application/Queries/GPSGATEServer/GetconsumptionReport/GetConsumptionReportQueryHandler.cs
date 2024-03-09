@@ -7,10 +7,12 @@ using FMS.Domain.Entities.Common;
 using FMS.Infrastructure.DependancyInjection;
 using FMS.Infrastructure.Webservice;
 using FMS.Persistence.DataAccess;
-using FMS.Services.Model;
+using FMS.Services.GPSServiceModels;
+//using FMS.Services.Model;
 using MediatR;
 using Microsoft.AspNetCore.Server.IIS.Core;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -29,11 +31,14 @@ namespace FMS.Application.Queries.GPSGATEServer.GetconsumptionReport;
         private readonly GpsdataContext _Context;
         private readonly IMapper _mapper;
 
-        public GetConsumptionReportQueryHandler(IGPSGateDirectoryWebservice gPSGateDirectoryWebservice, GpsdataContext gpsdataContext,IMapper mapper)
+        private readonly ILogger _logger;
+
+        public GetConsumptionReportQueryHandler(IGPSGateDirectoryWebservice gPSGateDirectoryWebservice, GpsdataContext gpsdataContext,IMapper mapper, ILogger<GetConsumptionReportQueryHandler> logger)
         {
             _gpsGateDirectoryWebservice = gPSGateDirectoryWebservice;
             _Context = gpsdataContext;
             _mapper = mapper;
+            _logger = logger;
         }
 
     /// <summary>
@@ -87,6 +92,9 @@ namespace FMS.Application.Queries.GPSGATEServer.GetconsumptionReport;
     private List<Vehicleconsumption> ProcessData(IEnumerable<VehicleConsumptionServiceModel> VCconsumptionReports ,List<Vehicle> vehicles)
     {
 
+       
+
+
         var vehicleConsumptionBatch = new List<Vehicleconsumption>();
 
         foreach (var VCserviceModel in VCconsumptionReports)
@@ -94,21 +102,64 @@ namespace FMS.Application.Queries.GPSGATEServer.GetconsumptionReport;
 
              var vehicle = vehicles.FirstOrDefault(v => v.VehicleId == VCserviceModel.VehicleId);
 
+
+
             if(vehicle != null)
             {
+                //int? siteID = getSiteIDbyVehicleID(vehicle.VehicleId);
+                Vehicle vehicleinfo = getvehicleInfo(vehicle.VehicleId).Result; //check if vehicle is null or no result 
+
+                decimal? FuelEfficiency = 0;
+
+                if (vehicleinfo.AverageKmL && VCserviceModel.TotalFuel.HasValue && VCserviceModel.TotalDistance.HasValue && VCserviceModel.TotalDistance.Value > 0 && VCserviceModel.TotalFuel > 0)
+                {
+                    FuelEfficiency = VCserviceModel.TotalDistance / VCserviceModel.TotalFuel; //is km/l
+                }
+                else if (!vehicleinfo.AverageKmL && VCserviceModel.TotalFuel.HasValue && VCserviceModel.EngHours.HasValue && VCserviceModel.EngHours.Value > 0 && VCserviceModel.TotalFuel > 0)
+                {
+                    FuelEfficiency = VCserviceModel.TotalFuel /  VCserviceModel.EngHours;//is l/hr
+                }
+                else
+                {
+                    FuelEfficiency = 0;
+                }
+
+
+                decimal? fuelLost = 0;
+                decimal? expectedAverage = vehicleinfo.DefaultExptdAvg.ExpectedAverageValue;
+
+                if (vehicleinfo.AverageKmL)
+                {
+                    if (expectedAverage < FuelEfficiency && FuelEfficiency > 0 )
+                     {
+                        fuelLost = VCserviceModel.TotalFuel.HasValue && expectedAverage != 0 ? VCserviceModel.TotalFuel - (VCserviceModel.TotalDistance ?? 0) / expectedAverage : 0;
+                    }
+
+                }
+                else //calculate l/hr
+                {
+                    if( expectedAverage>FuelEfficiency && FuelEfficiency > 0)
+                    {
+                        fuelLost = VCserviceModel.TotalFuel.HasValue && VCserviceModel.EngHours != 0 ? VCserviceModel.TotalFuel - (expectedAverage * (VCserviceModel.EngHours ?? 0)) : 0; 
+                    }
+                }
+
+
+
+
                 var savedConsumption = new Vehicleconsumption
                 {
-                    VehicleId = vehicle.VehicleId,
-                    SiteId = 1,
+                    VehicleId = vehicle.VehicleId, ///check if vehicle is null or no result
+                    SiteId = vehicleinfo.WorkingSiteId??1 ,
                     Date = VCserviceModel.Date,
                     MaxSpeed = VCserviceModel.MaxSpeed,
                     AvgSpeed = VCserviceModel.AvgSpeed,
-                    ExpectedConsumption = 0,
+                    ExpectedConsumption = expectedAverage,
                     TotalDistance = VCserviceModel.TotalDistance,
-                    EmployeeId = 28459,
-                    Comments = "Demo data",
-                    FuelLost = VCserviceModel.FuelLost,
-                    FuelEfficiency = 0,
+                    EmployeeId = vehicleinfo.DefaultEmployeeId??28459,
+                    Comments = "Unmodified",
+                    FuelLost =fuelLost,
+                    FuelEfficiency = FuelEfficiency,
                     TotalFuel = VCserviceModel.TotalFuel,
                     FlowMeterFuelUsed = VCserviceModel.FlowMeterFuelUsed,
                     FlowMeterFuelLost = 0,
@@ -118,7 +169,7 @@ namespace FMS.Application.Queries.GPSGATEServer.GetconsumptionReport;
                     ExcessWorkingHrsCost = 0,
                     IsNightShift = 0,
                     IsKmperhr = vehicle.AverageKmL ? 1UL : 0UL,
-                    ModifiedBy = 1,
+                    ModifiedBy = 1, //getCurrentUserID
                     ModifiedDate = DateTime.Now,
                     IsModified = 0
                 };
@@ -140,16 +191,35 @@ namespace FMS.Application.Queries.GPSGATEServer.GetconsumptionReport;
 
     }
 
-   /// <summary>
-   ///  Save the data to the database and check for duplicates
-   /// </summary>
-   /// <param name="vehicleConsumptionBatch">Vehicle batch from GPSGate </param>
-   /// <param name="results">User Parameter</param>
-   /// <param name="cancellationToken"></param>
-   /// <returns></returns>
+
+
+    private async Task<Vehicle> getvehicleInfo(int vehicleId)
+    {
+        try
+        {
+            var vehicle = await _Context.Vehicles.Include(e => e.Expectedaverages).FirstOrDefaultAsync(x => x.VehicleId == vehicleId);
+
+            return vehicle;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex.Message);
+            throw new Exception(ex.Message);
+        }
+    }
+
+    /// <summary>
+    ///  Save the data to the database and check for duplicates
+    /// </summary>
+    /// <param name="vehicleConsumptionBatch">Vehicle batch from GPSGate </param>
+    /// <param name="results">User Parameter</param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     private async Task SaveData(List<Vehicleconsumption> vehicleConsumptionBatch , GetConsumptionReportQuery results , CancellationToken cancellationToken)
     {
+         //use Try 
 
+         try{
         var relevantData = await _Context.Vehicleconsumptions.Where(v => v.Date.Date >= results.From.Date && v.Date.Date <= results.To.Date).ToListAsync(cancellationToken);
 
         //check for duplicates
@@ -165,10 +235,17 @@ namespace FMS.Application.Queries.GPSGATEServer.GetconsumptionReport;
 
             }
         }
+         }
+         catch(MySqlException ex)
+         {
+
+                _logger.LogError(ex.Message);
+             throw new Exception(ex.Message);
+         }
       }
 
     /// <summary>
-    /// Return the result to the user
+    /// Return the Requested Consumption result to the user
     /// </summary>
     /// <param name="request"></param>
     /// <returns></returns>

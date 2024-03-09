@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using FMS.Application.Command.DatabaseCommand.UpdateVehicle;
+using AutoMapper.Configuration.Annotations;
+using FMS.Application.Command.DatabaseCommand.VehicleCmd;
 using FMS.Application.Models;
 using FMS.Application.Queries.Database.VehicleQuery;
 using FMS.Domain.Entities;
@@ -35,6 +36,24 @@ namespace FMS.WebClient.Controllers
             return Ok(vehicles);
 
         }
+
+
+        [HttpGet("getVehicleById")]
+        public async Task<IActionResult> GetVehicleByID(int id)
+        {
+            
+            var query = new GetVehicleByIDQuery { Id = id };
+
+            var vehicle = await _mediator.Send(query);
+
+            if (vehicle == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(vehicle);
+        }
+
 
         [HttpGet("getsimplevehiclelist")]
         public async Task<IActionResult> GetSimpleVehicleList()

@@ -96,21 +96,26 @@ namespace FMS.WebClient.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> CreateExpectedAVG(List<ExpectedAVGViewModel> expectedAVGViewModel)
         {
-            try
-            {
+          
                 if (!ModelState.IsValid)
                 {
                     return BadRequest();
                 }
 
                 var map = _mapper.Map<List<ExpectedAVGDto>>(expectedAVGViewModel); // mapping to a list
-
+           
                 var command = new ExpectedAVGCreateCmd
                 {
                     ExpectedAVGDto = map
                 };
-                var result = await _mediator.Send(command);
-                return Ok(result);
+            try
+            {
+                var (created, duplicates) = await _mediator.Send(command);
+                if (duplicates.Any())
+                {
+                    return Conflict($"Duplicates found: {duplicates.Count} items.");
+                }
+                return Ok(created);
             }
             catch (Exception ex)
             {

@@ -55,7 +55,9 @@ namespace FMS.WebClient.Controllers
             {
                 Id = id,
                 Name = expectedAVGClassificationDto.Name,
-                Description = expectedAVGClassificationDto.Description
+                Description = expectedAVGClassificationDto.Description,
+                IskmperLiter= expectedAVGClassificationDto.IskmperLiter
+
             };
 
             var result = await _mediator.Send(command);

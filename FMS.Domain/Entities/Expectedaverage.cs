@@ -11,7 +11,7 @@ public partial class Expectedaverage
 
     public int ExpectedAverageClassificationId { get; set; }
 
-    public decimal ExpectedAverage1 { get; set; }
+    public decimal ExpectedAverageValue { get; set; }
 
     public int SiteId { get; set; }
 

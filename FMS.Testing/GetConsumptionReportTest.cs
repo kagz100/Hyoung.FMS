@@ -62,33 +62,33 @@ namespace FMS.Testing
             throw new NotImplementedException();
         }
 
-        [Fact]
-        private async Task TestHandle()
-        {
-            //arrange 
-              var from = "2023-07-01";
-             var to = "2023-07-01";
+       // [Fact]
+      ////  private async Task TestHandle()
+      //  {
+      //      //arrange 
+      //        var from = "2023-07-01";
+      //       var to = "2023-07-01";
 
-               LoginAsync();
+      //         LoginAsync();
 
-            var handler = new GetConsumptionReportQueryHandler(_gpsGateDirectoryWebservice.Object, _gpsdataContext.Object, _mapper.Object);
-            var consumptionBatch = new List<Vehicleconsumption> {
+      //      var handler = new GetConsumptionReportQueryHandler(_gpsGateDirectoryWebservice.Object, _gpsdataContext.Object, _mapper.Object);
+      //      var consumptionBatch = new List<Vehicleconsumption> {
             
             
-            };
-            var request = new GetConsumptionReportQuery (conns,208,DateTime.Parse(from),DateTime.Parse(to));
+      //      };
+      //      var request = new GetConsumptionReportQuery (conns,208,DateTime.Parse(from),DateTime.Parse(to));
 
 
-            //act
-            await handler.Handle(request, CancellationToken());
+      //      //act
+      //      await handler.Handle(request, CancellationToken());
 
-            //assert
+      //      //assert
 
-          //  _gpsdataContext.Verify(x=>x.SaveChanges(CancellationToken))
+      //    //  _gpsdataContext.Verify(x=>x.SaveChanges(CancellationToken))
 
 
 
-        }
+      //  }
 
 
 

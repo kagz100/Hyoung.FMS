@@ -9,7 +9,7 @@ public partial class Vehicle
 
     public int VehicleId { get; set; }
 
-    public int VehicleTypeId { get; set; }
+    public int? VehicleTypeId { get; set; }
 
     public int? VehicleModelId { get; set; }
 
@@ -33,11 +33,15 @@ public partial class Vehicle
 
     public string? CurrentPhysicalReading { get; set; }
 
-    public int? WorkingExpectedAverage { get; set; }
+    public sbyte? GpsgategeneratedId { get; set; }
+
+    public int? DefaultExptdAvgid { get; set; }
 
     public virtual ICollection<Calibrationdatum> Calibrationdata { get; set; } = new List<Calibrationdatum>();
 
     public virtual Employee? DefaultEmployee { get; set; }
+
+    public virtual Expectedaverage? DefaultExptdAvg { get; set; }
 
     public virtual Device? Device { get; set; }
 
@@ -52,8 +56,6 @@ public partial class Vehicle
     public virtual Vehicletype VehicleType { get; set; } = null!;
 
     public virtual ICollection<Vehicleconsumption> Vehicleconsumptions { get; set; } = new List<Vehicleconsumption>();
-
-    public virtual Expectedaverage? WorkingExpectedAverageNavigation { get; set; }
 
     public virtual Site? WorkingSite { get; set; }
 

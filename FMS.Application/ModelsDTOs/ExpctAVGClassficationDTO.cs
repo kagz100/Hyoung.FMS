@@ -17,6 +17,8 @@ namespace FMS.Application.Models
         [JsonPropertyName("description")]
          public string Description { get; set; } = string.Empty;
 
+        [JsonPropertyName("iskmperLiter")]
+        public bool IskmperLiter { get; set; }
 
     }
 }

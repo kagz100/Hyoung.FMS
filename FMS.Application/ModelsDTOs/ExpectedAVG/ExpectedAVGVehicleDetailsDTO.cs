@@ -16,7 +16,8 @@ namespace FMS.Application.ModelsDTOs.ExpectedAVG
 
         public int? expectedAverageClassificationId { get; set; } 
 
-        public string expectedAverageClassificationName { get; set; } = null!;
+        public string expectedAverageClassificationName { get; set; }
+        public string CombinedExpectedAverage => $"{expectedAverageClassificationName} {expectedAveragevalue}";
 
         public decimal expectedAveragevalue { get; set; }
         public int? siteId { get; set; }

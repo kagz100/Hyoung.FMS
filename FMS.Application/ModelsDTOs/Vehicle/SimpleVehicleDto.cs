@@ -15,12 +15,6 @@ namespace FMS.Application.Models.Vehicle
         [JsonPropertyName("hyoungNo")]
         public string HyoungNo { get; set; }
 
-
-
-
-
-
-
     }
 
 }

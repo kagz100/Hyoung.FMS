@@ -18,6 +18,6 @@ namespace FMS.Application.ModelsDTOs.ATG.Common
     {
         public int Id { get; set; }
         public string Type { get; set; }
-        public List<JObject> Data { get; set; } // List of JObject
+        public JObject Data { get; set; } // List of JObject
     }
 }

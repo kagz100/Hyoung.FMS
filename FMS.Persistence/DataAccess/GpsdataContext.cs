@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using FMS.Domain.Entities;
+
 namespace FMS.Persistence.DataAccess;
 public partial class GpsdataContext : DbContext
 {
-    public GpsdataContext()
+     public GpsdataContext()
     {
     }
 
@@ -16,18 +17,20 @@ public partial class GpsdataContext : DbContext
 
     public virtual DbSet<Alarm> Alarms { get; set; }
 
-    public virtual DbSet<PtsTank> PtsTanks { get; set; }
-    public virtual DbSet<AlarmTankmeasurement> AlarmTankmeasurements { get; set; }
+    public virtual DbSet<Alertrecord> Alertrecords { get; set; }
 
     public virtual DbSet<Asset> Assets { get; set; }
 
     public virtual DbSet<Calibrationdatum> Calibrationdata { get; set; }
+
+    public virtual DbSet<Configuration> Configurations { get; set; }
 
     public virtual DbSet<Device> Devices { get; set; }
 
     public virtual DbSet<Devicemanufacturer> Devicemanufacturers { get; set; }
 
     public virtual DbSet<Devicemodel> Devicemodels { get; set; }
+
 
     public virtual DbSet<Employee> Employees { get; set; }
 
@@ -36,6 +39,8 @@ public partial class GpsdataContext : DbContext
     public virtual DbSet<Expectedaverageclassification> Expectedaverageclassifications { get; set; }
 
     public virtual DbSet<Fuelrefil> Fuelrefils { get; set; }
+
+    public virtual DbSet<Intankdelivery> Intankdeliveries { get; set; }
 
     public virtual DbSet<Issuecategory> Issuecategories { get; set; }
 
@@ -46,6 +51,8 @@ public partial class GpsdataContext : DbContext
     public virtual DbSet<Issuetracker> Issuetrackers { get; set; }
 
     public virtual DbSet<Pts> Pts { get; set; }
+
+    public virtual DbSet<Pumptransaction> Pumptransactions { get; set; }
 
     public virtual DbSet<Site> Sites { get; set; }
 
@@ -71,9 +78,10 @@ public partial class GpsdataContext : DbContext
 
     public virtual DbSet<Vehicletype> Vehicletypes { get; set; }
 
-   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-   => optionsBuilder.UseMySql("server=10.0.10.150;port=3306;database=gpsdata;user=root;password=Niwewenamimi1000;connection timeout=10000;command timeout=10000", Microsoft.EntityFrameworkCore.ServerVersion.Parse("5.5.61-mysql"));
+
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+    //  => optionsBuilder.UseMySql("server=10.0.10.150;port=3306;database=gpsdata;user=root;password=Niwewenamimi1000;connection timeout=10000;command timeout=10000", Microsoft.EntityFrameworkCore.ServerVersion.Parse("5.5.61-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -88,133 +96,32 @@ public partial class GpsdataContext : DbContext
             entity.ToTable("alarm");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedOnAdd()
                 .HasColumnType("int(11)")
                 .HasColumnName("id");
+            entity.Property(e => e.Description).HasMaxLength(300);
             entity.Property(e => e.Name).HasMaxLength(45);
             entity.Property(e => e.Priority).HasMaxLength(45);
         });
 
-        modelBuilder.Entity<PtsTank>()
-            .HasKey(pt => new { pt.PtsId, pt.TankId });
-
-        modelBuilder.Entity<PtsTank>()
-            .HasOne(pt => pt.Pts)
-            .WithMany(p => p.PTSTanks)
-            .HasForeignKey(pt => pt.PtsId);
-
-        modelBuilder.Entity<PtsTank>()
-            .HasOne(pt => pt.Tank)
-            .WithMany(t => t.PtsTanks)
-            .HasForeignKey(pt => pt.TankId);
-
-
-        modelBuilder.Entity<Pts>(entity =>
+        modelBuilder.Entity<Alertrecord>(entity =>
         {
-            entity.HasKey(e => e.Id)
-             
-            .HasName("PRIMARY");
+            entity.HasKey(e => e.AlertId).HasName("PRIMARY");
 
-            entity.ToTable("pts");
+            entity.ToTable("alertrecord");
 
-            entity.HasIndex(e => e.SiteId, "PTS_Site_idx");
-
-            // entity.HasIndex(e => e.TankId, "PTs_tank_idx");
-
-            entity.Property(e => e.Id)
-                .ValueGeneratedOnAdd()
+            entity.Property(e => e.AlertId).HasColumnType("int(11)");
+            entity.Property(e => e.Code).HasColumnType("int(11)");
+            entity.Property(e => e.ConfigurationId).HasMaxLength(8);
+            entity.Property(e => e.DeviceNumber).HasColumnType("int(11)");
+            entity.Property(e => e.DeviceType).HasMaxLength(20);
+            entity.Property(e => e.PacketId)
                 .HasColumnType("int(11)")
-                .HasColumnName("ID");
-            entity.Property(e => e.PtsserialNo)
-                .HasMaxLength(45)
-                .HasColumnName("PTSSerialNo");
-            entity.Property(e => e.SiteId).HasColumnType("int(11)");
-            //  entity.Property(e => e.TankId).HasColumnType("int(11)");
-
-            entity.HasOne(d => d.Site).WithMany(p => p.Pts)
-                .HasForeignKey(d => d.SiteId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("PTS_Site");
-
-            //entity.HasOne(d => d.Tank).WithMany(p => p.Pts)
-            //  .HasForeignKey(d => d.TankId)
-            // .HasConstraintName("PTs_tank");
+                .HasColumnName("PacketID");
+            entity.Property(e => e.Ptsid)
+                .HasMaxLength(23)
+                .HasColumnName("PTSId");
+            entity.Property(e => e.State).HasMaxLength(20);
         });
-        modelBuilder.Entity<Tankmeasurement>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-            entity.ToTable("tankmeasurement");
-          // entity.HasIndex(e => e.Alarms, "tankmeasurement_alarm_idx");
-            entity.Property(e => e.Id)
-                .ValueGeneratedOnAdd()
-                .HasColumnType("int(11)")
-                .HasColumnName("id");
-            entity.Property(e => e.ConfigurationId).HasMaxLength(45);
-            entity.Property(e => e.FuelGradeId).HasColumnType("int(11)");
-            entity.Property(e => e.ProductTcvolume).HasColumnName("ProductTCVolume");
-            entity.Property(e => e.Status).HasMaxLength(45);
-            entity.Property(e => e.TankFillingPercentage).HasColumnType("int(11)");
-            entity.Property(e => e.WaterHeight).HasColumnName("waterHeight");
-           // entity.Ignore(e => e.Alarms);
-            //entity.HasOne(d => d.AlarmNavigation).WithMany(p => p.Tankmeasurements)
-              //  .HasForeignKey(d => d.Alarms)
-              //  .HasConstraintName("tankmeasurement_alarm");
-        });
-        modelBuilder.Entity<Tank>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-            entity.ToTable("tank");
-
-            entity.Property(e => e.Id)
-                .ValueGeneratedOnAdd()
-                .HasColumnType("int(11)");
-            entity.Property(e => e.Name).HasMaxLength(45);
-            entity.Property(e => e.TankHeight).HasPrecision(10);
-            entity.Property(e => e.TankVolume).HasPrecision(10);
-        });
-
-        modelBuilder.Entity<Site>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-            entity.ToTable("site", tb => tb.HasComment("			"));
-
-            entity.Property(e => e.Id)
-                .ValueGeneratedOnAdd()
-                .HasColumnType("int(11)")
-                .HasColumnName("id");
-            entity.Property(e => e.Name)
-                .HasMaxLength(45)
-                .HasColumnName("name");
-        });
-
-        modelBuilder.Entity<AlarmTankmeasurement>(entity =>
-        {
-            entity.HasKey(at => new { at.TankMeausementId, at.AlarmId });
-           entity.ToTable("alarm_tankmeasurement");
-
-            entity.HasIndex(e => e.TankMeausementId, "alarmMeasurement_tankmeasurement_idx");
-            entity.HasIndex(e => e.AlarmId, "alarmmeasurement_alarm_idx");
-
-
-            entity.Property(e => e.AlarmId)
-                .HasColumnType("int(11)")
-                .HasColumnName("alarmID");
-            entity.Property(e => e.TankMeausementId)
-                .HasColumnType("int(11)")
-                .HasColumnName("tankMeausementID");
-
-            entity.HasOne(d => d.Alarm).WithMany(p => p.AlarmTankmeasurements)
-                .HasForeignKey(d => d.AlarmId)
-                .HasConstraintName("alarmmeasurement_alarm");
-
-            entity.HasOne(d => d.TankMeausement).WithMany(p => p.AlarmTankmeasurements)
-                .HasForeignKey(d => d.TankMeausementId)
-                .HasConstraintName("alarmMeasurement_tankmeasurement");
-        });
-
 
         modelBuilder.Entity<Asset>(entity =>
         {
@@ -281,6 +188,23 @@ public partial class GpsdataContext : DbContext
                 .HasConstraintName("calibrationData_vehicle");
         });
 
+        modelBuilder.Entity<Configuration>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("configuration");
+
+            entity.Property(e => e.Id).HasColumnType("int(11)");
+            entity.Property(e => e.Configuration1).HasColumnName("Configuration");
+            entity.Property(e => e.ConfigurationId).HasMaxLength(8);
+            entity.Property(e => e.PacketId)
+                .HasColumnType("int(11)")
+                .HasColumnName("PacketID");
+            entity.Property(e => e.Ptsid)
+                .HasMaxLength(45)
+                .HasColumnName("PTSId");
+        });
+
         modelBuilder.Entity<Device>(entity =>
         {
             entity.HasKey(e => e.DeviceImei).HasName("PRIMARY");
@@ -334,6 +258,7 @@ public partial class GpsdataContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("deviceModel_deviceManufaturer");
         });
+
 
         modelBuilder.Entity<Employee>(entity =>
         {
@@ -390,12 +315,10 @@ public partial class GpsdataContext : DbContext
             entity.Property(e => e.Id)
                 .HasColumnType("int(11)")
                 .HasColumnName("ID");
-            entity.Property(e => e.ExpectedAverage1)
-                .HasPrecision(5, 2)
-                .HasColumnName("ExpectedAverage");
             entity.Property(e => e.ExpectedAverageClassificationId)
                 .HasColumnType("int(11)")
                 .HasColumnName("ExpectedAverageClassificationID");
+            entity.Property(e => e.ExpectedAverageValue).HasPrecision(5, 2);
             entity.Property(e => e.SiteId)
                 .HasColumnType("int(11)")
                 .HasColumnName("SiteID");
@@ -429,6 +352,7 @@ public partial class GpsdataContext : DbContext
                 .HasColumnType("int(11)")
                 .HasColumnName("ID");
             entity.Property(e => e.Description).HasColumnType("text");
+            entity.Property(e => e.IskmperLiter).HasColumnType("tinyint(4)");
             entity.Property(e => e.Name).HasMaxLength(545);
         });
 
@@ -452,6 +376,28 @@ public partial class GpsdataContext : DbContext
             entity.Property(e => e.VehicleId)
                 .HasColumnType("int(11)")
                 .HasColumnName("vehicleID");
+        });
+
+        modelBuilder.Entity<Intankdelivery>(entity =>
+        {
+            entity.HasKey(e => e.DeliveryId).HasName("PRIMARY");
+
+            entity.ToTable("intankdelivery");
+
+            entity.Property(e => e.DeliveryId).HasColumnType("int(11)");
+            entity.Property(e => e.AbsoluteProductTcvolume).HasColumnName("AbsoluteProductTCVolume");
+            entity.Property(e => e.ConfigurationId).HasMaxLength(8);
+            entity.Property(e => e.EndProductTcvolume).HasColumnName("EndProductTCVolume");
+            entity.Property(e => e.FuelGradeId).HasColumnType("int(11)");
+            entity.Property(e => e.FuelGradeName).HasMaxLength(20);
+            entity.Property(e => e.PacketId)
+                .HasColumnType("int(11)")
+                .HasColumnName("PacketID");
+            entity.Property(e => e.Ptsid)
+                .HasMaxLength(23)
+                .HasColumnName("PTSId");
+            entity.Property(e => e.StartProductTcvolume).HasColumnName("StartProductTCVolume");
+            entity.Property(e => e.Tank).HasColumnType("int(11)");
         });
 
         modelBuilder.Entity<Issuecategory>(entity =>
@@ -589,6 +535,68 @@ public partial class GpsdataContext : DbContext
                 .HasConstraintName("Issuetracker_status");
         });
 
+        modelBuilder.Entity<Pts>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("pts");
+
+            entity.HasIndex(e => e.SiteId, "PTS_Site_idx");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("ID");
+            entity.Property(e => e.PtsserialNo)
+                .HasMaxLength(45)
+                .HasColumnName("PTSSerialNo");
+            entity.Property(e => e.SiteId).HasColumnType("int(11)");
+
+            entity.HasOne(d => d.Site).WithMany(p => p.Pts)
+                .HasForeignKey(d => d.SiteId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("PTS_Site");
+        });
+
+        modelBuilder.Entity<Pumptransaction>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("pumptransaction");
+
+            entity.Property(e => e.Id).HasColumnType("int(11)");
+            entity.Property(e => e.Amount).HasPrecision(10);
+            entity.Property(e => e.ConfigurationId).HasMaxLength(45);
+            entity.Property(e => e.FuelGradeId).HasColumnType("int(11)");
+            entity.Property(e => e.FuelGradeName).HasMaxLength(45);
+            entity.Property(e => e.Nozzle).HasColumnType("int(11)");
+            entity.Property(e => e.PacketId).HasColumnType("int(11)");
+            entity.Property(e => e.Price).HasPrecision(10);
+            entity.Property(e => e.PtsId).HasMaxLength(45);
+            entity.Property(e => e.Pump).HasColumnType("int(11)");
+            entity.Property(e => e.Tag).HasMaxLength(45);
+            entity.Property(e => e.Tcvolume)
+                .HasPrecision(10)
+                .HasColumnName("TCVolume");
+            entity.Property(e => e.TotalAmount).HasPrecision(10);
+            entity.Property(e => e.TotalVolume).HasPrecision(10);
+            entity.Property(e => e.Transaction).HasColumnType("int(11)");
+            entity.Property(e => e.UserId).HasColumnType("int(11)");
+            entity.Property(e => e.Volume).HasPrecision(10);
+        });
+
+        modelBuilder.Entity<Site>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("site", tb => tb.HasComment("			"));
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
+            entity.Property(e => e.Name)
+                .HasMaxLength(45)
+                .HasColumnName("name");
+        });
 
         modelBuilder.Entity<Tag>(entity =>
         {
@@ -625,8 +633,72 @@ public partial class GpsdataContext : DbContext
                 .HasColumnName("vehicleID");
         });
 
+        modelBuilder.Entity<Tank>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-        #region FuelManagement
+            entity.ToTable("tank");
+
+            entity.HasIndex(e => e.PtsId, "pts_tank_idx");
+
+            entity.Property(e => e.Id).HasColumnType("int(11)");
+            entity.Property(e => e.Name).HasMaxLength(45);
+            entity.Property(e => e.PtsId)
+                .HasColumnType("int(11)")
+                .HasColumnName("ptsID");
+            entity.Property(e => e.TankHeight).HasPrecision(10);
+            entity.Property(e => e.TankVolume).HasPrecision(10);
+
+            entity.HasOne(d => d.Pts).WithMany(p => p.Tanks)
+                .HasForeignKey(d => d.PtsId)
+                .HasConstraintName("pts_tank");
+        });
+
+        modelBuilder.Entity<Tankmeasurement>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("tankmeasurement");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
+            entity.Property(e => e.ConfigurationId).HasMaxLength(45);
+            entity.Property(e => e.FuelGradeId).HasColumnType("int(11)");
+            entity.Property(e => e.PacketId).HasColumnType("int(11)");
+            entity.Property(e => e.ProductTcvolume).HasColumnName("ProductTCVolume");
+            entity.Property(e => e.Ptsid).HasColumnName("PTSId");
+            entity.Property(e => e.Status).HasMaxLength(45);
+            entity.Property(e => e.Tank).HasColumnType("int(11)");
+            entity.Property(e => e.TankFillingPercentage).HasColumnType("int(11)");
+            entity.Property(e => e.WaterHeight).HasColumnName("waterHeight");
+
+            entity.HasMany(d => d.Alarms).WithMany(p => p.TankMeasurements)
+                .UsingEntity<Dictionary<string, object>>(
+                    "AlarmTankmeasurement",
+                    r => r.HasOne<Alarm>().WithMany()
+                        .HasForeignKey("AlarmId")
+                        .HasConstraintName("alarmmeasurement_alarm"),
+                    l => l.HasOne<Tankmeasurement>().WithMany()
+                        .HasForeignKey("TankMeasurementId")
+                        .HasConstraintName("alarmMeasurement_tankmeasurement"),
+                    j =>
+                    {
+                        j.HasKey("TankMeasurementId", "AlarmId")
+                            .HasName("PRIMARY")
+                            .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
+                        j.ToTable("alarm_tankmeasurement");
+                        j.HasIndex(new[] { "TankMeasurementId" }, "alarmMeasurement_tankmeasurement_idx");
+                        j.HasIndex(new[] { "AlarmId" }, "alarmmeasurement_alarm_idx");
+                        j.IndexerProperty<int>("TankMeasurementId")
+                            .HasColumnType("int(11)")
+                            .HasColumnName("tankMeasurementID");
+                        j.IndexerProperty<int>("AlarmId")
+                            .HasColumnType("int(11)")
+                            .HasColumnName("alarmID");
+                    });
+        });
+
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
@@ -682,7 +754,7 @@ public partial class GpsdataContext : DbContext
 
             entity.HasIndex(e => e.DefaultEmployeeId, "Vehicle_employee_idx");
 
-            entity.HasIndex(e => e.WorkingExpectedAverage, "vehicleExpectedAverage_idx");
+            entity.HasIndex(e => e.DefaultExptdAvgid, "vehicle_expectedAvg_idx");
 
             entity.HasIndex(e => e.VehicleManufacturerId, "vehicle_manufacturer_idx");
 
@@ -702,10 +774,16 @@ public partial class GpsdataContext : DbContext
             entity.Property(e => e.DefaultEmployeeId)
                 .HasColumnType("int(11)")
                 .HasColumnName("DefaultEmployeeID");
+            entity.Property(e => e.DefaultExptdAvgid)
+                .HasColumnType("int(11)")
+                .HasColumnName("DefaultExptdAVGId");
             entity.Property(e => e.DeviceId)
                 .HasColumnType("int(11)")
                 .HasColumnName("DeviceID");
             entity.Property(e => e.ExcessWorkingHrCost).HasPrecision(10);
+            entity.Property(e => e.GpsgategeneratedId)
+                .HasColumnType("tinyint(4)")
+                .HasColumnName("GPSGATEGeneratedID");
             entity.Property(e => e.HyoungNo).HasMaxLength(45);
             entity.Property(e => e.NumberPlate).HasMaxLength(45);
             entity.Property(e => e.VehicleManufacturerId)
@@ -718,7 +796,6 @@ public partial class GpsdataContext : DbContext
                 .HasDefaultValueSql("'1'")
                 .HasColumnType("int(11)")
                 .HasColumnName("VehicleTypeID");
-            entity.Property(e => e.WorkingExpectedAverage).HasColumnType("int(11)");
             entity.Property(e => e.WorkingSiteId)
                 .HasColumnType("int(11)")
                 .HasColumnName("WorkingSiteID");
@@ -729,6 +806,10 @@ public partial class GpsdataContext : DbContext
             entity.HasOne(d => d.DefaultEmployee).WithMany(p => p.VehiclesNavigation)
                 .HasForeignKey(d => d.DefaultEmployeeId)
                 .HasConstraintName("Vehicle_employee");
+
+            entity.HasOne(d => d.DefaultExptdAvg).WithMany(p => p.Vehicles)
+                .HasForeignKey(d => d.DefaultExptdAvgid)
+                .HasConstraintName("vehicle_expectedAvg");
 
             entity.HasOne(d => d.Device).WithMany(p => p.Vehicles)
                 .HasForeignKey(d => d.DeviceId)
@@ -744,12 +825,8 @@ public partial class GpsdataContext : DbContext
 
             entity.HasOne(d => d.VehicleType).WithMany(p => p.Vehicles)
                 .HasForeignKey(d => d.VehicleTypeId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                //.OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("vehicle_vehicleType");
-
-            entity.HasOne(d => d.WorkingExpectedAverageNavigation).WithMany(p => p.Vehicles)
-                .HasForeignKey(d => d.WorkingExpectedAverage)
-                .HasConstraintName("vehicleExpectedAverage");
 
             entity.HasOne(d => d.WorkingSite).WithMany(p => p.Vehicles)
                 .HasForeignKey(d => d.WorkingSiteId)
@@ -892,7 +969,7 @@ public partial class GpsdataContext : DbContext
             entity.Property(e => e.Name).HasMaxLength(45);
             entity.Property(e => e.Nothinghere).HasMaxLength(45);
         });
-        #endregion
+
         OnModelCreatingPartial(modelBuilder);
     }
 

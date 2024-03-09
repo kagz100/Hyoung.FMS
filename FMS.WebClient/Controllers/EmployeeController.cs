@@ -34,6 +34,17 @@ namespace FMS.WebClient.Controllers
         }
 
 
+
+        [HttpGet("getemployeebysiteid")]
+   public async Task<IActionResult> GetEmployeeBySiteId(int siteId)
+   {
+         var query = new GetEmployeeBySiteIdQuery { SiteId = siteId };
+         var employees = await _mediator.Send(query);
+         return Ok(employees);
+   }
+
+
+
         [HttpGet("getlist")]
         public async Task<IActionResult> GetEmployeeList()
         {

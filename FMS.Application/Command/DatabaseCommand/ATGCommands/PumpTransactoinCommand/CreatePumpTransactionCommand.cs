@@ -38,12 +38,11 @@ namespace FMS.Application.Command.DatabaseCommand.ATGCommands.PumpTransactoinCom
             {
                 foreach(var packet in request.PtsRequestDto.Packets)
                 {
-                    foreach(var dataobject in packet.Data)
-                    {
-                        var pumpdata = dataobject.ToObject<PumpTransactionDto>();
+                   
+                        var pumpdata = packet.Data.ToObject<PumpTransactionDto>();
                         if (pumpdata == null) continue;
 
-                        var pumptransactiondata = new PumpTransaction
+                        var pumptransactiondata = new Pumptransaction
                         {
                             PacketId = packet.Id,
                             PtsId = request.PtsRequestDto.PtsId,
@@ -55,7 +54,7 @@ namespace FMS.Application.Command.DatabaseCommand.ATGCommands.PumpTransactoinCom
                             Price = pumpdata.Price,
                             Pump = pumpdata.Pump,
                             Tag = pumpdata.Tag,
-                            TCVolume = pumpdata.TCVolume,
+                            Tcvolume = pumpdata.TCVolume,
                             TotalAmount = pumpdata.TotalAmount,
                             TotalVolume = pumpdata.TotalVolume,
                             Transaction = pumpdata.Transaction,
@@ -65,19 +64,21 @@ namespace FMS.Application.Command.DatabaseCommand.ATGCommands.PumpTransactoinCom
                         };
 
                         _context.Pumptransactions.Add(pumptransactiondata);  //Todo: Add PumpTransaction to database
-                        await _context.SaveChangesAsync(cancellationToken);
 
                         requestid = pumptransactiondata.Id;
 
-                        return ConfirmationMessage.CreateConfirmationMessage(requestid, "UploadPumpTransaction");
 
-                    }
+                    
+                 await _context.SaveChangesAsync(cancellationToken);
+
                 }
+                return ConfirmationMessage.Success(requestid, "UploadPumpTransaction");
+
             }
 
             catch (Exception ex)
             {
-                return ConfirmationMessage.CreateErrorMessage(requestid, "UploadPumpTransaction", 500, ex.Message);
+                return ConfirmationMessage.Error(requestid, "UploadPumpTransaction", 500, ex.Message);
 
             }
         }

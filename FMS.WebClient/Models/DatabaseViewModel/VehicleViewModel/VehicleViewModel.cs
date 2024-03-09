@@ -39,6 +39,8 @@ namespace FMS.WebClient.Models.DatabaseViewModel.VehicleViewModel
         [JsonPropertyName("averageKmL")]
         public bool AverageKmL { get; set; }
 
+        [JsonPropertyName("defaultExpectedAverageId")]
+        public int? DefaultExpectedAverageId { get; set; }
 
 
     }

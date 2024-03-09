@@ -14,21 +14,21 @@ namespace FMS.Services.GPSServiceModels
         private decimal? enginehrs;
         public decimal? TotalDistance
         {
-            get;set;    
-           //get
-           // {
-                
-           //    //if (IsAverageKm)
-           //    // {
-           //    //     return _totalDistance.HasValue ? (decimal)((int)(_totalDistance.Value / 1000)) : (decimal?)null;
-           //    // }
-           //    // else
-           //    // {
-           //    //     return 0;
-           //    // }
-           // }
-           // set
-           // {  _totalDistance = value;  }
+            //get;set;    
+            get
+            {
+
+                if (IsAverageKm)
+                {
+                    return _totalDistance.HasValue ? (decimal)((int)(_totalDistance.Value / 1000)) : (decimal?)null;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            set
+            { _totalDistance = value; }
         }
 
         public int VehicleId { get; set; }
@@ -36,21 +36,21 @@ namespace FMS.Services.GPSServiceModels
         public decimal? EngHours
         {
 
-            get;set;
+            //get;set;
 
-            //get
-            //{
-            //    if (enginehrs.HasValue)
-            //    {
-            //        return enginehrs.Value / 3600;
-            //    }
-            //    else
-            //    { return null; }
-            //}
-            //set
-            //{
-            //    enginehrs = value;
-            //}
+            get
+            {
+                if (enginehrs.HasValue)
+               {
+                   return enginehrs.Value / 3600;
+               }
+              else
+               { return null; }
+            }
+            set
+            {
+                enginehrs = value;
+            }
         }
         public decimal? TotalFuel { get; set; }
         public decimal? FlowMeterEngineHrs { get; set; }

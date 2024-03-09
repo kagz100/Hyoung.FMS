@@ -9,6 +9,7 @@ using FMS.WebClient.Models.DatabaseViewModel;
 using FMS.Application.Command.DatabaseCommand.ConsumptionCmd;
 using AutoMapper;
 using FMS.Application.Command.DatabaseCommand.ConsumtionCmd.Update;
+using FMS.Application.Queries.Database.Consumption;
 
 namespace FMS.WebClient.Controllers
 {
@@ -20,14 +21,46 @@ namespace FMS.WebClient.Controllers
         private readonly IMediator _mediator;
         private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
+        private readonly ILogger _logger;
 
-        public ConsumptionController (IMediator mediator, IConfiguration configuration,IMapper mapper)
+        public ConsumptionController (IMediator mediator, IConfiguration configuration,IMapper mapper,ILogger<ConsumptionController> logger)
         {
             _mapper = mapper;
             _mediator = mediator;
             _configuration = configuration;
+            _logger = logger;
         }
 
+        /// <summary>
+        /// Get histroical data TODO: Search days on settings or application
+        /// </summary>
+        /// <param name="vehicleId"></param>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        [HttpGet("gethistoryconsumption")]
+        public async Task<IActionResult> GetHistoryConsumptionDatabyVehicle(int vehicleId,DateTime date)
+        {
+            if (vehicleId <= 0 || date == default(DateTime))
+            {
+                return BadRequest("Invalid vehicle ID or date");
+            }
+            try
+            {
+
+                var query = new GetHistoryConsumptionByVehicleQuery { Entry = 5, VehicleId = vehicleId, startDate = date };
+
+                var results = await _mediator.Send(query);
+
+                return Ok(results);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex, "Error Fetching history consumption Data");
+                return StatusCode(StatusCodes.Status500InternalServerError,new {Message = ex.Message});
+            }
+
+        }
+        
         [HttpGet]
         public async Task<IActionResult> Get(DateTime from) 
         {

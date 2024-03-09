@@ -4,6 +4,7 @@ using FMS.Domain.Entities;
 using FMS.Persistence.DataAccess;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -14,44 +15,71 @@ using System.Threading.Tasks;
 
 namespace FMS.Application.Command.DatabaseCommand.ExpectedAVGCmd
 {
-    public class ExpectedAVGCreateCmd : IRequest<List<ExpectedAVGDto>>
+    public class ExpectedAVGCreateCmd : IRequest<(List<ExpectedAVGDto> created, List<ExpectedAVGDto> duplicates)>
     {
 
         public List<ExpectedAVGDto> ExpectedAVGDto { get; set; }
     }
 
-    public class ExpectedAVGCreateCmdHandler : IRequestHandler<ExpectedAVGCreateCmd, List<ExpectedAVGDto>>
+    public class ExpectedAVGCreateCmdHandler : IRequestHandler<ExpectedAVGCreateCmd, (List<ExpectedAVGDto> created, List<ExpectedAVGDto> duplicates)>
     {
         private readonly GpsdataContext context;
 
         private readonly IMapper _mapper;
-        public ExpectedAVGCreateCmdHandler(GpsdataContext context, IMapper mapper)
+        private readonly ILogger _logger;
+
+        public ExpectedAVGCreateCmdHandler(GpsdataContext context, IMapper mapper , ILogger<ExpectedAVGCreateCmdHandler> logger )
         {
             this.context = context;
             _mapper = mapper;
+            _logger = logger;
         }
 
-        public async Task<List<ExpectedAVGDto>> Handle(ExpectedAVGCreateCmd request, CancellationToken cancellationToken)
+        public async Task<(List<ExpectedAVGDto> created, List<ExpectedAVGDto> duplicates)> Handle(ExpectedAVGCreateCmd request, CancellationToken cancellationToken)
         {
-            var expectedAVGs = _mapper.Map<List<Expectedaverage>>(request.ExpectedAVGDto);
             var createdExpectedAVGs = new List<ExpectedAVGDto>();
+            var duplicates = new List<ExpectedAVGDto>();
 
-            foreach (var expectedAVG in expectedAVGs)
+            foreach(var dto in request.ExpectedAVGDto)
             {
-                try
-                {
-                    context.Expectedaverages.Add(expectedAVG);
-                    await context.SaveChangesAsync(cancellationToken);
-                    createdExpectedAVGs.Add(_mapper.Map<ExpectedAVGDto>(expectedAVG));
-                }
-                catch (DbUpdateException ex)
-                when (ex.InnerException is MySqlException mysqlEx && mysqlEx.Number == 1062)
-                {
-                    throw new Exception("The vehicle selected already has an expected average for the site", ex);
-                }
-            }
+                bool isDuplicate =await  context.Expectedaverages.AnyAsync(e => e.VehicleId == dto.VehicleId &&
+                                                     e.SiteId == dto.SiteId &&
+                                                      e.ExpectedAverageClassificationId == dto.ExpectedAverageClassificationId);
 
-            return createdExpectedAVGs;
+
+                if (!isDuplicate)
+                {
+                    var expectedAVG = new Expectedaverage
+                    {
+                        VehicleId = dto.VehicleId,
+                        ExpectedAverageClassificationId = dto.ExpectedAverageClassificationId,
+                        ExpectedAverageValue = dto.ExpectedAverageValue,
+                        SiteId = dto.SiteId ?? 0
+
+                    };
+                    context.Expectedaverages.Add(expectedAVG);
+                    try
+                    {
+                        await context.SaveChangesAsync(cancellationToken);
+                        createdExpectedAVGs.Add(_mapper.Map<ExpectedAVGDto>(expectedAVG));
+
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError($"Error saving expected average: {ex.Message}");
+                    }
+
+
+                }
+                else
+                {
+                    duplicates.Add(dto);
+                }
+         
+    }
+
+
+            return (createdExpectedAVGs, duplicates);
         }
 
     }
